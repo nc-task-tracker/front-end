@@ -1,0 +1,11 @@
+.login-user {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

@@ -1,0 +1,4 @@
+export enum DialogResult {
+    CLOSE
+}
+

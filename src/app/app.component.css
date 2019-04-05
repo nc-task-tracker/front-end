@@ -1,0 +1,9 @@
+::ng-deep .cdk-global-scrollblock {
+    overflow: hidden;
+}
+
+::ng-deep body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}

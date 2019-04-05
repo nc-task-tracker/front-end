@@ -1,0 +1,47 @@
+.user-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.mat-spinner {
+    margin: auto; 
+}
+
+table {
+    width: 100%;
+}
+
+.mat-column-id {
+    width: 20vw;
+}
+
+.mat-column-name {
+   width: 12vw;
+}
+
+.mat-column-password {
+    width: 8vw;
+}
+
+.mat-column-dateOfBirth {
+    width: 30vw;
+ }
+
+ .mat-column-email {
+    width: 30vw;
+ }
+
+ .mat-column-email button {
+     background: transparent;
+     border: none;
+     float: right;
+ }
+
+ .create-user-button {
+     align-self: flex-end;
+     margin-right: 40px;
+ }

@@ -1,0 +1,11 @@
+.delete-user-dialig {
+    display: flex;
+    flex-direction: column;
+    font-size: 14pt;
+    font-size: bold;
+    justify-content: space-between;
+}
+
+.delete-user-dialog-controls {
+    margin-top: 20px;
+}
