@@ -9,3 +9,12 @@ form {
     flex-direction: column;
     justify-content: space-between;
 }
+
+.create-user-button {
+  align-self: flex-end;
+  margin-right: 40px;
+}
+
+.edit-user-controls {
+  align-self: center;
+}

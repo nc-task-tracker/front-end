@@ -7,7 +7,7 @@ import { take } from 'rxjs/operators';
 import { UserDialogData } from 'src/app/models/dialog-data.models';
 import { DialogResult } from 'src/app/models/dialog-result';
 import { User } from 'src/app/models/user.model';
-import { AppState } from 'src/app/store';
+import { AppState } from 'src/app/store/index';
 import { createUserAction, updateUserAction } from 'src/app/store/actions/users.actions';
 import { selectUserById } from 'src/app/store/selectors/users.selector';
 
@@ -19,21 +19,17 @@ import { selectUserById } from 'src/app/store/selectors/users.selector';
 export class EditUserComponent implements OnInit {
 
   userForm: FormGroup;
-
-  maxDate = new Date();
-
   asyncUser: Observable<User>;
-  title: string;
-  private userId: string;
 
-  constructor(private ngRedux: NgRedux<AppState>,
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<EditUserComponent>,
+  private userId: string;
+  hide = true;
+
+  constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder,
+              public dialogRef: MatDialogRef<EditUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: UserDialogData) { }
 
   ngOnInit() {
     this.userId = this.data.userId;
-    this.title = this.userId ? 'Edit User' : 'Create User';
     this.ngRedux.select(state => selectUserById(state, this.userId))
       .pipe(take(1))
       .subscribe(user => {
@@ -42,7 +38,7 @@ export class EditUserComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(result => {
       if (result !== DialogResult.CLOSE) {
         if (this.userId) {
-          this.ngRedux.dispatch(updateUserAction({ ...result, id: this.userId }));
+          this.ngRedux.dispatch(updateUserAction(<User>{...result, id: this.userId}));
         } else {
           this.ngRedux.dispatch(createUserAction(result));
         }
@@ -53,8 +49,8 @@ export class EditUserComponent implements OnInit {
   private initializeForm(user: User) {
     this.userForm = this.fb.group({
       name: [user.name, Validators.required],
-      dateOfBirth: [user.dateOfBirth],
       password: [user.password],
+      confirmPassword: [user.confirmPassword],
       email: [user.email, Validators.email]
     });
   }
@@ -67,12 +63,12 @@ export class EditUserComponent implements OnInit {
     return this.userForm.get('password') as FormControl;
   }
 
-  get email(): FormControl {
-    return this.userForm.get('email') as FormControl;
+  get confirmPassword(): FormControl {
+    return this.userForm.get('confirmPassword') as FormControl;
   }
 
-  get dateOfBirth(): FormControl {
-    return this.userForm.get('dateOfBirth') as FormControl;
+  get email(): FormControl {
+    return this.userForm.get('email') as FormControl;
   }
 
   getErrorText(controlName: string): string {
@@ -96,5 +92,4 @@ export class EditUserComponent implements OnInit {
     }
     return errorMesage;
   }
-
 }

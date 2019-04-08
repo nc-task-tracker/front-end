@@ -1,20 +1,25 @@
 <div class="login-user">
-  <h2 mat-dialog-title>Login</h2>
+  <h2 mat-dialog-title align="center">Login</h2>
   <form [formGroup]="credentialForm">
      <mat-form-field>
          <input matInput placeholder="Login" [formControlName]="'login'" required>
          <mat-error *ngIf="login.invalid">{{getErrorText('login')}}</mat-error>
      </mat-form-field>
-     <mat-form-field>
+    <mat-form-field>
       <input matInput placeholder="Password" [formControlName]="'password'" [type]="hide ? 'password' : 'text'" required>
       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       <mat-error *ngIf="password.invalid">{{getErrorText('login')}}</mat-error>
-  </mat-form-field>
+    </mat-form-field>
   </form>
   <div class="edit-user-controls">
-     <button mat-button color="warn" (click)=onCancelClick()>Cancel</button>
      <button mat-button color="primary" [disabled]="credentialForm.invalid" [mat-dialog-close]="credentialForm.getRawValue()" cdkFocusInitial>
         Login
      </button>
+     <button mat-button color="warn" (click)=onCancelClick()>Cancel</button>
+  </div>
+  <div class="edit-user-controls">
+      Don't have an account?
+      <!--<button mat-rained-button color="primary" class="create-user-button" (click)=onCreateUserClick()>Registration</button>-->
+    <button mat-rained-button color="primary" class="create-user-button" routerLink="/register">Registration</button>
   </div>
 </div>

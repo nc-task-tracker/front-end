@@ -8,7 +8,7 @@
 }
 
 .mat-spinner {
-    margin: auto; 
+    margin: auto;
 }
 
 table {
@@ -39,9 +39,4 @@ table {
      background: transparent;
      border: none;
      float: right;
- }
-
- .create-user-button {
-     align-self: flex-end;
-     margin-right: 40px;
  }

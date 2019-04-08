@@ -5,6 +5,7 @@ import {User} from '../models/user.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class GlobalUserStorageService {
   private USER_KEY = 'currentUser';
 

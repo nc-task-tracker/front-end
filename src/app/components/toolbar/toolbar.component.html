@@ -2,7 +2,6 @@
   <div class="toolbar-contols">
     <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Login</button>
     <ng-template #loginUser>
-      <span>{{(currentUser | async)?.name}}</span>
       <button mat-button (click)="onLogoutClick()">Logout</button>
     </ng-template>
   </div>

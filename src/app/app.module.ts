@@ -24,11 +24,13 @@ import { reducers } from './store/reducers/reducers';
 import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
+import {ErrorInterceptor} from './interceptors/error.interceptor';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import {JwtInterceptor} from './interceptors/jwt.interceptor';
     UserService,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

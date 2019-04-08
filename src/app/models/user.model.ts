@@ -1,17 +1,17 @@
 export interface User {
-  readonly token: string;
   readonly id: string;
   readonly name: string;
-  readonly dateOfBirth: Date;
-  readonly email: string;
   readonly password: string;
+  readonly confirmPassword: string;
+  readonly email: string;
+  readonly token: string;
 }
 
 export const defaultUser: User = {
-  token: '',
   id: null,
   name: '',
   password: '',
-  dateOfBirth: null,
-  email: ''
+  confirmPassword: '',
+  email: '',
+  token: ''
 };

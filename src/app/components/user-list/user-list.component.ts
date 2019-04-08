@@ -9,8 +9,9 @@ import { fetchUsersAction } from 'src/app/store/actions/users.actions';
 import { isLoading, selectUsers } from 'src/app/store/selectors/users.selector';
 import { User } from '../../models/user.model';
 import { DeleteUserComponent } from '../dialogs/delete-user/delete-user.component';
-import { EditUserComponent } from '../dialogs/edit-user/edit-user.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 import { MatDialog } from '@angular/material';
+import {selectCurrentUser} from '../../store/selectors/current-user.selector';
 
 @Component({
   selector: 'app-user-list',
@@ -19,45 +20,18 @@ import { MatDialog } from '@angular/material';
 })
 export class UserListComponent implements OnInit {
 
-  displayedColumns: string[] = ['id', 'name', 'password', 'dateOfBirth', 'email'];
-
   @select(isLoading)
   isLoading: Observable<boolean>;
 
   @select(selectUsers)
   users: Observable<User[]>;
 
-  constructor(private ngRedux: NgRedux<AppState>, private matDialog: MatDialog) {
-  }
+  @select(selectCurrentUser)
+  readonly currentUser: Observable<User>;
+
+  constructor(private ngRedux: NgRedux<AppState>, private matDialog: MatDialog) {}
 
   ngOnInit() {
     this.ngRedux.dispatch(fetchUsersAction());
   }
-
-  onEditClick(userId: string) {
-    this.matDialog.open(EditUserComponent, {
-      width: '550px',
-      height: '400px',
-      data: { userId }
-    });
-  }
-
-  selectUser(userId: string) {
-    this.ngRedux.dispatch(updateRouterState(`/user/${userId}`));
-  }
-
-  onCreateUserClick() {
-    this.matDialog.open(EditUserComponent, {
-      width: '550px',
-      height: '400px',
-      data: { userId: null }
-    });
-  }
-
-  onDeleteClick(userId: string) {
-    this.matDialog.open(DeleteUserComponent, {
-      data: { userId }
-    });
-  }
-
 }

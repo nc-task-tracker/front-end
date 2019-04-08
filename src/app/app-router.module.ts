@@ -1,13 +1,12 @@
 import { UserListComponent } from './components/user-list/user-list.component';
-import { UserComponent } from './components/user/user.component';
-import { NgModelGroup } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 const routs: Routes = [
     {path: '', redirectTo: 'users', pathMatch: 'full'},
     {path: 'users', component: UserListComponent},
-    {path: 'user/:id', component: UserComponent}
+    {path: 'register', component: EditUserComponent}
 ];
 
 @NgModule({
