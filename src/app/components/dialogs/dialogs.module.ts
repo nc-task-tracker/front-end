@@ -9,11 +9,13 @@ import {
 } from '@angular/material';
 import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { LoginUserComponent } from './login-user/login-user.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    RouterModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,

@@ -1,15 +1,16 @@
-import { NgRedux } from '@angular-redux/store';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
-import { UserDialogData } from 'src/app/models/dialog-data.models';
-import { DialogResult } from 'src/app/models/dialog-result';
-import { User } from 'src/app/models/user.model';
-import { AppState } from 'src/app/store/index';
-import { createUserAction, updateUserAction } from 'src/app/store/actions/users.actions';
-import { selectUserById } from 'src/app/store/selectors/users.selector';
+import {NgRedux} from '@angular-redux/store';
+import {Component, Inject, OnInit, Optional} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Observable} from 'rxjs';
+import {take} from 'rxjs/operators';
+import {UserDialogData} from 'src/app/models/dialog-data.models';
+import {DialogResult} from 'src/app/models/dialog-result';
+import {User} from 'src/app/models/user.model';
+import {AppState} from 'src/app/store/index';
+import {createUserAction, updateUserAction} from 'src/app/store/actions/users.actions';
+import {selectUserById} from 'src/app/store/selectors/users.selector';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
@@ -25,32 +26,37 @@ export class EditUserComponent implements OnInit {
   hide = true;
 
   constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder,
-              public dialogRef: MatDialogRef<EditUserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: UserDialogData) { }
+              @Optional() public dialogRef: MatDialogRef<EditUserComponent>,
+              @Optional() @Inject(MAT_DIALOG_DATA) public data: UserDialogData,
+              private router: Router
+              ) {
+  }
 
   ngOnInit() {
-    this.userId = this.data.userId;
+    this.userId = null;
     this.ngRedux.select(state => selectUserById(state, this.userId))
       .pipe(take(1))
       .subscribe(user => {
         this.initializeForm(user);
       });
-    this.dialogRef.afterClosed().subscribe(result => {
-      if (result !== DialogResult.CLOSE) {
-        if (this.userId) {
-          this.ngRedux.dispatch(updateUserAction(<User>{...result, id: this.userId}));
-        } else {
-          this.ngRedux.dispatch(createUserAction(result));
+    if (this.dialogRef) {
+      this.dialogRef.afterClosed().subscribe(result => {
+        if (result !== DialogResult.CLOSE) {
+          if (this.userId) {
+            this.ngRedux.dispatch(updateUserAction(<User>{...result, id: this.userId}));
+          } else {
+            this.ngRedux.dispatch(createUserAction(result));
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   private initializeForm(user: User) {
     this.userForm = this.fb.group({
       name: [user.name, Validators.required],
-      password: [user.password],
-      confirmPassword: [user.confirmPassword],
+      password: [user.password, Validators.required],
+      confirmPassword: [null],
       email: [user.email, Validators.email]
     });
   }
@@ -77,7 +83,7 @@ export class EditUserComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.dialogRef.close(DialogResult.CLOSE);
+    this.router.navigate(['users']);
   }
 
   private getErrorMessage(control: FormControl): string {

@@ -1,12 +1,12 @@
-import { NgRedux } from '@angular-redux/store';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {NgRedux} from '@angular-redux/store';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {MatDialog, MatDialogRef} from '@angular/material';
-import { DialogResult } from 'src/app/models/dialog-result';
-import { AppState } from 'src/app/store';
-import { loginUserAction } from 'src/app/store/actions/current-user.actions';
+import {DialogResult} from 'src/app/models/dialog-result';
+import {AppState} from 'src/app/store';
+import {loginUserAction} from 'src/app/store/actions/current-user.actions';
 import {EditUserComponent} from '../../edit-user/edit-user.component';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-user',
@@ -20,13 +20,14 @@ export class LoginUserComponent implements OnInit {
 
   constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder,
               public dialogRef: MatDialogRef<LoginUserComponent>, private matDialog: MatDialog,
-              private route: ActivatedRoute, private router: Router) { }
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.initializeForm();
     this.dialogRef.afterClosed().subscribe(result => {
       if (result !== DialogResult.CLOSE) {
-          this.ngRedux.dispatch(loginUserAction(result));
+        this.ngRedux.dispatch(loginUserAction(result));
       }
     });
   }
@@ -54,7 +55,7 @@ export class LoginUserComponent implements OnInit {
     this.matDialog.open(EditUserComponent, {
       width: '550px',
       height: '400px',
-      data: { userId: null }
+      data: {userId: null}
     });
   }
 
@@ -76,4 +77,9 @@ export class LoginUserComponent implements OnInit {
     return errorMesage;
   }
 
+  onRegisterClick() {
+    this.onCancelClick();
+    // this.dialogRef.close(DialogResult.CLOSE);
+    setTimeout(() => this.router.navigate(['register']));
+  }
 }
