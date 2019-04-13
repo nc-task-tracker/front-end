@@ -26,17 +26,24 @@ import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {EditUserComponent} from './components/edit-user/edit-user.component';
+import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
+import { MaterialModule } from './material.module';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    CreateTicketPageComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
+    FormsModule,
     // import main NgReduxModule
     NgReduxModule,
+    MaterialModule,
     NgReduxRouterModule.forRoot(),
     HttpClientModule,
     UserListModule,

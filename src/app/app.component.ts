@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import { AppState } from './store';
 import { updateCurrentUserAction } from './store/actions/current-user.actions';
-import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',

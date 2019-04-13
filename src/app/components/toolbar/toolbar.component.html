@@ -1,8 +1,19 @@
 <mat-toolbar color="primary">
   <div class="toolbar-contols">
-    <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Login</button>
-    <ng-template #loginUser>
-      <button mat-button (click)="onLogoutClick()">Logout</button>
-    </ng-template>
+      <div class="log">
+        <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
+      </div>
+      <div class="navigation">
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Dashboard</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Project</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Infomation</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Settings</button>
+      </div>
+      <ng-template #loginUser>
+        <button mat-button (click)="onLogoutClick()">Logout</button>
+        <button class="username" mat-button (click)="onUserProfile()">User.name</button>
+      </ng-template>
   </div>
+
+
 </mat-toolbar>

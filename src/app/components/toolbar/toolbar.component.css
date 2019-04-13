@@ -1,3 +1,20 @@
 .mat-toolbar {
-    justify-content: flex-end;
+  justify-content: flex-start;
 }
+
+.toolbar-contols {
+  width: 100vw;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.toolbar-contols button:hover {
+  background-color: navy;
+}
+
+.toolbar-contols .username:hover {
+  background-color: inherit;
+}
+
