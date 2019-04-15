@@ -3,7 +3,7 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -26,6 +26,7 @@ import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {ProjectPageComponent} from "./components/project-page/project-page.component";
+import { MaterialModule } from "./material.module";
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 
 @NgModule({
@@ -35,6 +36,7 @@ import {EditUserComponent} from './components/edit-user/edit-user.component';
     ProjectPageComponent
   ],
   imports: [
+    MaterialModule,
     BrowserModule,
     EpicsModule,
     // import main NgReduxModule
