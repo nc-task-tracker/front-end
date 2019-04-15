@@ -25,6 +25,7 @@ import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 
 @NgModule({
