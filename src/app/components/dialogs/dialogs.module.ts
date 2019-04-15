@@ -7,7 +7,6 @@ import {
   MatInputModule, MatDatepickerModule, MatNativeDateModule, MatButtonModule,
   MatDialogModule, MatIconModule
 } from '@angular/material';
-import { DeleteUserComponent } from './delete-user/delete-user.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import {RouterModule} from '@angular/router';
 
@@ -25,7 +24,7 @@ import {RouterModule} from '@angular/router';
     MatDialogModule,
     MatIconModule
   ],
-  declarations: [EditUserComponent, DeleteUserComponent, LoginUserComponent],
-  entryComponents: [EditUserComponent, DeleteUserComponent, LoginUserComponent]
+  declarations: [EditUserComponent, LoginUserComponent],
+  entryComponents: [EditUserComponent, LoginUserComponent]
 })
 export class DialogsModule { }
