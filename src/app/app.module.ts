@@ -31,7 +31,8 @@ import {EditUserComponent} from './components/edit-user/edit-user.component';
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent
+    UserComponent,
+    ProjectPageComponent
   ],
   imports: [
     BrowserModule,
