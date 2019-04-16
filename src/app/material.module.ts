@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import {MatCardModule} from '@angular/material/card';
+
 import {
   MatDatepickerModule,
   MatFormFieldModule,
@@ -6,8 +8,10 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatTooltipModule
+
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 @NgModule({
   imports: [
@@ -18,7 +22,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
+
   ],
   exports: [
     MatFormFieldModule,
@@ -28,7 +34,9 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatCardModule
+
   ]
 })
 export class MaterialModule {}
