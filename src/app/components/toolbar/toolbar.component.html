@@ -5,7 +5,7 @@
         <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
       </div>
       <div >
-        <button mat-button *ngIf="!(currentUser | async); else loginUser">Dashboard</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onClickD()">Dashboard</button>
         <button mat-button *ngIf="!(currentUser | async); else loginUser">Project</button>
         <button mat-button *ngIf="!(currentUser | async); else loginUser">Infomation</button>
         <button mat-button *ngIf="!(currentUser | async); else loginUser">Settings</button>

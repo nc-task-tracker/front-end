@@ -25,23 +25,23 @@ import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
-import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
-
+import { FormsModule } from '@angular/forms';
+import {RegisterService} from './service/register.service';
+import {TicketComponent} from './components/ticket/ticket.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent
+    CreateTicketPageComponent,
+    TicketComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
-    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -58,6 +58,7 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
   providers: [
     EpicService,
     TransformService,
+    RegisterService,
     UserService,
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
