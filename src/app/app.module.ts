@@ -28,7 +28,8 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TicketServiceService} from './service/ticket-service.service'; // <-- NgModel lives here
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     BrowserModule,
     EpicsModule,
     FormsModule,
+    ReactiveFormsModule,
     // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
@@ -60,6 +62,7 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     TransformService,
     UserService,
     AuthService,
+    TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
@@ -81,7 +84,7 @@ export class AppModule {
 
     const currentUser = localStorageService.currentUser;
 
-    const INITIAL_STATE: AppState = {currentUser};
+    const INITIAL_STATE: AppState = {currentUser} as AppState;
 
     ngRedux.configureStore(reducers, INITIAL_STATE, [middleware, createLogger()], enhancers);
     middleware.run(epics as any);
