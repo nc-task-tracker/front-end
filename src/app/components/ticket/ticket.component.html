@@ -1,0 +1,55 @@
+<div class="ticket">
+  <div class="details">
+    <table>
+      <tr>
+        <td>
+          <h3>Type</h3>
+          <mat-form-field>
+            <mat-select>
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3>Priority</h3>
+          <mat-form-field>
+            <mat-select>
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h3>Status</h3>
+          <mat-form-field>
+            <mat-select>
+              <mat-option>To do</mat-option>
+              <mat-option>In progress</mat-option>
+              <mat-option>Open</mat-option>
+              <mat-option>Closed</mat-option>
+              <mat-option>Reopened</mat-option>
+              <mat-option>Resolved</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <h3>Resolution</h3>
+          <mat-form-field>
+            <mat-select>
+              <mat-option *ngFor="let type of types" [value]="type.value">
+                {{type.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+
