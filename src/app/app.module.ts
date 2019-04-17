@@ -29,6 +29,7 @@ import { CreateTicketPageComponent } from './components/create-ticket-page/creat
 import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 
 
 
@@ -37,7 +38,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     AppComponent,
     UserComponent,
     CreateTicketPageComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangeProfileComponent
   ],
   imports: [
     BrowserModule,
