@@ -1,3 +1,9 @@
+.create-ticket {
+
+  overflow-y: scroll;
+  height: 100%;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
