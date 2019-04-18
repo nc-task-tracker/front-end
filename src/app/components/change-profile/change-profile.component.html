@@ -1,4 +1,7 @@
+<div class="wrapper">
+
 <form class="change-profile">
+
   <mat-form-field class="input-full-width">
     <input matInput placeholder="First name" value="" required>
     <mat-icon matSuffix>mode_edit</mat-icon>
@@ -11,7 +14,6 @@
     <input matInput placeholder="Email" value="" required>
     <mat-icon matSuffix>email</mat-icon>
   </mat-form-field>
-
   <mat-form-field class="input-full-width">
     <span matPrefix>+375 &nbsp;</span>
     <input type="tel" matInput placeholder="Telephone">
@@ -41,8 +43,9 @@
     </button>
     <button matTooltip="Cancel save data"
             aria-label="Button that displays a tooltip when focused or hovered over"
-            mat-raised-button class="cancel" onclick="">Cancel
+            mat-raised-button class="cancel" (click)="onCancelClick()">Cancel
     </button>
   </div>
 
 </form>
+</div>

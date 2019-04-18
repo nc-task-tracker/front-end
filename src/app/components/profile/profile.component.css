@@ -1,19 +1,69 @@
-body {
+.wrapper {
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
+  height: 100%;
 }
-.example-container {
-  display: flex;
-  /*flex-direction: row-reverse;
-  width: 23%;
-  margin-left: 8px;*/
+.icon {
+  font-size: 330px;
+  float: left;
+  margin-left: 100px;
+  margin-top: 50px;
+}
+.email {
+  width: 92%;
 }
 .one  {
-  width: 10%;
-  margin: 8px;
+  width: 25%;
+  margin-left: 340px;
+  float: left;
+  margin-top: 63px;
+}
+.social {
+  width: 92%;
 }
 .example-button-row button{
   margin-left: 20px;
 }
-.mat-icon {
-  font-size: 250px;
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
 }
+.example-card {
+  min-width: 460px;
+  float: right;
+  margin-right: 110px;
+  margin-top: 50px;
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.action {
+  font-size: 24px;
+}
+.height {
+  max-height: 270px;
+}
+.dashboard-head,.filter-head,.project-head {
+  font-size: 32px;
+}
+.dashboards,.filters,.projects {
+  font-size: 24px;
+}
+.dashboard-card{
+  margin: 80px 100px 250px;
+  width: 373px;
+  float: left;
+}
+.filter-card{
+  margin-top: 80px;
+  margin-bottom: 250px;
+  width: 373px;
+  float: left;
+}
+.project-card{
+  margin: 80px 100px 250px;
+  width: 373px;
+  float: right;
+}
+
+
