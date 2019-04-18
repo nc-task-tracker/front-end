@@ -23,10 +23,10 @@ export class CreateTicketPageComponent implements OnInit {
 
   ngOnInit() {
      this.ticketForm = this.fb.group({
-          name: [''],
-          type: [''],
+          issueName: [''],
+          issueType: [''],
           priority: [TicketPriority.MINOR],
-          description: [''],
+          issueDescription: [''],
           assignee: []
      });
   }

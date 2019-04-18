@@ -11,7 +11,6 @@ export class TicketsEpic {
 
   constructor(private ticketService: TicketServiceService) {}
 
-  // TODO fix red
   createTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType<ReturnType<typeof createTicketAction>>(CREATE_TICKET).pipe(
       mergeMap(({payload}) => {
