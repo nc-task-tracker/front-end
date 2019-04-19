@@ -26,9 +26,11 @@ import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
-import { MaterialModule } from './material.module;
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MaterialModule} from "./material.module";
+import {TicketServiceService} from "./service/ticket-service.service";
 
 @NgModule({
   declarations: [
@@ -42,9 +44,9 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     BrowserModule,
     EpicsModule,
     FormsModule,
-    ReactiveFormsModule,
-    // import main NgReduxModule
     NgReduxModule,
+    // import main NgReduxModule
+    ReactiveFormsModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
     HttpClientModule,
