@@ -25,18 +25,18 @@ import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
-import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
-import { MaterialModule } from './material.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TicketServiceService} from './service/ticket-service.service'; // <-- NgModel lives here
-
+import { MaterialModule } from './material.module;
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent
+    CreateTicketPageComponent,
+    ProfileComponent,
+    ChangeProfileComponent
   ],
   imports: [
     BrowserModule,

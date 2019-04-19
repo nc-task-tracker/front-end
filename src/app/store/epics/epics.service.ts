@@ -15,7 +15,6 @@ export class EpicService {
             this.userEpic.fetchUsers$,
             this.userEpic.createUser$,
             this.userEpic.updateUser$,
-            this.userEpic.deleteUser$,
             this.userEpic.selectUser$,
             this.currentUserEpic.loginUser$,
             this.currentUserEpic.logout$,
