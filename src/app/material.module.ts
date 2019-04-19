@@ -5,7 +5,10 @@ import {
   MatInputModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatChipsModule,
+  MatIconModule,
+  MatAutocompleteModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -18,7 +21,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatFormFieldModule,
@@ -28,7 +34,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatSelectModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatChipsModule,
+    MatIconModule,
+    MatAutocompleteModule
   ]
 })
 export class MaterialModule {}
