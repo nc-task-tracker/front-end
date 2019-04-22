@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {NgRedux} from "@angular-redux/store";
+import {AppState} from "../../store";
+import {saveProfileAction} from "../../store/actions/change-profile.actions";
+
 
 
 @Component({
@@ -8,13 +13,32 @@ import {Router} from "@angular/router";
   styleUrls: ['./change-profile.component.css']
 })
 export class ChangeProfileComponent implements OnInit {
-  constructor(private router: Router) {
+
+  changeProfileForm: FormGroup;
+
+  constructor(private router: Router,
+              private formBuilder: FormBuilder,
+              private ngRedux: NgRedux<AppState>) {
 
   }
   onCancelClick() {
     this.router.navigate(['profile']);
   }
   ngOnInit() {
+    this.changeProfileForm = this.formBuilder.group({
+      firstName: [''],
+      lastName: [''],
+      email: [''],
+      telephone: [''],
+      skype: [''],
+      birthday: [''],
+      anotherContact: [''],
+      aboutYourself: ['']
+    });
   }
 
+ changeProfile() {
+    const formValue = this.changeProfileForm.getRawValue();
+    this.ngRedux.dispatch(saveProfileAction(formValue));
+  }
 }

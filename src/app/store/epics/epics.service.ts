@@ -4,11 +4,13 @@ import { combineEpics } from 'redux-observable';
 import { CurrentUserEpic } from './current-user.epic';
 import {TicketsEpic} from './tickets.epic';
 
+
 @Injectable()
 export class EpicService {
 
-    constructor(private userEpic: UserEpic, private currentUserEpic: CurrentUserEpic,
-                private ticketsEpic: TicketsEpic) {}
+    constructor(private userEpic: UserEpic,
+                private currentUserEpic: CurrentUserEpic,
+                private ticketsEpic: TicketsEpic){}
 
     getEpics() {
         return combineEpics(
@@ -19,6 +21,7 @@ export class EpicService {
             this.currentUserEpic.loginUser$,
             this.currentUserEpic.logout$,
             this.ticketsEpic.createTicket$
+
         );
     }
 
