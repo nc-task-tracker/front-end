@@ -12,7 +12,7 @@ export class UserService {
     constructor(private http: HttpClient) { }
 
     getUsers(): Observable<User[]> {
-        return this.http.get<User[]>(`${this.USERS_URL}`)
+        return this.http.get<User[]>(`${this.USERS_URL}/all`)
             .pipe(catchError((error: any) => throwError(error.error)));
     }
 

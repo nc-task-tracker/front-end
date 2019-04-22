@@ -28,19 +28,23 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CreateProjectComponent} from "./components/create-project/create-project.component";
+import {ProjectService} from "./service/project.service"; // <-- NgModel lives here
 
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent
+    CreateTicketPageComponent,
+    CreateProjectComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
+    ReactiveFormsModule,
     // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
@@ -60,6 +64,7 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
     TransformService,
     UserService,
     AuthService,
+    ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
