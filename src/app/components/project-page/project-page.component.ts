@@ -1,20 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Project} from "../../models/project.model";
 import {Issue} from "../../models/issue.model";
-
-
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: Issue[] = [
-  {id: '1', name: 'Hydrogen', type: 'open', status: 'open',priority: '1',start_date: '1',due_date: '2',description: '3'}
-];
-
+import {ProjectService} from "../../service/project.service";
+import {ActivatedRoute} from "@angular/router";
+import {IssueService} from "../../service/issue.service";
 
 @Component({
   selector:'app-project-page',
@@ -23,14 +12,33 @@ const ELEMENT_DATA: Issue[] = [
 })
 export class ProjectPageComponent implements OnInit{
 
-  displayedColumns: string[] = ['id','name', 'type', 'status','priority','start_date','due_date','description'];
-  dataSource = ELEMENT_DATA;
+  private displayedColumns: string[] = ['id','issueName', 'issueType', 'issueStatus','issuePriority','start_date','due_date','issueDescription'];
+  private issues: Issue[];
+  private project: Project;
 
-
-  constructor() {
+  constructor(private route: ActivatedRoute,
+              private projectService: ProjectService,
+              private issueService: IssueService) {
   }
 
   ngOnInit(): void {
+    this.getData();
+  }
+
+  getData(): void{
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.projectService.getProjectById(id).subscribe(project => {
+      this.project = project as Project;
+    });
+
+    this.issueService.getIssuesByProjectId(id).subscribe(issues => {
+      this.issues = issues as Issue[];
+    })
+  }
+
+  onClickAddIssue(): void{
+
   }
 
 }

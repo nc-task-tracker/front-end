@@ -8,7 +8,7 @@ const routs: Routes = [
     {path: '', redirectTo: 'users', pathMatch: 'full'},
     {path: 'users', component: UserListComponent},
     {path: 'register', component: EditUserComponent},
-    {path: 'project', component:ProjectPageComponent}
+    {path: 'projects/:id', component:ProjectPageComponent}
 
 ];
 

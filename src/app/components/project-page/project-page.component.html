@@ -1,26 +1,32 @@
-
 <div class="project_page">
   <div class = "project_name">
-    <h1>Project:</h1>
+    <h1>Project:{{this.project.projectName}}</h1>
   </div>
   <div class = "details">
     <div class = "sub-details">
       <p class = "word-details">Details:</p>
-      <div class = "detail-status">
-        <p class = "detail-parameter">Type:</p>
-        <p class = "detail-value"></p>
+      <div class = "detail-type">
+        <p  class = "detail-parameter">Type:{{this.project.projectType}}</p>
        </div>
+      <div class = "detail-status">
+        <p class = "detail-parameter">Status:{{this.project.projectStatus}}</p>
+      </div>
       <div class = "detail-descr">
-        <p class = "detail-parameter">Description:</p>
-        <p class = "detail-value"></p>
+        <p class = "detail-parameter">Description:{{this.project.projectDescription}}</p>
+      </div>
+      <div class = "detail-owner">
+        <p class = "detail-parameter">Owner:{{this.project.projectOwner}}</p>
       </div>
     </div>
   </div>
 </div>
 
+<div class="example-button-row">
+  <button mat-button color="primary" (click) = "onClickAddIssue()">Add issue</button>
+</div>
 
 <div class="example-container mat-elevation-z8">
-  <table mat-table [dataSource]="dataSource">
+  <table mat-table [dataSource]="this.issues">
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
@@ -29,41 +35,41 @@
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <ng-container matColumnDef="issueName">
       <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.issueName}} </td>
     </ng-container>
 
     <!-- Weight Column -->
-    <ng-container matColumnDef="type">
+    <ng-container matColumnDef="issueType">
       <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.issueType}} </td>
     </ng-container>
 
     <!-- Symbol Column -->
-    <ng-container matColumnDef="status">
+    <ng-container matColumnDef="issueStatus">
       <th mat-header-cell *matHeaderCellDef> Status </th>
-      <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.issueStatus}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="priority">
+    <ng-container matColumnDef="issuePriority">
       <th mat-header-cell *matHeaderCellDef> Priority </th>
-      <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.issuePriority}} </td>
     </ng-container>
 
     <ng-container matColumnDef="start_date">
        <th mat-header-cell *matHeaderCellDef> Start date </th>
-       <td mat-cell *matCellDef="let element"> {{element.start_date}} </td>
+       <td mat-cell *matCellDef="let element"> {{element.startDate}} </td>
     </ng-container>
 
     <ng-container matColumnDef="due_date">
        <th mat-header-cell *matHeaderCellDef> Due date </th>
-       <td mat-cell *matCellDef="let element"> {{element.due_date}} </td>
+       <td mat-cell *matCellDef="let element"> {{element.dueDate}} </td>
     </ng-container>
 
-     <ng-container matColumnDef="description">
+     <ng-container matColumnDef="issueDescription">
        <th mat-header-cell *matHeaderCellDef> Description </th>
-       <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+       <td mat-cell *matCellDef="let element"> {{element.issueDescription}} </td>
      </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

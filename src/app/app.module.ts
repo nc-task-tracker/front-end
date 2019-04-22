@@ -27,7 +27,8 @@ import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {ProjectPageComponent} from "./components/project-page/project-page.component";
 import { MaterialModule } from "./material.module";
-import {EditUserComponent} from './components/edit-user/edit-user.component';
+import {ProjectService} from "./service/project.service";
+import {IssueService} from "./service/issue.service";
 
 @NgModule({
   declarations: [
@@ -59,6 +60,8 @@ import {EditUserComponent} from './components/edit-user/edit-user.component';
     AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ProjectService,
+    IssueService
   ],
   bootstrap: [AppComponent]
 })
