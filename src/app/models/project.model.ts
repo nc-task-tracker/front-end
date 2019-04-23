@@ -1,7 +1,3 @@
-export enum ProjectType {
-  OPEN,CLOSE
-}
-
 export enum ProjectStatus {
   OPEN,CLOSE
 }
@@ -12,7 +8,6 @@ export interface Project {
   readonly projectDescription: string;
   readonly projectOwner: string;
   readonly projectStatus: ProjectStatus;
-  readonly projectType: ProjectType;
 }
 
 

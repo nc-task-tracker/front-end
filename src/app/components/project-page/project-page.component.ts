@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Project} from "../../models/project.model";
 import {Issue} from "../../models/issue.model";
 import {ProjectService} from "../../service/project.service";
 import {ActivatedRoute} from "@angular/router";
 import {IssueService} from "../../service/issue.service";
+import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 
 @Component({
   selector:'app-project-page',
@@ -15,6 +16,10 @@ export class ProjectPageComponent implements OnInit{
   private displayedColumns: string[] = ['id','issueName', 'issueType', 'issueStatus','issuePriority','start_date','due_date','issueDescription'];
   private issues: Issue[];
   private project: Project;
+  private dataSource;
+
+  @ViewChild(MatPaginator)paginator: MatPaginator;
+  @ViewChild(MatSort)sort: MatSort;
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
@@ -34,7 +39,11 @@ export class ProjectPageComponent implements OnInit{
 
     this.issueService.getIssuesByProjectId(id).subscribe(issues => {
       this.issues = issues as Issue[];
-    })
+
+      this.dataSource = new MatTableDataSource(this.issues);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   onClickAddIssue(): void{
