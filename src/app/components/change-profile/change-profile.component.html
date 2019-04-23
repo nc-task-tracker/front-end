@@ -3,11 +3,7 @@
 <form class="change-profile">
 
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="First name" value="" required>
-    <mat-icon matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
-  <mat-form-field class="input-full-width">
-    <input matInput placeholder="Last name" value="" required>
+    <input matInput placeholder="Full name" value="" required>
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
@@ -15,21 +11,23 @@
     <mat-icon matSuffix>email</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
+    <input matInput placeholder="Skype" value="" required>
+    <mat-icon matSuffix>chat</mat-icon>
+  </mat-form-field>
+  <mat-form-field class="input-full-width">
     <span matPrefix>+375 &nbsp;</span>
     <input type="tel" matInput placeholder="Telephone">
     <mat-icon matSuffix>phone</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Skype" value="" required>
-    <mat-icon matSuffix>chat</mat-icon>
+    <span matPrefix>+ &nbsp;</span>
+    <input type="tel" matInput placeholder="Additional">
+    <mat-icon matSuffix>phone</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-date">
     <input matInput [matDatepicker]="pickerTwo" placeholder="Birthday">
     <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
     <mat-datepicker #pickerTwo></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field class="description_profile">
-    <textarea matInput placeholder="Another way to contact"></textarea>
   </mat-form-field>
   <mat-form-field class="description_profile">
     <textarea matInput placeholder="A few words about yourself"></textarea>

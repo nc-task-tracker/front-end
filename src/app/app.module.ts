@@ -31,6 +31,7 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "./material.module";
 import {TicketServiceService} from "./service/ticket-service.service";
+import {ChangeProfileService} from "./service/change-profile-service.service";
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import {TicketServiceService} from "./service/ticket-service.service";
     UserService,
     AuthService,
     TicketServiceService,
+    ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
