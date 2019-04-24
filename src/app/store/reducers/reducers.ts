@@ -3,6 +3,7 @@ import { usersReducer } from './user.reducer';
 import { userPageReducer } from './user-page.reducer';
 import { routerReducer } from '@angular-redux/router';
 import { currentUserReducer } from './current-user.reducer';
+import {projectReducer} from "./project.reducer";
 import {ticketReducer} from './tickets.reducer';
 
 export const reducers: Reducer = combineReducers({
@@ -10,5 +11,7 @@ export const reducers: Reducer = combineReducers({
     userPageState: userPageReducer,
     currentUser: currentUserReducer,
     tickets: ticketReducer,
+    createProject: projectReducer,
     route: routerReducer
+
 });
