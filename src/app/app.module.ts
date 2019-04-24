@@ -24,7 +24,7 @@ import { reducers } from './store/reducers/reducers';
 import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
-import {ErrorInterceptor} from './interceptors/error.interceptor';
+/*import {ErrorInterceptor} from './interceptors/error.interceptor';*/
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
@@ -66,7 +66,7 @@ import {ProjectService} from "./service/project.service"; // <-- NgModel lives h
     AuthService,
     ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+/*    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },*/
   ],
   bootstrap: [AppComponent]
 })

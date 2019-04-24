@@ -4,7 +4,6 @@ export interface User {
   readonly password: string;
   readonly confirmPassword: string;
   readonly email: string;
-  readonly token: string;
 }
 
 export const defaultUser: User = {
@@ -12,6 +11,5 @@ export const defaultUser: User = {
   name: '',
   password: '',
   confirmPassword: '',
-  email: '',
-  token: ''
+  email: ''
 };

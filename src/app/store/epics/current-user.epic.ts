@@ -18,8 +18,9 @@ export class CurrentUserEpic {
                     .login(payload.credential)
                     .pipe(
                         map(user => {
-                            this.localStorageService.currentUser = { ...user };
-                            return updateCurrentUserAction(user);
+                            this.localStorageService.currentUser = { ...user.user };
+                            this.localStorageService.currentToken= { ...user.token};
+                            return updateCurrentUserAction(user.user);
                         }),
                         catchError((error) => {
                             return of(loginUserFailedAction());
@@ -33,6 +34,7 @@ export class CurrentUserEpic {
         return action$.ofType(LOGOUT_USER).pipe(
             switchMap(({ }) => {
                 this.localStorageService.currentUser = null;
+                this.localStorageService.currentToken= null;
                 return of(updateCurrentUserAction(null));
             })
         );
