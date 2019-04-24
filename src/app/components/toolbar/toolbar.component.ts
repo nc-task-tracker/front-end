@@ -31,10 +31,6 @@ export class ToolbarComponent implements OnInit {
     this.ngRedux.dispatch(logoutUserAction());
   }
 
-  getUserLogin() {
-    return this.currentUser.toString();
-  }
-
   onUserProfile() {
     return;
   }

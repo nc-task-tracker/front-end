@@ -58,17 +58,3 @@ export function createUserSuccessAction(user: User) {
     };
 }
 
-export function deleteUserAction(userId: string) {
-    return {
-        type: DELETE_USER,
-        payload: {userId}
-    };
-}
-
-export function deleteUserSuccessAction(userId: string) {
-    return {
-        type: DELETE_USER_SUCCESS,
-        payload: {userId}
-    };
-}
-
