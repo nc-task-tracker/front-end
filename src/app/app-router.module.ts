@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
-import {TicketComponent} from './components/ticket/ticket.component';
+import { TicketComponent } from './components/ticket/ticket.component';
 
 const routs: Routes = [
     {path: '', redirectTo: 'users', pathMatch: 'full'},

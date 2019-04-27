@@ -13,3 +13,12 @@ export const defaultUser: User = {
   email: '',
   token: ''
 };
+
+export const testUser: User = {
+  id: null,
+  name: 'Roman',
+  password: '111',
+  email: 'Gemer_31@mail.ru',
+  token: '111222333'
+};
+

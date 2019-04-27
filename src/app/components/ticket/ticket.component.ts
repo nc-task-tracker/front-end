@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
-import {Observable} from 'rxjs';
-import {Ticket} from '../../models/ticket';
+import {allTicketPriority, allTicketStatus, allTicketType, Ticket, Ticket_1} from '../../models/ticket.model';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../../store';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {TicketService} from '../../service/ticket.service';
 
 @Component({
   selector: 'app-ticket',
@@ -10,10 +13,17 @@ import {Ticket} from '../../models/ticket';
 })
 export class TicketComponent implements OnInit {
 
-  ticket: Observable<Ticket>;
+  priorities = allTicketPriority;
+  statuses = allTicketStatus;
+  types = allTicketType;
 
-  constructor() {}
+  ticket: Ticket;
+
+  constructor(private ticketService: TicketService,
+              private ngRedux: NgRedux<AppState>,
+              private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
+    this.ticket = this.ticketService.getTicket();
   }
 }

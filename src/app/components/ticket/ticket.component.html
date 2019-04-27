@@ -1,55 +1,96 @@
 <div class="ticket">
-  <div class="details">
-    <table>
-      <tr>
-        <td>
-          <h3>Type</h3>
-          <mat-form-field>
-            <mat-select>
-              <mat-option *ngFor="let type of types" [value]="type.value">
-                {{type.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-        <td>
-          <h3>Priority</h3>
-          <mat-form-field>
-            <mat-select>
-              <mat-option *ngFor="let type of types" [value]="type.value">
-                {{type.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <h3>Status</h3>
-          <mat-form-field>
-            <mat-select>
-              <mat-option>To do</mat-option>
-              <mat-option>In progress</mat-option>
-              <mat-option>Open</mat-option>
-              <mat-option>Closed</mat-option>
-              <mat-option>Reopened</mat-option>
-              <mat-option>Resolved</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-        <td>
-          <h3>Resolution</h3>
-          <mat-form-field>
-            <mat-select>
-              <mat-option *ngFor="let type of types" [value]="type.value">
-                {{type.viewValue}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+  <div class="info">
+    <div class="project">
+      <mat-card>
+        <mat-card-header>
+          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+          <mat-card-title>{{ticket.name}}</mat-card-title>
+          <mat-card-subtitle>Proj_1</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <button mat-button color="primary">Previous</button>
+          <button mat-button>Next</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+
+    <div class="people">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>People</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
+              <mat-card-title>Assignee</mat-card-title>
+              <mat-card-subtitle>{{ticket.assignee.name}}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
+              <mat-card-title>Reporter</mat-card-title>
+              <mat-card-subtitle>{{ticket.reporter.name}}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+    <mat-card class="dates">
+      <mat-card-header>
+        <mat-card-title>Dates</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h4>Due: 4/4/2019</h4>
+        <h4>Created: 4/4/2020</h4>
+      </mat-card-content>
+    </mat-card>
   </div>
+
+  <div>
+    <div class="type-priority-status">
+      <mat-form-field>
+        <mat-select placeholder="Type" align="center">
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{type.viewValue}}
+          </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Priority">
+        <mat-option *ngFor="let priority of priorities" [value]="priority.title">
+          {{priority.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Status">
+          <mat-option *ngFor="let status of statuses" [value]="status.status">
+            {{status.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </div>
+
+<div class="details-buttons">
+  <button mat-button>Change type</button>
+  <button mat-button>Change priority</button>
+  <button mat-button>Change status</button>
 </div>
 
+    <mat-form-field class="description">
+      <textarea matInput placeholder="Description"></textarea>
+    </mat-form-field>
 
+    <mat-grid-list cols="2" rowHeight="50px">
+      <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="red">
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

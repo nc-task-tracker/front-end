@@ -3,7 +3,7 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -30,6 +30,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import {RegisterService} from './service/register.service';
 import {TicketComponent} from './components/ticket/ticket.component';
+import {LayoutModule} from '@angular/cdk/typings/layout';
+import {TicketService} from './service/ticket.service';
 
 @NgModule({
   declarations: [
@@ -50,10 +52,10 @@ import {TicketComponent} from './components/ticket/ticket.component';
     BrowserAnimationsModule,
     OverlayModule,
     DialogsModule,
-    MatDialogModule,
     AppRouterModule,
     RouterModule,
-    ToolbarModule
+    ToolbarModule,
+    MatGridListModule
   ],
   providers: [
     EpicService,
@@ -61,6 +63,7 @@ import {TicketComponent} from './components/ticket/ticket.component';
     RegisterService,
     UserService,
     AuthService,
+    TicketService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
