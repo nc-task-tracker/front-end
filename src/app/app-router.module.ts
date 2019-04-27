@@ -19,7 +19,7 @@ const routs: Routes = [
     {path: 'create-ticket', component: CreateTicketPageComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'change-profile', component: ChangeProfileComponent},
-    {path: 'create-project', component: CreateProjectComponent}
+    {path: 'create-project', component: CreateProjectComponent},
     {path: 'register', component: EditUserComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent}
 

@@ -15,10 +15,10 @@ export const reducers: Reducer = combineReducers({
     userPageState: userPageReducer,
     currentUser: currentUserReducer,
     route: routerReducer,
-    register: registerReducer
+    register: registerReducer,
     tickets: ticketReducer,
     createProject: projectReducer,
-    route: routerReducer
+    route: routerReducer,
 
     tickets: ticketReducer,
     createProject: projectReducer,

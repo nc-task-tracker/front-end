@@ -48,7 +48,7 @@ import {TicketServiceService} from './service/ticket-service.service';
     CreateTicketPageComponent,
     CreateProjectComponent,
     ProfileComponent,
-    ChangeProfileComponent
+    ChangeProfileComponent,
     CreateTicketPageComponent
   ],
   imports: [
