@@ -3,7 +3,7 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -31,10 +31,14 @@ import {CreateProjectComponent} from "./components/create-project/create-project
 import {ProjectService} from "./service/project.service"; // <-- NgModel lives here
 
 import {ErrorInterceptor} from './interceptors/error.interceptor';
+import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
-import { MaterialModule } from './material.module;
+import { MaterialModule } from './material.module';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { MaterialModule } from './material.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {TicketServiceService} from './service/ticket-service.service';
 
 
 @NgModule({
@@ -45,6 +49,7 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent
+    CreateTicketPageComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,7 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     ProjectService,
     TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-/*    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },*/
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })

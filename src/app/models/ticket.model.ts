@@ -56,3 +56,14 @@ export interface Ticket {
   readonly reporter: User;
   readonly assignee: User;
 }
+
+// export const Ticket_1: Ticket = {
+//   id: '1',
+//   name: 'Name',
+//   type: TicketType.TASK,
+//   priority: TicketPriority.MINOR,
+//   status: TicketStatus.RESOLVED,
+//   description: 'description',
+//   reporter: testUser,
+//   assignee: testUser,
+// };

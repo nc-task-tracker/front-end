@@ -1,3 +1,7 @@
+import { UserListComponent } from './components/user-list/user-list.component';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule} from '@angular/router';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
@@ -16,12 +20,14 @@ const routs: Routes = [
     {path: 'profile', component: ProfileComponent},
     {path: 'change-profile', component: ChangeProfileComponent},
     {path: 'create-project', component: CreateProjectComponent}
+    {path: 'register', component: EditUserComponent},
+  {path: 'create-ticket', component: CreateTicketPageComponent}
+
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routs)
-  ]
+   imports: [
+       RouterModule.forRoot(routs)
+   ]
 })
-export class AppRouterModule {
-}
+export class AppRouterModule {}

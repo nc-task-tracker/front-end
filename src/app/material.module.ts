@@ -7,12 +7,19 @@ import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 
 import {
+  MatButtonModule,
+  MatCardModule,
   MatDatepickerModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatNativeDateModule,
+  MatFormFieldModule, MatIconModule,
+  MatInputModule, MatListModule,
+  MatButtonModule,
+  MatCardModule,
+  MatDatepickerModule, MatDialogModule, MatDividerModule,
+  MatFormFieldModule, MatGridListModule, MatIconModule,
+  MatInputModule, MatListModule,
+  MatNativeDateModule, MatRadioModule,
   MatSelectModule,
-  MatTooltipModule,
+  MatTooltipModule, MatTreeModule,
 
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

@@ -5,11 +5,21 @@ import { routerReducer } from '@angular-redux/router';
 import { currentUserReducer } from './current-user.reducer';
 import {projectReducer} from "./project.reducer";
 import {ticketReducer} from './tickets.reducer';
+import {registerReducer} from './register.reducer';
+
+import {projectReducer} from "./project.reducer";
+import {ticketReducer} from './tickets.reducer';
 
 export const reducers: Reducer = combineReducers({
     usersState: usersReducer,
     userPageState: userPageReducer,
     currentUser: currentUserReducer,
+    route: routerReducer,
+    register: registerReducer
+    tickets: ticketReducer,
+    createProject: projectReducer,
+    route: routerReducer
+
     tickets: ticketReducer,
     createProject: projectReducer,
     route: routerReducer
