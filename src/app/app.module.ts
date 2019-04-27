@@ -24,6 +24,12 @@ import { reducers } from './store/reducers/reducers';
 import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
+
+import {EditUserComponent} from './components/edit-user/edit-user.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {CreateProjectComponent} from "./components/create-project/create-project.component";
+import {ProjectService} from "./service/project.service"; // <-- NgModel lives here
+
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
@@ -31,6 +37,11 @@ import { FormsModule } from '@angular/forms';
 import {RegisterService} from './service/register.service';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {TicketService} from './service/ticket.service';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+import { MaterialModule } from './material.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {TicketServiceService} from './service/ticket-service.service';
 
 
 @NgModule({
@@ -39,11 +50,18 @@ import {TicketService} from './service/ticket.service';
     UserComponent,
     CreateTicketPageComponent,
     TicketComponent
+    CreateTicketPageComponent,
+    CreateProjectComponent,
+    ProfileComponent,
+    ChangeProfileComponent,
+    CreateTicketPageComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
+    ReactiveFormsModule,
+    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -64,6 +82,8 @@ import {TicketService} from './service/ticket.service';
     UserService,
     AuthService,
     TicketService,
+    ProjectService,
+    TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
@@ -85,7 +105,7 @@ export class AppModule {
 
     const currentUser = localStorageService.currentUser;
 
-    const INITIAL_STATE: AppState = {currentUser};
+    const INITIAL_STATE: AppState = {currentUser} as AppState;
 
     ngRedux.configureStore(reducers, INITIAL_STATE, [middleware, createLogger()], enhancers);
     middleware.run(epics as any);

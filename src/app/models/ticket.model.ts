@@ -83,7 +83,15 @@ export const allTicketType: TicketTypeObject[] = [
     type: TicketType.TASK,
     title: TicketTypeLabel.TASK
   },
-];
+import {User} from './user.model';
+
+export enum TicketPriority {
+  MAJOR = 'MAJOR',
+  CRITICAL = 'CRITICAL',
+  BLOCKER = 'BLOCKER',
+  TRIVIAL = 'TRIVIAL',
+  MINOR = 'MINOR'
+}
 
 // TODO back-end model
 export interface Ticket {

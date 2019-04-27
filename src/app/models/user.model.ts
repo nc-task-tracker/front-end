@@ -3,15 +3,13 @@ export interface User {
   readonly name: string;
   readonly password: string;
   readonly email: string;
-  readonly token: string;
 }
 
 export const defaultUser: User = {
   id: null,
   name: '',
   password: '',
-  email: '',
-  token: ''
+  email: ''
 };
 
 export const testUser: User = {

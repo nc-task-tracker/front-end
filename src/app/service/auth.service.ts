@@ -4,18 +4,19 @@ import {BehaviorSubject, Observable, throwError} from 'rxjs';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import {UserTokenModel} from "../models/user-token.model";
 
 @Injectable()
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
 
-    private LOGIN_URL = '/api/login';
+    private LOGIN_URL = '/api/authentication/login';
 
     constructor(private http: HttpClient) {
     }
 
-    login(credential: Credential): Observable<User> {
-        return this.http.post<User>(`${this.LOGIN_URL}`, credential)
+    login(credential: Credential): Observable<UserTokenModel> {
+        return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential)
         .pipe(catchError((error: any) => throwError(error.error)));
     }
 
