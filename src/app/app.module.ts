@@ -30,8 +30,8 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import {RegisterService} from './service/register.service';
 import {TicketComponent} from './components/ticket/ticket.component';
-import {LayoutModule} from '@angular/cdk/typings/layout';
 import {TicketService} from './service/ticket.service';
+
 
 @NgModule({
   declarations: [
