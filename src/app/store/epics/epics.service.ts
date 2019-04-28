@@ -22,12 +22,9 @@ export class EpicService {
             this.userEpic.selectUser$,
             this.currentUserEpic.loginUser$,
             this.currentUserEpic.logout$,
-            this.registerEpic.register$
-            this.currentUserEpic.logout$,
+            this.registerEpic.register$,
             this.ticketsEpic.createTicket$,
             this.projectEpic.createProject$
         );
     }
-
-
 }

@@ -27,18 +27,6 @@ export class UserEpic {
         );
     }
 
-    // createUser$ = (action$: ActionsObservable<AnyAction>) => {
-    //     return action$.ofType(REGISTER_USER).pipe(
-    //         switchMap(({payload}) => {
-    //             return this.userService
-    //                 .createUser(payload.user)
-    //                 .pipe(
-    //                     map( user => registerSuccessAction(user))
-    //                 );
-    //         })
-    //     );
-    // }
-
     updateUser$ = (action$: ActionsObservable<AnyAction>) => {
         return action$.ofType(UPDATE_USER).pipe(
             switchMap(({payload}) => {

@@ -4,8 +4,6 @@ import { CurrentUserEpic } from './current-user.epic';
 import {RegisterEpic} from './register.epic';
 import {ProjectEpic} from './project.epic';
 import {TicketsEpic} from './tickets.epic';
-import {RegisterEpic} from './register.epic';
-
 
 @NgModule({
 
@@ -14,8 +12,7 @@ import {RegisterEpic} from './register.epic';
      CurrentUserEpic,
      ProjectEpic,
      TicketsEpic,
-     RegisterEpic,
-       UserEpic,
+     RegisterEpic
    ],
 })
 export class EpicsModule {

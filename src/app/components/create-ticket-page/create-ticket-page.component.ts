@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {allTicketPriority, TicketPriority, TicketPriorityLabel} from '../../models/ticket.model';
+import {allTicketPriority} from '../../models/ticket.model';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../../store';
 import {createTicketAction} from '../../store/actions/tickets.actions';
+import {TicketPriority} from '../../models/Enums/TicketPriority.enum';
 
 
 @Component({

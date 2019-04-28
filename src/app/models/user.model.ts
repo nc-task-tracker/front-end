@@ -16,7 +16,6 @@ export const testUser: User = {
   id: null,
   name: 'Roman',
   password: '111',
-  email: 'Gemer_31@mail.ru',
-  token: '111222333'
+  email: 'Gemer_31@mail.ru'
 };
 
