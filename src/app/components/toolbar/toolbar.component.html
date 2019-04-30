@@ -10,11 +10,10 @@
       <button mat-button>Infomation</button>
       <button mat-button>Settings</button>
     </div>
-    <ng-template #loginUser>
-      <button mat-button (click)="onLogoutClick()">Logout</button>
-      <button class="username" color="red" mat-button (click)="onUserProfile()">{{currentUser?.name}}</button>
-    </ng-template>
+      <ng-template #loginUser>
+        <button mat-button (click)="onLogoutClick()">Logout</button>
+        <button class="username" color="red" mat-button (click)="onUserProfile()">{{currentUser.name}}</button>
+      </ng-template>
+
   </div>
-
-
 </mat-toolbar>

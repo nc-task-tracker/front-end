@@ -1,0 +1,14 @@
+.width{
+  width: 100%;
+}
+.half{
+  width: 50%;
+}
+.user-info  {
+  min-width: 27%;
+  margin-left: 345px;
+  margin-top: 42px;
+}
+.example-button-row button{
+  margin-left: 20px;
+}

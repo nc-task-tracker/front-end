@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-info',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  constructor() { }
+  onChangeClick() {
+    this.router.navigate (['change-profile']);
+  }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }

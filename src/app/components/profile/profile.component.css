@@ -3,68 +3,11 @@
   overflow-y: scroll;
   height: 100%;
 }
-.icon {
-  font-size: 350px;
-  float: left;
-  margin-left: 80px;
-  margin-top: 50px;
+.display {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
-.width{
-  width: 100%;
-}
-.half{
-  width: 50%;
-}
-.one  {
-  width: 27%;
-  margin-left: 340px;
-  float: left;
-  margin-top: 42px;
-}
-.example-button-row button{
-  margin-left: 20px;
-}
-.mat-list-icon {
-  color: rgba(0, 0, 0, 0.54);
-}
-.example-card {
-  min-width: 490px;
 
-  float: right;
-  margin-right: 90px;
-  margin-top: 60px;
-}
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
-.action {
-  font-size: 24px;
-}
-.height {
-  max-height: 305px;
-}
-.dashboard-head,.filter-head,.project-head {
-  font-size: 32px;
-}
-.dashboards,.filters,.projects {
-  font-size: 24px;
-}
-.dashboard-card{
-  margin: 100px 100px 250px;
-  width: 373px;
-  float: left;
-}
-.filter-card{
-  margin-top: 100px;
-  margin-bottom: 250px;
-  width: 373px;
-  float: left;
-}
-.project-card{
-  margin: 100px 100px 250px;
-  width: 373px;
-  float: right;
-}
 
 
