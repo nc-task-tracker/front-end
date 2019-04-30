@@ -48,7 +48,6 @@ import {NgModule} from '@angular/core';
     MatButtonModule,
     MatRadioModule,
     MatTreeModule
-
   ]
 })
 export class MaterialModule {}
