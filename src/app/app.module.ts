@@ -28,18 +28,20 @@ import {ErrorInterceptor} from './interceptors/error.interceptor';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "./material.module";
 import {TicketServiceService} from "./service/ticket-service.service";
 import {ChangeProfileService} from "./service/change-profile-service.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AccountComponent } from './components/account/account.component';
+import {ProfileModule} from "./components/profile/profile.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     CreateTicketPageComponent,
-    ProfileComponent,
-    ChangeProfileComponent
+    ChangeProfileComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,7 +60,8 @@ import {ChangeProfileService} from "./service/change-profile-service.service";
     MatDialogModule,
     AppRouterModule,
     RouterModule,
-    ToolbarModule
+    ToolbarModule,
+    ProfileModule
   ],
   providers: [
     EpicService,

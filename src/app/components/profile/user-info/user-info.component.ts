@@ -7,8 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserInfoComponent implements OnInit {
 
-  hero = 'Windstorm';
-
   constructor() { }
 
   ngOnInit() {

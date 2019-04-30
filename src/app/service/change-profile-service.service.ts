@@ -12,7 +12,7 @@ export class ChangeProfileService {
   constructor(private http: HttpClient) {}
 
   changeProfile(changeProfile: ChangeProfile): Observable<ChangeProfile> {
-    return this.http.post<ChangeProfile>(`${this.SAVE_URL}`, changeProfile)
+    return this.http.put<ChangeProfile>(`${this.SAVE_URL}`, changeProfile)
       .pipe(catchError(err => throwError(err)));
   }
 

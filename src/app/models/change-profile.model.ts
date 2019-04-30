@@ -1,10 +1,10 @@
 export interface ChangeProfile {
   readonly id: string;
-  readonly firstName: string;
-  readonly lastName: string;
+  readonly fullName: string;
   readonly email: string;
+  readonly skype: string;
   readonly telephone: string;
   readonly birthday: Date;
-  readonly anotherContact: string;
-  readonly aboutYourself: string;
+  readonly additional: string;
+  readonly description: string;
 }

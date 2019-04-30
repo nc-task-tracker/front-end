@@ -1,7 +1,13 @@
 import {Component, OnInit,} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 import {FlatTreeControl} from '@angular/cdk/tree';
+import {select} from "@angular-redux/store";
+import {changeProfile} from "../../store/selectors/change-profile.selector";
+import {Observable} from "rxjs";
+import {User} from "../../models/user.model";
+import {ChangeProfile} from "../../models/change-profile.model";
+import {GlobalUserStorageService} from "../../service/global-storage.service";
 
 interface Dashboards {
   name: string;
@@ -71,6 +77,11 @@ export interface Section {
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+
+  @select(changeProfile)
+  changeProfile: Observable<ChangeProfile>;
+
+
   Actions: Section[] = [
     {
       name: 'Admin added member Alex Novel',
@@ -98,7 +109,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigate (['change-profile']);
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private localStorage: GlobalUserStorageService) {
     this.dataSource.data = TREE_DATA;
     this.dataSource2.data = TREE_DATA2;
     this.dataSource3.data = TREE_DATA3;
@@ -145,7 +158,13 @@ export class ProfileComponent implements OnInit {
 
   hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
+  isLogin: boolean = false;
+
   ngOnInit() {
+     const {userId} = this.route.snapshot.params;
+
+     const user = this.localStorage.currentUser;
+     this.isLogin = user && user.id === userId;
   }
 
 }

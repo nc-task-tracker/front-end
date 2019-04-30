@@ -2,37 +2,39 @@
 
   <mat-icon class="icon">account_circle</mat-icon>
 
-  <div class="one">
-    <mat-form-field class="width">
-        <input matInput placeholder="Full name" disabled>
-        <mat-icon matSuffix>mode_edit</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="half">
-      <input matInput placeholder="Email" disabled>
-    </mat-form-field>
-    <mat-form-field >
-      <input matInput placeholder="Skype" disabled>
-      <mat-icon matSuffix>email</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="half">
-    <input matInput placeholder="Telephone" disabled>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Additional" disabled>
-      <mat-icon matSuffix>phone</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="width">
-    <input matInput placeholder="A few words about yourself" disabled>
-    <mat-icon matSuffix>info</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="">
-      <input matInput placeholder="Birthday" disabled>
-      <mat-icon matSuffix>event</mat-icon>
-    </mat-form-field>
-    <div class="example-button-row">
-      <button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>
-    </div>
-  </div>
+  <!--<div class="one">-->
+    <!--<mat-form-field class="width">-->
+        <!--<input matInput placeholder="Full name" disabled>{{(changeProfile | async).fullName}}-->
+        <!--<mat-icon matSuffix>mode_edit</mat-icon>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="half">-->
+      <!--<input matInput placeholder="Email" disabled>{{(changeProfile | async).email}}-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field >-->
+      <!--<input matInput placeholder="Skype" disabled>{{(changeProfile | async).skype}}-->
+      <!--<mat-icon matSuffix>email</mat-icon>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="half">-->
+    <!--<input matInput placeholder="Telephone" disabled>{{(changeProfile | async).telephone}}-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field>-->
+      <!--<input matInput placeholder="Additional" disabled>{{(changeProfile | async).additional}}-->
+      <!--<mat-icon matSuffix>phone</mat-icon>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="width">-->
+    <!--<input matInput placeholder="A few words about yourself" disabled>{{(changeProfile | async).description}}-->
+    <!--<mat-icon matSuffix>info</mat-icon>-->
+    <!--</mat-form-field>-->
+    <!--<mat-form-field class="">-->
+      <!--<input matInput placeholder="Birthday" disabled>{{(changeProfile | async).birthday}}-->
+      <!--<mat-icon matSuffix>event</mat-icon>-->
+    <!--</mat-form-field>-->
+    <!--<div class="example-button-row">-->
+      <!--<button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <app-user-info></app-user-info>
 
   <mat-card class="example-card">
     <div class="wrapper">
@@ -119,6 +121,8 @@
       </mat-tree>
     </mat-card>
   </div>
+
+
 
 </div>
 
