@@ -24,7 +24,7 @@
             <mat-card-header>
               <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
               <mat-card-title>Assignee</mat-card-title>
-              <mat-card-subtitle>{{ticket.assignee.name}}</mat-card-subtitle>
+              <mat-card-subtitle>{{ticket.assignee.login}}</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
 
@@ -32,7 +32,7 @@
             <mat-card-header>
               <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
               <mat-card-title>Reporter</mat-card-title>
-              <mat-card-subtitle>{{ticket.reporter.name}}</mat-card-subtitle>
+              <mat-card-subtitle>{{ticket.reporter.login}}</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </mat-card-content>

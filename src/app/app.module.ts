@@ -35,6 +35,7 @@ import {createEpicMiddleware} from 'redux-observable';
 import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {NgModule} from '@angular/core';
     TicketComponent,
     CreateProjectComponent,
     ProfileComponent,
-    ChangeProfileComponent
+    ChangeProfileComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
