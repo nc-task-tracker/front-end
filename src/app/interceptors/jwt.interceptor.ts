@@ -10,10 +10,9 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private storageService: GlobalUserStorageService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with jwt token if available
     const currentUser = this.storageService.currentUser;
-    let token = this.storageService.currentToken.token;
-    if (currentUser && token) {
+    const token = this.storageService.currentToken;
+    if (currentUser && token && token.token) {
       request = request.clone({
         setHeaders: {
           Authorization: `Bearer ${token}`

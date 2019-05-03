@@ -3,20 +3,48 @@ import {TicketServiceService} from '../../service/ticket-service.service';
 import {ActionsObservable} from 'redux-observable';
 import {AnyAction} from 'redux';
 import {map, mergeMap} from 'rxjs/operators';
-import {CREATE_TICKET, createTicketAction, createTicketSuccessAction} from '../actions/tickets.actions';
+import {
+  CREATE_TICKET, createTicketAction, createTicketSuccessAction, DELETE_TICKET, deleteTicketAction,
+  deleteTicketSuccessAction, UPDATE_TICKET, updateTicketAction, updateTicketSuccessAction
+} from '../actions/tickets.actions';
+import {TicketService} from '../../service/ticket.service';
 
 @Injectable()
 export class TicketsEpic {
 
-  constructor(private ticketService: TicketServiceService) {}
+  constructor(private service: TicketServiceService,
+              private ticketService: TicketService) {}
 
-  createTicket$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType<ReturnType<typeof createTicketAction>>(CREATE_TICKET).pipe(
+  // createTicket$ = (action$: ActionsObservable<AnyAction>) => {
+  //   return action$.ofType<createTicketAction>(CREATE_TICKET).pipe(
+  //     mergeMap(({payload}) => {
+  //       return this.service
+  //         .createTicket(payload.ticket)
+  //         .pipe(
+  //           map( ticket => createTicketSuccessAction(ticket))
+  //         );
+  //     })
+  //   );
+  // }
+
+  deleteTicket$ = (action$: ActionsObservable<AnyAction>) => {
+    return action$.ofType(DELETE_TICKET).pipe(
+      mergeMap(({payload}) => {
+        return this.ticketService.deleteTicket(payload.ticketId)
+          .pipe(
+            map( () => deleteTicketSuccessAction(payload.ticketId))
+          );
+      })
+    );
+  }
+
+  updateTicket$ = (action$: ActionsObservable<AnyAction>) => {
+    return action$.ofType(UPDATE_TICKET).pipe(
       mergeMap(({payload}) => {
         return this.ticketService
-          .createTicket(payload.ticket)
+          .updateTicket(payload.ticket)
           .pipe(
-            map( ticket => createTicketSuccessAction(ticket))
+            map( ticket => updateTicketSuccessAction(ticket))
           );
       })
     );

@@ -33,5 +33,4 @@ export class GlobalUserStorageService {
   asObservable() {
     return fromEvent(window, 'storage');
   }
-
 }

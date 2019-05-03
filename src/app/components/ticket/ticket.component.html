@@ -4,12 +4,12 @@
       <mat-card>
         <mat-card-header>
           <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-          <mat-card-title>{{ticket.name}}</mat-card-title>
-          <mat-card-subtitle>Proj_1</mat-card-subtitle>
+          <mat-card-title>{{ticket.issueName}}</mat-card-title>
+          <mat-card-subtitle>{{ticket.p}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions>
-          <button mat-button color="primary">Previous</button>
-          <button mat-button>Next</button>
+        <mat-card-actions align="center">
+          <button mat-stroked-button color="warn">Previous</button>
+          <button mat-stroked-button color="primary">Next</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -22,75 +22,121 @@
         <mat-card-content>
           <mat-card>
             <mat-card-header>
-              <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
-              <mat-card-title>Assignee</mat-card-title>
-              <mat-card-subtitle>{{ticket.assignee.name}}</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card>
-
-          <mat-card>
-            <mat-card-header>
               <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
               <mat-card-title>Reporter</mat-card-title>
               <mat-card-subtitle>{{ticket.reporter.name}}</mat-card-subtitle>
             </mat-card-header>
           </mat-card>
+
+          <mat-card>
+            <mat-card-header>
+              <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
+              <mat-card-title>Assignee</mat-card-title>
+              <mat-card-subtitle>{{ticket.assigner.name}}</mat-card-subtitle>
+            </mat-card-header>
+          </mat-card>
         </mat-card-content>
       </mat-card>
-
     </div>
+
     <mat-card class="dates">
       <mat-card-header>
         <mat-card-title>Dates</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <h4>Due: 4/4/2019</h4>
+      <mat-card-content [formGroup]="ticketForm">
         <h4>Created: 4/4/2020</h4>
+        <h4>Due:
+          <mat-form-field class="due">
+            <input matInput [matDatepicker]="picker" placeholder="{{ticket.dueDate}}" [formControlName]="'dueDate'">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </h4>
       </mat-card-content>
     </mat-card>
   </div>
 
   <div>
-    <div class="type-priority-status">
+    <div class="buttons">
+      <button mat-raised-button color="primary" (click)=onUpdateClick()>Update</button>
+      <button mat-raised-button color="primary">Create Subtask</button>
+      <button mat-raised-button color="warn" (click)=onDeleteClick()>Delete</button>
+    </div>
+
+    <div class="type-priority-status" [formGroup]="ticketForm">
       <mat-form-field>
-        <mat-select placeholder="Type" align="center">
-          <mat-option *ngFor="let type of types" [value]="type.value">
-            {{type.viewValue}}
+        <mat-select placeholder="Type" [formControlName]="'issueType'">
+          <mat-option *ngFor="let type of types" [value]="type.type">
+            {{type.title}}
           </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-select placeholder="Priority">
-        <mat-option *ngFor="let priority of priorities" [value]="priority.title">
-          {{priority.title}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        </mat-select>
+      </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Status">
-          <mat-option *ngFor="let status of statuses" [value]="status.status">
+        <mat-select placeholder="Priority" [formControlName]="'issuePriority'">
+          <mat-option *ngFor="let priority of priorities" [value]="priority.type">
+            {{priority.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Status" [formControlName]="'issueStatus'">
+          <mat-option *ngFor="let status of statuses" [value]="status.type">
             {{status.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-  </div>
+    </div>
 
-<div class="details-buttons">
-  <button mat-button>Change type</button>
-  <button mat-button>Change priority</button>
-  <button mat-button>Change status</button>
-</div>
-
-    <mat-form-field class="description">
-      <textarea matInput placeholder="Description"></textarea>
+    <mat-form-field class="description" [formGroup]="ticketForm">
+      <textarea matInput placeholder="Description" [formControlName]="'issueDescription'"></textarea>
     </mat-form-field>
 
-    <mat-grid-list cols="2" rowHeight="50px">
-      <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="red">
+    <div>
+      <mat-list>
+        <mat-list-item>Мы не сможем доделать проект</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Сможем</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Я уверен</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Я нет</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>А я да</mat-list-item>
+      </mat-list>
+    </div>
 
-      </mat-grid-tile>
-    </mat-grid-list>
+  </div>
+
+  <div>
+    <mat-tab-group>
+      <mat-tab label="Comments">
+        <mat-list>
+          <mat-list-item>Мы не сможем доделать проект</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Сможем</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Я уверен</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Я нет</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>А я да</mat-list-item>
+        </mat-list>
+      </mat-tab>
+      <mat-tab label="History">
+        <mat-list>
+          <mat-list-item>Создан</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Обновлен приоритет</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Обновлен тип</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Обновлен статус</mat-list-item>
+          <mat-divider></mat-divider>
+          <mat-list-item>Закрыт</mat-list-item>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

@@ -1,7 +1,7 @@
 import { UsersState } from './reducers/user.reducer';
 import { UserPageState } from './reducers/user-page.reducer';
 import { User } from '../models/user.model';
-import {Ticket} from '../models/ticket.model';
+import { Ticket } from '../models/ticket.model';
 
 export interface AppState {
     readonly usersState?: UsersState;

@@ -23,8 +23,10 @@ export class EpicService {
             this.currentUserEpic.loginUser$,
             this.currentUserEpic.logout$,
             this.registerEpic.register$,
-            this.ticketsEpic.createTicket$,
-            this.projectEpic.createProject$
+            // this.ticketsEpic.createTicket$,
+            this.projectEpic.createProject$,
+            this.ticketsEpic.deleteTicket$,
+            this.ticketsEpic.updateTicket$
         );
     }
 }

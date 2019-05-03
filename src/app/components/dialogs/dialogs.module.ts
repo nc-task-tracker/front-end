@@ -9,6 +9,7 @@ import {
 } from '@angular/material';
 import { LoginUserComponent } from './login-user/login-user.component';
 import {RouterModule} from '@angular/router';
+import {MaterialModule} from '../../material.module';
 
 @NgModule({
   imports: [
@@ -16,15 +17,12 @@ import {RouterModule} from '@angular/router';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatButtonModule,
     MatDialogModule,
-    MatIconModule
+    MaterialModule
   ],
-  declarations: [RegisterComponent, LoginUserComponent],
-  entryComponents: [RegisterComponent, LoginUserComponent]
+  declarations: [LoginUserComponent],
+  entryComponents: [LoginUserComponent]
 })
 export class DialogsModule { }

@@ -8,50 +8,50 @@ import {TicketTypeObject} from './ticket-type.model';
 
 export const allTicketPriority: TicketPriorityObject[] = [
   {
-    priority: TicketPriority.TRIVIAL,
+    type: TicketPriority.TRIVIAL,
     title: TicketPriorityLabel.TRIVIAL
   },
   {
-    priority: TicketPriority.MINOR,
+    type: TicketPriority.MINOR,
     title: TicketPriorityLabel.MINOR
   },
   {
-    priority: TicketPriority.MAJOR,
+    type: TicketPriority.MAJOR,
     title: TicketPriorityLabel.MAJOR
   },
   {
-    priority: TicketPriority.CRITICAL,
+    type: TicketPriority.CRITICAL,
     title: TicketPriorityLabel.CRITICAL
   },
   {
-    priority: TicketPriority.BLOCKER,
+    type: TicketPriority.BLOCKER,
     title: TicketPriorityLabel.BLOCKER
   }
 ];
 
 export const allTicketStatus: TicketStatusObject[] = [
   {
-    status: TicketStatus.TO_DO,
+    type: TicketStatus.TO_DO,
     title: TicketStatusLabel.TO_DO
   },
   {
-    status: TicketStatus.PROGRESS,
+    type: TicketStatus.PROGRESS,
     title: TicketStatusLabel.PROGRESS
   },
   {
-    status: TicketStatus.OPEN,
+    type: TicketStatus.OPEN,
     title: TicketStatusLabel.OPEN
   },
   {
-    status: TicketStatus.CLOSED,
+    type: TicketStatus.CLOSED,
     title: TicketStatusLabel.CLOSED
   },
   {
-    status: TicketStatus.REOPENED,
+    type: TicketStatus.REOPENED,
     title: TicketStatusLabel.REOPENED
   },
   {
-    status: TicketStatus.RESOLVED,
+    type: TicketStatus.RESOLVED,
     title: TicketStatusLabel.RESOLVED
   }
 ];
@@ -87,22 +87,26 @@ export const allTicketType: TicketTypeObject[] = [
 
 export interface Ticket {
   readonly id: string;
-  readonly name: string;
-  readonly type: TicketType;
-  readonly  priority: TicketPriority;
-  readonly  status: TicketStatus;
-  readonly  description: string;
+  readonly issueName: string;
+  readonly issueType: TicketType;
+  readonly  issuePriority: TicketPriority;
+  readonly  issueStatus: TicketStatus;
+  readonly  issueDescription: string;
+  readonly startDate: string;
+  readonly dueDate: string;
   readonly  reporter: User;
-  readonly  assignee: User;
+  readonly  assigner: User;
 }
 
-export const Ticket_1: Ticket = {
+export const defaultTicket: Ticket = {
   id: '1',
-  name: 'Name',
-  type: TicketType.TASK,
-  priority: TicketPriority.MINOR,
-  status: TicketStatus.RESOLVED,
-  description: 'description',
+  issueName: 'Name',
+  issueType: TicketType.TASK,
+  issuePriority: TicketPriority.MINOR,
+  issueStatus: TicketStatus.RESOLVED,
+  issueDescription: 'Issue_description',
+  startDate: '2018/02/02',
+  dueDate: '2019/02/02',
   reporter: testUser,
-  assignee: testUser,
+  assigner: testUser,
 };
