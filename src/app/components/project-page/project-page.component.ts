@@ -4,7 +4,8 @@ import {Issue} from "../../models/issue.model";
 import {ProjectService} from "../../service/project.service";
 import {ActivatedRoute} from "@angular/router";
 import {IssueService} from "../../service/issue.service";
-import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatPaginator, MatSort, MatTableDataSource, Sort} from "@angular/material";
+import {SortParameters} from "../../models/tableSort/sortParameters.model";
 
 @Component({
   selector:'app-project-page',
@@ -13,10 +14,12 @@ import {MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 })
 export class ProjectPageComponent implements OnInit{
 
-  private displayedColumns: string[] = ['id','issueName', 'issueType', 'issueStatus','issuePriority','start_date','due_date','issueDescription'];
+  private displayedColumns: string[] = ['id','issueName', 'issueType', 'issueStatus','issuePriority','startDate','dueDate','issueDescription'];
   private issues: Issue[];
   private project: Project;
   private dataSource;
+  private sortParameters: SortParameters;
+  private id: string;
 
   @ViewChild(MatPaginator)paginator: MatPaginator;
   @ViewChild(MatSort)sort: MatSort;
@@ -24,20 +27,23 @@ export class ProjectPageComponent implements OnInit{
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
               private issueService: IssueService) {
+
+    this.sortParameters = new SortParameters();
   }
+
 
   ngOnInit(): void {
     this.getData();
   }
 
   getData(): void{
-    const id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
 
-    this.projectService.getProjectById(id).subscribe(project => {
+    this.projectService.getProjectById(this.id).subscribe(project => {
       this.project = project as Project;
     });
 
-    this.issueService.getIssuesByProjectId(id).subscribe(issues => {
+    this.issueService.getIssuesByProjectId(this.id).subscribe(issues => {
       this.issues = issues as Issue[];
 
       this.dataSource = new MatTableDataSource(this.issues);
@@ -50,4 +56,16 @@ export class ProjectPageComponent implements OnInit{
 
   }
 
+
+  onSort(sort: Sort): void{
+    this.sortParameters.columnName = sort.active;
+    this.sortParameters.direction = sort.direction;
+    this.sortParameters.page = this.paginator.pageIndex;
+    this.sortParameters.maxElemOnPage = this.paginator.pageSize;
+
+    this.issueService.getSortedIssues(this.id, this.sortParameters).subscribe(sortedIssues =>{
+      this.dataSource = sortedIssues;
+      this.issues = sortedIssues;
+    })
+  }
 }
