@@ -1,16 +1,23 @@
-<div class="ticket">
+<div class="ticket" [formGroup]="ticketForm">
   <div class="info">
     <div class="project">
       <mat-card>
         <mat-card-header>
           <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-          <mat-card-title>{{ticket.issueName}}</mat-card-title>
-          <mat-card-subtitle>{{ticket.p}}</mat-card-subtitle>
+
+          <mat-card-title  *ngIf="!editName;else Name">{{ticket.issueName}}
+            <ng-template #Name>
+              <input matInput [formControlName]="'issueName'">
+            </ng-template>
+          </mat-card-title>
+          <mat-icon matSuffix (click)="editName = !editName">mode_edit</mat-icon>
+
+          <mat-card-subtitle>{{ticket.project.projectName}}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-actions align="center">
-          <button mat-stroked-button color="warn">Previous</button>
-          <button mat-stroked-button color="primary">Next</button>
-        </mat-card-actions>
+        <!--<mat-card-actions align="center">-->
+          <!--<button mat-stroked-button color="warn">Previous</button>-->
+          <!--<button mat-stroked-button color="primary">Next</button>-->
+        <!--</mat-card-actions>-->
       </mat-card>
     </div>
 
@@ -31,8 +38,14 @@
           <mat-card>
             <mat-card-header>
               <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
-              <mat-card-title>Assignee</mat-card-title>
-              <mat-card-subtitle>{{ticket.assigner.name}}</mat-card-subtitle>
+              <mat-card-title>Assigner</mat-card-title>
+
+              <mat-card-subtitle *ngIf="!editAssignee;else Assigner"></mat-card-subtitle>
+              <mat-icon matSuffix (click)="editAssignee = !editAssignee">mode_edit</mat-icon>
+              <ng-template #Assigner>
+                  <input width="20px" matInput [formControlName]="'assigner'">
+              </ng-template>
+
             </mat-card-header>
           </mat-card>
         </mat-card-content>
@@ -43,11 +56,11 @@
       <mat-card-header>
         <mat-card-title>Dates</mat-card-title>
       </mat-card-header>
-      <mat-card-content [formGroup]="ticketForm">
+      <mat-card-content>
         <h4>Created: 4/4/2020</h4>
         <h4>Due:
           <mat-form-field class="due">
-            <input matInput [matDatepicker]="picker" placeholder="{{ticket.dueDate}}" [formControlName]="'dueDate'">
+            <input matInput [matDatepicker]="picker" [formControlName]="'dueDate'">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -63,7 +76,7 @@
       <button mat-raised-button color="warn" (click)=onDeleteClick()>Delete</button>
     </div>
 
-    <div class="type-priority-status" [formGroup]="ticketForm">
+    <div class="type-priority-status">
       <mat-form-field>
         <mat-select placeholder="Type" [formControlName]="'issueType'">
           <mat-option *ngFor="let type of types" [value]="type.type">
@@ -94,16 +107,10 @@
     </mat-form-field>
 
     <div>
-      <mat-list>
-        <mat-list-item>Мы не сможем доделать проект</mat-list-item>
+
+      <mat-list class="subtasks">
+        <mat-list-item>Subtasks</mat-list-item>
         <mat-divider></mat-divider>
-        <mat-list-item>Сможем</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Я уверен</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Я нет</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>А я да</mat-list-item>
       </mat-list>
     </div>
 

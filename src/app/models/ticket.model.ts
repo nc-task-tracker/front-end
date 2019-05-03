@@ -5,6 +5,8 @@ import {TicketPriorityObject} from './ticket-priority.model';
 import {TicketStatusObject} from './ticket-status.model';
 import {TicketType, TicketTypeLabel} from './Enums/TicketType.enum';
 import {TicketTypeObject} from './ticket-type.model';
+import {defaultProject, Project} from './project.model';
+import {defaultComment, Comment} from './comment.model';
 
 export const allTicketPriority: TicketPriorityObject[] = [
   {
@@ -89,13 +91,14 @@ export interface Ticket {
   readonly id: string;
   readonly issueName: string;
   readonly issueType: TicketType;
-  readonly  issuePriority: TicketPriority;
-  readonly  issueStatus: TicketStatus;
-  readonly  issueDescription: string;
+  readonly issuePriority: TicketPriority;
+  readonly issueStatus: TicketStatus;
+  readonly issueDescription: string;
   readonly startDate: string;
-  readonly dueDate: string;
-  readonly  reporter: User;
-  readonly  assigner: User;
+  readonly dueDate: Date;
+  readonly project: Project;
+  readonly reporter: User;
+  readonly assigner: User;
 }
 
 export const defaultTicket: Ticket = {
@@ -106,7 +109,8 @@ export const defaultTicket: Ticket = {
   issueStatus: TicketStatus.RESOLVED,
   issueDescription: 'Issue_description',
   startDate: '2018/02/02',
-  dueDate: '2019/02/02',
+  dueDate: new Date('02/02/02'),
+  project: defaultProject,
   reporter: testUser,
   assigner: testUser,
 };

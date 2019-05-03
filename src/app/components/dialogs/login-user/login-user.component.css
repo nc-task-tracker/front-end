@@ -18,3 +18,7 @@ form {
 .edit-user-controls {
   align-self: center;
 }
+
+.edit-name-assigner {
+  width: 20px;
+}
