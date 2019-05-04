@@ -24,9 +24,8 @@ import {TransformService} from './utils/transform.service';
 import {RegisterService} from './service/register.service';
 import {UserService} from './service/user.service';
 import {AuthService} from './service/auth.service';
-import {TicketService} from './service/ticket.service';
 import {ProjectService} from './service/project.service';
-import {TicketServiceService} from './service/ticket-service.service';
+import {TicketService} from './service/ticket.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -36,6 +35,9 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
+import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
+import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
 
 
 @NgModule({
@@ -47,7 +49,9 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    ProjectPageComponent,
+    MatConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +68,7 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    MatGridListModule
+    MatGridListModule,
   ],
   providers: [
     EpicService,
@@ -74,11 +78,13 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AuthService,
     TicketService,
     ProjectService,
-    TicketServiceService,
+    TicketService,
+    MatConfirmDialogService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MatConfirmDialogComponent]
 })
 export class AppModule {
 

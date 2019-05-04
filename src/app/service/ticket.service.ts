@@ -1,16 +1,36 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Observable, of, throwError} from 'rxjs';
-import { catchError } from 'rxjs/operators';
-import {Ticket, Ticket_1} from '../models/ticket.model';
+import {HttpClient} from '@angular/common/http';
+import {Ticket} from '../models/ticket.model';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
+import {SortParameters} from "../models/util/table-sort-param.model";
+import {TablePageData} from "../models/util/table-page-data.model";
 
 @Injectable()
 export class TicketService {
 
-  constructor() { }
+  private readonly TICKET_URL = '/api/issue';
 
-  // noinspection JSAnnotator
-  getTicket(): Ticket {
-    return Ticket_1;
+  constructor(private http: HttpClient) {}
+
+  createTicket(ticket: Ticket): Observable<Ticket> {
+     return this.http.post<Ticket>(`${this.TICKET_URL}`, ticket)
+       .pipe(catchError(err => throwError(err)));
   }
+
+
+  getTicketsByProjectId(projectId: string): Observable<Ticket[]>{
+    return this.http.get<Ticket[]>(`${this.TICKET_URL}/project/${projectId}`)
+      .pipe(catchError(err => throwError(err)));
+  }
+
+  getPageData(projectId: string, sort: SortParameters):Observable<TablePageData>{
+    return this.http.post<TablePageData>(`${this.TICKET_URL}/project/${projectId}/sort`,sort)
+      .pipe(catchError(err => throwError(err)));
+  }
+
+  deleteTicket(ticketId:string):Observable<{}>{
+    return this.http.delete(`${this.TICKET_URL}/delete/${ticketId}`);
+  }
+
 }

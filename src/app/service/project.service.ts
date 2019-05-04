@@ -15,4 +15,12 @@ export class ProjectService {
     return this.http.post<Project>(`${this.PROJECT_URL}`, project)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
+
+  getProjectById(projectId: string): Observable<Project> {
+    return this.http.get<Project>(`${this.PROJECT_URL}/${projectId}`);
+  }
+
+  getProjects(): Observable<Project[]>{
+    return this.http.get<Project[]>(`${this.PROJECT_URL}/all`);
+  }
 }

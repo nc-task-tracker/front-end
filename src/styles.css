@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
 @import '../node_modules/@angular/cdk/overlay-prebuilt.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body, html {
   height: 100%;
   width: 100%;
   overflow: hidden;  
+}
+
+/* for dialog pop-up */
+.btn-dialog-close{
+  width: 45px;
+  min-width: 0px !important;
+  height: 40px;
+  padding: 0px !important;
 }

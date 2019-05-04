@@ -8,6 +8,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
 
 
 const routs: Routes = [
@@ -16,6 +17,7 @@ const routs: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'change-profile', component: ChangeProfileComponent},
   {path: 'create-project', component: CreateProjectComponent},
+  {path: 'projects/:id', component: ProjectPageComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent},
   {path: 'ticket', component: TicketComponent},

@@ -92,6 +92,7 @@ export interface Ticket {
   readonly  priority: TicketPriority;
   readonly  status: TicketStatus;
   readonly  description: string;
+  readonly startDate: Date;
   readonly  reporter: User;
   readonly  assignee: User;
 }
@@ -103,6 +104,7 @@ export const Ticket_1: Ticket = {
   priority: TicketPriority.MINOR,
   status: TicketStatus.RESOLVED,
   description: 'description',
+  startDate: null,
   reporter: testUser,
   assignee: testUser,
 };
