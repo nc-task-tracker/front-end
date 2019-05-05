@@ -29,20 +29,25 @@ import { CreateTicketPageComponent } from './components/create-ticket-page/creat
 import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CreateFilterComponent } from './components/create-filter/create-filter.component';
-
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {TicketServiceService} from "./service/ticket-service.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     CreateTicketPageComponent,
-    CreateFilterComponent
+    CreateFilterComponent,
+    ProfileComponent,
+    ChangeProfileComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
+    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -61,6 +66,7 @@ import { CreateFilterComponent } from './components/create-filter/create-filter.
     TransformService,
     UserService,
     AuthService,
+    TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

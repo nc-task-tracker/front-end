@@ -1,3 +1,33 @@
 <p>
   create-filter works!
 </p>
+<div class="create-filter-wrapper">
+  <form [formGroup]="filterForm" class="create-filter" (ngSubmit)="onSubmit()">
+    <div formArrayName="selectedParameter">
+      <mat-form-field >
+        <mat-label>Parameters</mat-label>
+        <!--<mat-select [formControlName]=" 'parameters' " (selectionChange)="onSelect($event)">-->
+        <mat-select [formControlName]=" 'parameters' " multiple>
+          <!--<mat-option *ngFor="let parameter of parameterList" [value]="parameter" [class.selected]="parameter === selectedParameter"(check)="onSelect(parameter)" >-->
+          <mat-option *ngFor="let parameter of parameterList" [value]="parameter" (check)="addAlias()" >
+            {{parameter.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <div *ngFor="let parameter of  selectedParameter.controls; let i=index">
+        <mat-form-field>
+          <mat-label>Parameter type</mat-label>
+          <mat-select [formControlName]="i" multiple >
+            <!--<mat-option *ngFor="let parameter of selectedParameter.children " [value]="parameter">-->
+            <mat-option *ngFor="let parameter of i.children " [value]="parameter">
+              {{parameter.title}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+
+</div>

@@ -1,4 +1,4 @@
-import { CreateFilter } from './create-filter.model';
+import { CreateFilter } from './create-filter.service';
 
 describe('CreateFilter', () => {
   it('should create an instance', () => {

@@ -12,7 +12,7 @@
       </div>
       <ng-template #loginUser>
         <button mat-button (click)="onLogoutClick()">Logout</button>
-        <button class="username" color="red" mat-button (click)="onUserProfile()">{{currentUser.name}}</button>
+        <button class="username" color="red" mat-button (click)="onUserProfile()">{{(currentUser | async).name}}</button>
       </ng-template>
   </div>
 
