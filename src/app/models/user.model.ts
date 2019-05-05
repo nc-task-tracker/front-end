@@ -1,15 +1,21 @@
 export interface User {
   readonly id: string;
-  readonly name: string;
+  readonly login: string;
   readonly password: string;
   readonly email: string;
-  readonly token: string;
 }
 
 export const defaultUser: User = {
   id: null,
-  name: '',
+  login: '',
   password: '',
-  email: '',
-  token: ''
+  email: ''
 };
+
+export const testUser: User = {
+  id: null,
+  login: 'Roman',
+  password: '111',
+  email: 'Gemer_31@mail.ru'
+};
+

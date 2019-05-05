@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { FETCH_USERS, fetchUsersSuccessAction, fetchUsersFailedAction, CREATE_USER,
-    createUserSuccessAction, updateUserSuccessAction, UPDATE_USER} from '../actions/users.actions';
+import { FETCH_USERS, fetchUsersSuccessAction, fetchUsersFailedAction,
+  updateUserSuccessAction, UPDATE_USER} from '../actions/users.actions';
+import { registerSuccessAction, REGISTER_USER } from '../actions/register.action';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
@@ -21,18 +22,6 @@ export class UserEpic {
                     .pipe(
                         map( users => fetchUsersSuccessAction(TransformService.transformToMap(users))),
                         catchError(error => of(fetchUsersFailedAction(error.message)))
-                    );
-            })
-        );
-    }
-
-    createUser$ = (action$: ActionsObservable<AnyAction>) => {
-        return action$.ofType(CREATE_USER).pipe(
-            switchMap(({payload}) => {
-                return this.userService
-                    .createUser(payload.user)
-                    .pipe(
-                        map( user => createUserSuccessAction(user))
                     );
             })
         );

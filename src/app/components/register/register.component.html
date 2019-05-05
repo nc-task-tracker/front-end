@@ -1,6 +1,5 @@
 <div class="edit-user">
-
-  <h2 align="center">Registration</h2>
+  <h2 color="primary">Registration</h2>
 
   <form [formGroup]="userForm">
     <mat-form-field>
@@ -26,7 +25,7 @@
   <div class="edit-user-controls">
     <button mat-button color="primary" [disabled]="userForm.invalid" (click)="onRegisterClick()"
             cdkFocusInitial>
-            Register
+            Registes
     </button>
     <button mat-button color="warn" (click)=onCancelClick()>Cancel</button>
   </div>

@@ -1,7 +1,2 @@
 <div class="user-list">
-  <mat-spinner *ngIf="isLoading | async;else userTable" mode="indeterminate" color="primary">
-  </mat-spinner>
-  <ng-template #userTable>
-    <h1>Welcome {{(currentUser | async)?.name}}</h1>
-  </ng-template>
 </div>

@@ -1,4 +1,4 @@
-<div class="login-user">
+<div class="login-user" cdkScrollable>
   <h2 mat-dialog-title align="center">Login</h2>
   <form [formGroup]="credentialForm">
      <mat-form-field>
@@ -19,7 +19,6 @@
   </div>
   <div class="edit-user-controls">
       Don't have an account?
-      <!--<button mat-rained-button color="primary" class="create-user-button" (click)=onCreateUserClick()>Registration</button>-->
     <button mat-button color="primary" class="create-user-button" (click)="onRegisterClick()">Registration</button>
   </div>
 </div>

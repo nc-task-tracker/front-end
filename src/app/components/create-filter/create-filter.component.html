@@ -1,33 +1,54 @@
-<p>
-  create-filter works!
-</p>
-<div class="create-filter-wrapper">
-  <form [formGroup]="filterForm" class="create-filter" (ngSubmit)="onSubmit()">
-    <div formArrayName="selectedParameter">
-      <mat-form-field >
-        <mat-label>Parameters</mat-label>
-        <!--<mat-select [formControlName]=" 'parameters' " (selectionChange)="onSelect($event)">-->
-        <mat-select [formControlName]=" 'parameters' " multiple>
-          <!--<mat-option *ngFor="let parameter of parameterList" [value]="parameter" [class.selected]="parameter === selectedParameter"(check)="onSelect(parameter)" >-->
-          <mat-option *ngFor="let parameter of parameterList" [value]="parameter" (check)="addAlias()" >
-            {{parameter.title}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+<section class="filter-toolbar">
 
+  <form [formGroup]="filterForm" class="filter-toolbar-form">
+    <ng-container *ngFor="let item of filterItems">
+      <div class="filter-toolbar-item">
 
-      <div *ngFor="let parameter of  selectedParameter.controls; let i=index">
-        <mat-form-field>
-          <mat-label>Parameter type</mat-label>
-          <mat-select [formControlName]="i" multiple >
-            <!--<mat-option *ngFor="let parameter of selectedParameter.children " [value]="parameter">-->
-            <mat-option *ngFor="let parameter of i.children " [value]="parameter">
-              {{parameter.title}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <ng-container [ngSwitch]="item.fieldType">
+
+          <ng-container *ngSwitchCase="allFieldType.INPUT">
+
+            <mat-form-field class="filter-toolbar-item__input">
+              <input matInput [formControlName]="item.key" [placeholder]="item.placeholder">
+            </mat-form-field>
+
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.SELECT">
+            <mat-form-field>
+              <mat-label>{{item.title}}</mat-label>
+              <mat-select [formControlName]="item.key" [placeholder]="item.placeholder" [multiple]="item.multiple"
+                          class="filter-toolbar-item__select">
+                <mat-option *ngFor="let option of item.options" [value]="option">
+                  {{option[item.titleKey]}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.ASSIGNEE">
+            <app-assignee-form [multiple]="item.multiple" [controlName]="item.key" [placeholder]="item.placeholder">
+            </app-assignee-form>
+          </ng-container>
+
+          <mat-icon (click)="removeFilterItem(item)">cancel</mat-icon>
+        </ng-container>
       </div>
-    </div>
+    </ng-container>
   </form>
 
-</div>
+  <div class="filter-toolbar-item __search-params">
+    <mat-form-field>
+      <mat-select [multiple]="true" [placeholder]="'Add Search Params'" (selectionChange)="onItemAdd($event)"
+                  #searchItemSelect>
+        <ng-container *ngFor="let item of initialFilterItems">
+          <mat-option *ngIf="!item.hidden" [value]="item">{{item.title}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="filter-toolbar-item __search-button">
+    <button mat-raised-button (click)="onSearchSubmit()">Search</button>
+  </div>
+</section>

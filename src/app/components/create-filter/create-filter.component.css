@@ -1,26 +1,25 @@
-. {
-  overflow-y: scroll;
-}
-.create-filter-wrapper {
-  /*overflow-y: scroll;*/
-  height: 100%;
-  left: 20%;
-  position: absolute;
-}
-
-
-.example-h2 {
-  margin: 10px;
-}
-
-.example-section {
+.filter-toolbar {
   display: flex;
-  align-content: center;
   align-items: center;
-  height: 60px;
+  padding: 15px 30px;
 }
 
-.example-margin {
-  margin: 0 10px;
+.filter-toolbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 15px;
 }
 
+.filter-toolbar-item.__search-params {
+  margin: 0 15px;
+}
+
+.filter-toolbar-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-toolbar-item .mat-select-value {
+  max-width: fit-content;
+}
