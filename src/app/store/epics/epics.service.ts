@@ -1,15 +1,14 @@
-import {Injectable} from '@angular/core';
-import {UserEpic} from './user.epic';
-import {combineEpics} from 'redux-observable';
-import {CurrentUserEpic} from './current-user.epic';
+import { Injectable } from '@angular/core';
+import { UserEpic } from './user.epic';
+import { combineEpics } from 'redux-observable';
+import { CurrentUserEpic } from './current-user.epic';
 import {TicketsEpic} from './tickets.epic';
 
 @Injectable()
 export class EpicService {
 
-  constructor(private userEpic: UserEpic, private currentUserEpic: CurrentUserEpic,
-              private ticketsEpic: TicketsEpic) {
-  }
+    constructor(private userEpic: UserEpic, private currentUserEpic: CurrentUserEpic,
+                private ticketsEpic: TicketsEpic) {}
 
   getEpics() {
     return combineEpics(

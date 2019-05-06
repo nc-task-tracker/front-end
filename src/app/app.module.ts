@@ -31,6 +31,9 @@ import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 
+import { MaterialModule } from './material.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,7 @@ import {TicketService} from './service/ticket.service'; // <-- NgModel lives her
     TransformService,
     UserService,
     AuthService,
-    TicketService,
+    TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

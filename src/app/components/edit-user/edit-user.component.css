@@ -1,8 +1,9 @@
 .edit-user {
     display: flex;
     flex-direction: column;
-    width: 500px;
-    height: 350px;
+    width: 1000px;
+    height: 500px;
+;
 }
 
 form {

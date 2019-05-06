@@ -5,7 +5,6 @@ import {MatDialog, MatDialogRef} from '@angular/material';
 import {DialogResult} from 'src/app/models/dialog-result';
 import {AppState} from 'src/app/store';
 import {loginUserAction} from 'src/app/store/actions/current-user.actions';
-import {EditUserComponent} from '../../edit-user/edit-user.component';
 import {Router} from '@angular/router';
 
 @Component({
@@ -49,14 +48,6 @@ export class LoginUserComponent implements OnInit {
 
   onCancelClick() {
     this.dialogRef.close(DialogResult.CLOSE);
-  }
-
-  onCreateUserClick() {
-    this.matDialog.open(EditUserComponent, {
-      width: '550px',
-      height: '400px',
-      data: {userId: null}
-    });
   }
 
   getErrorText(controlName: string): string {

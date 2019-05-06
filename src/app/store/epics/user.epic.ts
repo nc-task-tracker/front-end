@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FETCH_USERS, fetchUsersSuccessAction, fetchUsersFailedAction, CREATE_USER,
-    createUserSuccessAction, updateUserSuccessAction, DELETE_USER, deleteUserSuccessAction, UPDATE_USER} from '../actions/users.actions';
+    createUserSuccessAction, updateUserSuccessAction, UPDATE_USER} from '../actions/users.actions';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';
@@ -45,18 +45,6 @@ export class UserEpic {
                     .updateUser(payload.user)
                     .pipe(
                         map( user => updateUserSuccessAction(user))
-                    );
-            })
-        );
-    }
-
-    deleteUser$ = (action$: ActionsObservable<AnyAction>) => {
-        return action$.ofType(DELETE_USER).pipe(
-            switchMap(({payload}) => {
-                return this.userService
-                    .deleteUser(payload.userId)
-                    .pipe(
-                        map( () => deleteUserSuccessAction(payload.userId))
                     );
             })
         );
