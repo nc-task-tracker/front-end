@@ -27,19 +27,22 @@ import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
-import { MaterialModule } from './material.module';
+// import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 
 import { MaterialModule } from './material.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {ProfileModule} from './components/profile/profile.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent
+    CreateTicketPageComponent,
+    ProfileComponent,
+    ChangeProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -58,14 +61,15 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     MatDialogModule,
     AppRouterModule,
     RouterModule,
-    ToolbarModule
+    ToolbarModule,
+    ProfileModule
   ],
   providers: [
     EpicService,
     TransformService,
     UserService,
     AuthService,
-    TicketServiceService,
+    TicketService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
