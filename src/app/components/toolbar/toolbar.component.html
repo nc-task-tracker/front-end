@@ -4,10 +4,8 @@
         <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
       </div>
       <div class="navigation">
-        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Dashboard</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Project</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Infomation</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()">Settings</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()" routerLink="">Dashboard</button>
+        <button mat-button *ngIf="!(currentUser | async); else loginUser" (click)="onLoginClick()" routerLink="">Project</button>
       </div>
       <ng-template #loginUser>
         <button mat-button (click)="onLogoutClick()">Logout</button>

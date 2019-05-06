@@ -29,7 +29,7 @@ import {EditUserComponent} from './components/edit-user/edit-user.component';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {TicketServiceService} from './service/ticket-service.service'; // <-- NgModel lives here
+import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 
 
 @NgModule({
@@ -62,7 +62,7 @@ import {TicketServiceService} from './service/ticket-service.service'; // <-- Ng
     TransformService,
     UserService,
     AuthService,
-    TicketServiceService,
+    TicketService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

@@ -12,6 +12,10 @@ input {
   width: 100vw;
 }
 
+.assigneeListLogin {
+  color: lightgray;
+}
+
 .create-issue {
   min-width: 150px;
   display: flex;
@@ -23,7 +27,7 @@ input {
 }
 
 .input-full-width {
-  width: 100%;
+  width: 80%;
 }
 
 .control-buttons {
@@ -42,9 +46,6 @@ input {
   margin: 10px;
 }
 
-.create {
-
-}
 
 .cancel {
   background-color: black;
@@ -52,6 +53,5 @@ input {
 }
 
 .description_issue {
-  width: 100%;
-  max-height: 250px;
+  width: 80%;
 }

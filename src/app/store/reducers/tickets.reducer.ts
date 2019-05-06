@@ -8,9 +8,13 @@ export const ticketReducer: Reducer<Map<string, Ticket>> = (state: Map<string, T
   switch (action.type) {
     case CREATE_TICKET_SUCCESS: {
       const {ticket} = action.payload;
-      const updatedState = new Map(state).set(ticket.id, ticket);
-      return updatedState;
+      return new Map(state).set(ticket.id, ticket);
     }
+    // case GET_ASSIGNEE_LIST: {
+    //   const inputValue = action.payload;
+    //   const assigneeList = new Map(state).set(, inputValue);
+    //   return assigneeList;
+    // }
     default: {
       return state;
     }
