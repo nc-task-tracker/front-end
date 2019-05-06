@@ -36,7 +36,11 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
-
+// import {MatDialogModule} from "@angular/material/typings/dialog";
+// import {OverlayModule} from "@angular/cdk/typings/esm5/overlay";
+import {MatDialogModule} from "@angular/material";
+import {OverlayModule} from "@angular/cdk/overlay";
+import {FilterFormModule} from "./components/create-filter/filter-form.module";
 
 @NgModule({
   declarations: [
@@ -45,10 +49,10 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     CreateTicketPageComponent,
     TicketComponent,
     CreateProjectComponent,
-    CreateFilterComponent,
     ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent
+    // AssigneeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    FilterFormModule
   ],
   providers: [
     EpicService,
