@@ -1,18 +1,28 @@
 <mat-toolbar color="primary">
   <div class="toolbar-contols">
-      <div class="log">
-        <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
-      </div>
-      <div >
-        <button mat-button *ngIf="!(currentUser | async); else loginUser">Dashboard</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser">Project</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser">Infomation</button>
-        <button mat-button *ngIf="!(currentUser | async); else loginUser">Settings</button>
-      </div>
-      <ng-template #loginUser>
-        <button mat-button (click)="onLogoutClick()">Logout</button>
-        <button class="username" mat-button (click)="onUserProfile()">User.name</button>
-      </ng-template>
+
+    <div class="log">
+      <button mat-stroked-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
+    </div>
+    <div >
+      <button mat-button *ngIf="(currentUser | async); " [routerLink]="'home'">
+        <img src="assets/Icons/Home.png" height="30" width="30"/>
+      </button>
+
+      <a mat-button *ngIf="(currentUser | async); " [routerLink]="'home'">Dashboards</a>
+      <a mat-button *ngIf="(currentUser | async); " [routerLink]="'projects'">Projects</a>
+
+      <a mat-stroked-button *ngIf="(currentUser | async); " [routerLink]="'create-ticket'">Create issue</a>
+      <a mat-stroked-button class="button-interval" *ngIf="(currentUser | async); " [routerLink]="'home'">Search</a>
+    </div>
+
+    <ng-template #loginUser>
+      <button mat-stroked-button (click)="onLogoutClick()">Logout</button>
+      <button class="username" color="red" mat-button [routerLink]="'profile'">
+        {{userName | async}}
+        <img src="assets/Icons/User.png" height="30" width="30" class="button-interval"/>
+      </button>
+    </ng-template>
   </div>
 
 

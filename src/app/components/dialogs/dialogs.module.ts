@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { EditUserComponent } from '../edit-user/edit-user.component';
+import { RegisterComponent } from '../register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {
@@ -24,7 +24,7 @@ import {RouterModule} from '@angular/router';
     MatDialogModule,
     MatIconModule
   ],
-  declarations: [EditUserComponent, LoginUserComponent],
-  entryComponents: [EditUserComponent, LoginUserComponent]
+  declarations: [RegisterComponent, LoginUserComponent],
+  entryComponents: [RegisterComponent, LoginUserComponent]
 })
 export class DialogsModule { }

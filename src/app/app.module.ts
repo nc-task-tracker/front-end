@@ -3,7 +3,7 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
+import {MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -25,7 +25,7 @@ import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
-import {EditUserComponent} from './components/edit-user/edit-user.component';
+
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 // import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,14 +35,22 @@ import { MaterialModule } from './material.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {ProfileModule} from './components/profile/profile.module';
+import {WelcomeComponent} from './components/welcome/welcome.component';
+import {CreateProjectComponent} from './components/create-project/create-project.component';
+import {TicketComponent} from './components/ticket/ticket.component';
+import {RegisterService} from './service/register.service';
+import {ProjectService} from './service/project.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
     CreateTicketPageComponent,
+    TicketComponent,
+    CreateProjectComponent,
     ProfileComponent,
-    ChangeProfileComponent
+    ChangeProfileComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -62,14 +70,18 @@ import {ProfileModule} from './components/profile/profile.module';
     AppRouterModule,
     RouterModule,
     ToolbarModule,
+    MatGridListModule,
+    ToolbarModule,
     ProfileModule
   ],
   providers: [
     EpicService,
     TransformService,
+    RegisterService,
     UserService,
     AuthService,
     TicketService,
+    ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
