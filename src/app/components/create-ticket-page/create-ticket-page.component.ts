@@ -1,13 +1,17 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {allTicketPriority, TicketPriority, TicketPriorityLabel, allTicketTypes} from '../../models/ticket.model';
-import {NgRedux} from '@angular-redux/store';
+import {NgRedux, select} from '@angular-redux/store';
 import {AppState} from '../../store';
-import {createTicketAction, getAssigneeList} from '../../store/actions/tickets.actions';
+import {createTicketAction, getAssigneeList} from '../../store/actions/create-ticket.actions';
 import {Observable, of} from 'rxjs';
 import {TicketService} from '../../service/ticket.service';
 import {Assignee} from '../../models/assignee.model';
 import {catchError, debounceTime, map, startWith, switchMap} from 'rxjs/operators';
+import {GlobalUserStorageService} from '../../service/global-storage.service';
+import {Router} from '@angular/router';
+import {selectCurrentUser, selectCurrentUserName} from '../../store/selectors/current-user.selector';
+import {User} from '../../models/user.model';
 
 
 @Component({
@@ -17,6 +21,8 @@ import {catchError, debounceTime, map, startWith, switchMap} from 'rxjs/operator
 })
 export class CreateTicketPageComponent implements OnInit, AfterViewInit {
 
+
+
   minDate = new Date();
   ticketForm: FormGroup;
   allTicketPriority = allTicketPriority;
@@ -24,11 +30,20 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
   private assignees;
   public autoCompleteControl = new FormControl();
   public assigneeAutoComplete$: Observable<Assignee[]> = null;
+  choosenAssignee = [];
+
+  @select(selectCurrentUserName)
+  readonly userName: Observable<string>;
+  @select(selectCurrentUser)
+  readonly currentUser: Observable<User>;
 
 
   constructor(private fb: FormBuilder,
               private ngRedux: NgRedux<AppState>,
-              private ticketService: TicketService) {
+              private ticketService: TicketService,
+              private storageService: GlobalUserStorageService,
+              private router: Router,
+  ) {
   }
 
   ngOnInit() {
@@ -36,20 +51,29 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
       minDate: new Date(),
       issueName: [''],
       issueType: [''],
-      priority: [TicketPriority.MINOR],
+      issuePriority: [''],
       issueDescription: [''],
       assignee: []
     });
   }
 
   createTicket() {
-    console.log('HELLO');
-
     const formValue = this.ticketForm.getRawValue();
-    console.log(formValue);
-    this.ngRedux.dispatch(createTicketAction(formValue));
+    this.ngRedux.dispatch(createTicketAction(formValue as any));
   }
 
+  onCancelClick() {
+    this.router.navigate(['']);     //todo: Project page
+  }
+
+  private initializeForm() {
+    this.ticketForm = this.fb.group({
+      projectName: ['', Validators.required],
+      projectDescription: [''],
+      projectCode: ['', Validators.required],
+      ownerId: this.storageService.currentUser.id
+    });
+  }
 
   ngAfterViewInit() {
    this.assignees = this.assigneeAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
@@ -62,23 +86,12 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
         }
       })
     );
-    // const input = document.getElementById('example');
-    // const example = Observable
-    //   .fromEvent(input, 'keyup')
-    //   .map(i => (i.currentTarget as HTMLInputElement).value);
-    //
-    // const debouncedInput = example.debounceTime(2000);
-    // debouncedInput.subscribe(val => {
-    //  console.log(val);
-    //  this.assignees = this.ticketService.getAssigneeList(val);
-    // this.createDropdownList();
-    // });
   }
 
   private chooseAssignee(item) {
-    console.log(item);
-    const dropdown = document.getElementsByClassName('listAssignee');
-
+    this.choosenAssignee = item.login;
+    const input = document.getElementById('assigneeInput');
+    this.assignees = null;
   }
 
   private lookup(value: string): Observable<Assignee[]> {
@@ -89,10 +102,5 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
     );
   }
 
-
-
-
-  private createDropdownList() {
-  }
 
 }

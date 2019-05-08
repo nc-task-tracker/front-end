@@ -9,9 +9,18 @@ import {catchError, distinctUntilChanged, mergeMap} from 'rxjs/operators';
 import {promise} from 'selenium-webdriver';
 import map = promise.map;
 import {Assignee} from '../models/assignee.model';
+import {select} from '@angular-redux/store';
+import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/current-user.selector';
+import {User} from '../models/user.model';
+import {Project} from '../models/project.model';
 
 @Injectable()
 export class TicketService {
+
+  @select(selectCurrentUserName)
+  readonly userName: Observable<string>;
+  @select(selectCurrentUser)
+  readonly currentUser: Observable<User>;
 
   constructor(private http: HttpClient) {
   }
@@ -19,6 +28,7 @@ export class TicketService {
 
   private readonly CREATE_URL = '/api/issue';
   private readonly GET_USERS = '/api/users/assignee';
+  private readonly GET_PROJECTS = '/api/project/by_user';
 
 
   createTicket(ticket: Ticket): Observable<Ticket> {
@@ -34,4 +44,12 @@ export class TicketService {
     });
   }
 
+  getProjectsByUser(userName: string) {
+    console.log(userName);
+    return this.http.get<Project[]>(`${this.GET_PROJECTS}`, {
+      params: {
+        name: userName
+      }
+    });
+  }
 }

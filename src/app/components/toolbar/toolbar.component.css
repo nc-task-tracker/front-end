@@ -23,8 +23,6 @@
 }
 
 .mat-stroked-button:not([disabled]) {
-  border-color: rgba(1000,0,0,.12);
-  border-width: medium;
 }
 
 .button-interval{

@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from "rxjs";
-import {Project} from "../../models/project.model";
-import {NgRedux} from "@angular-redux/store";
-import {AppState} from "../../store";
-import {Router} from "@angular/router";
-import {createProjectAction} from "../../store/actions/create-project.actions";
-import {GlobalUserStorageService} from "../../service/global-storage.service";
+import {Observable} from 'rxjs';
+import {Project} from '../../models/project.model';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../../store';
+import {Router} from '@angular/router';
+import {createProjectAction} from '../../store/actions/create-project.actions';
+import {GlobalUserStorageService} from '../../service/global-storage.service';
 
 @Component({
   selector: 'create-project',
@@ -19,7 +19,8 @@ export class CreateProjectComponent implements OnInit {
 
 
   constructor(private ngRedux: NgRedux<AppState>,
-              private fb: FormBuilder, private router: Router,
+              private fb: FormBuilder,
+              private router: Router,
               private storageService: GlobalUserStorageService) {
 
   }
@@ -40,7 +41,7 @@ export class CreateProjectComponent implements OnInit {
   onCreateClick() {
     const formValue = this.projectForm.getRawValue();
     this.ngRedux.dispatch(createProjectAction(formValue as any));
-    this.onCancelClick();
+    //this.onCancelClick();
   }
 
   onCancelClick() {

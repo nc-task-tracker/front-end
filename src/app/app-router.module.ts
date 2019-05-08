@@ -7,7 +7,7 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
-import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {WelcomeComponent} from './components/welcome/welcome.component';
 
 
 const routs: Routes = [

@@ -103,19 +103,15 @@ export interface TicketTypeObject {
   readonly title: string;
 }
 
-
 // TODO back-end model
 export interface Ticket {
   readonly id: string;
   readonly name: string;
-  readonly dueDate: Date;
-  readonly startDate: Date;
-  readonly project: string;
   readonly type: string;
   readonly priority: TicketPriority;
-  readonly status: TicketStatus;
   readonly description: string;
-
-  readonly reporterId: User;
-  readonly assigneeId: User;
+  readonly dueDate: Date;
+  readonly created: Date;
+  readonly reporter: User;
+  readonly assignee: User;
 }

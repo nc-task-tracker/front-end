@@ -1,6 +1,11 @@
-.create-ticket {
-  overflow-y: scroll;
-  height: 100%;
+.create-ticket-modal {
+  height: 70vh;
+  width: 70vw;
+}
+
+.adminName {
+  color: navy;
+  font-weight: bold;
 }
 
 body {
@@ -8,17 +13,8 @@ body {
   margin: 0;
 }
 
-input {
-  width: 100vw;
-}
-
 .assigneeListLogin {
   color: lightgray;
-}
-
-.adminName {
-  color: navy;
-  font-weight: bold;
 }
 
 .create-issue {

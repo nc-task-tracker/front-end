@@ -40,6 +40,7 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {TicketComponent} from './components/ticket/ticket.component';
 import {RegisterService} from './service/register.service';
 import {ProjectService} from './service/project.service';
+import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import {ProjectService} from './service/project.service';
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    CreateTicketModalComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,10 @@ import {ProjectService} from './service/project.service';
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateTicketModalComponent
+  ]
 })
 export class AppModule {
 

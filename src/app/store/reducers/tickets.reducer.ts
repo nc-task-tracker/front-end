@@ -1,6 +1,6 @@
 import {Ticket} from '../../models/ticket.model';
 import {Reducer} from 'redux';
-import {CREATE_TICKET_SUCCESS} from '../actions/tickets.actions';
+import {CREATE_TICKET_SUCCESS} from '../actions/create-ticket.actions';
 
 const INITIAL_STATE = new Map<string, Ticket>();
 
