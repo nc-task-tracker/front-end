@@ -44,15 +44,6 @@ export class ToolbarComponent implements OnInit {
 
     openDialog() {
       this.matDialog.open(CreateTicketModalComponent);
-    //   const dialogRef = this.matDialog.open(CreateTicketModalComponent, {
-    //     width: '100%',
-    //     height: '100%',
-    //     data: {}
-    //   });
-    //
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log('The dialog was closed');
-    // });
 
   }
 }

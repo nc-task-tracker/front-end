@@ -30,7 +30,7 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
   private assignees;
   public autoCompleteControl = new FormControl();
   public assigneeAutoComplete$: Observable<Assignee[]> = null;
-  choosenAssignee = [];
+  chosenAssignee = [];
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
@@ -48,12 +48,20 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.ticketForm = this.fb.group({
-      minDate: new Date(),
       issueName: [''],
+      issueDescription: [''],
+      dueDate: [''],
+      project: [''],
       issueType: [''],
       issuePriority: [''],
-      issueDescription: [''],
-      assignee: []
+      issueStatus: [''], // TODO: не передаем, а генерим на беке стандартный статус для всех новых ишью
+      childissue: [''],
+      issues: [''],
+      issueRoles: [''],
+      assignee: [''],
+      reporter: [''],
+      minDate: new Date()
+
     });
   }
 
@@ -63,16 +71,7 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['']);     //todo: Project page
-  }
-
-  private initializeForm() {
-    this.ticketForm = this.fb.group({
-      projectName: ['', Validators.required],
-      projectDescription: [''],
-      projectCode: ['', Validators.required],
-      ownerId: this.storageService.currentUser.id
-    });
+    this.router.navigate(['']);     // todo: Project page
   }
 
   ngAfterViewInit() {
@@ -89,8 +88,7 @@ export class CreateTicketPageComponent implements OnInit, AfterViewInit {
   }
 
   private chooseAssignee(item) {
-    this.choosenAssignee = item.login;
-    const input = document.getElementById('assigneeInput');
+    this.chosenAssignee = item.login;
     this.assignees = null;
   }
 

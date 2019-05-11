@@ -4,18 +4,19 @@
 
     <div class="info_wrap">
       <p>Admin: <span class="adminName">{{userName | async}}</span></p>
+      <p>Code: <span class="codeIssue">{{code | async}}</span></p>
     </div>
 
     <mat-form-field class="input-full-width selectProject">
-      <mat-select  placeholder="Choose project ...">
-        <mat-option *ngFor="let proj of possibleProjects" [value]="proj.code">{{proj.code}}</mat-option>
+      <mat-select  [formControlName]="'project'" placeholder="Choose project ...">
+        <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
       </mat-select>
     </mat-form-field>
 
 
     <mat-form-field class="input-full-width">
       <mat-select [formControlName]="'issueType'" placeholder="Issue type">
-        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+        <mat-option *ngFor="let prior of ticketTypes" [value]="prior.type">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -25,7 +26,7 @@
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
-      <input matInput placeholder="Assignee" [value]="'chosenAssignee'" id="assigneeInput" required id="example" [formControl]="autoCompleteControl">
+      <input matInput placeholder="Assignee" required [formControl]="autoCompleteControl">
       <div *ngIf="assignees" class="listAssignee">
         <mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">
           {{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>
@@ -35,13 +36,13 @@
 
     <mat-form-field class="input-full-width">
       <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
-        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+        <mat-option *ngFor="let prior of ticketPriority" [value]="prior.type">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 
 
     <mat-form-field class="description_issue">
-      <textarea [formControlName]="'issueDescription'" maxlength="500" matInput placeholder="Description"></textarea>
+      <textarea [formControlName]="'issueDescription'" maxlength="1000" matInput placeholder="Description"></textarea>
     </mat-form-field>
 
     <div class="dateWrapper">

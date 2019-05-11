@@ -28,7 +28,7 @@
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
-      <input matInput placeholder="Assignee" [value]="choosenAssignee" id="assigneeInput" required id="example" [formControl]="autoCompleteControl">
+      <input matInput placeholder="Assignee" [value]="chosenAssignee" id="assigneeInput" required id="example" [formControl]="autoCompleteControl">
       <div class="listAssignee">
         <mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">
           {{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>
