@@ -7,6 +7,7 @@ import { selectCurrentUser } from 'src/app/store/selectors/current-user.selector
 import { logoutUserAction } from 'src/app/store/actions/current-user.actions';
 import { LoginUserComponent } from '../dialogs/login-user/login-user.component';
 import { MatDialog } from '@angular/material';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-toolbar',
@@ -18,7 +19,9 @@ export class ToolbarComponent implements OnInit {
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  constructor(private ngRedux: NgRedux<AppState>, private matDialog: MatDialog) { }
+  constructor(private ngRedux: NgRedux<AppState>,
+              private matDialog: MatDialog,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -33,5 +36,21 @@ export class ToolbarComponent implements OnInit {
 
   onUserProfile() {
     return;
+  }
+
+  onDashboardClick() {
+    setTimeout(() => this.router.navigate(['dashboard']));
+  }
+
+  onProjectClick() {
+
+  }
+
+  onInformationClick() {
+
+  }
+
+  onSettingsClick() {
+
   }
 }

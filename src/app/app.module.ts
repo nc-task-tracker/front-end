@@ -3,7 +3,6 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { MatDialogModule } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -30,8 +29,7 @@ import { MaterialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
-
-
+import {DashboardModule} from "./components/dashboard/dashboard.module";
 
 @NgModule({
   declarations: [
@@ -54,10 +52,10 @@ import { ChangeProfileComponent } from './components/change-profile/change-profi
     BrowserAnimationsModule,
     OverlayModule,
     DialogsModule,
-    MatDialogModule,
     AppRouterModule,
     RouterModule,
-    ToolbarModule
+    ToolbarModule,
+    DashboardModule
   ],
   providers: [
     EpicService,

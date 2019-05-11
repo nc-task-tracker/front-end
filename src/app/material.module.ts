@@ -34,7 +34,6 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MatRadioModule,
     MatListModule,
     MatTreeModule
-
   ],
   exports: [
     MatFormFieldModule,

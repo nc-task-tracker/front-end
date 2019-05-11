@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
 
-    private LOGIN_URL = '/api/login';
+    private LOGIN_URL = '/api/authentication/login';
 
     constructor(private http: HttpClient) {
     }

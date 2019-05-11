@@ -2,7 +2,7 @@
   justify-content: flex-start;
 }
 
-.toolbar-contols {
+.toolbar-controls {
   width: 100vw;
   display: flex;
   flex-direction: row-reverse;
@@ -20,4 +20,6 @@
 .toolbar-contols .username:hover {
   background-color: inherit;
 }
-
+.username {
+  color: darkred;
+}
