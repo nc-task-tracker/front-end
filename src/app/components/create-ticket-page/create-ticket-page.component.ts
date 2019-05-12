@@ -21,21 +21,12 @@ import {User} from '../../models/user.model';
 })
 export class CreateTicketPageComponent implements OnInit, AfterViewInit {
 
-
-
-  minDate = new Date();
   ticketForm: FormGroup;
-  allTicketPriority = allTicketPriority;
-  allTicketTypes = allTicketTypes;
   private assignees;
   public autoCompleteControl = new FormControl();
   public assigneeAutoComplete$: Observable<Assignee[]> = null;
   chosenAssignee = [];
 
-  @select(selectCurrentUserName)
-  readonly userName: Observable<string>;
-  @select(selectCurrentUser)
-  readonly currentUser: Observable<User>;
 
 
   constructor(private fb: FormBuilder,

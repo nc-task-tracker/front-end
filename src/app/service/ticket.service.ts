@@ -28,7 +28,7 @@ export class TicketService {
 
   private readonly CREATE_URL = '/api/issue';
   private readonly GET_USERS = '/api/users/assignee';
-  private readonly GET_PROJECTS = '/api/project/by_user';
+  private readonly GET_PROJECTS = '/api/project/possibleprojects';
 
 
   createTicket(ticket: Ticket): Observable<Ticket> {

@@ -1,10 +1,9 @@
 <div class="create-ticket-modal">
 
-  <form [formGroup]="ticketModalForm" class="create-issue">
+  <form [formGroup]="ticketForm" class="create-issue">
 
     <div class="info_wrap">
       <p>Admin: <span class="adminName">{{userName | async}}</span></p>
-      <p>Code: <span class="codeIssue">{{code | async}}</span></p>
     </div>
 
     <mat-form-field class="input-full-width selectProject">
@@ -57,13 +56,13 @@
     <div class="control-buttons">
       <button
         matTooltip="Create issue"
-        aria-label="Button that displays a tooltip when focused or hovered over"
-        mat-raised-button class="control-button create"
+        mat-raised-button
+        class="control-button create"
         (click)="createTicket()">Create
       </button>
-      <button matTooltip="Cancel creating issue"
-              aria-label="Button that displays a tooltip when focused or hovered over"
-              mat-raised-button class="control-button cancel"
+      <button matTooltip="Cancel"
+              mat-raised-button
+              class="control-button cancel"
               (click)="onCancelClick()">Cancel
       </button>
     </div>

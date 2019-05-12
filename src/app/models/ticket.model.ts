@@ -96,22 +96,20 @@ export const allTicketTypes: TicketTypeObject[] = [
     title: 'Task'
   }
 ];
-
-
 export interface TicketTypeObject {
   readonly type: TicketType;
   readonly title: string;
 }
 
-// TODO back-end model
 export interface Ticket {
   readonly id: string;
-  readonly name: string;
-  readonly type: string;
-  readonly priority: TicketPriority;
-  readonly description: string;
+  readonly issueName: string;
+  readonly issueDescription: string;
   readonly dueDate: Date;
-  readonly created: Date;
-  readonly reporter: User;
-  readonly assignee: User;
+  readonly parentId: String;
+  readonly project: String;
+  readonly issuetype: TicketType;
+  readonly issuepriority: TicketPriority;
+  readonly reporter: String;
+  readonly assignee: String;
 }

@@ -42,7 +42,7 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-    openDialog() {
+    createTicket() {
       this.matDialog.open(CreateTicketModalComponent);
 
   }

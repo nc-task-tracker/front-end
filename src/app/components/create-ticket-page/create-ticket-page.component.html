@@ -8,32 +8,24 @@
       <p>Project: id</p>                  <!--TODO: project's code-->
     </div>
 
-    <!--<mat-form-field class="input-full-width">-->
-    <!--<input matInput placeholder="Project name" value="1234" disabled>-->
-    <!--</mat-form-field>-->
+
     <mat-form-field class="input-full-width">
       <mat-select [formControlName]="'issueType'" placeholder="Issue type">
         <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.type">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <!--<mat-form-field class="input-full-width">-->
-    <!--<input [formControlName]="'issueType'" matInput placeholder="Issue type" value="" disabled>-->
-    <!--</mat-form-field>-->
-    <!--<mat-form-field class="input-full-width">-->
-    <!--<input matInput placeholder="Reporter" value="Admin (you)" disabled>-->
-    <!--</mat-form-field>-->
+
+
 
     <mat-form-field class="input-full-width">
       <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
-      <input matInput placeholder="Assignee" [value]="chosenAssignee" id="assigneeInput" required id="example" [formControl]="autoCompleteControl">
-      <div class="listAssignee">
+      <input matInput placeholder="Assignee" [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">
         <mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">
           {{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>
         </mat-option>
-      </div>
     </mat-form-field>
 
     <mat-form-field class="input-full-width">

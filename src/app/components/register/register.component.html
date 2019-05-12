@@ -3,8 +3,8 @@
 
   <form [formGroup]="userForm">
     <mat-form-field>
-      <input matInput placeholder="Name" [formControlName]="'name'" required>
-      <mat-error *ngIf="name.invalid">{{getErrorText('name')}}</mat-error>
+      <input matInput placeholder="Login" [formControlName]="'login'" required>
+      <mat-error *ngIf="login.invalid">{{getErrorText('login')}}</mat-error>
     </mat-form-field>
 
     <mat-form-field>
