@@ -18,7 +18,7 @@ import {DialogsModule} from './components/dialogs/dialogs.module';
 import {AppRouterModule} from './app-router.module';
 import {ToolbarModule} from './components/toolbar/toolbar.module';
 import {RouterModule} from '@angular/router';
-import {MatGridListModule} from '@angular/material';
+import {MatGridListModule, MatMenuModule} from '@angular/material';
 import {EpicService} from './store/epics/epics.service';
 import {TransformService} from './utils/transform.service';
 import {RegisterService} from './service/register.service';
@@ -38,6 +38,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {ProjectPageComponent} from "./components/project-page/project-page.component";
 import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
 import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
+import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -51,6 +53,7 @@ import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor
     ChangeProfileComponent,
     WelcomeComponent,
     ProjectPageComponent,
+    ProjectsPageComponent,
     MatConfirmDialogComponent
   ],
   imports: [
@@ -69,6 +72,8 @@ import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor
     RouterModule,
     ToolbarModule,
     MatGridListModule,
+    FlexLayoutModule,
+    MatMenuModule
   ],
   providers: [
     EpicService,

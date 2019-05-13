@@ -25,4 +25,9 @@ export class UserService {
         return this.http.put<User>(`${this.USERS_URL}`, user)
             .pipe(catchError((error: any) => throwError(error.error)));
     }
+
+    getNotProjectAssigners(id: string):Observable<User[]>{
+      return this.http.get<User[]>(`${this.USERS_URL}/noassigner/project/${id}`)
+        .pipe(catchError((error: any) => throwError(error.error)));
+    }
 }

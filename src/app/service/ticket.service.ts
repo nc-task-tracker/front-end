@@ -24,8 +24,8 @@ export class TicketService {
       .pipe(catchError(err => throwError(err)));
   }
 
-  getPageData(projectId: string, sort: SortParameters):Observable<TablePageData>{
-    return this.http.post<TablePageData>(`${this.TICKET_URL}/project/${projectId}/sort`,sort)
+  getTablePageData(projectId: string, sort: SortParameters):Observable<TablePageData<Ticket>>{
+    return this.http.post<TablePageData<Ticket>>(`${this.TICKET_URL}/project/${projectId}/sort`,sort)
       .pipe(catchError(err => throwError(err)));
   }
 

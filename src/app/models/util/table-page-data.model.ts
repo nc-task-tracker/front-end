@@ -1,8 +1,8 @@
 import {Ticket} from "../ticket.model";
 
-export interface TablePageData {
+export interface TablePageData<T> {
   readonly totalElem: number;
   readonly totalPages: number;
   readonly pageSize: number;
-  readonly tickets: Ticket[];
+  readonly list: T[];
 }

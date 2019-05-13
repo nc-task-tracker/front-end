@@ -12,7 +12,10 @@
         <p class = "detail-parameter">Description:{{this.project?.projectDescription}}</p>
       </div>
       <div class = "detail-owner">
-        <p class = "detail-parameter">Owner:{{this.project?.projectOwner}}</p>
+        <p class = "detail-parameter">Owner:{{this.project?.projectOwner.login}}</p>
+      </div>
+      <div class = "detail-code">
+        <p class = "detail-parameter">Code:{{this.project?.projectCode}}</p>
       </div>
     </div>
   </div>
@@ -20,15 +23,32 @@
 
 <div class="example-button-row">
   <button mat-button color="primary" (click) = "onClickAddTicket()">Add issue</button>
+
+  <button *ngIf="(userName | async) === this.project?.projectOwner.login;" class="assigners" mat-button color="primary"  [matMenuTriggerFor]="assigners">Assigners</button>
+
+  <mat-menu #assigners="matMenu" yPosition="above" xPosition="after">
+    <button mat-menu-item [matMenuTriggerFor]="yes">Yes</button>
+    <button mat-menu-item [matMenuTriggerFor]="no">No</button>
+  </mat-menu>
+
+  <mat-menu #yes="matMenu">
+    <button mat-menu-item *ngFor="let assigner of this.project?.assigners">
+      <mat-icon (click)="deleteAssigner(assigner)">clear</mat-icon>
+      <span>{{assigner.login}}</span>
+    </button>
+  </mat-menu>
+
+  <mat-menu #no="matMenu">
+     <button mat-menu-item *ngFor="let notAssigner of this.noAssigners">
+        <mat-icon (click)="addAssigner(notAssigner)">done</mat-icon>
+        <span>{{notAssigner.login}}</span>
+     </button>
+  </mat-menu>
 </div>
+
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSort($event)">
-
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> id </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="issueName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>

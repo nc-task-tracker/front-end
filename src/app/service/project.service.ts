@@ -3,6 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {Project} from "../models/project.model";
+import {SortParameters} from "../models/util/table-sort-param.model";
+import {TablePageData} from "../models/util/table-page-data.model";
+import {User} from "../models/user.model";
 
 @Injectable()
 export class ProjectService {
@@ -17,10 +20,28 @@ export class ProjectService {
   }
 
   getProjectById(projectId: string): Observable<Project> {
-    return this.http.get<Project>(`${this.PROJECT_URL}/${projectId}`);
+    return this.http.get<Project>(`${this.PROJECT_URL}/${projectId}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
   }
 
   getProjects(): Observable<Project[]>{
-    return this.http.get<Project[]>(`${this.PROJECT_URL}/all`);
+    return this.http.get<Project[]>(`${this.PROJECT_URL}/all`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
+    return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  addAssigner(projectId: string,user: User): Observable<{}> {
+    console.log("tuta");
+    return this.http.post(`${this.PROJECT_URL}/add/assigner`,user)
+      .pipe(catchError((error: any)=> throwError(error.error)));
+  }
+
+  deleteAssigner(projectId: string,userId: string): Observable<{}> {
+    return this.http.delete(`${this.PROJECT_URL}/${projectId}/delete/assigner/${userId}`)
+      .pipe(catchError((error: any)=> throwError(error.error)));
   }
 }
