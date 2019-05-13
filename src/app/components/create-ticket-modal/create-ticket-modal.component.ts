@@ -8,7 +8,7 @@ import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} fr
 import {TicketService} from '../../service/ticket.service';
 import {Project} from '../../models/project.model';
 import {Assignee} from '../../models/assignee.model';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {allTicketPriority, allTicketTypes} from '../../models/ticket.model';
 import {createTicketAction} from '../../store/actions/create-ticket.actions';
 import {AppState} from '../../store';
@@ -24,36 +24,28 @@ export class CreateTicketModalComponent implements OnInit {
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
+
+  currentAssignee: Assignee;
+  currentAssigneeId: String;
+
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  private possibleProjects;
-  private minDate = new Date();
-  private ticketForm: FormGroup;
-  private ticketPriority = allTicketPriority;
-  private ticketTypes = allTicketTypes;
+  ticketForm: FormGroup;
 
-  public nameControl = new FormControl();
-  public autoCompleteControl = new FormControl();
-  public assigneeAutoComplete$: Observable<Assignee[]> = null;
-  private currentAssignee = this.userName;
+  ticketPriority = allTicketPriority;
+  ticketTypes = allTicketTypes;
 
-  private assignees = this.assigneeAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
-    startWith(''),
-    debounceTime(2000),
-    distinctUntilChanged(),
-    switchMap(value => {
-      if (value !== '') {
-        return this.lookup(value);
-      } else {
-        return of(null);
-      }
-    })
-  );
+  assigneeAuto: FormControl;
+  assigneeAutoComplete$: Observable<Assignee[]>;
+  minDate = new Date();
 
+  public assignees: Observable<Assignee[]>;
+  public assignee: FormControl;
+  possibleProjects;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private ngRedux: NgRedux<AppState>,
     private router: Router,
     private storageService: GlobalUserStorageService,
@@ -61,37 +53,47 @@ export class CreateTicketModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private ticketService: TicketService
   ) {
-    this.currentAssignee = this.userName;
   }
 
   ngOnInit() {
-    this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
-
-    console.log(this.possibleProjects);
-    this.ticketForm = this.fb.group({
-      issueName: new FormControl(),
-      issueDescription: [''],
-      dueDate: [''],
-      project: [''],
-      issueType: [''],
-      issuePriority: [''],
+    // this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
+    this.ticketForm = this.formBuilder.group({
+      issueName: ['', Validators.required],
+      issueDescription: ['', Validators.required],
+      dueDate: ['', Validators.required],
+      project: [''/*, Validators.required*/],
+      issueType: ['', Validators.required],
+      issuePriority: ['', Validators.required],
       parentId: [''],
-      assignee: [''],
+     // assignee: this.formBuilder.control(['you']),
+      assignee: new FormControl(),
       reporter: [''],
       minDate: new Date()
 
     });
 
-  }
+    this.assigneeAuto = new FormControl();
+    this.assigneeAutoComplete$ = this.ticketForm.controls.assignee.valueChanges.pipe(
+      startWith(''),
+      debounceTime(2000),
+      distinctUntilChanged(),
+      switchMap(value => this.ticketService.getAssigneeList(value.toLowerCase()).pipe(
+        catchError(_ => {
+          return of(null);
+        })
+      ))
+    );
 
-
-  onCancelClick() {
-    this.dialogRef.close();
 
   }
 
   chooseAssignee(item) {
     this.currentAssignee = item;
+    this.ticketForm.controls.assignee.setValue(item.login);
+    console.log(this.ticketForm.controls.assignee);
+    this.assigneeAutoComplete$ = null;
+
+    this.currentAssigneeId = item.id;
   }
 
   lookup(value: string): Observable<Assignee[]> {
@@ -115,12 +117,14 @@ export class CreateTicketModalComponent implements OnInit {
   }
 
   createTicket() {
+    this.ticketForm.controls.assignee.setValue(this.currentAssigneeId);
     const formValue = this.ticketForm.getRawValue();
-    console.log(formValue);
+    console.log("formValue", formValue);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
+    this.onCancelClick();
   }
 
-  generateCode() {
-
+  onCancelClick(): void {
+    this.dialogRef.close();
   }
 }

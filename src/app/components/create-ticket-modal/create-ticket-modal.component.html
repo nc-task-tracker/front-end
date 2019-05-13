@@ -1,69 +1,65 @@
- <form [formGroup]="ticketForm" class="create-issue create-ticket-modal">
+<form [formGroup]="ticketForm" class="create-issue create-ticket-modal">
 
-    <div class="info_wrap">
-      <p>Admin: <span class="adminName">{{userName | async}}</span></p>
-    </div>
+  <p class="info_wrap">Admin: <span class="adminName">{{userName | async}}</span></p>
 
-    <mat-form-field class="input-full-width selectProject">
-      <mat-select  [formControlName]="'project'" placeholder="Choose project ...">
-        <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
-      </mat-select>
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
+      <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'issueType'" placeholder="Issue type">
+      <mat-option *ngFor="let prior of ticketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <input [formControlName]="'issueName'" matInput placeholder="Issue title" required>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <input matInput [formControlName]="'assignee'" placeholder="Assignee" required>
+    <mat-option *ngFor="let item of assigneeAutoComplete$ | async" [value]="item.login" (click)="chooseAssignee(item)">
+      {{ item.FIO}} <span class="assigneeListLogin">@{{item.login}}</span>
+    </mat-option>
+  </mat-form-field>
+
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
+      <mat-option *ngFor="let prior of ticketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="description_issue">
+    <textarea [formControlName]="'issueDescription'" maxlength="1000" matInput placeholder="Description"></textarea>
+  </mat-form-field>
+
+  <div class="dateWrapper">
+    <mat-form-field>
+      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'"
+             placeholder="Choose a due date">
+      <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+      <mat-datepicker #dueDate></mat-datepicker>
     </mat-form-field>
+  </div>
+
+  <div class="control-buttons">
+    <button
+      matTooltip="Create issue"
+      mat-raised-button
+      class="control-button create"
+      (click)="createTicket()">Create
+    </button>
+    <button matTooltip="Cancel"
+            mat-raised-button
+            class="control-button cancel"
+            (click)="onCancelClick()">Cancel
+    </button>
+  </div>
 
 
-    <mat-form-field class="input-full-width">
-      <mat-select [formControlName]="'issueType'" placeholder="Issue type">
-        <mat-option *ngFor="let prior of ticketTypes" [value]="prior.type">{{prior.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-
-    <mat-form-field class="input-full-width">
-      <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
-    </mat-form-field>
-
-    <mat-form-field class="input-full-width">
-      <input matInput placeholder="Assignee" required [formControl]="autoCompleteControl">
-      <div *ngIf="assignees" class="listAssignee">
-        <mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">
-          {{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>
-        </mat-option>
-      </div>
-    </mat-form-field>
-
-    <mat-form-field class="input-full-width">
-      <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
-        <mat-option *ngFor="let prior of ticketPriority" [value]="prior.type">{{prior.title}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-
-    <mat-form-field class="description_issue">
-      <textarea [formControlName]="'issueDescription'" maxlength="1000" matInput placeholder="Description"></textarea>
-    </mat-form-field>
-
-    <div class="dateWrapper">
-      <mat-form-field>
-        <input matInput [min]="minDate" [matDatepicker]="pickerDue" placeholder="Choose a due date">
-        <mat-datepicker-toggle matSuffix [for]="pickerDue"></mat-datepicker-toggle>
-        <mat-datepicker #pickerDue></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-
-    <div class="control-buttons">
-      <button
-        matTooltip="Create issue"
-        mat-raised-button
-        class="control-button create"
-        (click)="createTicket()">Create
-      </button>
-      <button matTooltip="Cancel"
-              mat-raised-button
-              class="control-button cancel"
-              (click)="onCancelClick()">Cancel
-      </button>
-    </div>
-
-  </form>
+</form>
 

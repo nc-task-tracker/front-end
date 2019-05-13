@@ -108,8 +108,8 @@ export interface Ticket {
   readonly dueDate: Date;
   readonly parentId: String;
   readonly project: String;
-  readonly issuetype: TicketType;
-  readonly issuepriority: TicketPriority;
+  readonly issueType: TicketType;
+  readonly issuePriority: TicketPriority;
   readonly reporter: String;
   readonly assignee: String;
 }

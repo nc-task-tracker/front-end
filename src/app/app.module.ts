@@ -26,7 +26,6 @@ import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 
-import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 // import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
@@ -46,7 +45,6 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent,
     TicketComponent,
     CreateProjectComponent,
     ProfileComponent,
