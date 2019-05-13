@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
      const {userId} = this.route.snapshot.params;
      const user = this.localStorage.currentUser;
      this.isLogin = user && user.id === userId;
+
   }
 
 }

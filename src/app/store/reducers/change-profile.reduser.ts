@@ -1,6 +1,6 @@
-import { ChangeProfile } from 'src/app/models/change-profile.model';
-import { Reducer } from 'redux';
-import {SAVE_PROFILE_SUCCESS } from '../actions/change-profile.actions';
+import {ChangeProfile} from 'src/app/models/change-profile.model';
+import {Reducer} from 'redux';
+import {SAVE_PROFILE_SUCCESS} from '../actions/change-profile.actions';
 
 export interface ChangeProfileState {
   readonly changeProfile: Map<string, ChangeProfile>;
@@ -8,7 +8,7 @@ export interface ChangeProfileState {
 }
 
 const INITIAL_STATE = {
-  changeProfile: new Map<string, ChangeProfile>(),
+  changeProfile: new Map<string, ChangeProfile> (),
   isLoading: false
 };
 
@@ -16,8 +16,8 @@ export const changeProfileReducer: Reducer<ChangeProfileState> = (state: ChangeP
   switch (action.type) {
     case SAVE_PROFILE_SUCCESS: {
       const {changeProfile} = action.payload;
-      const updatedChangedProfile = new Map(state.changeProfile).set(changeProfile.id, changeProfile);
-      return { ...state, changeProfile: updatedChangedProfile, isLoading: false };
+      const updatedChangedProfile = new Map (state.changeProfile).set (changeProfile.id, changeProfile);
+      return {...state, changeProfile: updatedChangedProfile, isLoading: false};
     }
     default: {
       return state;

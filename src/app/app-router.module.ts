@@ -12,7 +12,7 @@ import {NgModule} from '@angular/core';
 const routs: Routes = [
     {path: '', redirectTo: 'users', pathMatch: 'full'},
     {path: 'users', component: UserListComponent},
-    {path: 'profile', component: ProfileComponent},
+    {path: 'profile/:userId', component: ProfileComponent},
     {path: 'change-profile', component: ChangeProfileComponent},
     {path: 'create-project', component: CreateProjectComponent},
     {path: 'register', component: RegisterComponent},

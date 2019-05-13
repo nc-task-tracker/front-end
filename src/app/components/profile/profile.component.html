@@ -1,24 +1,19 @@
 <div class="wrapper">
 
   <div class="display">
-
-    <app-avatar></app-avatar>
-
-    <app-user-info></app-user-info>
-
-    <app-actions></app-actions>
-
+    <mat-card class="example-card">
+      <app-avatar></app-avatar>
+      <app-user-info></app-user-info>
+    </mat-card>
+      <app-actions></app-actions>
   </div>
 
   <div class="display">
-
-    <app-dashboards></app-dashboards>
-
-    <app-filters></app-filters>
-
-    <app-projects></app-projects>
-
+    <!--<div *ngIf="isLogin">-->
+    <app-dashboards ></app-dashboards>
+    <app-filters  ></app-filters>
+    <app-projects ></app-projects>
+    <!--</div>-->
   </div>
-
 </div>
 

@@ -4,12 +4,7 @@
     <div class="log">
       <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
     </div>
-    <div *ngIf="!(currentUser | async)">
-      <button mat-button>Dashboard</button>
-      <button mat-button>Project</button>
-      <button mat-button>Infomation</button>
-      <button mat-button>Settings</button>
-    </div>
+
       <ng-template #loginUser>
         <button mat-button (click)="onLogoutClick()">Logout</button>
         <button class="username" color="red" mat-button (click)="onUserProfile()">{{currentUser.name}}</button>
