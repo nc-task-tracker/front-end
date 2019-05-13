@@ -10,7 +10,7 @@ import { updateCurrentUserAction } from './store/actions/current-user.actions';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private ngRedux: NgRedux<AppState>, private localStorageService: GlobalUserStorageService) { }
+  constructor(private ngRedux: NgRedux<AppState>, private localStorageService: GlobalUserStorageService) {}
 
   ngOnInit() {
     this.localStorageService.asObservable().subscribe((user: Event) => {

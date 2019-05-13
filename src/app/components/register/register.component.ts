@@ -3,53 +3,39 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from 'src/app/models/user.model';
-import {AppState} from 'src/app/store/index';
-import {createUserAction} from 'src/app/store/actions/users.actions';
+import {AppState} from '../../store';
+import {registerAction} from 'src/app/store/actions/register.action';
 import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrls: ['./edit-user.component.css']
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class EditUserComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   userForm: FormGroup;
   asyncUser: Observable<User>;
 
   hide = true;
 
-  constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder,
-              private router: Router
-              ) {}
+  constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder, private router: Router) {}
 
   ngOnInit() {
-    this.initializeForm();
-  }
-
-  private initializeForm() {
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
+      login: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.email]
     });
   }
 
   onRegisterClick() {
-    this.ngRedux.dispatch(createUserAction(this.userForm.getRawValue()));
+    this.ngRedux.dispatch(registerAction(this.userForm.getRawValue()));
     this.onCancelClick();
   }
 
-  // passwordValidator(form: FormGroup) {
-  //     const password: string = form.controls.get('password').value;
-  //     const passwordConfirmed: string = form.controls.get('confirmPassword').value;
-  //     // if (password !== passwordConfirmed) {
-  //     //   form.controls.get('confirmPassword').inv
-  //     // }
-  //   }
-
-  get name(): FormControl {
-    return this.userForm.get('name') as FormControl;
+  get login(): FormControl {
+    return this.userForm.get('login') as FormControl;
   }
 
   get password(): FormControl {

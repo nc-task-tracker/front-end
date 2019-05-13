@@ -5,7 +5,6 @@ import { AppState } from 'src/app/store';
 import { fetchUsersAction } from 'src/app/store/actions/users.actions';
 import { isLoading, selectUsers } from 'src/app/store/selectors/users.selector';
 import { User } from '../../models/user.model';
-import { MatDialog } from '@angular/material';
 import {selectCurrentUser} from '../../store/selectors/current-user.selector';
 
 @Component({
@@ -18,13 +17,10 @@ export class UserListComponent implements OnInit {
   @select(isLoading)
   isLoading: Observable<boolean>;
 
-  @select(selectUsers)
-  users: Observable<User[]>;
-
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  constructor(private ngRedux: NgRedux<AppState>, private matDialog: MatDialog) {}
+  constructor(private ngRedux: NgRedux<AppState>) {}
 
   ngOnInit() {
     this.ngRedux.dispatch(fetchUsersAction());
