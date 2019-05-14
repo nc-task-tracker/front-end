@@ -36,6 +36,10 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProjectNameValidator} from "./validators/project.name.validator";
+import {ProjectCodeValidator} from "./validators/project.code.validator";
+import {AuthGuardService} from "./service/auth-guard.service";
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 
 @NgModule({
@@ -75,6 +79,9 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     TicketService,
     ProjectService,
     TicketServiceService,
+    ProjectNameValidator,
+    ProjectCodeValidator,
+    AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

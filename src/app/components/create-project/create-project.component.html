@@ -10,12 +10,16 @@
 
   <mat-form-field class="input-full-width">
     <input matInput placeholder="Name" [formControlName]="'projectName'" required>
-    <mat-error *ngIf="projectName.invalid">{{getErrorText('projectName')}}</mat-error>
+    <mat-error
+      *ngIf="projectName.invalid">{{getErrorText('projectName')}}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="input-full-width">
     <input matInput placeholder="Code" [formControlName]="'projectCode'" required>
-    <mat-error *ngIf="projectCode.invalid">{{getErrorText('projectCode')}}</mat-error>
+    <mat-error
+      *ngIf="projectCode.invalid">{{getErrorText('projectCode')}}
+    </mat-error>
   </mat-form-field>
 
   <mat-form-field class="description_project">
