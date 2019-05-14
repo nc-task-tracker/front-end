@@ -18,7 +18,7 @@ export interface FilterParameterObject {
 export const allParameters: FilterParameterObject[] = [
   {
     type: FilterParameter.ISSUE_NAME,
-    title: 'Issue name'
+    title: 'Issue login'
   },
   {
     type: FilterParameter.ISSUE_PRIORITY,

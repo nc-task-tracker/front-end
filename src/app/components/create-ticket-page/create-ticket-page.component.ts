@@ -21,7 +21,6 @@ export class CreateTicketPageComponent implements OnInit {
               private ngRedux: NgRedux<AppState>) {
   }
 
-
   ngOnInit() {
      this.ticketForm = this.fb.group({
           issueName: [''],
@@ -36,8 +35,6 @@ export class CreateTicketPageComponent implements OnInit {
      const formValue = this.ticketForm.getRawValue();
      this.ngRedux.dispatch(createTicketAction(formValue));
   }
-
-
 }
 
 

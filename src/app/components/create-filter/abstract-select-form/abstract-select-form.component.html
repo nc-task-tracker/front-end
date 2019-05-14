@@ -1,0 +1,41 @@
+<!--<mat-form-field class="assignee-form">-->
+  <!--<mat-chip-list class="chips-overflow" *ngIf="multiple; else single" [multiple]="true" #chipList>-->
+    <!--<mat-chip *ngFor="let user of selectedUserList" [removable]="true" (removed)="removeItem(user)">-->
+      <!--{{user.login}}-->
+      <!--<mat-icon matChipRemove *ngIf="true">cancel</mat-icon>-->
+    <!--</mat-chip>-->
+    <!--<input #assigneeInput [formControl]="inputControl" [placeholder]="placeholder" [matAutocomplete]="auto"-->
+           <!--[matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addItem($event)">-->
+  <!--</mat-chip-list>-->
+  <!--<ng-template #single>-->
+    <!--<ng-container [formGroup]="controlContainer.control">-->
+      <!--<input [formControl]="inputControl" type="text" [placeholder]="placeholder" matInput [matAutocomplete]="auto">-->
+    <!--</ng-container>-->
+  <!--</ng-template>-->
+  <!--<mat-autocomplete #auto="matAutocomplete" (optionSelected)="onItemSelect($event)">-->
+    <!--<mat-option *ngFor="let item of items$ | async" [value]="item">-->
+      <!--{{item?.login}}-->
+    <!--</mat-option>-->
+  <!--</mat-autocomplete>-->
+<!--</mat-form-field>-->
+
+<mat-form-field class="assignee-form">
+  <mat-chip-list class="chips-overflow" *ngIf="multiple; else single" [multiple]="true" #chipList>
+    <mat-chip *ngFor="let user of selectedUserList" [removable]="true" (removed)="removeItem(user)">
+      {{user.login}}
+      <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
+    </mat-chip>
+    <input #assigneeInput [formControl]="inputControl" [placeholder]="placeholder" [matAutocomplete]="auto"
+           [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addItem($event)">
+  </mat-chip-list>
+  <ng-template #single>
+    <ng-container [formGroup]="controlContainer.control">
+      <input [formControl]="inputControl" type="text" [placeholder]="placeholder" matInput [matAutocomplete]="auto">
+    </ng-container>
+  </ng-template>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onItemSelect($event)">
+    <mat-option *ngFor="let item of items$ | async" [value]="item">
+      {{item?.login}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

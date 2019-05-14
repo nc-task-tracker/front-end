@@ -7,6 +7,7 @@ import {User} from 'src/app/models/user.model';
 import {Project} from "../../../models/project.model";
 import {allIssueStatus, IssueStatusModel} from "../../../models/issue-status.model";
 import {allIssuePriority, IssuePriorityModel} from "../../../models/issue-priority";
+import {SearchModel} from "src/app/models/search-model.model";
 
 @Injectable()
 export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterItem<Project>> {
@@ -94,6 +95,24 @@ export class AssigneeBuilder implements AbstractBuilder<InputModel, SelectFilter
             multiple: true,
             title: 'Assignee',
             placeholder: 'Assignee',
+            titleKey: 'login',
+            value: model.value || [],
+            options: []
+        };
+    }
+}
+
+@Injectable()
+export class ReporterBuilder implements AbstractBuilder<InputModel, SelectFilterItem<SearchModel>> {
+    type: FilterType = FilterType.REPORTER;
+
+    build(model: InputModel): SelectFilterItem<SearchModel> {
+        return {
+            ...model,
+            fieldType: FieldType.ASSIGNEE,
+            multiple: true,
+            title: 'Reporter',
+            placeholder: 'Reporter',
             titleKey: 'name',
             value: model.value || [],
             options: []

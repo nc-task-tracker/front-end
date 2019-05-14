@@ -52,7 +52,7 @@ import {FilterFormModule} from "./components/create-filter/filter-form.module";
     ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent
-    // AssigneeFormComponent
+    // AbstractSelectFormComponent
   ],
   imports: [
     BrowserModule,

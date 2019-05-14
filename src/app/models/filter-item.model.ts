@@ -4,7 +4,8 @@ export enum FilterType {
     ISSUE_STATUS = 'ISSUE_STATUS',
     ISSUE_PRIORITY = 'ISSUE_PRIORITY',
     ASSIGNEE = 'ASSIGNEE',
-    PROJECTS = 'PROJECTS'
+    PROJECTS = 'PROJECTS',
+    REPORTER = 'REPORTER'
 }
 
 export enum FilterTypeNameMapping {
@@ -13,7 +14,8 @@ export enum FilterTypeNameMapping {
     ISSUE_STATUS = 'Issue status',
     ISSUE_PRIORITY = 'Issue priority',
     PROJECTS = 'Projects',
-    ASSIGNEE = 'Assignee'
+    ASSIGNEE = 'Assignee',
+    REPORTER = 'Reporter'
 }
 
 export const allFilterTypeLabled = [
@@ -52,6 +54,12 @@ export const allFilterTypeLabled = [
         title: FilterTypeNameMapping[FilterType.ASSIGNEE],
         hidden: false,
         key: 'assignee'
+    },
+    {
+        type: FilterType.REPORTER,
+        title: FilterTypeNameMapping[FilterType.REPORTER],
+        hidden: false,
+        key: 'reporter'
     }
 ];
 

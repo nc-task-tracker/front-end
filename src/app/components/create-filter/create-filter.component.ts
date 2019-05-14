@@ -3,6 +3,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material';
 import { FilterItemFactory } from './factory/filter-item.factory';
 import {allFilterTypeLabled, FieldType, FilterItem} from "../../models/filter-item.model";
+import {debounceTime, switchMap} from "rxjs/operators";
+import {of} from "rxjs";
 
 @Component({
   selector: 'app-create-filter',
@@ -21,7 +23,8 @@ export class CreateFilterComponent implements OnInit{
 
   allFieldType = FieldType;
 
-  constructor(private itemsFactory: FilterItemFactory) { }
+  constructor(private itemsFactory: FilterItemFactory,
+  ){ }
 
   ngOnInit() {
     this.filterForm = new FormGroup({});
@@ -68,4 +71,5 @@ export class CreateFilterComponent implements OnInit{
     }
   }
 
+  // searchByFilter(filter: )
 }

@@ -16,6 +16,11 @@ export class UserService {
             .pipe(catchError((error: any) => throwError(error.error)));
     }
 
+    searchByName(name : string ): Observable<User[]> {
+        return this.http.get<User[]>(`${this.USERS_URL}/all`)
+            .pipe(catchError((error: any) => throwError(error.error)));
+    }
+
     getUser(userId: string): Observable<User> {
         return this.http.get<User>(`${this.USERS_URL}/${userId}`)
             .pipe(catchError((error: any) => throwError(error.error)));

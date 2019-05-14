@@ -12,10 +12,13 @@ import {
   IssueTypeBuilder,
   IssueStatusBuilder,
   AssigneeBuilder,
-  IssuePriorityBuilder
+  IssuePriorityBuilder,
+  ReporterBuilder
 } from './builders/select.builders';
 import { SearchStringItemBuilder } from './builders/input.builder';
+import { AbstractSelectFormComponent } from './abstract-select-form/abstract-select-form.component';
 import { AssigneeFormComponent } from './assignee-form/assignee-form.component';
+import { ReporterFormComponent } from './reporter-form/reporter-form.component';
 
 const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: SearchStringItemBuilder, multi: true },
@@ -23,11 +26,12 @@ const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: IssueTypeBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssueStatusBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssuePriorityBuilder, multi: true},
-  { provide: FILTER_ITEM_BUILDER, useClass: AssigneeBuilder, multi: true }
+  { provide: FILTER_ITEM_BUILDER, useClass: AssigneeBuilder, multi: true },
+  { provide: FILTER_ITEM_BUILDER, useClass: ReporterBuilder, multi: true }
 ]
 
 @NgModule({
-  declarations: [CreateFilterComponent, AssigneeFormComponent],
+  declarations: [CreateFilterComponent, AbstractSelectFormComponent, AssigneeFormComponent, ReporterFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
