@@ -1,6 +1,6 @@
 import {defaultTicket, Ticket} from '../../models/ticket.model';
 import {Reducer} from 'redux';
-import { SAVE_COMMENT, SAVE_COMMENT_SUCCESS, UPDATE_CURRENT_TICKET,
+import { UPDATE_CURRENT_TICKET,
   UPDATE_CURRENT_TICKET_SUCCESS
 } from '../actions/current-ticket.action';
 import {SELECT_TICKET_SUCCESS} from '../actions/tickets.actions';

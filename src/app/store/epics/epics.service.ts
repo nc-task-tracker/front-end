@@ -25,7 +25,7 @@ export class EpicService {
             this.currentUserEpic.logout$,
             this.registerEpic.register$,
             this.projectEpic.createProject$,
-          // this.ticketsEpic.createTicket$,
+            this.ticketsEpic.createTicket$,
             this.ticketsEpic.fetchTickets$,
             this.ticketsEpic.updateTicket$,
             this.ticketsEpic.deleteTicket$,

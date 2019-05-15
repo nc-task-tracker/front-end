@@ -4,14 +4,14 @@ export interface Project {
   readonly projectDescription: string;
   readonly ownerId: string;
   readonly projectStatus: string;           //todo add dashboards
-  readonly projectCode: string;
+  readonly code: string;
 }
 
 export const defaultProject: Project = {
   id: null,
-  projectName: 'Proj_name',
-  projectDescription: 'Proj_descr',
+  projectName: '',
+  projectDescription: '',
   ownerId: '',
   projectStatus: '',
-  projectCode: 'PROJCODE'
+  code: ''
 };

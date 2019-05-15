@@ -1,5 +1,4 @@
 import {Injectable} from '@angular/core';
-import {TicketServiceService} from '../../service/ticket-service.service';
 import {ActionsObservable} from 'redux-observable';
 import {AnyAction} from 'redux';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
@@ -16,8 +15,7 @@ import {of} from 'rxjs';
 @Injectable()
 export class TicketsEpic {
 
-  constructor(private service: TicketServiceService,
-              private ticketService: TicketService) {}
+  constructor(private ticketService: TicketService) {}
 
   fetchTickets$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(FETCH_TICKETS).pipe(
@@ -35,7 +33,7 @@ export class TicketsEpic {
   createTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(CREATE_TICKET).pipe(
       mergeMap(({payload}) => {
-        return this.service
+        return this.ticketService
           .createTicket(payload.ticket)
           .pipe(
             map( ticket => createTicketSuccessAction(ticket))

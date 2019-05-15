@@ -1,7 +1,6 @@
 import {AppComponent} from './app.component';
 import {UserComponent} from './components/user/user.component';
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
-import {TicketComponent} from './components/ticket/ticket.component';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {ChangeProfileComponent} from './components/change-profile/change-profile.component';
@@ -26,7 +25,6 @@ import {UserService} from './service/user.service';
 import {AuthService} from './service/auth.service';
 import {TicketService} from './service/ticket.service';
 import {ProjectService} from './service/project.service';
-import {TicketServiceService} from './service/ticket-service.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -37,7 +35,6 @@ import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {RegisterComponent} from './components/register/register.component';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
-import {CommentsComponent} from './components/ticket/comments/comments.component';
 import {TicketModule} from './components/ticket/ticket.module';
 
 
@@ -78,7 +75,6 @@ import {TicketModule} from './components/ticket/ticket.module';
     AuthService,
     TicketService,
     ProjectService,
-    TicketServiceService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

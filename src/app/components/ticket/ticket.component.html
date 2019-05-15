@@ -44,6 +44,11 @@
                   <mat-form-field style="width: 150px">
                     <input matInput [formControlName]="'assignee'" [readonly]="editAssignee" required>
                     <mat-icon matSuffix (click)="editAssignee = !editAssignee">mode_edit</mat-icon>
+
+                    <!--<input matInput [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">-->
+                    <!--<mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">-->
+                      <!--{{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>-->
+                    <!--</mat-option>-->
                   </mat-form-field>
               </mat-card-subtitle>
 

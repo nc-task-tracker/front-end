@@ -20,7 +20,6 @@ import {OverlayModule} from '@angular/cdk/overlay';
     ReactiveFormsModule,
     MatNativeDateModule,
     MaterialModule,
-    CommonModule,
     MatTableModule,
     OverlayModule
   ],
