@@ -10,6 +10,7 @@ import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {ProjectPageComponent} from "./components/project-page/project-page.component";
 import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
+import {AuthGuardService as AuthGuard} from "./service/auth-guard.service";
 
 
 const routs: Routes = [

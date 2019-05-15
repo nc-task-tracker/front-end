@@ -7,6 +7,8 @@ import {AppState} from "../../store";
 import {Router} from "@angular/router";
 import {createProjectAction} from "../../store/actions/create-project.actions";
 import {GlobalUserStorageService} from "../../service/global-storage.service";
+import {ProjectNameValidator} from "../../validators/project.name.validator";
+import {ProjectCodeValidator} from "../../validators/project.code.validator";
 
 @Component({
   selector: 'create-project',
@@ -20,7 +22,9 @@ export class CreateProjectComponent implements OnInit {
 
   constructor(private ngRedux: NgRedux<AppState>,
               private fb: FormBuilder, private router: Router,
-              private storageService: GlobalUserStorageService) {
+              private storageService: GlobalUserStorageService,
+              private projectNameValidator: ProjectNameValidator,
+              private projectCodeValidator: ProjectCodeValidator) {
 
   }
 
@@ -30,9 +34,15 @@ export class CreateProjectComponent implements OnInit {
 
   private initializeForm() {
     this.projectForm = this.fb.group({
-      projectName: ['', Validators.required],
+      projectName: ['', {
+        validators: [Validators.required],
+        asyncValidators: [this.projectNameValidator]
+      }],
       projectDescription: [''],
-      projectCode: ['', Validators.required],
+      projectCode: ['', {
+        validators: [Validators.required],
+        asyncValidators: [this.projectCodeValidator]
+      }],
       ownerId: this.storageService.currentUser.id
     });
   }

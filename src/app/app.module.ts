@@ -39,7 +39,10 @@ import {ProjectPageComponent} from "./components/project-page/project-page.compo
 import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
 import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
 import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {ProjectNameValidator} from "./validators/project.name.validator";
+import {ProjectCodeValidator} from "./validators/project.code.validator";
+import {AuthGuardService} from "./service/auth-guard.service";
+
 
 
 @NgModule({
@@ -52,8 +55,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
-    ProjectPageComponent,
     ProjectsPageComponent,
+    ProjectPageComponent,
     MatConfirmDialogComponent
   ],
   imports: [
@@ -71,9 +74,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    MatGridListModule,
-    FlexLayoutModule,
-    MatMenuModule
+    MatGridListModule
   ],
   providers: [
     EpicService,
@@ -85,6 +86,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProjectService,
     TicketService,
     MatConfirmDialogService,
+    ProjectNameValidator,
+    ProjectCodeValidator,
+    AuthGuardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

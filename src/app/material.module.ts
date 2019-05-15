@@ -8,7 +8,7 @@ import {
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
+  MatListModule, MatMenuModule,
   MatNativeDateModule, MatPaginatorModule,
   MatRadioModule,
   MatSelectModule, MatSortModule,
@@ -40,7 +40,8 @@ import {NgModule} from '@angular/core';
     MatTreeModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatMenuModule
   ],
   exports: [
     MatFormFieldModule,
@@ -61,7 +62,8 @@ import {NgModule} from '@angular/core';
     MatTreeModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}
