@@ -1,10 +1,8 @@
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatDatepickerModule, MatFormFieldModule, MatIconModule, MatInputModule,
-  MatListModule, MatMenuModule,
-  MatNativeDateModule, MatRadioModule,
-  MatSelectModule, MatTableModule, MatTabsModule,
+  MatButtonModule, MatCardModule, MatDatepickerModule,
+  MatFormFieldModule, MatIconModule, MatInputModule,
+  MatListModule, MatMenuModule, MatNativeDateModule,
+  MatRadioModule, MatSelectModule, MatTabsModule,
   MatTooltipModule, MatTreeModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';

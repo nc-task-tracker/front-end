@@ -1,5 +1,3 @@
-import {User} from "./user.model";
-
 export interface Project {
   readonly id: string;
   readonly projectName: string;

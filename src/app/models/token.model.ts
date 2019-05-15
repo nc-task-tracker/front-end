@@ -4,4 +4,4 @@ export interface Token {
 
 export const defaultToken: Token = {
   token: ''
-}
+};

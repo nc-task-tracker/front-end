@@ -36,6 +36,7 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {RegisterComponent} from './components/register/register.component';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import {RegisterComponent} from './components/register/register.component';
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent,
+    WelcomeComponent,
     RegisterComponent
   ],
   imports: [

@@ -18,7 +18,6 @@ export class CreateProjectComponent implements OnInit {
   newProject: Observable<Project>;
 
 
-
   constructor(private ngRedux: NgRedux<AppState>,
               private fb: FormBuilder, private router: Router,
               private storageService: GlobalUserStorageService) {
@@ -33,6 +32,7 @@ export class CreateProjectComponent implements OnInit {
     this.projectForm = this.fb.group({
       projectName: ['', Validators.required],
       projectDescription: [''],
+      projectCode: ['', Validators.required],
       ownerId: this.storageService.currentUser.id
     });
   }
@@ -40,7 +40,7 @@ export class CreateProjectComponent implements OnInit {
   onCreateClick() {
     const formValue = this.projectForm.getRawValue();
     this.ngRedux.dispatch(createProjectAction(formValue as any));
-    // this.onCancelClick();
+    this.onCancelClick();
   }
 
   onCancelClick() {
@@ -51,19 +51,23 @@ export class CreateProjectComponent implements OnInit {
     return this.projectForm.get('projectName') as FormControl;
   }
 
+  get projectCode(): FormControl {
+    return this.projectForm.get('projectCode') as FormControl;
+  }
+
   get projectDescription(): FormControl {
     return this.projectForm.get('projectDescription') as FormControl;
   }
 
 
   private getErrorMessage(control: FormControl): string {
-    let errorMesage = '';
+    let errorMessage = '';
     if (control.errors) {
       if (control.errors['required']) {
-        errorMesage = 'Field is required';
+        errorMessage = 'Field is required';
       }
     }
-    return errorMesage;
+    return errorMessage;
   }
 
   getErrorText(controlName: string): string {
