@@ -56,16 +56,16 @@ export class LoginUserComponent implements OnInit {
   }
 
   private getErrorMessage(control: FormControl): string {
-    let errorMesage = '';
+    let errorMessage = '';
     if (control.errors) {
       if (control.errors['required']) {
-        errorMesage = 'Field is required';
+        errorMessage = 'Field is required';
       }
       if (control.errors['email']) {
-        errorMesage = 'Incorrect email';
+        errorMessage = 'Incorrect email';
       }
     }
-    return errorMesage;
+    return errorMessage;
   }
 
   onRegisterClick() {

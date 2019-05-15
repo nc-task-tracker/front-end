@@ -1,8 +1,8 @@
 import {
-  MatButtonModule, MatCardModule, MatDatepickerModule,
+  MatButtonModule, MatCardModule, MatCellDef, MatDatepickerModule,
   MatFormFieldModule, MatIconModule, MatInputModule,
   MatListModule, MatMenuModule, MatNativeDateModule,
-  MatRadioModule, MatSelectModule, MatTabsModule,
+  MatRadioModule, MatSelectModule, MatTableModule, MatTabsModule,
   MatTooltipModule, MatTreeModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -25,7 +25,8 @@ import {NgModule} from '@angular/core';
     MatMenuModule,
     MatListModule,
     MatTreeModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule
   ],
   exports: [
     MatFormFieldModule,
@@ -42,7 +43,8 @@ import {NgModule} from '@angular/core';
     MatMenuModule,
     MatListModule,
     MatTreeModule,
-    MatTabsModule
+    MatTabsModule,
+    MatTableModule
   ]
 })
 export class MaterialModule {}

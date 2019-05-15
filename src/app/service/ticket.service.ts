@@ -13,17 +13,27 @@ export class TicketService {
 
   constructor(private http: HttpClient) { }
 
-  getTicket(): Ticket {
-    return defaultTicket;
-  }
-
   updateTicket(ticket: Ticket): Observable<Ticket> {
     return this.http.put<Ticket>(`${this.ISSUE_URL}`, ticket)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
   deleteTicket(id: string): Observable<{}> {
-    return this.http.delete(`${this.ISSUE_URL}/${id}`)
+    return this.http.delete(`${this.ISSUE_URL}/delete/${id}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  saveComment(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(`${this.ISSUE_URL}/saveComment`, comment)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getTicket(ticketId: string): Observable<Ticket> {
+    return this.http.get<Ticket>(`${this.ISSUE_URL}/${ticketId}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+  getTickets(): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.ISSUE_URL}/all`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 }

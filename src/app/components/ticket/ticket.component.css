@@ -1,36 +1,77 @@
 .ticket {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  overflow: scroll;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: auto;
+  overflow-x: scroll;
   height: 100%;
+  width: 100%;
 }
 
-.project {
-  width: 215px;
+.content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.name {
+  width: 100%;
+}
+
+.name-card {
+  height: 65px;
+}
+.edit-icon {
+  font-size: 20px;
+}
+
+.project-subtitle {
+  height: 1px;
+  padding-left: 20px;
+}
+
+.project-title {
+  height: 5px;
+  padding-left: 20px;
+
+}
+
+.project-icon {
+  font-size: 80px;
 }
 
 .people {
   display: flex;
   flex-direction: column;
-  padding: 5px;
+  width: 270px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 5px;
+}
+
+.assignee-title{
+  height: 5px;
+}
+
+.assignee-subtitle {
+  max-width: 5px;
+}
+
+.reporter-assignee{
+  height: 50px;
+}
+
+.type-priority-status {
+  padding-top: 5px;
+  width: 555px;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5px;
   padding-right: 5px;
-}
-
-img {
-  width: 50px;
-  height: 50px;
-}
-
-.projIcon {
-  font-size: 50px;
 }
 
 .people-icon {
@@ -38,13 +79,15 @@ img {
 }
 
 .dates {
-  width: 185px;
+  width: 235px;
+  height: 100px;
 }
 
 .buttons {
   display: flex;
-  justify-content: center;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   padding-top: 5px;
 }
 
@@ -60,6 +103,11 @@ mat-form-field {
   width: 110px;
 }
 
-.subtasks {
-  background: darkgrey;
+.comment-history {
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.size {
+  width: 175px;
 }

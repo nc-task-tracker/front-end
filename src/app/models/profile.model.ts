@@ -5,7 +5,7 @@ export interface Profile {
 }
 
 export const defaultProfile: Profile = {
-  id: null,
+  id: '1',
   FirstName: 'firstName',
   LastName: ''
 };

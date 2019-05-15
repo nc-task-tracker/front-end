@@ -37,6 +37,8 @@ import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {RegisterComponent} from './components/register/register.component';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {CommentsComponent} from './components/ticket/comments/comments.component';
+import {TicketModule} from './components/ticket/ticket.module';
 
 
 @NgModule({
@@ -44,7 +46,6 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AppComponent,
     UserComponent,
     CreateTicketPageComponent,
-    TicketComponent,
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent,
@@ -66,7 +67,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    TicketModule
   ],
   providers: [
     EpicService,

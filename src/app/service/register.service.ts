@@ -9,12 +9,12 @@ import { User } from '../models/user.model';
 })
 export class RegisterService {
 
-  private USERS_URL = '/api/users';
+  private REGISTER_URL = '/api/register';
 
   constructor(private http: HttpClient) { }
 
   register(user: User): Observable<User> {
-    return this.http.post<User>(`${this.USERS_URL}`, user)
+    return this.http.post<User>(`${this.REGISTER_URL}`, user)
       .pipe(catchError((error: any) => throwError(error.error)));
     }
 }

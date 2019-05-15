@@ -8,6 +8,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {CommentsComponent} from './components/ticket/comments/comments.component';
 
 
 const routs: Routes = [
@@ -18,8 +19,9 @@ const routs: Routes = [
   {path: 'create-project', component: CreateProjectComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent},
-  {path: 'ticket', component: TicketComponent},
-  {path: 'home', component: WelcomeComponent}
+  {path: 'ticket/:id', component: TicketComponent},
+  {path: 'home', component: WelcomeComponent},
+  {path: 'comment', component: CommentsComponent}
 ];
 
 @NgModule({
