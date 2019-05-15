@@ -35,8 +35,7 @@ export class ProjectService {
   }
 
   addAssigner(projectId: string,user: User): Observable<{}> {
-    console.log("tuta");
-    return this.http.post(`${this.PROJECT_URL}/add/assigner`,user)
+    return this.http.post(`${this.PROJECT_URL}/add/assigner/${projectId}`,user)
       .pipe(catchError((error: any)=> throwError(error.error)));
   }
 
