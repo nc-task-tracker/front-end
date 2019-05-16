@@ -7,7 +7,10 @@ import {selectCurrentUser, selectCurrentUserName} from 'src/app/store/selectors/
 import {logoutUserAction} from 'src/app/store/actions/current-user.actions';
 import {LoginUserComponent} from '../dialogs/login-user/login-user.component';
 import {MatDialog} from '@angular/material';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {Inject} from '@angular/core';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {CreateTicketModalComponent} from '../create-ticket-modal/create-ticket-modal.component';
 
 @Component({
   selector: 'app-toolbar',
@@ -21,7 +24,8 @@ export class ToolbarComponent implements OnInit {
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  constructor(private ngRedux: NgRedux<AppState>, private matDialog: MatDialog,
+  constructor(private ngRedux: NgRedux<AppState>,
+              private matDialog: MatDialog,
               private router: Router) {
   }
 
@@ -36,5 +40,10 @@ export class ToolbarComponent implements OnInit {
   onLogoutClick() {
     this.ngRedux.dispatch(logoutUserAction());
     this.router.navigate(['home']);
+  }
+
+    createTicket() {
+      this.matDialog.open(CreateTicketModalComponent);
+
   }
 }
