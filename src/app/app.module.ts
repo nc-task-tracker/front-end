@@ -2,13 +2,10 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
 import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { createLogger } from 'redux-logger';
-import { createEpicMiddleware } from 'redux-observable';
 import { AppRouterModule } from './app-router.module';
 import { AppComponent } from './app.component';
 import { DialogsModule } from './components/dialogs/dialogs.module';
@@ -17,12 +14,9 @@ import { UserListModule } from './components/user-list/user-list.module';
 import { UserComponent } from './components/user/user.component';
 import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
-import { AppState } from './store';
 import { EpicsModule } from './store/epics/epics.module';
 import { EpicService } from './store/epics/epics.service';
-import { reducers } from './store/reducers/reducers';
 import { TransformService } from './utils/transform.service';
-import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -31,7 +25,6 @@ import {createEpicMiddleware} from 'redux-observable';
 import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
-import {WelcomeComponent} from './components/welcome/welcome.component';
 import {ProjectNameValidator} from './validators/project.name.validator';
 import {ProjectCodeValidator} from './validators/project.code.validator';
 import {AuthGuardService} from './service/auth-guard.service';
@@ -96,7 +89,6 @@ import { AssigneeFormComponent } from './components/assignee-form/assignee-form.
     AuthService,
     TicketService,
     ProjectService,
-    TicketServiceService,
     ProjectNameValidator,
     ProjectCodeValidator,
     AuthGuardService,
