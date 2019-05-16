@@ -18,13 +18,7 @@
     <input [formControlName]="'issueName'" matInput placeholder="Issue title" required>
   </mat-form-field>
 
-  <mat-form-field class="input-full-width">
-    <input matInput [formControlName]="'assignee'" placeholder="Assignee" required>
-    <mat-option *ngFor="let item of assigneeAutoComplete$ | async" [value]="item.login" (click)="chooseAssignee(item)">
-      {{ item.FIO}} <span class="assigneeListLogin">@{{item.login}}</span>
-    </mat-option>
-  </mat-form-field>
-
+  <app-assignee-form></app-assignee-form>
 
   <mat-form-field class="input-full-width">
     <mat-select [formControlName]="'issuePriority'" placeholder="Priority">

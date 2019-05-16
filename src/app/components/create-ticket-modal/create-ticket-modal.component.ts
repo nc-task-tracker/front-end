@@ -4,7 +4,7 @@ import {NgRedux, select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../../store/selectors/current-user.selector';
 import {Observable, of} from 'rxjs';
 import {User} from '../../models/user.model';
-import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from 'rxjs/operators';
+import {catchError, debounceTime, distinctUntilChanged, filter, startWith, switchMap} from 'rxjs/operators';
 import {TicketService} from '../../service/ticket.service';
 import {Project} from '../../models/project.model';
 import {Assignee} from '../../models/assignee.model';
@@ -36,11 +36,8 @@ export class CreateTicketModalComponent implements OnInit {
   ticketPriority = allTicketPriority;
   ticketTypes = allTicketTypes;
 
-  assigneeAuto: FormControl;
-  assigneeAutoComplete$: Observable<Assignee[]>;
   minDate = new Date();
 
-  public assignees: Observable<Assignee[]>;
   public assignee: FormControl;
   possibleProjects;
 
@@ -66,42 +63,13 @@ export class CreateTicketModalComponent implements OnInit {
       issuePriority: ['', Validators.required],
       parentId: [''],
      // assignee: this.formBuilder.control(['you']),
-      assignee: new FormControl(),
+      assignee: [null],
       reporter: [''],
       minDate: new Date()
 
     });
 
-    this.assigneeAuto = new FormControl();
-    this.assigneeAutoComplete$ = this.ticketForm.controls.assignee.valueChanges.pipe(
-      startWith(''),
-      debounceTime(2000),
-      distinctUntilChanged(),
-      switchMap(value => this.ticketService.getAssigneeList(value.toLowerCase()).pipe(
-        catchError(_ => {
-          return of(null);
-        })
-      ))
-    );
 
-
-  }
-
-  chooseAssignee(item) {
-    this.currentAssignee = item;
-    this.ticketForm.controls.assignee.setValue(item.login);
-    console.log(this.ticketForm.controls.assignee);
-    this.assigneeAutoComplete$ = null;
-
-    this.currentAssigneeId = item.id;
-  }
-
-  lookup(value: string): Observable<Assignee[]> {
-    return this.ticketService.getAssigneeList(value.toLowerCase()).pipe(
-      catchError(_ => {
-        return of(null);
-      })
-    );
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {
@@ -119,7 +87,7 @@ export class CreateTicketModalComponent implements OnInit {
   createTicket() {
     this.ticketForm.controls.assignee.setValue(this.currentAssigneeId);
     const formValue = this.ticketForm.getRawValue();
-    console.log("formValue", formValue);
+    console.log("formValue:", formValue);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
     this.onCancelClick();
   }

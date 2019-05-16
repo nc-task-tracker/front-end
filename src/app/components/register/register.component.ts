@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 
   onRegisterClick() {
     this.ngRedux.dispatch(registerAction(this.userForm.getRawValue()));
-    this.onCancelClick();
+    // this.onCancelClick();
   }
 
   get login(): FormControl {
