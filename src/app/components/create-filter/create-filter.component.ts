@@ -2,9 +2,13 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSelect, MatSelectChange } from '@angular/material';
 import { FilterItemFactory } from './factory/filter-item.factory';
-import {allFilterTypeLabled, FieldType, FilterItem} from "../../models/filter-item.model";
+import {allFilterTypeLabled, FieldType, Filter, FilterItem} from "../../models/filter-item.model";
 import {debounceTime, switchMap} from "rxjs/operators";
 import {of} from "rxjs";
+import {NgRedux} from "@angular-redux/store";
+import {AppState} from "../../store";
+import {createFilterAction} from "../../store/actions/filter.actions";
+import {TicketServiceService} from "../../service/ticket-service.service";
 
 @Component({
   selector: 'app-create-filter',
@@ -18,13 +22,15 @@ export class CreateFilterComponent implements OnInit{
   initialFilterItems = [...allFilterTypeLabled];
   filterItems: FilterItem[] = [];
 
+
   @ViewChild('searchItemSelect')
   searchItemSelect: MatSelect;
 
   allFieldType = FieldType;
 
   constructor(private itemsFactory: FilterItemFactory,
-  ){ }
+              private ngRedux: NgRedux<AppState>,
+              private ticketService: TicketServiceService){ }
 
   ngOnInit() {
     this.filterForm = new FormGroup({});
@@ -44,7 +50,9 @@ export class CreateFilterComponent implements OnInit{
       }
       this.addControlToForm(newItem);
       this.filterItems.push(newItem);
+      console.log("new item", newItem);
     }
+
   }
 
   removeFilterItem(item: FilterItem) {
@@ -57,19 +65,33 @@ export class CreateFilterComponent implements OnInit{
     }
   }
 
-  onSearchSubmit() {
+  createFilter() {
     console.log(this.filterForm.getRawValue());
+    const formValue = this.filterForm.getRawValue();
+    this.ngRedux.dispatch(createFilterAction(formValue));
+  }
+
+  onSearchSubmit() {
+    // const searchFilterItems = new Set<FilterItem>();
+    // this.filterItems.forEach(item => this.searchItemSelect.add(item))
+    const searchFilterItems: Filter = {
+        parametervalues: this.filterItems
+    };
+    console.log(this.filterForm.getRawValue());
+    const formValue = this.filterForm.getRawValue();
+    // this.ticketService.searchByFilter(this.searchItemSelect)
+    // this.ngRedux.dispatch(searchFilterAction(formValue));
   }
 
   private generateFormGroupFormSearchItems() {
+    console.log("poi");
     this.filterItems.forEach(item => this.addControlToForm(item));
   }
 
   private addControlToForm(item: FilterItem) {
     if (item) {
+      console.log("item", item);
       this.filterForm.addControl(item.key, new FormControl(item.value))
     }
   }
-
-  // searchByFilter(filter: )
 }

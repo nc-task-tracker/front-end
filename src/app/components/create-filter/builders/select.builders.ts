@@ -23,8 +23,12 @@ export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterI
             title: 'Projects',
             titleKey: 'name',
             options: [{
-                id: '1',
-                name: 'Project 1',
+              id: '1',
+              projectName: 'name1',
+              projectDescription: '',
+              ownerId: '',
+              projectStatus: '',
+              projectCode: ''
             }]
         };
     }

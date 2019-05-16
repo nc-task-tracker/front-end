@@ -5,6 +5,7 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {User} from "../models/user.model";
 import {SearchModel} from "../models/search-model.model";
+import {Filter, FilterItem} from "../models/filter-item.model";
 
 
 // TODO rename to TicketService
@@ -23,11 +24,8 @@ export class TicketServiceService {
        .pipe(catchError(err => throwError(err)));
   }
 
-  searchByName(name : string ): Observable<SearchModel[]> {
-    return this.http.get<SearchModel[]>(`${this.TICKET_URL}`)
-      .pipe(catchError((error: any) => throwError(error.error)));
+  searchByFilter(filter: Filter): Observable<Ticket> {
+     return this.http.post<Ticket>(`${this.CREATE_URL}`, filter)
+       .pipe(catchError(err => throwError(err)));
   }
-
-  se
-
 }

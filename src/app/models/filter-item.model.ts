@@ -78,6 +78,13 @@ export interface FilterItem<T = any> {
     readonly title?: string;
 }
 
+export interface Filter {
+  readonly id?: string;
+  readonly name?: string;
+  readonly parametervalues: FilterItem[];
+
+}
+
 export interface InputFilterItem extends FilterItem<string> {
 }
 

@@ -18,7 +18,6 @@ import {
 import { SearchStringItemBuilder } from './builders/input.builder';
 import { AbstractSelectFormComponent } from './abstract-select-form/abstract-select-form.component';
 import { AssigneeFormComponent } from './assignee-form/assignee-form.component';
-import { ReporterFormComponent } from './reporter-form/reporter-form.component';
 
 const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: SearchStringItemBuilder, multi: true },
@@ -31,7 +30,7 @@ const BUILDERS = [
 ]
 
 @NgModule({
-  declarations: [CreateFilterComponent, AbstractSelectFormComponent, AssigneeFormComponent, ReporterFormComponent],
+  declarations: [CreateFilterComponent, AbstractSelectFormComponent, AssigneeFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
