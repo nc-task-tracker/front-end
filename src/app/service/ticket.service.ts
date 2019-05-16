@@ -45,7 +45,7 @@ export class TicketService {
   }
 
   getPossibleProjectsByUser(userName: string) {
-    console.log(userName);
+    //console.log(userName);
     return this.http.get<Project[]>(`${this.GET_PROJECTS}`, {
       params: {
         name: userName

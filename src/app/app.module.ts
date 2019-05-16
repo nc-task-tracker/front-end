@@ -3,7 +3,7 @@ import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store'
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import {MatDialogModule, MatGridListModule} from '@angular/material';
+import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -40,6 +40,7 @@ import {TicketComponent} from './components/ticket/ticket.component';
 import {RegisterService} from './service/register.service';
 import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
+import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
     ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
-    CreateTicketModalComponent
+    CreateTicketModalComponent,
+    AssigneeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
     ToolbarModule,
     MatGridListModule,
     ToolbarModule,
-    ProfileModule
+    ProfileModule,
+    MatAutocompleteModule
   ],
   providers: [
     EpicService,
