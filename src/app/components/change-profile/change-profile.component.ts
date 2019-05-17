@@ -26,14 +26,13 @@ export class ChangeProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.changeProfileForm = this.formBuilder.group({
-      firstName: [''],
-      lastName: [''],
+      fullName: [''],
       email: [''],
-      telephone: [''],
       skype: [''],
+      telephone: [''],
+      additional: [''],
       birthday: [''],
-      anotherContact: [''],
-      aboutYourself: ['']
+      description: ['']
     });
   }
 

@@ -1,36 +1,36 @@
 <div class="wrapper">
 
-<form class="change-profile">
+<form class="change-profile" [formGroup]="changeProfileForm">
 
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Full name" value="" required>
+    <input matInput placeholder="Full name" value="" required formControlName="fullName">
     <mat-icon matSuffix>mode_edit</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Email" value="" required>
+    <input matInput placeholder="Email" value="" required formControlName="email">
     <mat-icon matSuffix>email</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Skype" value="" required>
+    <input matInput placeholder="Skype" value="" required formControlName="skype">
     <mat-icon matSuffix>chat</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
     <span matPrefix>+375 &nbsp;</span>
-    <input type="tel" matInput placeholder="Telephone">
+    <input type="tel" matInput placeholder="Telephone" formControlName="telephone">
     <mat-icon matSuffix>phone</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-full-width">
     <span matPrefix>+ &nbsp;</span>
-    <input type="tel" matInput placeholder="Additional">
+    <input type="tel" matInput placeholder="Additional" formControlName="additional">
     <mat-icon matSuffix>phone</mat-icon>
   </mat-form-field>
   <mat-form-field class="input-date">
-    <input matInput [matDatepicker]="pickerTwo" placeholder="Birthday">
+    <input matInput [matDatepicker]="pickerTwo" placeholder="Birthday" formControlName="birthday">
     <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
     <mat-datepicker #pickerTwo></mat-datepicker>
   </mat-form-field>
   <mat-form-field class="description_profile">
-    <textarea matInput placeholder="A few words about yourself"></textarea>
+    <textarea matInput placeholder="A few words about yourself" formControlName="description"></textarea>
   </mat-form-field>
 
   <div class="control-buttons">

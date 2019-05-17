@@ -7,9 +7,18 @@
   margin-top: 20px;
   margin-bottom: 5px;
 }
+.icon {
+  font-size: 380px;
+}
 .example-card {
-  min-width: 370px;
-  margin-right: 60px;
+  display: flex;
+}
+.user-info{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
 }
 .card {
   max-width: 350px;

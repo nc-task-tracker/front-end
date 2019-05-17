@@ -1,39 +1,41 @@
 <mat-card class="example-card">
-
-  <div class="width">
-    <mat-label>Vladislav Deynak </mat-label>
-    <mat-icon matSuffix>mode_edit</mat-icon>
+  <div class="user-info">
+    <div>
+      <mat-icon class="icon">account_circle</mat-icon>
+    </div>
+    <div>
+      <div class="width">
+        <mat-label>{{fullName}} </mat-label>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="width">
+        <mat-label>deinak2312@gmail.com </mat-label>
+        <mat-icon matSuffix>email</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>v375291111607</mat-label>
+        <mat-icon matSuffix>chat</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>+375(29)111-16-07</mat-label>
+        <mat-icon matSuffix>phone</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>https://t.me/deynak10</mat-label>
+        <mat-icon matSuffix>phone</mat-icon>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="width">
+        <mat-label>12/01/1990</mat-label>
+        <mat-icon matSuffix>event</mat-icon>
+      </div>
+      <mat-card class="card">
+        <mat-label>All the world is made of faith, and trust, and pixie dust. All the world is made of faith, and trust, and pixie dust. </mat-label>
+      </mat-card>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>
+      </div>
+    </div>
   </div>
-  <mat-divider></mat-divider>
-  <div class="width">
-    <mat-label>deinak2312@gmail.com </mat-label>
-    <mat-icon matSuffix>email</mat-icon>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="width">
-    <mat-label>v375291111607</mat-label>
-    <mat-icon matSuffix>chat</mat-icon>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="width">
-    <mat-label>+375(29)111-16-07</mat-label>
-    <mat-icon matSuffix>phone</mat-icon>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="width">
-    <mat-label>https://t.me/deynak10</mat-label>
-    <mat-icon matSuffix>phone</mat-icon>
-  </div>
-  <mat-divider></mat-divider>
-  <div class="width">
-    <mat-label>12/01/1990</mat-label>
-    <mat-icon matSuffix>event</mat-icon>
-  </div>
-  <mat-card class="card">
-    <mat-label>All the world is made of faith, and trust, and pixie dust. All the world is made of faith, and trust, and pixie dust. </mat-label>
-  </mat-card>
-  <div class="example-button-row">
-    <button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>
-  </div>
-
 </mat-card>
