@@ -1,32 +1,22 @@
-import {AppComponent} from './app.component';
-import {UserComponent} from './components/user/user.component';
-import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
-import {TicketComponent} from './components/ticket/ticket.component';
-import {CreateProjectComponent} from './components/create-project/create-project.component';
-import {ProfileComponent} from './components/profile/profile.component';
-import {ChangeProfileComponent} from './components/change-profile/change-profile.component';
-import {BrowserModule} from '@angular/platform-browser';
-import {EpicsModule} from './store/epics/epics.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {DevToolsExtension, NgRedux, NgReduxModule} from '@angular-redux/store';
-import {MaterialModule} from './material.module';
-import {NgReduxRouter, NgReduxRouterModule} from '@angular-redux/router';
+import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
+import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
+import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {UserListModule} from './components/user-list/user-list.module';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DialogsModule} from './components/dialogs/dialogs.module';
-import {AppRouterModule} from './app-router.module';
-import {ToolbarModule} from './components/toolbar/toolbar.module';
-import {RouterModule} from '@angular/router';
-import {MatGridListModule} from '@angular/material';
-import {EpicService} from './store/epics/epics.service';
-import {TransformService} from './utils/transform.service';
-import {RegisterService} from './service/register.service';
-import {UserService} from './service/user.service';
-import {AuthService} from './service/auth.service';
-import {TicketService} from './service/ticket.service';
-import {ProjectService} from './service/project.service';
-import {TicketServiceService} from './service/ticket-service.service';
+import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AppRouterModule } from './app-router.module';
+import { AppComponent } from './app.component';
+import { DialogsModule } from './components/dialogs/dialogs.module';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
+import { UserListModule } from './components/user-list/user-list.module';
+import { UserComponent } from './components/user/user.component';
+import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
+import { EpicsModule } from './store/epics/epics.module';
+import { EpicService } from './store/epics/epics.service';
+import { TransformService } from './utils/transform.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -35,24 +25,46 @@ import {createEpicMiddleware} from 'redux-observable';
 import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
+import {ProjectNameValidator} from './validators/project.name.validator';
+import {ProjectCodeValidator} from './validators/project.code.validator';
+import {AuthGuardService} from './service/auth-guard.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
+
+// import { MaterialModule } from './material.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
+
+import { MaterialModule } from './material.module';
+import { ProfileComponent } from './components/profile/profile.component';
+import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
+import {ProfileModule} from './components/profile/profile.module';
+import {WelcomeComponent} from './components/welcome/welcome.component';
+import {CreateProjectComponent} from './components/create-project/create-project.component';
+import {TicketComponent} from './components/ticket/ticket.component';
+import {RegisterService} from './service/register.service';
+import {ProjectService} from './service/project.service';
+import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
+import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
-import {ProfileModule} from "./components/profile/profile.module";
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent,
     ChangeProfileComponent,
     TicketComponent,
     CreateProjectComponent,
-    ChangeProfileComponent
+    WelcomeComponent,
+    CreateTicketModalComponent,
+    AssigneeFormComponent
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
+    // import main NgReduxModule
     NgReduxModule,
     // import main NgReduxModule
     ReactiveFormsModule,
@@ -61,7 +73,9 @@ import {ProfileModule} from "./components/profile/profile.module";
     HttpClientModule,
     UserListModule,
     BrowserAnimationsModule,
+    OverlayModule,
     DialogsModule,
+    MatDialogModule,
     AppRouterModule,
     RouterModule,
     ToolbarModule,
@@ -76,12 +90,17 @@ import {ProfileModule} from "./components/profile/profile.module";
     AuthService,
     TicketService,
     ProjectService,
-    TicketServiceService,
+    ProjectNameValidator,
+    ProjectCodeValidator,
+    AuthGuardService,
     ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CreateTicketModalComponent
+  ]
 })
 export class AppModule {
 

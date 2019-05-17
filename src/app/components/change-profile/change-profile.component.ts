@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {NgRedux} from "@angular-redux/store";
 import {AppState} from "../../store";
 import {saveProfileAction} from "../../store/actions/change-profile.actions";
-
 
 
 @Component({
