@@ -19,7 +19,7 @@ const routs: Routes = [
   {path: 'create-project', component: CreateProjectComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent},
-  {path: 'ticket/:id', component: TicketComponent},
+  {path: 'ticket/:issueCode', component: TicketComponent},
   {path: 'home', component: WelcomeComponent},
   {path: 'comment', component: CommentsComponent}
 ];

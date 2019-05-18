@@ -10,10 +10,6 @@ export const updateCurrentTicketAction = (ticket: Ticket) => ({
   payload: {ticket}
 });
 
-export const updateCurrentTicketSuccessAction = (ticket: Ticket) => ({
-  type: UPDATE_CURRENT_TICKET_SUCCESS,
-  payload: {ticket}
-});
 //
 // export const saveCommentAction = (comment: Comment) => ({
 //   type: SAVE_COMMENT,

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import {allComments} from '../../../models/Constants/comments';
-import {Ticket} from '../../../models/ticket.model';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {NgRedux} from '@angular-redux/store';
+import {NgRedux, select} from '@angular-redux/store';
 import {TicketService} from '../../../service/ticket.service';
 import {AppState} from '../../../store';
 import {Router} from '@angular/router';
-import {Observable, ObservableInput} from 'rxjs';
 import {User} from '../../../models/user.model';
-import {defaultProgress} from '@angular-devkit/build-angular/src/utils';
-import {defaultProfile} from '../../../models/profile.model';
+import {saveCommentAction} from '../../../store/actions/tickets.actions';
+import {selectCurrentUser} from '../../../store/selectors/current-user.selector';
 
 @Component({
   selector: 'app-comments',
@@ -18,29 +15,31 @@ import {defaultProfile} from '../../../models/profile.model';
 })
 export class CommentsComponent implements OnInit {
 
-  readonly currentUser: Observable<User>;
-  comments = allComments;
-  ticket: Ticket;
+  @Input('issue_Id') issue_Id: string;
+  @Input('comments') comments: Comment[];
+
+  currentUser: User;
   commentForm: FormGroup;
   displayedColumns: string[] = ['User', 'Text', 'Time'];
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
-              private fb: FormBuilder, private router: Router) { }
+              private fb: FormBuilder,
+              private router: Router) { }
 
   ngOnInit() {
+    this.currentUser = selectCurrentUser(this.ngRedux.getState());
     this.formInit();
   }
 
   formInit() {
     this.commentForm = this.fb.group({
-      issueId: ['1'],
-      profile: [defaultProfile],
+      profileId: [''],
       commentText: ['']
     })
   }
 
-  //   onSendClick () {
-  //     this.ngRedux.dispatch(saveCommentAction(this.commentForm.getRawValue()));
-  //     this.formInit();
-  // }
+    onSaveClick () {
+      this.ngRedux.dispatch(saveCommentAction(this.commentForm.getRawValue(), this.issue_Id));
+      this.formInit();
+  }
 }

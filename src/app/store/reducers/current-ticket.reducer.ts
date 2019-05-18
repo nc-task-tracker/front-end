@@ -20,13 +20,9 @@ export const currentTicketStateReducer: Reducer<CurrentTicketState> = (state: Cu
     case UPDATE_CURRENT_TICKET: {
       return { ...state, currentTicket: action.payload.ticket, isLoading: true };
     }
-
-    case UPDATE_CURRENT_TICKET_SUCCESS: {
+    case SELECT_TICKET_SUCCESS: {
       const {ticket} = action.payload;
       return { ...state, currentTicket: ticket, isLoading: false};
-    }
-    case SELECT_TICKET_SUCCESS: {
-      return {...state, currentTicket: action.payload.user, isLoading: false};
     }
     default: {
       return state;

@@ -3,7 +3,7 @@ import {ActionsObservable} from 'redux-observable';
 import {AnyAction} from 'redux';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {
-  CREATE_TICKET, createTicketAction, createTicketSuccessAction, DELETE_TICKET, deleteTicketSuccessAction, FETCH_TICKETS,
+  CREATE_TICKET, createTicketSuccessAction, DELETE_TICKET, deleteTicketSuccessAction, FETCH_TICKETS,
   fetchTicketsFailedAction,
   fetchTicketsSuccessAction, SAVE_COMMENT, saveCommentSuccessAction, SELECT_TICKET,
   selectTicketSuccess, UPDATE_TICKET, updateTicketSuccessAction
@@ -55,11 +55,11 @@ export class TicketsEpic {
 
   updateTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(UPDATE_TICKET).pipe(
-      mergeMap(({payload}) => {
+      mergeMap(({payload, id}) => {
         return this.ticketService
-          .updateTicket(payload.ticket)
+          .updateTicket(payload.ticket, id.ticketId)
           .pipe(
-            map( ticket => updateTicketSuccessAction(ticket))
+            map( ticket => updateTicketSuccessAction(ticket, ticket.id))
           );
       })
     );
@@ -67,11 +67,11 @@ export class TicketsEpic {
 
   saveComment$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(SAVE_COMMENT).pipe(
-      mergeMap(({payload}) => {
+      mergeMap(({payload, id}) => {
         return this.ticketService
-          .saveComment(payload.comment)
+          .saveComment(payload.comment, id.ticketId)
           .pipe(
-            map( comment => saveCommentSuccessAction(comment))
+            map( comment => saveCommentSuccessAction(comment, id.ticketId))
           );
       })
     );

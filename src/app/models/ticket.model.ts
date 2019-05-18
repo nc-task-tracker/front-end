@@ -8,7 +8,6 @@ import {TicketTypeObject} from './ticket-type.model';
 import {defaultProject, Project} from './project.model';
 import {defaultComment, Comment} from './comment.model';
 import {defaultProfile, Profile} from './profile.model';
-import {allComments} from './Constants/comments';
 
 export const allTicketPriority: TicketPriorityObject[] = [
   {
@@ -98,9 +97,9 @@ export interface Ticket {
   readonly issueDescription: string;
   readonly startDate: Date;
   readonly dueDate: Date;
-  readonly project: Project;
-  readonly reporter: Profile;
-  readonly assignee: Profile;
+  readonly projectId: string;
+  readonly reporterId: string;
+  readonly assigneeId: string;
   readonly parentId: string;
   readonly comments: Comment []
 }
@@ -114,9 +113,9 @@ export const defaultTicket: Ticket = {
   issueDescription: 'Issue_description',
   startDate: new Date('02/02/03'),
   dueDate: new Date('02/02/02'),
-  project: defaultProject,
-  reporter: defaultProfile,
-  assignee: defaultProfile,
+  projectId: '',
+  reporterId: '',
+  assigneeId: '',
   parentId: null,
   comments: null
 };

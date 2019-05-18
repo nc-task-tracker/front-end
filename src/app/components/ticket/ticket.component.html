@@ -1,17 +1,16 @@
-<div class="ticket" [formGroup]="ticketForm">
-  <mat-spinner *ngIf="isLoading | async;else ticketTemplate" mode="indeterminate" color="primary">
-  </mat-spinner>
-  <ng-template #ticketTemplate>
+<mat-spinner *ngIf="(isLoading | async);else ticketTemplate" mode="indeterminate" color="primary"></mat-spinner>
+<ng-template #ticketTemplate>
+<form class="ticket" [formGroup]="ticketForm" >
   <div class="name">
     <mat-card class="name-card">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"><mat-icon class="project-icon">account_circle</mat-icon></div>
         <mat-card-subtitle class="project-subtitle" >
-          Proj_name; Proj_code
+          Proj_name; Proj_code {{ticketComments[1].commentText}}
         </mat-card-subtitle>
          <mat-card-title class="project-title">
            <mat-form-field >
-             <input matInput formControlName="'issueName'" [readonly]="editName" required>
+             <input matInput [formControlName]="'issueName'" [readonly]="editName" required>
              <mat-icon class="edit-icon" matSuffix (click)="editName = !editName">mode_edit</mat-icon>
            </mat-form-field>
          </mat-card-title>
@@ -42,16 +41,16 @@
 
               <mat-card-subtitle class="assignee-subtitle">
                   <mat-form-field style="width: 150px">
-                    <input matInput [formControlName]="'assignee'" [readonly]="editAssignee" required>
+                    <input matInput [formControlName]="'assigneeId'" [readonly]="editAssignee" required>
                     <mat-icon matSuffix (click)="editAssignee = !editAssignee">mode_edit</mat-icon>
 
                     <!--<input matInput [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">-->
                     <!--<mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">-->
                       <!--{{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>-->
-                    <!--</mat-option>-->
+                    <!--</mat-option> {{ birthday | date:"MM/dd/yy" }}-->
+
                   </mat-form-field>
               </mat-card-subtitle>
-
             </mat-card-header>
           </mat-card>
         </mat-card-content>
@@ -66,7 +65,7 @@
         <h4>Created: 4/4/2020</h4>
         <h4>Due:
           <mat-form-field class="due">
-            <input matInput [matDatepicker]="picker" [formControlName]="'dueDate'" required>
+            <input matInput [formControlName]="'dueDate'" [matDatepicker]="picker"  required>
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -81,40 +80,41 @@
     </div>
 
     <div>
+
     <div class="type-priority-status">
       <mat-form-field class="size" >
-        <mat-select placeholder="{{ticket.issueType}}" [formControlName]="'issueType'" required>
-          <mat-option *ngFor="let type of types" [value]="type.type">
+        <mat-select  required>
+          <mat-option *ngFor="let type of types"  [value]="type.type">
             {{type.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="size" >
-        <mat-select placeholder="{{ticket.issuePriority}}" [formControlName]="'issuePriority'" required>
-          <mat-option *ngFor="let priority of priorities" [value]="priority.type">
+        <mat-select   required>
+          <mat-option *ngFor="let priority of priorities"  [value]="priority.type">
             {{priority.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="size" >
-        <mat-select placeholder="{{ticket.issueStatus}}" [formControlName]="'issueStatus'" required>
-          <mat-option *ngFor="let status of statuses" [value]="status.type">
+        <mat-select   required>
+          <mat-option *ngFor="let status of statuses"  [value]="status.type">
             {{status.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
 
-    <mat-form-field appearance="outline" class="description" [formGroup]="ticketForm">
+    <mat-form-field appearance="outline" class="description" >
       <mat-label>Description</mat-label>
       <textarea matInput [formControlName]="'issueDescription'"></textarea>
     </mat-form-field>
 
     <app-subtasks></app-subtasks>
   </div>
-  <app-comments></app-comments>
+  <app-comments issue_Id="{{ticketId}}" comments="{{ticketComments}}"></app-comments>
   </div>
-  </ng-template>
-</div>
+</form>
+</ng-template>

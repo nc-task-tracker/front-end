@@ -50,10 +50,19 @@ export const createTicketFailureAction = () => ({
   type: CREATE_TICKET_FAILURE
 });
 
-export function updateTicketSuccessAction(ticket: Ticket) {
+export function updateTicketAction(ticket: Ticket, ticketId: string) {
+  return {
+    type: UPDATE_TICKET,
+    payload: {ticket},
+    id: {ticketId}
+  };
+}
+
+export function updateTicketSuccessAction(ticket: Ticket, ticketId: string) {
   return {
     type: UPDATE_TICKET_SUCCESS,
-    payload: {ticket}
+    payload: {ticket},
+    id: ticketId
   };
 }
 
@@ -67,14 +76,16 @@ export const deleteTicketSuccessAction = (ticketId: string) => ({
   payload: {ticketId}
 });
 
-export const saveCommentAction = (comment: Comment) => ({
+export const saveCommentAction = (comment: Comment, ticketId: string) => ({
   type: SAVE_COMMENT,
-  payload: {comment}
+  payload: {comment},
+  id: {ticketId}
 });
 
-export const saveCommentSuccessAction = (comment: Comment) => ({
+export const saveCommentSuccessAction = (comment: Comment, ticketId: string) => ({
   type: SAVE_COMMENT_SUCCESS,
-  payload: {comment}
+  payload: {comment},
+  id: {ticketId}
 });
 
 export function selectTicket(ticketId: string) {

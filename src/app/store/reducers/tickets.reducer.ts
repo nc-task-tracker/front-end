@@ -42,8 +42,9 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
     }
     case SAVE_COMMENT_SUCCESS: {
       const {comment}  = action.payload;
+      const {ticketId} = action.id;
       const updatedTickets = new Map(state.tickets);
-      const ticket = updatedTickets.get(comment.issueId);
+      const ticket = updatedTickets.get(ticketId.ticketId);
       ticket.comments.push(comment);
       updatedTickets.set(ticket.id, ticket);
       return { ...state, tickets: updatedTickets, isLoading: false };

@@ -46,8 +46,8 @@ export class TicketService {
     });
   }
 
-  updateTicket(ticket: Ticket): Observable<Ticket> {
-    return this.http.put<Ticket>(`${this.ISSUE_URL}`, ticket)
+  updateTicket(ticket: Ticket, ticketId: string): Observable<Ticket> {
+    return this.http.put<Ticket>(`${this.ISSUE_URL}/${ticketId}`, ticket)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
@@ -56,8 +56,8 @@ export class TicketService {
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
-  saveComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.ISSUE_URL}/saveComment`, comment)
+  saveComment(comment: Comment, ticketId: string): Observable<Comment> {
+    return this.http.post<Comment>(`${this.ISSUE_URL}/${ticketId}/saveComment`, comment)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
@@ -69,4 +69,8 @@ export class TicketService {
     return this.http.get<Ticket[]>(`${this.ISSUE_URL}/all`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
+
+  // getTicketInComponent(): Observable<Ticket> {
+  //   return ticket;
+  // }
 }

@@ -4,9 +4,7 @@ import {AnyAction} from 'redux';
 import {map, mergeMap, switchMap} from 'rxjs/operators';
 import {SELECT_TICKET} from '../actions/tickets.actions';
 import {TicketService} from '../../service/ticket.service';
-import { UPDATE_CURRENT_TICKET,
-  updateCurrentTicketSuccessAction
-} from '../actions/current-ticket.action';
+import { UPDATE_CURRENT_TICKET } from '../actions/current-ticket.action';
 
 @Injectable()
 export class CurrentTicketsEpic {

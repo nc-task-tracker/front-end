@@ -7,6 +7,7 @@ import {selectCurrentUser} from "../../store/selectors/current-user.selector";
 import {Observable} from "rxjs";
 import {User} from "../../models/user.model";
 import {AppState} from '../../store';
+import {fetchTicketsAction} from '../../store/actions/tickets.actions';
 
 @Component({
   selector: 'app-welcome',
@@ -18,9 +19,10 @@ export class WelcomeComponent implements OnInit{
   @select(selectCurrentUser)
   currentUser: Observable<User>;
 
+  constructor(private ngRedux: NgRedux<AppState>){}
 
   ngOnInit(): void {
+    this.ngRedux.dispatch(fetchTicketsAction());
   }
 
-  constructor(private ngRedux: NgRedux<AppState>){}
 }
