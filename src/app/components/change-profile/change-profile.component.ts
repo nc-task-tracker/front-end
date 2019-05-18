@@ -21,7 +21,7 @@ export class ChangeProfileComponent implements OnInit {
 
   }
   onCancelClick() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['profile/1']);
   }
   ngOnInit() {
     this.changeProfileForm = this.formBuilder.group({

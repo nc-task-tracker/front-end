@@ -29,11 +29,8 @@ import {ProjectNameValidator} from './validators/project.name.validator';
 import {ProjectCodeValidator} from './validators/project.code.validator';
 import {AuthGuardService} from './service/auth-guard.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
-
-// import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
-
 import { MaterialModule } from './material.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
@@ -46,6 +43,7 @@ import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
+import {from} from "rxjs";
 
 
 @NgModule({
@@ -63,10 +61,8 @@ import {ChangeProfileService} from "./service/change-profile-service.service";
     BrowserModule,
     EpicsModule,
     FormsModule,
-    ReactiveFormsModule,
     // import main NgReduxModule
     NgReduxModule,
-    // import main NgReduxModule
     ReactiveFormsModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -76,6 +72,7 @@ import {ChangeProfileService} from "./service/change-profile-service.service";
     OverlayModule,
     DialogsModule,
     MatDialogModule,
+    MatAutocompleteModule,
     AppRouterModule,
     RouterModule,
     ToolbarModule,
@@ -99,7 +96,7 @@ import {ChangeProfileService} from "./service/change-profile-service.service";
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    CreateTicketModalComponent
+    CreateTicketModalComponent,
   ]
 })
 export class AppModule {
@@ -108,7 +105,6 @@ export class AppModule {
     private ngReduxRouter: NgReduxRouter,
     private epicService: EpicService, private devTools: DevToolsExtension,
     private localStorageService: GlobalUserStorageService) {
-
     const epics = this.epicService.getEpics();
     const middleware = createEpicMiddleware();
     let enhancers = [];
