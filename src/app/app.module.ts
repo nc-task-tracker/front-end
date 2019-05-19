@@ -26,10 +26,17 @@ import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import { CreateTicketPageComponent } from './components/create-ticket-page/create-ticket-page.component';
 import { MaterialModule } from './material.module';
-import { FormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {DashboardModule} from "./components/dashboard/dashboard.module";
+import {CreateTicketModalComponent} from "./components/create-ticket-modal/create-ticket-modal.component";
+import {CreateProjectComponent} from "./components/create-project/create-project.component";
+import {TicketComponent} from "./components/ticket/ticket.component";
+import {WelcomeModule} from "./components/welcome/welcome.module";
+import {MatAutocompleteModule, MatDialogModule} from "@angular/material";
+import {TicketService} from "./service/ticket.service";
+import {ProjectService} from "./service/project.service";
 
 @NgModule({
   declarations: [
@@ -37,12 +44,17 @@ import {DashboardModule} from "./components/dashboard/dashboard.module";
     UserComponent,
     CreateTicketPageComponent,
     ProfileComponent,
-    ChangeProfileComponent
+    ChangeProfileComponent,
+    CreateTicketModalComponent,
+    CreateProjectComponent,
+    TicketComponent
   ],
+
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
+    ReactiveFormsModule,
     // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
@@ -52,16 +64,21 @@ import {DashboardModule} from "./components/dashboard/dashboard.module";
     BrowserAnimationsModule,
     OverlayModule,
     DialogsModule,
+    MatDialogModule,
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    DashboardModule
+    DashboardModule,
+    WelcomeModule,
+    MatAutocompleteModule
   ],
   providers: [
     EpicService,
     TransformService,
     UserService,
     AuthService,
+    TicketService,
+    ProjectService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
@@ -83,7 +100,7 @@ export class AppModule {
 
     const currentUser = localStorageService.currentUser;
 
-    const INITIAL_STATE: AppState = {currentUser};
+    const INITIAL_STATE: AppState = {currentUser}as AppState;
 
     ngRedux.configureStore(reducers, INITIAL_STATE, [middleware, createLogger()], enhancers);
     middleware.run(epics as any);

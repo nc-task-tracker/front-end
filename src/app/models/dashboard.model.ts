@@ -1,13 +1,11 @@
-import {Filter} from "./filter.model";
-
 export interface Dashboard {
-  readonly id: string;
+/*  readonly id: string;
   readonly name: string;
-  readonly filters: Filter;
+  readonly widgets: Observable<Widget>;*/
 }
 
 export const defaultDashboard: Dashboard = {
-  id: null,
+/*  id: null,
   name: '',
-  filters: ''
+  widgets: ''*/
 };
