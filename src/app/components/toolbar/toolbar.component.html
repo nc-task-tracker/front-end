@@ -18,7 +18,7 @@
 
     <ng-template #loginUser>
       <button mat-stroked-button (click)="onLogoutClick()">Logout</button>
-      <button class="username" color="red" mat-button [routerLink]="'profile'">
+      <button  class="username" color="red" mat-button [routerLink]="'profile'">
         {{userName | async}}
         <img src="assets/Icons/User.png" height="30" width="30" class="button-interval"/>
       </button>

@@ -1,3 +1,5 @@
+
+
 <form [formGroup]="projectForm" class="create-project">
 
   <mat-form-field class="input-full-width">
@@ -16,9 +18,8 @@
   </mat-form-field>
 
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Code" [formControlName]="'projectCode'" required>
-    <mat-error
-      *ngIf="projectCode.invalid">{{getErrorText('projectCode')}}
+    <input matInput placeholder="Code" [formControlName]="'projectCode'" minlength="3" pattern="[A-Z]+">
+    <mat-error *ngIf="projectCode.invalid">{{getErrorText('projectCode')}}
     </mat-error>
   </mat-form-field>
 
@@ -28,6 +29,8 @@
 
   <div class="control-buttons">
     <button
+      [disabled]="projectCode.invalid || projectName.invalid"
+
       matTooltip="Create project"
       aria-label="Button that displays a tooltip when focused or hovered over"
       mat-raised-button class="control-button create" (click)=onCreateClick()>Create

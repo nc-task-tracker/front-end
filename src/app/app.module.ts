@@ -39,7 +39,15 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {ProjectNameValidator} from "./validators/project.name.validator";
 import {ProjectCodeValidator} from "./validators/project.code.validator";
 import {AuthGuardService} from "./service/auth-guard.service";
-import {JwtHelperService} from '@auth0/angular-jwt';
+import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';;
+
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: () => localStorage.getItem('currentToken'),
+    whitelistedDomains: ['localhost:4200/home']
+  }
+};
 
 
 @NgModule({
@@ -61,6 +69,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
+    JwtModule.forRoot(JWT_Module_Options),
     HttpClientModule,
     UserListModule,
     BrowserAnimationsModule,
@@ -68,7 +77,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
     AppRouterModule,
     RouterModule,
     ToolbarModule,
-    MatGridListModule
+    MatGridListModule,
   ],
   providers: [
     EpicService,

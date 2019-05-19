@@ -6,6 +6,7 @@ import {select} from "@angular-redux/store";
 import {selectCurrentUser} from "../../store/selectors/current-user.selector";
 import {Observable} from "rxjs";
 import {User} from "../../models/user.model";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-welcome',

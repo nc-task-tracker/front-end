@@ -13,13 +13,13 @@ import {AuthGuardService as AuthGuard} from "./service/auth-guard.service";
 
 const routs: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: 'users', component: UserListComponent},
-  {path: 'profile', component: ProfileComponent},
-  {path: 'change-profile', component: ChangeProfileComponent},
-  {path: 'create-project', component: CreateProjectComponent},
+  {path: 'users', component: UserListComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'change-profile', component: ChangeProfileComponent, canActivate: [AuthGuard]},
+  {path: 'create-project', component: CreateProjectComponent, canActivate: [AuthGuard]},
   {path: 'register', component: RegisterComponent},
-  {path: 'create-ticket', component: CreateTicketPageComponent},
-  {path: 'ticket', component: TicketComponent},
+  {path: 'create-ticket', component: CreateTicketPageComponent, canActivate: [AuthGuard]},
+  {path: 'ticket', component: TicketComponent, canActivate: [AuthGuard]},
   {path: 'home', component: WelcomeComponent}
 ];
 
