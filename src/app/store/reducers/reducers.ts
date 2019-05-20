@@ -15,7 +15,7 @@ export const reducers: Reducer = combineReducers({
     route: routerReducer,
     register: registerReducer,
     tickets: ticketReducer,
-    createProject: projectReducer,
+    project: projectReducer,
     changeProfile: changeProfileReducer
 
 });

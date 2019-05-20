@@ -12,9 +12,7 @@ import {saveProfileAction} from "../../store/actions/change-profile.actions";
   styleUrls: ['./change-profile.component.css']
 })
 export class ChangeProfileComponent implements OnInit {
-
   changeProfileForm: FormGroup;
-
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private ngRedux: NgRedux<AppState>) {
@@ -23,8 +21,14 @@ export class ChangeProfileComponent implements OnInit {
   onCancelClick() {
     this.router.navigate(['profile/1']);
   }
+  changeProfile() {
+    const formValue = this.changeProfileForm.getRawValue();
+    this.ngRedux.dispatch(saveProfileAction(formValue));
+    this.router.navigate(['profile/1']);
+  }
   ngOnInit() {
     this.changeProfileForm = this.formBuilder.group({
+      id: ['1'],
       fullName: [''],
       email: [''],
       skype: [''],
@@ -35,8 +39,4 @@ export class ChangeProfileComponent implements OnInit {
     });
   }
 
- changeProfile() {
-    const formValue = this.changeProfileForm.getRawValue();
-    this.ngRedux.dispatch(saveProfileAction(formValue));
-  }
 }

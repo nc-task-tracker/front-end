@@ -44,6 +44,7 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {from} from "rxjs";
+import {ProfileService} from "./service/profile.service";
 
 
 @NgModule({
@@ -85,6 +86,7 @@ import {from} from "rxjs";
     RegisterService,
     UserService,
     AuthService,
+    ProfileService,
     TicketService,
     ProjectService,
     ProjectNameValidator,

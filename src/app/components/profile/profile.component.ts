@@ -5,6 +5,7 @@ import {changeProfile} from "../../store/selectors/change-profile.selector";
 import {Observable} from "rxjs";
 import {ChangeProfile} from "../../models/change-profile.model";
 import {GlobalUserStorageService} from "../../service/global-storage.service";
+import {fetchUsersAction} from "../../store/actions/users.actions";
 
 @Component({
   selector: 'app-profile',
@@ -26,6 +27,8 @@ export class ProfileComponent implements OnInit {
      const {userId} = this.route.snapshot.params;
      const user = this.localStorage.currentUser;
      this.isLogin = user && user.id === userId;
+
+
 
   }
 

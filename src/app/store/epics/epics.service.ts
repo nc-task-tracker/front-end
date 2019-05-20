@@ -7,16 +7,18 @@ import {TicketsEpic} from './tickets.epic';
 import {ProjectEpic} from "./project.epic";
 
 import {ChangeProfileEpic} from "./change-profile.epic";
+import {ProfileEpic} from "./profile.epic";
 
 
 @Injectable()
 export class EpicService {
 
-
     constructor(private userEpic: UserEpic, private currentUserEpic: CurrentUserEpic,
                 private ticketsEpic: TicketsEpic,  private projectEpic: ProjectEpic,
                 private registerEpic: RegisterEpic,
-                private changeProfileEpic: ChangeProfileEpic){}
+                private changeProfileEpic: ChangeProfileEpic,
+                private profileEpic: ProfileEpic
+    ){}
 
     getEpics() {
         return combineEpics(
@@ -28,8 +30,8 @@ export class EpicService {
             this.registerEpic.register$,
             this.ticketsEpic.createTicket$,
             this.projectEpic.createProject$,
-            this.changeProfileEpic.changeProfile$
-
+            this.changeProfileEpic.changeProfile$,
+            this.projectEpic.fetchProjects$
         );
     }
 }

@@ -9,13 +9,18 @@ import {Router} from "@angular/router";
 export class UserInfoComponent implements OnInit {
 
   fullName: string;
+  email: string;
+  skype: string;
+  telephone: string;
+  additional: string;
+  birthday: string;
+  description: string;
+
 
   onChangeClick() {
     this.router.navigate (['change-profile']);
   }
   constructor(private router: Router) { }
-
-
 
   ngOnInit() {
   }
