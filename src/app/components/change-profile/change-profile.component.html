@@ -1,34 +1,62 @@
 <div class="wrapper">
 <form class="change-profile" [formGroup]="changeProfileForm">
+
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Full name" value="" required [formControlName]="'fullName'">
+    <input matInput placeholder="Full name" value="" [formControlName]="'fullName'" required>
     <mat-icon matSuffix>mode_edit</mat-icon>
+    <mat-error
+      *ngIf="fullName.invalid">{{getErrText('fullName')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Email" value="" required [formControlName]="'email'">
+    <input matInput placeholder="Email" value="" [formControlName]="'email'"  required>
     <mat-icon matSuffix>email</mat-icon>
+    <mat-error
+      *ngIf="email.invalid">{{getErrText('email')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Skype" value="" required [formControlName]="'skype'">
+    <input matInput placeholder="Skype" value="" [formControlName]="'skype'" required>
     <mat-icon matSuffix>chat</mat-icon>
+    <mat-error
+      *ngIf="skype.invalid">{{getErrText('skype')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="input-full-width">
     <span matPrefix>+375 &nbsp;</span>
-    <input type="tel" matInput placeholder="Telephone" [formControlName]="'telephone'">
+    <input type="tel" matInput placeholder="Telephone" [formControlName]="'telephone'" required>
     <mat-icon matSuffix>phone</mat-icon>
+    <mat-error
+      *ngIf="telephone.invalid">{{getErrText('telephone')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="input-full-width">
     <span matPrefix>+ &nbsp;</span>
-    <input type="tel" matInput placeholder="Additional" [formControlName]="'additional'">
+    <input type="tel" matInput placeholder="Additional" [formControlName]="'additional'" required>
     <mat-icon matSuffix>phone</mat-icon>
+    <mat-error
+      *ngIf="additional.invalid">{{getErrText('additional')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="input-date">
-    <input matInput [matDatepicker]="pickerTwo" placeholder="Birthday" [formControlName]="'birthday'">
-    <mat-datepicker-toggle matSuffix [for]="pickerTwo"></mat-datepicker-toggle>
-    <mat-datepicker #pickerTwo></mat-datepicker>
+    <input matInput  [max]="maxDate" [matDatepicker]="birthday" placeholder="Birthday" [formControlName]="'birthday'" required>
+    <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+    <mat-datepicker #birthday></mat-datepicker>
+    <mat-error
+      *ngIf="birthday.invalid">{{getErrText('birthday')}}
+    </mat-error>
   </mat-form-field>
+
   <mat-form-field class="description_profile">
     <textarea matInput placeholder="A few words about yourself" [formControlName]="'description'"></textarea>
+    <mat-error
+      *ngIf="description.invalid">{{getErrText('description')}}
+    </mat-error>
   </mat-form-field>
 
   <div class="control-buttons">
@@ -37,6 +65,7 @@
       aria-label="Button that displays a tooltip when focused or hovered over"
       mat-raised-button color="primary" class="save" (click)="changeProfile()"  >Save
     </button>
+
     <button matTooltip="Cancel save data"
             aria-label="Button that displays a tooltip when focused or hovered over"
             mat-raised-button class="cancel" (click)="onCancelClick()" >Cancel

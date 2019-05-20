@@ -1,0 +1,11 @@
+.dashboard-head {
+  font-size: 32px;
+}
+.dashboards{
+  font-size: 24px;
+}
+.dashboard-card{
+  margin: 40px 100px 250px;
+  min-width: 370px;
+}
+
