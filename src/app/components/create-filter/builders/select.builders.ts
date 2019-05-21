@@ -36,7 +36,7 @@ export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterI
 
 @Injectable()
 export class IssueTypeBuilder implements AbstractBuilder<InputModel, SelectFilterItem<IssueTypeModel>> {
-    type: FilterType = FilterType.ISSUE_TYPES;
+    type: FilterType = FilterType.ISSUE_TYPE;
 
     build(model: InputModel): SelectFilterItem<IssueTypeModel> {
         return {
@@ -117,6 +117,24 @@ export class ReporterBuilder implements AbstractBuilder<InputModel, SelectFilter
             multiple: true,
             title: 'Reporter',
             placeholder: 'Reporter',
+            titleKey: 'name',
+            value: model.value || [],
+            options: []
+        };
+    }
+}
+
+@Injectable()
+export class IssueNameBuilder implements AbstractBuilder<InputModel, SelectFilterItem<SearchModel>> {
+    type: FilterType = FilterType.ISSUE_NAME;
+
+    build(model: InputModel): SelectFilterItem<SearchModel> {
+        return {
+            ...model,
+            fieldType: FieldType.ASSIGNEE,
+            multiple: true,
+            title: 'Ticket name',
+            placeholder: 'Ticket name',
             titleKey: 'name',
             value: model.value || [],
             options: []

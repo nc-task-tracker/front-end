@@ -5,15 +5,15 @@ import { CurrentUserEpic } from './current-user.epic';
 import { RegisterEpic } from './register.epic';
 import {TicketsEpic} from './tickets.epic';
 import {ProjectEpic} from "./project.epic";
+import {FilterEpic} from "./filter.epic";
 
 
 @Injectable()
 export class EpicService {
 
-
     constructor(private userEpic: UserEpic, private currentUserEpic: CurrentUserEpic,
                 private ticketsEpic: TicketsEpic,  private projectEpic: ProjectEpic,
-                private registerEpic: RegisterEpic) {}
+                private filterEpic: FilterEpic, private registerEpic: RegisterEpic) {}
 
     getEpics() {
         return combineEpics(
@@ -24,7 +24,8 @@ export class EpicService {
             this.currentUserEpic.logout$,
             this.registerEpic.register$,
             this.ticketsEpic.createTicket$,
-            this.projectEpic.createProject$
+            this.projectEpic.createProject$,
+            this.filterEpic.createFilter$
         );
     }
 }

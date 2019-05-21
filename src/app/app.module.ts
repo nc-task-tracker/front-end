@@ -41,6 +41,7 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {MatDialogModule} from "@angular/material";
 import {OverlayModule} from "@angular/cdk/overlay";
 import {FilterFormModule} from "./components/create-filter/filter-form.module";
+import {FilterService} from "./service/filter.service";
 
 @NgModule({
   declarations: [
@@ -84,6 +85,7 @@ import {FilterFormModule} from "./components/create-filter/filter-form.module";
     TicketService,
     ProjectService,
     TicketServiceService,
+    FilterService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

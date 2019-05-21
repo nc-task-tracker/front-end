@@ -1,5 +1,11 @@
 <section class="filter-toolbar">
 
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="Favorite food" value="Sushi">-->
+  <!--</mat-form-field>-->
+  <!--<span class="counter-title"> Current Counter Value {{parentCounter}}</span>-->
+  <!--<app-binding-example [counterTitle]="'Plus/Minus counter'" [(name)]="parentCounter" (operation)="onCounterChange($event)"></app-binding-example>-->
+
   <form [formGroup]="filterForm" class="filter-toolbar-form">
     <ng-container *ngFor="let item of filterItems">
       <div class="filter-toolbar-item">

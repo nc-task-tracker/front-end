@@ -15,7 +15,7 @@ export interface IssueTypeModel {
 }
 
 export enum IssueTypeNameMapping {
-  BUG = 'Buf',
+  BUG = 'Bug',
   TASK = 'Task',
   EPIC = 'Epic',
   IMPROVEMENT = 'Improvement',

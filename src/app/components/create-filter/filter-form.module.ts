@@ -13,11 +13,13 @@ import {
   IssueStatusBuilder,
   AssigneeBuilder,
   IssuePriorityBuilder,
-  ReporterBuilder
+  ReporterBuilder, IssueNameBuilder
 } from './builders/select.builders';
 import { SearchStringItemBuilder } from './builders/input.builder';
 import { AbstractSelectFormComponent } from './abstract-select-form/abstract-select-form.component';
 import { AssigneeFormComponent } from './assignee-form/assignee-form.component';
+import { ProjectNameFormComponent } from './project-name-form/project-name-form.component';
+import { BindingExampleModule } from "./binding-example-component/binding-example.module";
 
 const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: SearchStringItemBuilder, multi: true },
@@ -26,11 +28,12 @@ const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: IssueStatusBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssuePriorityBuilder, multi: true},
   { provide: FILTER_ITEM_BUILDER, useClass: AssigneeBuilder, multi: true },
-  { provide: FILTER_ITEM_BUILDER, useClass: ReporterBuilder, multi: true }
+  { provide: FILTER_ITEM_BUILDER, useClass: ReporterBuilder, multi: true },
+  { provide: FILTER_ITEM_BUILDER, useClass: IssueNameBuilder, multi: true }
 ]
 
 @NgModule({
-  declarations: [CreateFilterComponent, AbstractSelectFormComponent, AssigneeFormComponent],
+  declarations: [CreateFilterComponent, AbstractSelectFormComponent, AssigneeFormComponent, ProjectNameFormComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -40,7 +43,8 @@ const BUILDERS = [
     MatButtonModule,
     MatAutocompleteModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    BindingExampleModule
   ],
   providers: [
     BUILDERS,
