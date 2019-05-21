@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, Output, ViewChild} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {NgRedux, select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../../store/selectors/current-user.selector';
@@ -38,7 +38,6 @@ export class CreateTicketModalComponent implements OnInit {
 
   minDate = new Date();
 
-  public assignee: FormControl;
   possibleProjects;
 
   constructor(
@@ -61,9 +60,7 @@ export class CreateTicketModalComponent implements OnInit {
       project: [''/*, Validators.required*/],
       issueType: ['', Validators.required],
       issuePriority: ['', Validators.required],
-      parentId: [''],
-     // assignee: this.formBuilder.control(['you']),
-      assignee: [null],
+      assignee: [''],
       reporter: [''],
       minDate: new Date()
 
@@ -85,11 +82,10 @@ export class CreateTicketModalComponent implements OnInit {
   }
 
   createTicket() {
-    this.ticketForm.controls.assignee.setValue(this.currentAssigneeId);
     const formValue = this.ticketForm.getRawValue();
-    console.log("formValue:", formValue);
+    console.log('assignee', formValue.assignee);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
-    this.onCancelClick();
+    this.dialogRef.close();
   }
 
   onCancelClick(): void {

@@ -18,7 +18,11 @@
     <input [formControlName]="'issueName'" matInput placeholder="Issue title" required>
   </mat-form-field>
 
-  <app-assignee-form></app-assignee-form>
+
+  <app-assignee-search class="input-full-width" [controlName]="'assignee'" placeholder="Assignee"></app-assignee-search>
+
+
+  <!-- <app-assignee-form [formControlName]="'assignee'"></app-assignee-form> -->
 
   <mat-form-field class="input-full-width">
     <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
