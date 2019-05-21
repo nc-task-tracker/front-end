@@ -8,7 +8,6 @@ import {TicketService} from '../../service/ticket.service';
 import {Observable} from 'rxjs';
 import {selectCurrentIsLoading, selectCurrentTicket} from '../../store/selectors/current-ticket.selector';
 import {deleteTicketAction, selectTicket, updateTicketAction} from '../../store/actions/tickets.actions';
-import {TicketType, TicketTypeLabel} from '../../models/Enums/TicketType.enum';
 
 @Component({
   selector: 'app-ticket',

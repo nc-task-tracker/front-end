@@ -40,7 +40,7 @@ import {CreateTicketModalComponent} from './components/create-ticket-modal/creat
 import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {ProjectCodeValidator} from "./validators/project.code.validator";
 import {AuthGuardService} from "./service/auth-guard.service";
-import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';;
+import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 
 import {ProfileModule} from './components/profile/profile.module';
 import {TicketComponent} from './components/ticket/ticket.component';
@@ -63,9 +63,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    TicketComponent,
     CreateProjectComponent,
-    ProfileComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
@@ -92,7 +90,6 @@ const JWT_Module_Options: JwtModuleOptions = {
     ToolbarModule,
     MatGridListModule,
     ProfileModule,
-    MatGridListModule,
     TicketModule
   ],
   providers: [

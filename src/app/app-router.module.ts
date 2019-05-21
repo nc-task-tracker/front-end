@@ -10,7 +10,6 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {CommentsComponent} from './components/ticket/comments/comments.component';
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
 
-
 const routs: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
   {path: 'users', component: UserListComponent},

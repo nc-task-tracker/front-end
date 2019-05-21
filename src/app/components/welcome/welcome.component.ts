@@ -19,6 +19,5 @@ export class WelcomeComponent implements OnInit{
   constructor(private ngRedux: NgRedux<AppState>){}
 
   ngOnInit(): void {
-    this.ngRedux.dispatch(fetchTicketsAction());
   }
 }

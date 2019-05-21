@@ -5,8 +5,8 @@ import {TicketService} from '../../../service/ticket.service';
 import {AppState} from '../../../store';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user.model';
-import {saveCommentAction} from '../../../store/actions/tickets.actions';
 import {selectCurrentUser} from '../../../store/selectors/current-user.selector';
+import {saveCommentAction} from '../../../store/actions/tickets.actions';
 
 @Component({
   selector: 'app-comments',
