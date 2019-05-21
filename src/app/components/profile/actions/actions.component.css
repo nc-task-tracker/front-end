@@ -1,0 +1,23 @@
+.wrapper {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-y: scroll;
+  height: 100%;
+}
+.mat-list-icon {
+  color: rgba(0, 0, 0, 0.54);
+}
+.example-card {
+  min-width: 450px;
+  max-height: 350px;
+
+}
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.action {
+  font-size: 24px;
+}
+.height {
+  max-height: 305px;
+}

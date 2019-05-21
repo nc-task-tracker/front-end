@@ -1,116 +1,16 @@
 <div class="wrapper">
 
-  <mat-icon class="icon">account_circle</mat-icon>
-
-  <div class="one">
-    <mat-form-field>
-        <input matInput placeholder="First name" disabled>
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Last name" disabled>
-    </mat-form-field>
-    <mat-form-field class="email">
-      <input matInput placeholder="Email" disabled>
-      <mat-icon matSuffix>email</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="social">
-      <input matInput placeholder="Telephone" disabled>
-      <mat-icon matSuffix>phone</mat-icon>
-    </mat-form-field>
-    <mat-form-field class="social">
-      <input matInput placeholder="Skype" disabled>
-      <mat-icon matSuffix>chat</mat-icon>
-    </mat-form-field>
-    <div class="example-button-row">
-      <button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>
-    </div>
+  <div class="display">
+      <app-user-info></app-user-info>
+      <app-actions></app-actions>
   </div>
 
-  <mat-card class="example-card">
-    <div class="wrapper">
-    <mat-list class="height">
-      <h3 mat-subheader class="action">Actions</h3>
-      <mat-list-item *ngFor="let action of Actions">
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-divider></mat-divider>
-        <h4 mat-line>{{action.name}}</h4>
-        <p mat-line> {{action.updated | date}} </p>
-      </mat-list-item>
-    </mat-list>
-    </div>
-  </mat-card>
-
-  <div class="dashboard-card">
-  <mat-card >
-    <mat-tree  [dataSource]="dataSource" [treeControl]="treeControl">
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-        <button mat-icon-button disabled></button>
-        <div class="dashboards" >
-        {{node.name}}
-        </div>
-      </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-        <button  mat-icon-button matTreeNodeToggle
-                [attr.aria-label]="'toggle ' + node.name">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-          </mat-icon>
-        </button>
-        <div class="dashboard-head" >
-        {{node.name}}
-        </div>
-      </mat-tree-node>
-    </mat-tree>
-  </mat-card>
+  <div class="display">
+    <!--<div *ngIf="isLogin">-->
+    <app-dashboards ></app-dashboards>
+    <app-filters  ></app-filters>
+    <app-projects ></app-projects>
+    <!--</div>-->
   </div>
-
-  <div class="filter-card">
-    <mat-card >
-      <mat-tree  [dataSource]="dataSource2" [treeControl]="treeControl2">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <button mat-icon-button disabled></button>
-          <div class="filters" >
-            {{node.name}}
-          </div>
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button  mat-icon-button matTreeNodeToggle
-                   [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl2.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          <div class="filter-head" >
-            {{node.name}}
-          </div>
-        </mat-tree-node>
-      </mat-tree>
-    </mat-card>
-  </div>
-
-  <div class="project-card">
-    <mat-card >
-      <mat-tree  [dataSource]="dataSource3" [treeControl]="treeControl3">
-        <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-          <button mat-icon-button disabled></button>
-          <div class="projects" >
-            {{node.name}}
-          </div>
-        </mat-tree-node>
-        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-          <button  mat-icon-button matTreeNodeToggle
-                   [attr.aria-label]="'toggle ' + node.name">
-            <mat-icon class="mat-icon-rtl-mirror">
-              {{treeControl3.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-            </mat-icon>
-          </button>
-          <div class="project-head" >
-            {{node.name}}
-          </div>
-        </mat-tree-node>
-      </mat-tree>
-    </mat-card>
-  </div>
-
 </div>
 

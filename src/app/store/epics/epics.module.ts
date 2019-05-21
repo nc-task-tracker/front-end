@@ -4,16 +4,22 @@ import { CurrentUserEpic } from './current-user.epic';
 import {RegisterEpic} from './register.epic';
 import {ProjectEpic} from './project.epic';
 import {TicketsEpic} from './tickets.epic';
+import {ChangeProfileEpic} from "./change-profile.epic";
+import {ProfileEpic} from "./profile.epic";
+
 
 @NgModule({
+  providers: [
+    UserEpic,
+    CurrentUserEpic,
+    TicketsEpic,
+    ChangeProfileEpic,
+    ProjectEpic,
+    TicketsEpic,
+    RegisterEpic,
+    ProfileEpic
+  ],
 
-   providers: [
-     UserEpic,
-     CurrentUserEpic,
-     ProjectEpic,
-     TicketsEpic,
-     RegisterEpic
-   ],
 })
 export class EpicsModule {
 }
