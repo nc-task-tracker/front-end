@@ -9,3 +9,4 @@ export const defaultProfile: Profile = {
   firstName: '',
   lastName: ''
 };
+// TODO back-end model

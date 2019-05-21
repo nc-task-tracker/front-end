@@ -1,1 +1,42 @@
-{{hero}}
+<mat-card class="example-card">
+  <div class="user-info">
+    <div >
+      <mat-icon class="icon">account_circle</mat-icon>
+    </div>
+    <div class="left">
+      <div class="width">
+        <mat-label>{{fullName}} </mat-label>
+        <mat-icon matSuffix>mode_edit</mat-icon>
+      </div>
+      <!--<mat-divider></mat-divider>-->
+      <div class="width">
+        <mat-label>{{email}}</mat-label>
+        <mat-icon matSuffix>email</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>{{skype}}</mat-label>
+        <mat-icon matSuffix>chat</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>{{telephone}}</mat-label>
+        <mat-icon matSuffix>phone</mat-icon>
+      </div>
+      <div class="width">
+        <mat-label>{{additional}}</mat-label>
+        <mat-icon matSuffix>phone</mat-icon>
+      </div>
+      <!--<mat-divider></mat-divider>-->
+      <div class="width">
+        <mat-label>{{birthday}}</mat-label>
+        <mat-icon matSuffix>event</mat-icon>
+      </div>
+      <mat-card class="card">
+        <mat-label>{{description}}</mat-label>
+      </mat-card>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary" (click)="onChangeClick()">Change profile</button>
+      </div>
+    </div>
+
+  </div>
+</mat-card>

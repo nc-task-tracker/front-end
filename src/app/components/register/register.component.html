@@ -6,11 +6,11 @@
     <mat-card-content>
       <h2 color="primary" align="center">Registration</h2>
 
-      <form [formGroup]="userForm">
-        <mat-form-field>
-          <input matInput placeholder="Name" [formControlName]="'name'" required>
-          <mat-error *ngIf="name.invalid">{{getErrorText('name')}}</mat-error>
-        </mat-form-field>
+  <form [formGroup]="userForm">
+    <mat-form-field>
+      <input matInput placeholder="Login" [formControlName]="'login'" required>
+      <mat-error *ngIf="login.invalid">{{getErrorText('login')}}</mat-error>
+    </mat-form-field>
 
         <mat-form-field>
           <input matInput placeholder="Password" [formControlName]="'password'" [type]="hide ? 'password' : 'text'" required>

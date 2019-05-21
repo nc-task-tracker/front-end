@@ -3,7 +3,7 @@ import {Component, Inject, OnInit, Optional} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {User} from 'src/app/models/user.model';
-import {AppState} from 'src/app/store/index';
+import {AppState} from '../../store';
 import {registerAction} from 'src/app/store/actions/register.action';
 import {Router} from '@angular/router';
 
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
+      login: ['', Validators.required],
       password: ['', Validators.required],
       email: ['', Validators.email]
     });
@@ -31,11 +31,11 @@ export class RegisterComponent implements OnInit {
 
   onRegisterClick() {
     this.ngRedux.dispatch(registerAction(this.userForm.getRawValue()));
-    this.onCancelClick();
+    // this.onCancelClick();
   }
 
-  get name(): FormControl {
-    return this.userForm.get('name') as FormControl;
+  get login(): FormControl {
+    return this.userForm.get('login') as FormControl;
   }
 
   get password(): FormControl {

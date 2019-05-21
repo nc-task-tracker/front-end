@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { Ticket} from '../models/ticket.model';
 import {Observable, throwError} from 'rxjs';
@@ -9,6 +8,8 @@ import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/curre
 import {Project} from '../models/project.model';
 import {select} from '@angular-redux/store';
 import {Assignee} from '../models/assignee.model';
+import 'rxjs/add/observable/fromEvent';
+import 'rxjs/Rx';
 
 @Injectable()
 export class TicketService {
@@ -18,7 +19,7 @@ export class TicketService {
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  private ISSUE_URL = '/api/issue';
+  private readonly ISSUE_URL = '/api/issue';
   private readonly GET_USERS = '/api/users/assignee';
   private readonly GET_PROJECTS = '/api/project/possibleprojects';
 
@@ -69,8 +70,4 @@ export class TicketService {
     return this.http.get<Ticket[]>(`${this.ISSUE_URL}/all`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
-
-  // getTicketInComponent(): Observable<Ticket> {
-  //   return ticket;
-  // }
 }

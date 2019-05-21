@@ -5,6 +5,9 @@ import {RegisterEpic} from './register.epic';
 import {ProjectEpic} from './project.epic';
 import {TicketsEpic} from './tickets.epic';
 import {CurrentTicketsEpic} from './current-ticket.epic';
+import {ChangeProfileEpic} from "./change-profile.epic";
+import {ProfileEpic} from "./profile.epic";
+
 
 @NgModule({
 
@@ -14,7 +17,9 @@ import {CurrentTicketsEpic} from './current-ticket.epic';
      ProjectEpic,
      TicketsEpic,
      RegisterEpic,
-     CurrentTicketsEpic
+     CurrentTicketsEpic,
+     ChangeProfileEpic,
+     ProfileEpic
    ],
 })
 export class EpicsModule {
