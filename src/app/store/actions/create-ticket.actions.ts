@@ -5,9 +5,13 @@ import {FETCH_USERS, FETCH_USERS_FAILED, FETCH_USERS_SUCCESS} from "./users.acti
 export const CREATE_TICKET = '[Tickets] Create ticket';
 export const CREATE_TICKET_SUCCESS = '[Tickets] Create ticket success';
 export const CREATE_TICKET_FAILURE = '[Tickets] Create ticket failure';
+<<<<<<< HEAD:src/app/store/actions/tickets.actions.ts
 export const FETCH_TICKET_NAMES = '[Tickets] Fetch ticket names';
 export const FETCH_TICKET_NAMES_SUCCESS = '[Tickets] Fetch ticket names success';
 export const FETCH_TICKET_NAMES_FAILED = '[Tickets] Fetch ticket names failed';
+=======
+export const GET_ASSIGNEE_LIST = '[Ticket] Get assignee list';
+>>>>>>> origin/dev:src/app/store/actions/create-ticket.actions.ts
 
 export const createTicketAction = (ticket: Ticket) => ({
   type: CREATE_TICKET,
@@ -20,9 +24,10 @@ export const createTicketSuccessAction = (ticket: Ticket) => ({
 });
 
 export const createTicketFailureAction = () => ({
-   type: CREATE_TICKET_FAILURE
+  type: CREATE_TICKET_FAILURE
 });
 
+<<<<<<< HEAD:src/app/store/actions/tickets.actions.ts
 export function fetchTicketNamesAction() {
   return {
     type: FETCH_TICKET_NAMES
@@ -42,3 +47,10 @@ export function fetchTicketNamesFailedAction(errorMessage: string) {
     payload: {errorMessage}
   };
 }
+=======
+export const getAssigneeList = (inputValue: string) => ({
+  type: GET_ASSIGNEE_LIST,
+  payload: {inputValue}
+});
+
+>>>>>>> origin/dev:src/app/store/actions/create-ticket.actions.ts

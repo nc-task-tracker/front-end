@@ -54,3 +54,71 @@
       </div>
     </form>
   </div>
+<!--
+<div class="create-ticket">
+
+  <form [formGroup]="ticketForm" class="create-issue">
+
+    <div class="info_wrap">
+
+      <p>Admin: <span class="adminName"> {{userName | async}}</span></p>
+      <p>Project: id</p>                  &lt;!&ndash;TODO: project's code&ndash;&gt;
+    </div>
+
+
+    <mat-form-field class="input-full-width">
+      <mat-select [formControlName]="'issueType'" placeholder="Issue type">
+        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+
+    <mat-form-field class="input-full-width">
+      <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
+    </mat-form-field>
+
+    <mat-form-field class="input-full-width">
+      <input matInput placeholder="Assignee" [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">
+        <mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">
+          {{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>
+        </mat-option>
+    </mat-form-field>
+
+    <mat-form-field class="input-full-width">
+      <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
+        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field class="description_issue">
+      <textarea [formControlName]="'issueDescription'" maxlength="500" matInput placeholder="Description"></textarea>
+    </mat-form-field>
+
+    <div class="dateWrapper">
+      <mat-form-field>
+        <input matInput [min]="minDate" [matDatepicker]="pickerDue" placeholder="Choose a due date">
+        <mat-datepicker-toggle matSuffix [for]="pickerDue"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDue></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+
+    <div class="control-buttons">
+      <button
+        matTooltip="Create issue"
+        aria-label="Button that displays a tooltip when focused or hovered over"
+        mat-raised-button class="control-button create"
+        (click)="createTicket()">Create
+      </button>
+      <button matTooltip="Cancel creating issue"
+              aria-label="Button that displays a tooltip when focused or hovered over"
+              mat-raised-button class="control-button cancel"
+              (click)="onCancelClick()">Cancel
+      </button>
+    </div>
+
+  </form>
+
+</div>

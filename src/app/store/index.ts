@@ -12,4 +12,5 @@ export interface AppState {
     readonly tickets: Map<string, Ticket>;
     readonly route?: string;
     // readonly filter?: FilterState;
+
 }

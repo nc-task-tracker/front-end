@@ -5,7 +5,8 @@
             true,
             "attribute",
             "app",
-            "camelCase"
+            "camelCase",
+            "snake_case"
         ],
         "component-selector": [
             true,
