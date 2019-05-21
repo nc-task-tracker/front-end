@@ -1,7 +1,7 @@
 <mat-form-field class="search-form">
 
   <ng-container [formGroup]="controlContainer.control">
-    <input [formControl]="inputControl" [placeholder]="placeholder" matInput [matAutocomplete]="auto">
+    <input #assignee [formControl]="inputControl" [placeholder]="placeholder" matInput [matAutocomplete]="auto">
   </ng-container>
 
   <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onItemSelect($event)">

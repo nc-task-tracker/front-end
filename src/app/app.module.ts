@@ -39,8 +39,9 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {TicketComponent} from './components/ticket/ticket.component';
 import {RegisterService} from './service/register.service';
 import {ProjectService} from './service/project.service';
-import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
-import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
+import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
+import {AssigneeSearchComponent} from './components/create-ticket-modal/assignee-search/assignee-search.component';
+import {AbstractSearchFormComponent} from './components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { AssigneeFormComponent } from './components/assignee-form/assignee-form.
     ChangeProfileComponent,
     WelcomeComponent,
     CreateTicketModalComponent,
-    AssigneeFormComponent
+    AssigneeSearchComponent,
+    AbstractSearchFormComponent
   ],
   imports: [
     BrowserModule,

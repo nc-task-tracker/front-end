@@ -29,7 +29,7 @@ export class AbstractSearchFormComponent<T = any> implements OnInit {
 
   inputControl: FormControl = new FormControl();
 
-  @ViewChild('assigneeInput') assigneeInput: ElementRef<HTMLInputElement>;
+  @ViewChild('assignee') assignee: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private controlContainer: ControlContainer,

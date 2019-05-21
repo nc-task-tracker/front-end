@@ -37,7 +37,6 @@ export class CreateTicketModalComponent implements OnInit {
   ticketTypes = allTicketTypes;
 
   minDate = new Date();
-
   possibleProjects;
 
   constructor(
@@ -47,7 +46,7 @@ export class CreateTicketModalComponent implements OnInit {
     private storageService: GlobalUserStorageService,
     public dialogRef: MatDialogRef<CreateTicketModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private ticketService: TicketService
+    private ticketService: TicketService,
   ) {
   }
 
@@ -60,13 +59,11 @@ export class CreateTicketModalComponent implements OnInit {
       project: [''/*, Validators.required*/],
       issueType: ['', Validators.required],
       issuePriority: ['', Validators.required],
-      assignee: [''],
+      assignee: ['', Validators.required],
       reporter: [''],
       minDate: new Date()
 
     });
-
-
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {

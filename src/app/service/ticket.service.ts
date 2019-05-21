@@ -13,9 +13,10 @@ import {select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/current-user.selector';
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
+import {SearchByString} from '../components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 
 @Injectable()
-export class TicketService {
+export class TicketService implements SearchByString {
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
@@ -49,6 +50,14 @@ export class TicketService {
     return this.http.get<Project[]>(`${this.GET_PROJECTS}`, {
       params: {
         name: userName
+      }
+    });
+  }
+
+  searchByString(name: string): Observable<Assignee[]> {
+    return this.http.get<Assignee[]>(`${this.GET_USERS}`, {
+      params: {
+        name: name
       }
     });
   }
