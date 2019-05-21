@@ -1,7 +1,7 @@
 import {ProjectService} from "../service/project.service";
 import {AbstractControl, AsyncValidator, ValidationErrors} from "@angular/forms";
 import {Injectable} from "@angular/core";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {filter, map} from "rxjs/operators";
 
 @Injectable()

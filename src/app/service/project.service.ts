@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Project} from "../models/project.model";
@@ -16,12 +16,16 @@ export class ProjectService {
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
-  searchProject(name: string, code?: string): Observable<Project[]> {
+  searchProject(name?: string, code?: string): Observable<Project[]> {
+    let params = new HttpParams();
+    if(name) {
+      params = params.append('name', name);
+    }
+    if(code) {
+      params = params.append('code', code);
+    }
     return this.http.get<Project[]>(this.PROJECT_URL, {
-       params: {
-         name: name,
-         code: code
-       }
+       params: params
     });
   }
 }

@@ -14,7 +14,7 @@ export class ProjectCodeValidator implements AsyncValidator {
     const trimedValue = (<string>control.value).trim();
     return this.projectService.searchProject(null, trimedValue)
       .pipe(
-        map(projects => projects.filter(el => el.projectName === trimedValue).length ? {name: {value: trimedValue}} : null)
+        map(projects => projects.filter(el => el.projectCode === trimedValue).length ? {name: {value: trimedValue}} : null)
       )
   }
 }

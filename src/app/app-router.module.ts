@@ -6,7 +6,6 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
-import {AuthGuardService as AuthGuard} from './service/auth-guard.service';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
 

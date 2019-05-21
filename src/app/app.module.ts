@@ -25,17 +25,17 @@ import {createEpicMiddleware} from 'redux-observable';
 import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
-import {ProjectNameValidator} from './validators/project.name.validator';
-import {ProjectCodeValidator} from './validators/project.code.validator';
-import {AuthGuardService} from './service/auth-guard.service';
-import {JwtHelperService} from '@auth0/angular-jwt';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProjectNameValidator} from "./validators/project.name.validator";
+import {ProjectCodeValidator} from "./validators/project.code.validator";
+import {AuthGuardService} from "./service/auth-guard.service";
+import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';;
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 import { MaterialModule } from './material.module';
-import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {ProfileModule} from './components/profile/profile.module';
-import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {RegisterService} from './service/register.service';
@@ -43,9 +43,15 @@ import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
-import {from} from "rxjs";
 import {ProfileService} from "./service/profile.service";
 
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: () => localStorage.getItem('currentToken'),
+    whitelistedDomains: ['localhost:4200/home']
+  }
+};
 
 @NgModule({
   declarations: [
@@ -62,11 +68,11 @@ import {ProfileService} from "./service/profile.service";
     BrowserModule,
     EpicsModule,
     FormsModule,
-    // import main NgReduxModule
-    NgReduxModule,
     ReactiveFormsModule,
+    NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
+    JwtModule.forRoot(JWT_Module_Options),
     HttpClientModule,
     UserListModule,
     BrowserAnimationsModule,
@@ -107,6 +113,7 @@ export class AppModule {
     private ngReduxRouter: NgReduxRouter,
     private epicService: EpicService, private devTools: DevToolsExtension,
     private localStorageService: GlobalUserStorageService) {
+
     const epics = this.epicService.getEpics();
     const middleware = createEpicMiddleware();
     let enhancers = [];
