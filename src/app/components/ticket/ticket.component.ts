@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {allTicketPriority, allTicketStatus, allTicketType, defaultTicket, Ticket} from '../../models/ticket.model';
+import {allTicketPriority, allTicketStatus, allTicketType, Ticket} from '../../models/ticket.model';
 import {NgRedux, select} from '@angular-redux/store';
 import {AppState} from '../../store';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -8,7 +8,7 @@ import {TicketService} from '../../service/ticket.service';
 import {Observable} from 'rxjs';
 import {selectCurrentIsLoading, selectCurrentTicket} from '../../store/selectors/current-ticket.selector';
 import {deleteTicketAction, selectTicket, updateTicketAction} from '../../store/actions/tickets.actions';
-import {TicketType} from '../../models/Enums/TicketType.enum';
+import {TicketType, TicketTypeLabel} from '../../models/Enums/TicketType.enum';
 
 @Component({
   selector: 'app-ticket',
@@ -23,14 +23,14 @@ export class TicketComponent implements OnInit {
   statuses = allTicketStatus;
   types = allTicketType;
 
-  editName: boolean = true;
-  editAssignee: boolean = true;
+  edit: boolean = true;
 
   @select(selectCurrentIsLoading)
   isLoading: Observable<boolean>;
 
   ticket: Ticket;
   ticketId: string;
+  haveComments: boolean = false;
   ticketComments;
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
@@ -46,6 +46,7 @@ export class TicketComponent implements OnInit {
       this.ticket = selectCurrentTicket(this.ngRedux.getState());
       this.ticketId = this.ticket.id;
       this.ticketComments = this.ticket.comments;
+      if (this.ticketComments.length !== 0) this.haveComments = true;
       this.formInit();
       }})
   }
@@ -56,7 +57,7 @@ export class TicketComponent implements OnInit {
       issueType: [this.ticket.issueType, Validators.required],
       issuePriority: [this.ticket.issuePriority, Validators.required],
       issueStatus: [this.ticket.issueStatus, Validators.required],
-      assigneeId: [this.ticket.assigneeId],
+      // assignee: [this.ticket.assignee.firstName],
       dueDate: [this.ticket.dueDate, Validators.required],
       issueDescription: [this.ticket.issueDescription]
     });
@@ -69,5 +70,9 @@ export class TicketComponent implements OnInit {
   onDeleteClick() {
     this.ngRedux.dispatch(deleteTicketAction(this.ticket.id));
     this.router.navigate(['home'])
+  }
+
+  onEditClick() {
+    this.edit = !this.edit;
   }
 }

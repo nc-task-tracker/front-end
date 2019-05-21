@@ -1,51 +1,30 @@
-mat-spinner {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .ticket {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: stretch;
   overflow: auto;
   overflow-x: scroll;
   height: 100%;
-  width: 100%;
 }
 
 .content {
   display: flex;
   flex-direction: row;
-  width: 100%;
-}
-
-.name {
-  width: 100%;
 }
 
 .name-card {
-  height: 65px;
+  height: 40px;
 }
 .edit-icon {
   font-size: 20px;
 }
 
+.ticket-title {
+  size: 800px;
+}
 .project-subtitle {
   height: 1px;
-  padding-left: 20px;
-}
-
-.project-title {
-  height: 5px;
-  padding-left: 20px;
-
-}
-
-.project-icon {
-  font-size: 80px;
 }
 
 .people {
@@ -100,6 +79,7 @@ mat-spinner {
 
 .description {
   width: 555px;
+  height: 70px;
 }
 
 mat-form-field {
@@ -108,6 +88,7 @@ mat-form-field {
 
 .due {
   width: 110px;
+  height: 5px;
 }
 
 .comment-history {
@@ -117,4 +98,8 @@ mat-form-field {
 
 .size {
   width: 175px;
+}
+
+.create-date {
+  height: 5px;
 }

@@ -36,8 +36,6 @@ export class CreateTicketPageComponent implements OnInit {
      const formValue = this.ticketForm.getRawValue();
      this.ngRedux.dispatch(createTicketAction(formValue));
   }
-
-
 }
 
 

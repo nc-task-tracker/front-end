@@ -1,11 +1,11 @@
 export interface Profile {
   readonly id: string;
-  readonly FirstName: string;
-  readonly LastName: string;
+  readonly firstName: string;
+  readonly lastName: string;
 }
 
 export const defaultProfile: Profile = {
-  id: '1',
-  FirstName: 'firstName',
-  LastName: ''
+  id: '',
+  firstName: '',
+  lastName: ''
 };

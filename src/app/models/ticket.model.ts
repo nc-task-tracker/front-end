@@ -86,6 +86,10 @@ export const allTicketType: TicketTypeObject[] = [
     type: TicketType.TASK,
     title: TicketTypeLabel.TASK
   },
+  {
+    type: TicketType.SUBTASK,
+    title: TicketTypeLabel.SUBTASK
+  },
 ];
 
 export interface Ticket {
@@ -98,8 +102,8 @@ export interface Ticket {
   readonly startDate: Date;
   readonly dueDate: Date;
   readonly projectId: string;
-  readonly reporterId: string;
-  readonly assigneeId: string;
+  readonly reporter: Profile;
+  readonly assignee: Profile;
   readonly parentId: string;
   readonly comments: Comment []
 }
@@ -114,10 +118,9 @@ export const defaultTicket: Ticket = {
   startDate: new Date('02/02/03'),
   dueDate: new Date('02/02/02'),
   projectId: '',
-  reporterId: '',
-  assigneeId: '',
+  reporter: null,
+  assignee: null,
   parentId: null,
   comments: null
 };
 
-//date format

@@ -16,7 +16,8 @@ import {selectCurrentUser} from '../../../store/selectors/current-user.selector'
 export class CommentsComponent implements OnInit {
 
   @Input('issue_Id') issue_Id: string;
-  @Input('comments') comments: Comment[];
+  @Input() have_Comments: boolean;
+  @Input('comments') comments: Set<Comment>;
 
   currentUser: User;
   commentForm: FormGroup;
@@ -33,7 +34,7 @@ export class CommentsComponent implements OnInit {
 
   formInit() {
     this.commentForm = this.fb.group({
-      profileId: [''],
+      profileId: ['1'],
       commentText: ['']
     })
   }

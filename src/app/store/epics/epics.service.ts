@@ -31,6 +31,7 @@ export class EpicService {
             this.ticketsEpic.deleteTicket$,
             this.ticketsEpic.saveComment$,
             this.ticketsEpic.selectTicket$
+            // this.currentTicketEpic.updateCurrentTicket$
         );
     }
 }

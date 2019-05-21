@@ -11,6 +11,7 @@ import {
 import {TicketService} from '../../service/ticket.service';
 import {TransformService} from '../../utils/transform.service';
 import {of} from 'rxjs';
+import {saveCurrentTicketCommentAction, updateCurrentTicketAction} from '../actions/current-ticket.action';
 
 @Injectable()
 export class TicketsEpic {
@@ -59,7 +60,12 @@ export class TicketsEpic {
         return this.ticketService
           .updateTicket(payload.ticket, id.ticketId)
           .pipe(
-            map( ticket => updateTicketSuccessAction(ticket, ticket.id))
+            map( ticket =>  {
+              of(
+                  updateTicketSuccessAction(ticket, id.ticketId),
+                  updateCurrentTicketAction(ticket)
+                )}
+                )
           );
       })
     );
@@ -71,7 +77,11 @@ export class TicketsEpic {
         return this.ticketService
           .saveComment(payload.comment, id.ticketId)
           .pipe(
-            map( comment => saveCommentSuccessAction(comment, id.ticketId))
+            map( comment => {
+              of(saveCommentSuccessAction(comment, id.ticketId),
+                 saveCurrentTicketCommentAction(comment, id.ticketId)
+              )}
+            )
           );
       })
     );
