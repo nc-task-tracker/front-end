@@ -1,4 +1,6 @@
-<button mat-button color="primary" (click) = "onClickAddMember()">Add issue</button>
+<div class="example-button-row">
+  <button mat-button color="primary" (click) = "AddMember()">Add</button>
+</div>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort (matSortChange)="onSort($event)">

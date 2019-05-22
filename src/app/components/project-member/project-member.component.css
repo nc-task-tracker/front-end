@@ -25,3 +25,7 @@ td {
 }
 
 tr:hover td {background: #ccddff;}
+
+.example-button-row{
+  padding-left: 70px;
+}

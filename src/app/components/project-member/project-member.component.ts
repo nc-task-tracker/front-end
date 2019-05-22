@@ -53,19 +53,20 @@ export class ProjectMemberComponent extends AutoUnsubscribe implements OnInit,On
   }
 
   deleteMember(member: ProjectMember): void {
-    this.confirmService.openConfirmDialog("Are you sure that you want to delete assigner?")
+    this.confirmService.openConfirmDialog("Are you sure?")
       .afterClosed().pipe(takeUntil(this.streamEndSubject)).subscribe(response => {
       if (response) {
         this.projectMemberService.deleteMember(this.id,member.id).subscribe();
 
-        this.members.filter(function (value,index,arr) {
+        this.members = this.members.filter(function (value,index,arr) {
           return value.id!=member.id;
         });
 
         this.dataSource = this.members;
       }
-    })
+      })
   }
+
   //
   // addAssigner(user: User): void {
   //   this.confirmService.openConfirmDialog("Are you sure that this user become a assigner?")

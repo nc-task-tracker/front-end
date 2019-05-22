@@ -24,7 +24,7 @@ import {EmailSenderService} from "../../service/email-sender.service";
 })
 export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnDestroy {
 
-  private displayedColumns: string[] = ['issueName', 'issueType', 'issueStatus', 'issuePriority', 'startDate', 'issueDescription', 'delete'];
+  private displayedColumns: string[] = ['issueName', 'issueType', 'issueStatus', 'issuePriority', 'startDate', 'issueDescription','addSubTicket','delete'];
   private tickets: Ticket[];
   private project: Project;
   private dataSource;
@@ -89,12 +89,15 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
     this.router.navigate(['/create-ticket']);
   }
 
-  onClickAssignee(): void{
+  onClickMembers(): void{
     this.router.navigate([`/project/${this.id}/assignee`]);
   }
 
-  onClickDeleteTicket(ticket: Ticket): void {
+  onClickAddSubTicket(ticket: Ticket): void{
 
+  }
+
+  onClickDeleteTicket(ticket: Ticket): void {
     this.confirmService.openConfirmDialog("Are you sure that you want to delete this ticket?")
       .afterClosed().pipe(takeUntil(this.streamEndSubject)).subscribe(repsponse => {
       if (repsponse) {
