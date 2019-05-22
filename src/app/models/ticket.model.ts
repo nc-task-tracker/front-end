@@ -1,89 +1,105 @@
-import {testUser, User} from './user.model';
-import {TicketPriority, TicketPriorityLabel} from './Enums/TicketPriority.enum';
-import {TicketStatus, TicketStatusLabel} from './Enums/TicketStatus.enum';
-import {TicketPriorityObject} from './ticket-priority.model';
-import {TicketStatusObject} from './ticket-status.model';
-import {TicketType, TicketTypeLabel} from './Enums/TicketType.enum';
-import {TicketTypeObject} from './ticket-type.model';
+import {User} from './user.model';
+
+export enum TicketStatus {
+  OPEN = 'OPEN',
+  IN_PROGRESS = 'IN PROGRESS',
+  RESOLVED = 'RESOLVED',
+  REOPENED = 'REOPEND',
+  CLOSED = 'CLOSED'
+}
+
+export enum TicketPriority {
+  MAJOR = 'MAJOR',
+  CRITICAL = 'CRITICAL',
+  BLOCKER = 'BLOCKER',
+  TRIVIAL = 'TRIVIAL',
+  MINOR = 'MINOR'
+}
+
+export interface TicketPriorityObject {
+  readonly type: TicketPriority;
+  readonly title: string;
+}
+
+export enum TicketPriorityLabel {
+  MAJOR = 'Major',
+  CRITICAL = 'Critical',
+  BLOCKER = 'Blocker',
+  TRIVIAL = 'Trivial',
+  MINOR = 'Minor'
+}
 
 export const allTicketPriority: TicketPriorityObject[] = [
   {
-    priority: TicketPriority.TRIVIAL,
-    title: TicketPriorityLabel.TRIVIAL
+    type: TicketPriority.TRIVIAL,
+    title: 'Trivial'
   },
   {
-    priority: TicketPriority.MINOR,
-    title: TicketPriorityLabel.MINOR
+    type: TicketPriority.MINOR,
+    title: 'Minor'
   },
   {
-    priority: TicketPriority.MAJOR,
-    title: TicketPriorityLabel.MAJOR
+    type: TicketPriority.MAJOR,
+    title: 'Major'
   },
   {
-    priority: TicketPriority.CRITICAL,
-    title: TicketPriorityLabel.CRITICAL
+    type: TicketPriority.CRITICAL,
+    title: 'Critical'
   },
   {
-    priority: TicketPriority.BLOCKER,
-    title: TicketPriorityLabel.BLOCKER
+    type: TicketPriority.BLOCKER,
+    title: 'Blocker'
   }
 ];
 
-export const allTicketStatus: TicketStatusObject[] = [
-  {
-    status: TicketStatus.TO_DO,
-    title: TicketStatusLabel.TO_DO
-  },
-  {
-    status: TicketStatus.PROGRESS,
-    title: TicketStatusLabel.PROGRESS
-  },
-  {
-    status: TicketStatus.OPEN,
-    title: TicketStatusLabel.OPEN
-  },
-  {
-    status: TicketStatus.CLOSED,
-    title: TicketStatusLabel.CLOSED
-  },
-  {
-    status: TicketStatus.REOPENED,
-    title: TicketStatusLabel.REOPENED
-  },
-  {
-    status: TicketStatus.RESOLVED,
-    title: TicketStatusLabel.RESOLVED
-  }
-];
+export enum TicketType {
+  TASK = 'TASK',
+  BUG = 'BUG',
+  EPIC = 'EPIC',
+  IMPROVEMENT = 'IMPROVEMENT',
+  STORY = 'STORY',
+  NEW_FEATURE = 'NEW FEATURE'
+}
 
-export const allTicketType: TicketTypeObject[] = [
+export enum TicketTypeLabel {
+  TASK = 'Task',
+  BUG = 'Bug',
+  EPIC = 'Epic',
+  IMPROVEMENT = 'Improvement',
+  STORY = 'Story',
+  NEW_FEATURE = 'New feature'
+}
+
+export const allTicketTypes: TicketTypeObject[] = [
   {
     type: TicketType.BUG,
-    title: TicketTypeLabel.BUG
+    title: 'Bug'
   },
-
   {
     type: TicketType.EPIC,
-    title: TicketTypeLabel.EPIC
+    title: 'Epic'
   },
-
   {
     type: TicketType.IMPROVEMENT,
-    title: TicketTypeLabel.IMPROVEMENT
+    title: 'Improvement'
   },
   {
     type: TicketType.NEW_FEATURE,
-    title: TicketTypeLabel.NEW_FEATURE
+    title: 'New feature'
   },
   {
     type: TicketType.STORY,
-    title: TicketTypeLabel.STORY
+    title: 'Story'
   },
   {
     type: TicketType.TASK,
-    title: TicketTypeLabel.TASK
-  },
+    title: 'Task'
+  }
 ];
+export interface TicketTypeObject {
+  readonly type: TicketType;
+  readonly title: string;
+}
 
 export interface Ticket {
   readonly id: string;
@@ -93,18 +109,8 @@ export interface Ticket {
   readonly  status: TicketStatus;
   readonly  description: string;
   readonly startDate: Date;
+  readonly dueDate: Date;
   readonly  reporter: User;
   readonly  assignee: User;
 }
 
-export const Ticket_1: Ticket = {
-  id: '1',
-  name: 'Name',
-  type: TicketType.TASK,
-  priority: TicketPriority.MINOR,
-  status: TicketStatus.RESOLVED,
-  description: 'description',
-  startDate: null,
-  reporter: testUser,
-  assignee: testUser,
-};

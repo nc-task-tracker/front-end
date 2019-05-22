@@ -6,6 +6,7 @@ import {Project} from "../models/project.model";
 import {SortParameters} from "../models/util/table-sort-param.model";
 import {TablePageData} from "../models/util/table-page-data.model";
 import {User} from "../models/user.model";
+import {ProjectMember} from "../models/project-member.model";
 
 @Injectable()
 export class ProjectService {
@@ -21,6 +22,11 @@ export class ProjectService {
 
   getProjectById(projectId: string): Observable<Project> {
     return this.http.get<Project>(`${this.PROJECT_URL}/${projectId}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getProjectByCode(projectCode: string): Observable<Project> {
+    return this.http.get<Project>(`${this.PROJECT_URL}/${projectCode}`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
@@ -52,4 +58,5 @@ export class ProjectService {
        }
     });
   }
+
 }

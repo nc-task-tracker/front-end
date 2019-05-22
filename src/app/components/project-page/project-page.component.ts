@@ -14,6 +14,7 @@ import {UserService} from "../../service/user.service";
 import {select} from "@angular-redux/store";
 import {selectCurrentUserName} from "../../store/selectors/current-user.selector";
 import {Observable} from "rxjs";
+import {EmailSenderService} from "../../service/email-sender.service";
 
 
 @Component({
@@ -29,7 +30,6 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
   private dataSource;
   private sortParameters: SortParameters;
   private id: string;
-  private noAssigners: User[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -41,6 +41,7 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
               private projectService: ProjectService,
               private ticketService: TicketService,
               private userService: UserService,
+              private emailService: EmailSenderService,
               private cd: ChangeDetectorRef,
               private router: Router,
               private confirmService: MatConfirmDialogService) {
@@ -80,34 +81,36 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.paginator.length = pageData.totalElem;
         this.dataSource.paginator = this.paginator;
       });
-
-    this.userService.getNotProjectAssigners(this.id).subscribe(value => {
-      this.noAssigners = value as User[];
-    });
+    console.log(this.tickets);
 
   }
 
   onClickAddTicket(): void {
     this.router.navigate(['/create-ticket']);
-
   }
 
-  onClickDeleteTicket(id: string): void {
+  onClickAssignee(): void{
+    this.router.navigate([`/project/${this.id}/assignee`]);
+  }
+
+  onClickDeleteTicket(ticket: Ticket): void {
 
     this.confirmService.openConfirmDialog("Are you sure that you want to delete this ticket?")
       .afterClosed().pipe(takeUntil(this.streamEndSubject)).subscribe(repsponse => {
       if (repsponse) {
 
-        this.ticketService.deleteTicket(id).subscribe();
+        this.ticketService.deleteTicket(ticket.id).subscribe();
 
         this.tickets = this.tickets.filter(function (value, index, arr) {
-          return value.id != id;
+          return value.id != ticket.id;
         });
         this.dataSource = this.tickets;
         this.paginator.length--;
 
         if (this.tickets.length == 0)
           this.paginator.previousPage();
+
+        this.emailService.sendEmail(ticket).subscribe();
       }
     });
 
@@ -137,33 +140,5 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.dataSource = response.list;
         this.tickets = response.list;
       });
-  }
-
-  deleteAssigner(assigner: User): void {
-    this.confirmService.openConfirmDialog("Are you sure that you want to delete assigner?")
-      .afterClosed().pipe(takeUntil(this.streamEndSubject)).subscribe(response => {
-      if (response) {
-        this.projectService.deleteAssigner(this.id, assigner.id).subscribe();
-
-        this.project.assigners = this.project.assigners.filter(function (value, arr, index) {
-          return value.id != assigner.id;
-        });
-        this.noAssigners.push(assigner);
-      }
-    })
-  }
-
-  addAssigner(user: User): void {
-    this.confirmService.openConfirmDialog("Are you sure that this user become a assigner?")
-      .afterClosed().pipe(
-      takeUntil(this.streamEndSubject),
-      filter(response => response),
-      switchMap(() => this.projectService.addAssigner(this.id, user))
-    ).subscribe(() => {
-      this.project.assigners.push(user);
-      this.noAssigners = this.noAssigners.filter(function (value, arr, index) {
-        return value.id != user.id;
-      })
-    })
   }
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {allTicketPriority, allTicketStatus, allTicketType, Ticket, Ticket_1} from '../../models/ticket.model';
+import {allTicketPriority, TicketStatus, allTicketTypes, Ticket} from '../../models/ticket.model';
 import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../../store';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -14,8 +14,8 @@ import {TicketService} from "../../service/ticket.service";
 export class TicketComponent implements OnInit {
 
   priorities = allTicketPriority;
-  statuses = allTicketStatus;
-  types = allTicketType;
+  statuses = TicketStatus;
+  types = allTicketTypes;
 
   ticket: Ticket;
 

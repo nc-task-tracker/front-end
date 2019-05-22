@@ -1,0 +1,59 @@
+<form [formGroup]="ticketForm" class="create-issue create-ticket-modal">
+
+  <p class="info_wrap">Admin: <span class="adminName">{{userName | async}}</span></p>
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
+      <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'issueType'" placeholder="Issue type">
+      <mat-option *ngFor="let prior of ticketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <input [formControlName]="'issueName'" matInput placeholder="Issue title" required>
+  </mat-form-field>
+
+  <app-assignee-form></app-assignee-form>
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
+      <mat-option *ngFor="let prior of ticketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="description_issue">
+    <textarea [formControlName]="'issueDescription'" maxlength="1000" matInput placeholder="Description"></textarea>
+  </mat-form-field>
+
+  <div class="dateWrapper">
+    <mat-form-field>
+      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'"
+             placeholder="Choose a due date">
+      <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
+      <mat-datepicker #dueDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="control-buttons">
+    <button
+      matTooltip="Create issue"
+      mat-raised-button
+      class="control-button create"
+      (click)="createTicket()">Create
+    </button>
+    <button matTooltip="Cancel"
+            mat-raised-button
+            class="control-button cancel"
+            (click)="onCancelClick()">Cancel
+    </button>
+  </div>
+
+
+</form>
+

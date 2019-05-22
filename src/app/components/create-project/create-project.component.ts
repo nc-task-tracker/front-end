@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {Observable} from "rxjs";
-import {Project} from "../../models/project.model";
-import {NgRedux} from "@angular-redux/store";
-import {AppState} from "../../store";
-import {Router} from "@angular/router";
-import {createProjectAction} from "../../store/actions/create-project.actions";
-import {GlobalUserStorageService} from "../../service/global-storage.service";
-import {ProjectNameValidator} from "../../validators/project.name.validator";
-import {ProjectCodeValidator} from "../../validators/project.code.validator";
+import {ProjectNameValidator} from '../../validators/project.name.validator';
+import {ProjectCodeValidator} from '../../validators/project.code.validator';
+import {Observable} from 'rxjs';
+import {Project} from '../../models/project.model';
+import {NgRedux} from '@angular-redux/store';
+import {AppState} from '../../store';
+import {Router} from '@angular/router';
+import {createProjectAction} from '../../store/actions/create-project.actions';
+import {GlobalUserStorageService} from '../../service/global-storage.service';
 
 @Component({
   selector: 'create-project',
@@ -21,11 +21,11 @@ export class CreateProjectComponent implements OnInit {
 
 
   constructor(private ngRedux: NgRedux<AppState>,
-              private fb: FormBuilder, private router: Router,
+              private fb: FormBuilder,
+              private router: Router,
               private storageService: GlobalUserStorageService,
               private projectNameValidator: ProjectNameValidator,
               private projectCodeValidator: ProjectCodeValidator) {
-
   }
 
   ngOnInit() {
@@ -50,11 +50,11 @@ export class CreateProjectComponent implements OnInit {
   onCreateClick() {
     const formValue = this.projectForm.getRawValue();
     this.ngRedux.dispatch(createProjectAction(formValue as any));
-    this.onCancelClick();
+    //this.onCancelClick();
   }
 
   onCancelClick() {
-    this.router.navigate(['projects']);     //todo: Projects page
+    this.router.navigate(['projects']);
   }
 
   get projectName(): FormControl {

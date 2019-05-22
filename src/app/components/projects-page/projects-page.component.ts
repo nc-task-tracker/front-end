@@ -17,7 +17,6 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
   private projects: Project[];
   private dataSource;
   private sortParameters: SortParameters;
-  private selectedProjects: Project;
   private displayedColumns: string[] = ['projectName', 'projectCode', 'projectStatus', 'projectDescription', 'projectOwner'];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

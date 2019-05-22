@@ -1,4 +1,5 @@
 import {User} from "./user.model";
+import {ProjectMember} from "./project-member.model";
 
 export interface Project {
   readonly id: string;
@@ -7,6 +8,5 @@ export interface Project {
   readonly projectOwner: User;
   readonly projectStatus: string;           //todo add dashboards
   readonly projectCode: string;
-  assigners: User[];
+  readonly members: ProjectMember[];
 }
-

@@ -1,22 +1,21 @@
-/*
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CreateTicketPageComponent} from './create-ticket-page.component';
+import {ProjectMemberComponent} from './project-member.component';
 
 
-describe('CreateTicketPageComponent', () => {
-  let component: CreateTicketPageComponent;
-  let fixture: ComponentFixture<CreateTicketPageComponent>;
+describe('ProjectMemberComponent', () => {
+  let component: ProjectMemberComponent;
+  let fixture: ComponentFixture<ProjectMemberComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [CreateTicketPageComponent]
+      declarations: [ProjectMemberComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateTicketPageComponent);
+    fixture = TestBed.createComponent(ProjectMemberComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -25,4 +24,3 @@ describe('CreateTicketPageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-*/
