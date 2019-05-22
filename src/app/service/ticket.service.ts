@@ -16,7 +16,7 @@ import {Project} from '../models/project.model';
 import {SearchByString} from '../components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 
 @Injectable()
-export class TicketService implements SearchByString {
+export class TicketService implements SearchByString<Assignee> {
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;

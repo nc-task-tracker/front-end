@@ -13,6 +13,8 @@
       <a mat-button *ngIf="(currentUser | async); " [routerLink]="'projects'">Projects</a>
 
       <a mat-stroked-button *ngIf="(currentUser | async); " (click)="createTicket()">Create issue</a>
+      <a mat-stroked-button *ngIf="(currentUser | async); " (click)="createSubTicket()">Create subIssue</a>
+
       <a mat-stroked-button class="button-interval" *ngIf="(currentUser | async); " [routerLink]="'home'">Search</a>
     </div>
 

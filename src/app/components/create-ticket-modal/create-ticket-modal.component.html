@@ -1,6 +1,8 @@
 <form [formGroup]="ticketForm" class="create-issue create-ticket-modal">
 
   <p class="info_wrap">Admin: <span class="adminName">{{userName | async}}</span></p>
+  <p *ngIf="titleTicket" class="info_wrap">Parent issue: <span class="parentTicket">{{titleTicket}}</span></p>
+
 
   <mat-form-field class="input-full-width">
     <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
@@ -20,6 +22,7 @@
 
 
   <app-assignee-search class="input-full-width" [controlName]="'assignee'" placeholder="Assignee"></app-assignee-search>
+
 
 
   <!-- <app-assignee-form [formControlName]="'assignee'"></app-assignee-form> -->

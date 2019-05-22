@@ -1,5 +1,5 @@
-import {Component, ElementRef, Inject, OnInit, Output, ViewChild} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, ElementRef, Inject, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from '@angular/material';
 import {NgRedux, select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../../store/selectors/current-user.selector';
 import {Observable, of} from 'rxjs';
@@ -22,14 +22,15 @@ import {Router} from '@angular/router';
 })
 export class CreateTicketModalComponent implements OnInit {
 
+  @Input('isSubTask') isSubTask: boolean;
+
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
 
-  currentAssignee: Assignee;
-  currentAssigneeId: String;
-
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
+
+  titleTicket = this.data.titleTicket;
 
   ticketForm: FormGroup;
 
@@ -50,6 +51,8 @@ export class CreateTicketModalComponent implements OnInit {
   ) {
   }
 
+
+
   ngOnInit() {
     // this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
     this.ticketForm = this.formBuilder.group({
@@ -64,6 +67,7 @@ export class CreateTicketModalComponent implements OnInit {
       minDate: new Date()
 
     });
+    console.log(this.data);
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {
@@ -84,6 +88,8 @@ export class CreateTicketModalComponent implements OnInit {
     this.ngRedux.dispatch(createTicketAction(formValue as any));
     this.dialogRef.close();
   }
+
+
 
   onCancelClick(): void {
     this.dialogRef.close();
