@@ -3,6 +3,7 @@ import {Observable, throwError} from "rxjs";
 import {ProjectMember} from "../models/project-member.model";
 import {HttpClient} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
+import {Profile} from "../models/profile.model";
 
 @Injectable()
 export class ProjectMemberService {
@@ -18,6 +19,11 @@ export class ProjectMemberService {
 
   deleteMember(projectId: string, memberId): Observable<{}>{
     return this.http.delete(`${this.PROJECT_MEMBER_URL}/delete/${projectId}/${memberId}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getNoProjectMembers(id: string): Observable<Profile[]>{
+    return this.http.get<Profile[]>(`${this.PROJECT_MEMBER_URL}/${id}/possible`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 }

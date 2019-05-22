@@ -90,7 +90,7 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
   }
 
   onClickMembers(): void{
-    this.router.navigate([`/project/${this.id}/assignee`]);
+    this.router.navigate([`/project/${this.id}/members`]);
   }
 
   onClickAddSubTicket(ticket: Ticket): void{

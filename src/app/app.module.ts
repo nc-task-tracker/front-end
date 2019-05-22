@@ -52,6 +52,7 @@ import { AssigneeFormComponent } from './components/assignee-form/assignee-form.
 import {EmailSenderService} from "./service/email-sender.service";
 import {ProjectMemberComponent} from "./components/project-member/project-member.component";
 import {ProjectMemberService} from "./service/project-member.service";
+import {ProjectMemberModalComponent} from "./components/project-member-modal/project-member-modal.component";
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {ProjectMemberService} from "./service/project-member.service";
     WelcomeComponent,
     CreateTicketModalComponent,
     AssigneeFormComponent,
-    ProjectMemberComponent
+    ProjectMemberComponent,
+    ProjectMemberModalComponent
   ],
   imports: [
     BrowserModule,
@@ -112,8 +114,10 @@ import {ProjectMemberService} from "./service/project-member.service";
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MatConfirmDialogComponent,
-    CreateTicketModalComponent
+  entryComponents: [
+    MatConfirmDialogComponent,
+    CreateTicketModalComponent,
+    ProjectMemberModalComponent
   ]
 })
 export class AppModule {

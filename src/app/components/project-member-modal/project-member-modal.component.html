@@ -1,0 +1,30 @@
+<form [formGroup]="memberForm" class="create  -issue create-ticket-modal">
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'user'" placeholder="Choose user ..." multiple="false">
+      <mat-option *ngFor="let project of possibleUsers" [value]="user.firstName">{{user.firstName}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width">
+    <mat-select [formControlName]="'projectRole'" placeholder="Role">
+      <mat-option *ngFor="let role of roles" [value]="prior.type">{{prior.title}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="control-buttons">
+    <button
+      matTooltip="Create issue"
+      mat-raised-button
+      class="control-button create"
+      (click)="onClickAddMember()">Add
+    </button>
+
+    <button matTooltip="Cancel"
+            mat-raised-button
+            class="control-button cancel"
+            (click)="onCancelClick()">Cancel
+    </button>
+  </div>
+</form>
+

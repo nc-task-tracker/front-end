@@ -1,5 +1,5 @@
 import {Profile} from "./profile.model";
-import {ProjectRole} from "./project-role.model";
+import {ProjectRole} from "./Enums/project-role.enum";
 
 export interface ProjectMember {
   readonly id: string

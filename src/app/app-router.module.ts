@@ -22,7 +22,7 @@ const routs: Routes = [
   {path: 'create-project', component: CreateProjectComponent},
   {path: 'projects', component: ProjectsPageComponent},
   {path: 'project/:id', component: ProjectPageComponent},
-  {path: 'project/:id/assignee', component: ProjectMemberComponent},
+  {path: 'project/:id/members', component: ProjectMemberComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketModalComponent},
   {path: 'ticket', component: TicketComponent},
