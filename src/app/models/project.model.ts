@@ -1,17 +1,12 @@
+import {User} from "./user.model";
+import {ProjectMember} from "./project-member.model";
+
 export interface Project {
   readonly id: string;
   readonly projectName: string;
   readonly projectDescription: string;
-  readonly ownerId: string;
+  readonly projectOwner: User;
   readonly projectStatus: string;           //todo add dashboards
-  readonly code: string;
+  readonly projectCode: string;
+  readonly members: ProjectMember[];
 }
-
-export const defaultProject: Project = {
-  id: null,
-  projectName: '',
-  projectDescription: '',
-  ownerId: '',
-  projectStatus: '',
-  code: ''
-};

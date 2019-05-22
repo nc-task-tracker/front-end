@@ -5,6 +5,8 @@ import {User} from '../models/user.model';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {UserTokenModel} from "../models/user-token.model";
+import  { JwtHelperService} from "@auth0/angular-jwt"
+
 
 @Injectable()
 export class AuthService {
@@ -12,12 +14,11 @@ export class AuthService {
 
   private LOGIN_URL = '/api/authentication/login';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient/*, public jwtHelper: JwtHelperService*/) {
   }
 
   login(credential: Credential): Observable<UserTokenModel> {
-    return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential)
-      .pipe(catchError((error: any) => throwError(error.error)));
+    return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential);
   }
 
   logout() {
@@ -25,4 +26,9 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
   }
+
+  /*public isAuthenticated(): boolean {
+    const token = localStorage.getItem('currentToken');
+    return !this.jwtHelper.isTokenExpired(token);
+  }*/
 }

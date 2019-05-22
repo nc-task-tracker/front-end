@@ -9,8 +9,7 @@ import {CREATE_PROJECT, createProjectSuccessAction} from '../actions/create-proj
 @Injectable()
 export class TicketsEpic {
 
-  constructor(private ticketService: TicketService) {
-  }
+  constructor(private ticketService: TicketService) {}
 
   createTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType<ReturnType<typeof createTicketAction>>(CREATE_TICKET).pipe(

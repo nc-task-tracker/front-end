@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ProjectNameValidator} from '../../validators/project.name.validator';
+import {ProjectCodeValidator} from '../../validators/project.code.validator';
 import {Observable} from 'rxjs';
 import {Project} from '../../models/project.model';
 import {NgRedux} from '@angular-redux/store';
@@ -21,8 +23,9 @@ export class CreateProjectComponent implements OnInit {
   constructor(private ngRedux: NgRedux<AppState>,
               private fb: FormBuilder,
               private router: Router,
-              private storageService: GlobalUserStorageService) {
-
+              private storageService: GlobalUserStorageService,
+              private projectNameValidator: ProjectNameValidator,
+              private projectCodeValidator: ProjectCodeValidator) {
   }
 
   ngOnInit() {
@@ -31,9 +34,15 @@ export class CreateProjectComponent implements OnInit {
 
   private initializeForm() {
     this.projectForm = this.fb.group({
-      projectName: ['', Validators.required],
+      projectName: ['', {
+        validators: [Validators.required],
+        asyncValidators: [this.projectNameValidator]
+      }],
       projectDescription: [''],
-      projectCode: ['', Validators.required],
+      projectCode: ['', {
+        validators: [Validators.required],
+        asyncValidators: [this.projectCodeValidator]
+      }],
       ownerId: this.storageService.currentUser.id
     });
   }
@@ -45,7 +54,7 @@ export class CreateProjectComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['projects']);     //todo: Projects page
+    this.router.navigate(['projects']);
   }
 
   get projectName(): FormControl {

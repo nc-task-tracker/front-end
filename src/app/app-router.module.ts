@@ -6,8 +6,12 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
-import {WelcomeComponent} from './components/welcome/welcome.component';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
+import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
+import {AuthGuardService as AuthGuard} from "./service/auth-guard.service";
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
+import {ProjectMemberComponent} from "./components/project-member/project-member.component";
 
 
 const routs: Routes = [
@@ -16,6 +20,9 @@ const routs: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'change-profile', component: ChangeProfileComponent},
   {path: 'create-project', component: CreateProjectComponent},
+  {path: 'projects', component: ProjectsPageComponent},
+  {path: 'project/:id', component: ProjectPageComponent},
+  {path: 'project/:id/assignee', component: ProjectMemberComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketModalComponent},
   {path: 'ticket', component: TicketComponent},

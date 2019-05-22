@@ -4,7 +4,7 @@ import {NgRedux} from '@angular-redux/store';
 import {AppState} from '../../store';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {TicketService} from '../../service/ticket.service';
+import {TicketService} from "../../service/ticket.service";
 
 @Component({
   selector: 'app-ticket',

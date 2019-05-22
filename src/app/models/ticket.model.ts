@@ -103,13 +103,14 @@ export interface TicketTypeObject {
 
 export interface Ticket {
   readonly id: string;
-  readonly issueName: string;
-  readonly issueDescription: string;
+  readonly name: string;
+  readonly type: TicketType;
+  readonly  priority: TicketPriority;
+  readonly  status: TicketStatus;
+  readonly  description: string;
+  readonly startDate: Date;
   readonly dueDate: Date;
-  readonly parentId: String;
-  readonly project: String;
-  readonly issueType: TicketType;
-  readonly issuePriority: TicketPriority;
-  readonly reporter: String;
-  readonly assignee: String;
+  readonly  reporter: User;
+  readonly  assignee: User;
 }
+

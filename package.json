@@ -26,15 +26,18 @@
     "@angular/platform-browser": "^7.2.8",
     "@angular/platform-browser-dynamic": "^7.2.8",
     "@angular/router": "^7.2.8",
+    "@ng-bootstrap/ng-bootstrap": "^4.1.2",
+    "@auth0/angular-jwt": "^2.1.0",
+    "angular2-jwt": "^0.2.3",
     "core-js": "^2.6.5",
+    "zone.js": "^0.8.29",
     "redux": "^4.0.1",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.5.1",
-    "rxjs-compat": "^6.5.1",
-    "zone.js": "^0.8.29"
+    "rxjs-compat": "^6.5.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^0.13.5",
+    "@angular-devkit/build-angular": "^0.13.9",
     "@angular/cli": "^7.3.5",
     "@angular/compiler-cli": "^7.2.8",
     "@angular/language-service": "^7.2.8",

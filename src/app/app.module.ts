@@ -2,7 +2,8 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import {RegisterService} from './service/register.service';
+import {ProjectService} from './service/project.service';
 import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +26,16 @@ import { TransformService } from './utils/transform.service';
 import { GlobalUserStorageService } from './service/global-storage.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
+import { GlobalUserStorageService } from './service/global-storage.service';
+import {createEpicMiddleware} from 'redux-observable';
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
+import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
+import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
+import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
+import {ProjectNameValidator} from './validators/project.name.validator';
+import {ProjectCodeValidator} from './validators/project.code.validator';
+import {AuthGuardService} from './service/auth-guard.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 // import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -37,6 +48,11 @@ import {ProfileModule} from './components/profile/profile.module';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
 import {TicketComponent} from './components/ticket/ticket.component';
+import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
+import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
+import {EmailSenderService} from "./service/email-sender.service";
+import {ProjectMemberComponent} from "./components/project-member/project-member.component";
+import {ProjectMemberService} from "./service/project-member.service";
 import {RegisterService} from './service/register.service';
 import {ProjectService} from './service/project.service';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
@@ -51,8 +67,13 @@ import {AbstractSearchFormComponent} from './components/create-ticket-modal/abst
     CreateProjectComponent,
     ProfileComponent,
     ChangeProfileComponent,
+    ProjectsPageComponent,
+    ProjectPageComponent,
+    MatConfirmDialogComponent,
     WelcomeComponent,
     CreateTicketModalComponent,
+    AssigneeFormComponent,
+    ProjectMemberComponent
     AssigneeSearchComponent,
     AbstractSearchFormComponent
   ],
@@ -87,11 +108,17 @@ import {AbstractSearchFormComponent} from './components/create-ticket-modal/abst
     AuthService,
     TicketService,
     ProjectService,
+    MatConfirmDialogService,
+    ProjectNameValidator,
+    ProjectCodeValidator,
+    AuthGuardService,
+    EmailSenderService,
+    ProjectMemberService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
+  entryComponents: [MatConfirmDialogComponent,
     CreateTicketModalComponent
   ]
 })
