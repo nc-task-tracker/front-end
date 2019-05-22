@@ -8,6 +8,7 @@ import {ticketReducer} from './tickets.reducer';
 import {registerReducer} from './register.reducer';
 import {filterReducer} from "./filter.reducer";
 import {changeProfileReducer} from './change-profile.reduser';
+import {currentFilterStateReducer} from './current-filter.reducer';
 
 export const reducers: Reducer = combineReducers({
     usersState: usersReducer,
@@ -17,9 +18,8 @@ export const reducers: Reducer = combineReducers({
     register: registerReducer,
     tickets: ticketReducer,
     createProject: projectReducer,
-    createFilter: filterReducer,
+    filter: filterReducer,
     project: projectReducer,
     changeProfile: changeProfileReducer,
-    // currentFilter: curr
-  //todo add currentFilter
+    currentFilterState: currentFilterStateReducer
 });

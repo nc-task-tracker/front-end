@@ -13,9 +13,10 @@ import {select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/current-user.selector';
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
+import {SearchByName} from "../components/form-filter/abstract-select-form/abstract-select-form.component";
 
 @Injectable()
-export class TicketService {
+export class TicketService implements SearchByName<Ticket>{
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
@@ -25,10 +26,10 @@ export class TicketService {
   constructor(private http: HttpClient) {
   }
 
-
   private readonly CREATE_URL = '/api/issue';
   private readonly GET_USERS = '/api/users/assignee';
   private readonly GET_PROJECTS = '/api/project/possibleprojects';
+  private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
 
 
   createTicket(ticket: Ticket): Observable<Ticket> {
@@ -52,4 +53,14 @@ export class TicketService {
       }
     });
   }
+
+  searchByName(name : string ): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  // getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
+  //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
+  //     .pipe(catchError((error: any) => throwError(error.error)));
+  // }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, InjectionToken, Inject } from '@angular/core';
+import {Component, OnInit, Input, ViewChild, ElementRef, InjectionToken, Inject, TemplateRef} from '@angular/core';
 import { ControlContainer, FormControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { Observable } from 'rxjs';
@@ -34,13 +34,22 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   title: string;
 
   @Input()
-  compareBy: string;
+  valueTitleKey = 'name';
 
-  selectedUserList: T[] = [];
+  @Input()
+  itemValueKey: string;
+
+  // @Input()
+  // valueTitleKey: string;
+
+  @Input()
+  itemTemplate: TemplateRef<{ item: T }>;
+
+  selectedItemsList: T[] = [];
 
   inputControl: FormControl = new FormControl();
 
-  @ViewChild('assigneeInput') searchInput: ElementRef<HTMLInputElement>;
+  @ViewChild('nameInput') searchInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private controlContainer: ControlContainer,
@@ -74,29 +83,38 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   }
 
   removeItem(item: T) {
-    this.selectedUserList = this.selectedUserList.filter(user => user !== item);
-    this.control.setValue(this.selectedUserList);
+    this.selectedItemsList = this.selectedItemsList.filter(it => it !== item);
+    this.updateControlValue();
   }
 
   get control() {
     return this.controlContainer.control.get(this.controlName);
   }
 
-  compareWithFunc(o1: T, o2: T) {
-    return o1 [this.compareBy] === o2 [this.compareBy];
+  @Input()
+  compareWithFunc = (o1: T, o2: T) => {
+    return o1 === o2;
   }
 
   onItemSelect(event: MatAutocompleteSelectedEvent): void {
     if (this.multiple) {
-      this.selectedUserList.push(event.option.value);
-      this.control.setValue(this.selectedUserList);
+      this.selectedItemsList.push(event.option.value);
       this.searchInput.nativeElement.value = '';
       this.inputControl.setValue(null);
+      this.updateControlValue();
     } else {
-      const user = event.option.value;
-      this.control.setValue(user);
-      this.inputControl.setValue(user.login);
+      const item = event.option.value;
+      const itemValue = this.itemValueKey ? item[this.itemValueKey] : item;
+      this.control.setValue(itemValue);
+      this.inputControl.setValue(item[this.valueTitleKey]);
     }
   }
+
+  private updateControlValue() {
+    const valueForUpdate = !this.itemValueKey ? this.selectedItemsList : this.selectedItemsList
+      .map(item => item[this.itemValueKey]);
+    this.control.setValue(valueForUpdate);
+  }
+
 
 }

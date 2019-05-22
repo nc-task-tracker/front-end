@@ -7,6 +7,7 @@ import {TicketsEpic} from './tickets.epic';
 import {FilterEpic} from './filter.epic';
 import {ChangeProfileEpic} from "./change-profile.epic";
 import {ProfileEpic} from "./profile.epic";
+import {CurrentFilterEpic} from "./current-filter.epic";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ProfileEpic} from "./profile.epic";
     TicketsEpic,
     RegisterEpic,
     ProfileEpic,
-    FilterEpic
+    FilterEpic,
+    CurrentFilterEpic
   ]
 })
 export class EpicsModule {

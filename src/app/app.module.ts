@@ -29,7 +29,7 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 // import {OverlayModule} from "@angular/cdk/typings/esm5/overlay";
 import {MatDialogModule} from "@angular/material";
 import {OverlayModule} from "@angular/cdk/overlay";
-import {FilterFormModule} from "./components/create-filter/filter-form.module";
+import {FilterFormModule} from "./components/form-filter/filter-form.module";
 import {FilterService} from "./service/filter.service";
 import {ProjectNameValidator} from "./validators/project.name.validator";
 import {ProjectCodeValidator} from "./validators/project.code.validator";
@@ -49,7 +49,6 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
-import {ProfileComponent} from "./components/profile/profile.component";
 import {TicketServiceService} from "./service/ticket-service.service";
 
 
@@ -67,7 +66,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ChangeProfileComponent,
     TicketComponent,
     CreateProjectComponent,
-    ProfileComponent,
+    // ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
     // AbstractSelectFormComponent

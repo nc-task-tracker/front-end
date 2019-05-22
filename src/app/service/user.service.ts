@@ -3,9 +3,11 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../models/user.model';
+import {SearchByName} from "../components/form-filter/abstract-select-form/abstract-select-form.component";
+import {Ticket} from "../models/ticket.model";
 
 @Injectable()
-export class UserService {
+export class UserService implements SearchByName<User>{
 
     private USERS_URL = '/api/users';
 

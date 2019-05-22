@@ -8,7 +8,7 @@ import {CreateProjectComponent} from './components/create-project/create-project
 import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
-import {CreateFilterComponent} from "./components/create-filter/create-filter.component";
+import {FilterFormComponent} from "./components/form-filter/filter-form.component";
 import {NgModule} from '@angular/core';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
 
@@ -23,7 +23,8 @@ const routs: Routes = [
   {path: 'create-ticket', component: CreateTicketModalComponent},
   {path: 'ticket', component: TicketComponent},
   {path: 'home', component: WelcomeComponent},
-  {path: 'create-filter', component: CreateFilterComponent},
+  {path: 'filter/create', component: FilterFormComponent},
+  {path: 'filter/:filterId', component: FilterFormComponent}
 ];
 
 @NgModule({

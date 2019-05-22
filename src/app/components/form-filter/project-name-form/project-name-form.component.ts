@@ -8,7 +8,7 @@ import {TicketServiceService} from "../../../service/ticket-service.service";
   templateUrl: './project-name-form.component.html',
   styleUrls: ['./project-name-form.component.css'],
   providers: [
-    { provide: SEARCH_BY_NAME, useClass: TicketServiceService}
+    { provide: SEARCH_BY_NAME, useClass: TicketService}
   ]
 })
 export class ProjectNameFormComponent extends AbstractSelectFormComponent{

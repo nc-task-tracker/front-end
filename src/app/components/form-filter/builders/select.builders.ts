@@ -47,7 +47,8 @@ export class IssueTypeBuilder implements AbstractBuilder<InputModel, SelectFilte
             placeholder: 'Issue Types',
             titleKey: 'title',
             value: model.value || [],
-            options: [...allIssueType]
+            options: [...allIssueType],
+            itemValueKey: 'type'
         };
     }
 }
@@ -65,7 +66,8 @@ export class IssueStatusBuilder implements AbstractBuilder<InputModel, SelectFil
             placeholder: 'Issue Status',
             titleKey: 'title',
             value: model.value || [],
-            options: [...allIssueStatus]
+            options: [...allIssueStatus],
+            itemValueKey: 'type'
         };
     }
 }
@@ -83,7 +85,8 @@ export class IssuePriorityBuilder implements AbstractBuilder<InputModel, SelectF
           placeholder: 'Issue Priority',
           titleKey: 'title',
           value: model.value || [],
-          options: [...allIssuePriority]
+          options: [...allIssuePriority],
+          itemValueKey: 'type'
         }
     }
 }
@@ -101,7 +104,8 @@ export class AssigneeBuilder implements AbstractBuilder<InputModel, SelectFilter
             placeholder: 'Assignee',
             titleKey: 'login',
             value: model.value || [],
-            options: []
+            options: [],
+            itemValueKey: 'id'
         };
     }
 }
@@ -117,9 +121,10 @@ export class ReporterBuilder implements AbstractBuilder<InputModel, SelectFilter
             multiple: true,
             title: 'Reporter',
             placeholder: 'Reporter',
-            titleKey: 'name',
+            titleKey: 'login',
             value: model.value || [],
-            options: []
+            options: [],
+          itemValueKey: 'id'
         };
     }
 }
@@ -131,13 +136,14 @@ export class IssueNameBuilder implements AbstractBuilder<InputModel, SelectFilte
     build(model: InputModel): SelectFilterItem<SearchModel> {
         return {
             ...model,
-            fieldType: FieldType.ASSIGNEE,
+            fieldType: FieldType.ISSUE_NAME,
             multiple: true,
             title: 'Ticket name',
             placeholder: 'Ticket name',
             titleKey: 'name',
             value: model.value || [],
-            options: []
+            options: [],
+          itemValueKey: 'id'
         };
     }
 }

@@ -56,7 +56,7 @@ export const allFilterTypeLabled = [
     type: FilterType.ISSUE_NAME,
     title: FilterTypeNameMapping[FilterType.ISSUE_NAME],
     hidden: false,
-    key: 'ticket name'
+    key: 'ticketNames'
   },
   {
     type: FilterType.PROJECTS,
@@ -82,6 +82,7 @@ export enum FieldType {
   INPUT = 'INPUT',
   SELECT = 'SELECT',
   ASSIGNEE = 'ASSIGNEE',
+  PROJECTS = 'PROJECTS',
   ISSUE_NAME = 'ISSUE_NAME'
 }
 
@@ -100,21 +101,13 @@ export interface Filter {
   readonly parameters: FilterItem[];
 }
 
-// export interface Filter {
-//   readonly id?: string;
-//   readonly name?: string;
-//   readonly parameters: string[];
-// }
-
-export const Filter_1: Filter = {
+export const defaultFilter: Filter ={
   id: null,
   name: 'new filter',
   parameters: [
     {
       type: FilterType.ISSUE_TYPE,
-      title: FilterTypeNameMapping[FilterType.ISSUE_TYPE],
-      key: FilterType.ISSUE_PRIORITY,
-      value: 'BUG',
+      value: [...allIssueType]
     }
   ]
 }
@@ -122,10 +115,11 @@ export const Filter_1: Filter = {
 export interface InputFilterItem extends FilterItem<string> {
 }
 
-export interface SelectFilterItem<D> extends FilterItem<Array<D>> {
+export interface SelectFilterItem<D = any> extends FilterItem<Array<D>> {
   readonly options: Array<D>;
   readonly multiple: boolean;
   readonly titleKey: string;
+  readonly itemValueKey?: string;
 }
 
 export interface InputModel {

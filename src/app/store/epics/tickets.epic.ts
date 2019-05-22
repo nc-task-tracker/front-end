@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {TicketService} from '../../service/ticket.service';
 import {ActionsObservable} from 'redux-observable';
 import {AnyAction} from 'redux';
-<<<<<<< HEAD
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {
   CREATE_TICKET,
@@ -11,13 +10,11 @@ import {
   FETCH_TICKET_NAMES,
   fetchTicketNamesAction, fetchTicketNamesFailedAction,
   fetchTicketNamesSuccessAction
-} from '../actions/tickets.actions';
+} from '../actions/create-ticket.actions';
 import {FILTER_SEARCH, filterSearchAction, filterSearchSuccessAction} from '../actions/filter.actions';
-=======
-import {map, mergeMap, switchMap} from 'rxjs/operators';
-import {CREATE_TICKET, createTicketAction, createTicketSuccessAction, GET_ASSIGNEE_LIST, getAssigneeList} from '../actions/create-ticket.actions';
+// import {map, mergeMap, switchMap} from 'rxjs/operators';
+// import {CREATE_TICKET, createTicketAction, createTicketSuccessAction, GET_ASSIGNEE_LIST, getAssigneeList} from '../actions/create-ticket.actions';
 import {CREATE_PROJECT, createProjectSuccessAction} from '../actions/create-project.actions';
->>>>>>> origin/dev
 
 import {TransformService} from "../../utils/transform.service";
 import {of} from "rxjs";
@@ -28,19 +25,18 @@ export class TicketsEpic {
   constructor(private ticketService: TicketService) {
   }
 
-  createTicket$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType<ReturnType<typeof createTicketAction>>(CREATE_TICKET).pipe(
-      mergeMap(({payload}) => {
-        return this.ticketService
-          .createTicket(payload.ticket)
-          .pipe(
-            map(ticket => createTicketSuccessAction(ticket))
-          );
-      })
-    );
-  }
+  // createTicket$ = (action$: ActionsObservable<AnyAction>) => {
+  //   return action$.ofType<ReturnType<typeof createTicketAction>>(CREATE_TICKET).pipe(
+  //     mergeMap(({payload}) => {
+  //       return this.ticketService
+  //         .createTicket(payload.ticket)
+  //         .pipe(
+  //           map(ticket => createTicketSuccessAction(ticket))
+  //         );
+  //     })
+  //   );
+  // }
 
-<<<<<<< HEAD
   // searchTicket$ = (action$: ActionsObservable<AnyAction>) => {
   //   return action$.ofType<ReturnType<typeof filterSearchAction>>(FILTER_SEARCH).pipe(
   //     mergeMap(({payload}) => {
@@ -65,6 +61,4 @@ export class TicketsEpic {
       })
     );
   }
-=======
->>>>>>> origin/dev
 }

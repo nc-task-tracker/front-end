@@ -8,6 +8,7 @@ import {ProjectEpic} from "./project.epic";
 import {FilterEpic} from "./filter.epic";
 import {ChangeProfileEpic} from "./change-profile.epic";
 import {ProfileEpic} from "./profile.epic";
+import {CurrentFilterEpic} from "./current-filter.epic";
 
 
 @Injectable()
@@ -17,7 +18,8 @@ export class EpicService {
                 private ticketsEpic: TicketsEpic,  private projectEpic: ProjectEpic,
                 private filterEpic: FilterEpic, private registerEpic: RegisterEpic,
                 private changeProfileEpic: ChangeProfileEpic,
-                private profileEpic: ProfileEpic
+                private profileEpic: ProfileEpic,
+                private currentEpic: CurrentFilterEpic
     ){}
 
     getEpics() {
@@ -28,12 +30,17 @@ export class EpicService {
             this.currentUserEpic.loginUser$,
             this.currentUserEpic.logout$,
             this.registerEpic.register$,
-            this.ticketsEpic.createTicket$,
+            // this.ticketsEpic.createTicket$,
+            this.ticketsEpic.fetchTicketNames$,
             this.projectEpic.createProject$,
-            this.filterEpic.createFilter$,
-
             this.changeProfileEpic.changeProfile$,
-            this.projectEpic.fetchProjects$
+            // this.projectEpic.fetchProjects$,
+
+            this.filterEpic.createFilter$,
+            this.filterEpic.deleteFilter$,
+            // this.filterEpic.fetchFilter$,
+            this.filterEpic.selectFilter$
+            // this.currentEpic
         );
     }
 }

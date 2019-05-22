@@ -8,6 +8,9 @@ export const DELETE_FILTER = '[Filter] Delete filter';
 export const DELETE_FILTER_SUCCESS = '[Filter] Delete filter success';
 export const SELECT_FILTER = '[Current filter state] Select filter';
 export const SELECT_FILTER_SUCCESS = '[Current filter state] Select filter success';
+export const FETCH_FILTER = '[Filter] Fetch filter';
+export const FETCH_FILTER_SUCCESS = '[Filter] Fetch filter success';
+export const FETCH_FILTER_FAILED = '[Filter] Fetch filter failed';
 
 export function createFilterAction(filter: Filter) {
   return {
@@ -58,5 +61,25 @@ export function selectFilterSuccess(filter: Filter) {
   return {
     type: SELECT_FILTER_SUCCESS,
     payload: {filter}
+  };
+}
+
+export function fetchFilterAction() {
+  return {
+    type: FETCH_FILTER
+  };
+}
+
+export function fetchFilterSuccessAction(filter: Map<string, Filter>) {
+  return {
+    type: FETCH_FILTER_SUCCESS,
+    payload: {filter}
+  };
+}
+
+export function fetchFilterFailedAction(errorMessage: string) {
+  return {
+    type: FETCH_FILTER_FAILED,
+    payload: {errorMessage}
   };
 }

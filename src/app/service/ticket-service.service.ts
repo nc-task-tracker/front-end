@@ -6,12 +6,12 @@ import {catchError} from 'rxjs/operators';
 import {User} from "../models/user.model";
 import {SearchModel} from "../models/search-model.model";
 import {Filter, FilterItem} from "../models/filter-item.model";
-import {SearchByName} from "../components/create-filter/abstract-select-form/abstract-select-form.component";
+import {SearchByName} from "../components/form-filter/abstract-select-form/abstract-select-form.component";
 
 
 // TODO rename to TicketService
 @Injectable()
-export class TicketServiceService implements SearchByName<Ticket> {
+export class TicketServiceService  {
 
   private readonly CREATE_URL = '/api/issue';
 
@@ -31,8 +31,8 @@ export class TicketServiceService implements SearchByName<Ticket> {
   //      .pipe(catchError(err => throwError(err)));
   // }
 
-  searchByName(name : string ): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
-      .pipe(catchError((error: any) => throwError(error.error)));
-  }
+  // searchByName(name : string ): Observable<Ticket[]> {
+  //   return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
+  //     .pipe(catchError((error: any) => throwError(error.error)));
+  // }
 }
