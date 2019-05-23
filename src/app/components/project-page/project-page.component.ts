@@ -1,20 +1,22 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Project} from "../../models/project.model";
-import {ProjectService} from "../../service/project.service";
-import {ActivatedRoute, Router} from "@angular/router";
-import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from "@angular/material";
-import {Ticket} from "../../models/ticket.model";
-import {TicketService} from "../../service/ticket.service";
-import {SortParameters} from "../../models/util/table-sort-param.model";
-import {filter, switchMap, takeUntil} from "rxjs/operators";
-import {MatConfirmDialogService} from "../util/mat-confirmation-dialor/mat-confirm-dialog.service";
-import {AutoUnsubscribe} from "../../service/auto-unsubscribe";
-import {User} from "../../models/user.model";
-import {UserService} from "../../service/user.service";
-import {select} from "@angular-redux/store";
-import {selectCurrentUserName} from "../../store/selectors/current-user.selector";
-import {Observable} from "rxjs";
-import {EmailSenderService} from "../../service/email-sender.service";
+import {Project} from '../../models/project.model';
+import {ProjectService} from '../../service/project.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from '@angular/material';
+import {Ticket} from '../../models/ticket.model';
+import {TicketService} from '../../service/ticket.service';
+import {SortParameters} from '../../models/util/table-sort-param.model';
+import {filter, switchMap, takeUntil} from 'rxjs/operators';
+import {MatConfirmDialogService} from '../util/mat-confirmation-dialor/mat-confirm-dialog.service';
+import {AutoUnsubscribe} from '../../service/auto-unsubscribe';
+import {User} from '../../models/user.model';
+import {UserService} from '../../service/user.service';
+import {select} from '@angular-redux/store';
+import {selectCurrentUserName} from '../../store/selectors/current-user.selector';
+import {Observable} from 'rxjs';
+import {EmailSenderService} from '../../service/email-sender.service';
+import {CreateTicketModalComponent} from '../create-ticket-modal/create-ticket-modal.component';
+import {tick} from '@angular/core/testing';
 
 
 @Component({
@@ -24,7 +26,7 @@ import {EmailSenderService} from "../../service/email-sender.service";
 })
 export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnDestroy {
 
-  private displayedColumns: string[] = ['issueName', 'issueType', 'issueStatus', 'issuePriority', 'startDate', 'issueDescription','addSubTicket','delete'];
+  private displayedColumns: string[] = ['issueName', 'issueType', 'issueStatus', 'issuePriority', 'startDate', 'issueDescription', 'addSubTicket', 'delete'];
   private tickets: Ticket[];
   private project: Project;
   private dataSource;
@@ -44,6 +46,7 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
               private emailService: EmailSenderService,
               private cd: ChangeDetectorRef,
               private router: Router,
+              private matDialog: MatDialog,
               private confirmService: MatConfirmDialogService) {
     super();
   }
@@ -70,8 +73,8 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
 
     this.sortParameters.maxElemOnPage = 5;
     this.sortParameters.page = 0;
-    this.sortParameters.columnName = "id";
-    this.sortParameters.direction = "asc";
+    this.sortParameters.columnName = 'id';
+    this.sortParameters.direction = 'asc';
 
     this.ticketService.getTablePageData(this.id, this.sortParameters).pipe(takeUntil(this.streamEndSubject))
       .subscribe(pageData => {
@@ -89,16 +92,26 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
     this.router.navigate(['/create-ticket']);
   }
 
-  onClickMembers(): void{
+  onClickMembers(): void {
     this.router.navigate([`/project/${this.id}/assignee`]);
   }
 
-  onClickAddSubTicket(ticket: Ticket): void{
+  onClickAddSubTicket(ticket: Ticket): void {
+    console.log(ticket);
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.autoFocus = true;
 
+      dialogConfig.data = {
+        isSubTask: true,
+        parentTicket: ticket
+      };
+
+      dialogConfig.autoFocus = true;
+      this.matDialog.open(CreateTicketModalComponent, dialogConfig);
   }
 
   onClickDeleteTicket(ticket: Ticket): void {
-    this.confirmService.openConfirmDialog("Are you sure that you want to delete this ticket?")
+    this.confirmService.openConfirmDialog('Are you sure that you want to delete this ticket?')
       .afterClosed().pipe(takeUntil(this.streamEndSubject)).subscribe(repsponse => {
       if (repsponse) {
 

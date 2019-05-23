@@ -112,5 +112,6 @@ export interface Ticket {
   readonly dueDate: Date;
   readonly  reporter: User;
   readonly  assignee: User;
+  readonly project: String;
 }
 

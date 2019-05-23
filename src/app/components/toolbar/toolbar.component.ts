@@ -29,14 +29,6 @@ export class ToolbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-
-    dialogConfig.data = {
-      titleTicket: 'hello',
-      parentID: ''
-    };
-
   }
 
   onLoginClick() {
@@ -49,20 +41,13 @@ export class ToolbarComponent implements OnInit {
   }
 
   createTicket() {
-      this.matDialog.open(CreateTicketModalComponent);
-  }
-
-
-  createSubTicket() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      titleTicket: 'hello',
-      parentID: ''
+      isSubTask: false
     };
 
-    dialogConfig.autoFocus = true;
     this.matDialog.open(CreateTicketModalComponent, dialogConfig);
   }
 }

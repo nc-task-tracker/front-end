@@ -1,28 +1,31 @@
 <form [formGroup]="ticketForm" class="create-issue create-ticket-modal">
 
   <p class="info_wrap">Admin: <span class="adminName">{{userName | async}}</span></p>
-  <p *ngIf="titleTicket" class="info_wrap">Parent issue: <span class="parentTicket">{{titleTicket}}</span></p>
+  <p *ngIf="isSubTask" class="info_wrap">Parent ticket: <span class="parentTicket">{{parentTicketName}}</span></p>
 
 
-  <mat-form-field class="input-full-width">
+  <mat-form-field *ngIf="!isSubTask" class="input-full-width">
     <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
       <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="input-full-width">
-    <mat-select [formControlName]="'issueType'" placeholder="Issue type">
+  <mat-form-field *ngIf="isSubTask"  class="input-full-width">
+    <input disabled matInput placeholder="SUB_TASK">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="!isSubTask" class="input-full-width">
+    <mat-select [formControlName]="'issueType'" placeholder="Type">
       <mat-option *ngFor="let prior of ticketTypes" [value]="prior.type">{{prior.title}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field class="input-full-width">
-    <input [formControlName]="'issueName'" matInput placeholder="Issue title" required>
+    <input [formControlName]="'issueName'" matInput placeholder="Title" required>
   </mat-form-field>
 
 
   <app-assignee-search class="input-full-width" [controlName]="'assignee'" placeholder="Assignee"></app-assignee-search>
-
 
 
   <!-- <app-assignee-form [formControlName]="'assignee'"></app-assignee-form> -->

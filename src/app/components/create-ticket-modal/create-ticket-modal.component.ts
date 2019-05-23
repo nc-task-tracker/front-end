@@ -9,7 +9,7 @@ import {TicketService} from '../../service/ticket.service';
 import {Project} from '../../models/project.model';
 import {Assignee} from '../../models/assignee.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {allTicketPriority, allTicketTypes} from '../../models/ticket.model';
+import {allTicketPriority, allTicketTypes, Ticket} from '../../models/ticket.model';
 import {createTicketAction} from '../../store/actions/create-ticket.actions';
 import {AppState} from '../../store';
 import {GlobalUserStorageService} from '../../service/global-storage.service';
@@ -22,7 +22,7 @@ import {Router} from '@angular/router';
 })
 export class CreateTicketModalComponent implements OnInit {
 
-  @Input('isSubTask') isSubTask: boolean;
+  isSubTask = this.data.isSubTask;
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
@@ -30,12 +30,14 @@ export class CreateTicketModalComponent implements OnInit {
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  titleTicket = this.data.titleTicket;
-
   ticketForm: FormGroup;
 
   ticketPriority = allTicketPriority;
   ticketTypes = allTicketTypes;
+
+  parentTicket = this.data.ticket;
+
+  parentTicketName: string;
 
   minDate = new Date();
   possibleProjects;
@@ -52,9 +54,9 @@ export class CreateTicketModalComponent implements OnInit {
   }
 
 
-
   ngOnInit() {
-    // this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
+    this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
+
     this.ticketForm = this.formBuilder.group({
       issueName: ['', Validators.required],
       issueDescription: ['', Validators.required],
@@ -67,7 +69,13 @@ export class CreateTicketModalComponent implements OnInit {
       minDate: new Date()
 
     });
-    console.log(this.data);
+    if (this.isSubTask) {
+      console.log(this.data);
+      this.parentTicket = this.data.parentTicket;
+      this.parentTicketName = this.data.parentTicket.name;
+      this.ticketForm.controls.issueType.setValue('SUB_TASK');
+    }
+
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {
@@ -88,7 +96,6 @@ export class CreateTicketModalComponent implements OnInit {
     this.ngRedux.dispatch(createTicketAction(formValue as any));
     this.dialogRef.close();
   }
-
 
 
   onCancelClick(): void {

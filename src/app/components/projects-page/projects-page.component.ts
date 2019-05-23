@@ -1,11 +1,12 @@
-import {AutoUnsubscribe} from "../../service/auto-unsubscribe";
-import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from "@angular/core";
-import {ProjectService} from "../../service/project.service";
-import {Project} from "../../models/project.model";
-import {takeUntil} from "rxjs/operators";
-import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from "@angular/material";
-import {SortParameters} from "../../models/util/table-sort-param.model";
-import {Router} from "@angular/router";
+import {AutoUnsubscribe} from '../../service/auto-unsubscribe';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ProjectService} from '../../service/project.service';
+import {Project} from '../../models/project.model';
+import {takeUntil} from 'rxjs/operators';
+import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from '@angular/material';
+import {SortParameters} from '../../models/util/table-sort-param.model';
+import {Router} from '@angular/router';
+import {CreateTicketModalComponent} from '../create-ticket-modal/create-ticket-modal.component';
 
 @Component({
   selector: 'app-projects-page',
@@ -24,6 +25,7 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
 
   constructor(private projectService: ProjectService,
               private router: Router,
+              private matDialog: MatDialog,
               private cd: ChangeDetectorRef) {
     super();
   }
@@ -44,8 +46,8 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
 
     this.sortParameters.maxElemOnPage = 5;
     this.sortParameters.page = 0;
-    this.sortParameters.columnName = "projectName";
-    this.sortParameters.direction = "asc";
+    this.sortParameters.columnName = 'projectName';
+    this.sortParameters.direction = 'asc';
 
     this.projectService.getTablePageData(this.sortParameters).pipe(takeUntil(this.streamEndSubject))
       .subscribe(response => {
@@ -58,13 +60,13 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
       );
   }
 
-  onSort(sort: Sort): void{
+  onSort(sort: Sort): void {
     this.sortParameters.direction = sort.direction;
     this.sortParameters.columnName = sort.active;
     this.sortParameters.page = this.paginator.pageIndex;
     this.sortParameters.maxElemOnPage = this.paginator.pageSize;
 
-    this.projectService.getTablePageData(this.sortParameters).subscribe(response =>{
+    this.projectService.getTablePageData(this.sortParameters).subscribe(response => {
       this.projects = response.list;
       this.dataSource = response.list;
 
@@ -72,19 +74,19 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
     });
   }
 
-  getPageData(event: PageEvent){
+  getPageData(event: PageEvent) {
 
     this.sortParameters.page = event.pageIndex;
     this.sortParameters.maxElemOnPage = event.pageSize;
 
-    this.projectService.getTablePageData(this.sortParameters).subscribe(response =>{
+    this.projectService.getTablePageData(this.sortParameters).subscribe(response => {
       this.projects = response.list;
       this.dataSource = response.list;
     });
   }
 
   public doFilter = (filterValue: string) => {
-    console.log(filterValue)
+    console.log(filterValue);
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
@@ -94,5 +96,4 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
   onSelectProject(project: Project): void {
     this.router.navigate([`/project/${project.id}`]);
   }
-
 }
