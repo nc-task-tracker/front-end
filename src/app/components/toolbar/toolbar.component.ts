@@ -1,43 +1,20 @@
 import { NgRedux, select } from '@angular-redux/store';
-import { Component, OnInit } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Observable, of} from 'rxjs';
 import { User } from 'src/app/models/user.model';
 import { AppState } from 'src/app/store';
 import {selectCurrentUser, selectCurrentUserName} from 'src/app/store/selectors/current-user.selector';
 import { logoutUserAction } from 'src/app/store/actions/current-user.actions';
 import { LoginUserComponent } from '../dialogs/login-user/login-user.component';
-import {MatDialog, MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material';
+import {MatDialog, MatMenuTrigger} from '@angular/material';
 import {Router} from "@angular/router";
 import {CreateTicketModalComponent} from "../create-ticket-modal/create-ticket-modal.component";
+import {FormBuilder} from "@angular/forms";
+import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from "rxjs/operators";
+import {Assignee} from "../../models/assignee.model";
+import {DashboardService} from "../../service/dashboard.service";
 import {Dashboard} from "../../models/dashboard.model";
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
-import {FlatTreeControl} from "@angular/cdk/tree";
-
-
-interface Dashboards {
-  name: string;
-  children?: Dashboards[];
-}
-
-const TREE_DATA: Dashboards[] = [
-  {
-    name: 'Dashboards',
-    children: [
-      {name: 'Main'},
-      {name: 'Dash1'},
-      {name: 'Dash2'},
-      {name: 'Dash3'},
-      {name: 'Dash4'}
-    ]
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import {GlobalUserStorageService} from "../../service/global-storage.service";
 
 @Component({
   selector: 'app-toolbar',
@@ -50,33 +27,30 @@ export class ToolbarComponent implements OnInit {
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
   @select(selectCurrentUser)
-  readonly currentUser: Observable<User>;
+  currentUser: Observable<User>;
+
+  currentDashboard: Dashboard;
+  currentDashboardId: String;
+
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
+
+  someMethod() {
+    this.trigger.openMenu();
+  }
+
+  dashboards$: Observable<Dashboard[]>;
 
   constructor(private ngRedux: NgRedux<AppState>,
               private formBuilder: FormBuilder,
               private matDialog: MatDialog,
-              private router: Router) {
-    this.dataSource.data = TREE_DATA;
+              private router: Router,
+              private dashboardService : DashboardService,
+              private storageService: GlobalUserStorageService) {
   }
 
-  private transformer = (node: Dashboards, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  }
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
-
-  treeFlattener = new MatTreeFlattener(
-    this.transformer, node => node.level, node => node.expandable, node => node.children);
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
   ngOnInit() {
+
   }
 
 
@@ -91,5 +65,15 @@ export class ToolbarComponent implements OnInit {
 
   createTicket() {
     this.matDialog.open(CreateTicketModalComponent);
+  }
+
+  chooseDashboard(dashboard_id: string) {
+    this.dashboards$ = null;
+    this.currentDashboardId = dashboard_id;
+    this.router.navigate(['home']);
+  }
+
+  getAllDashboard() {
+    this.dashboards$ = this.dashboardService.getDashboardList(this.storageService.currentUser.id);
   }
 }

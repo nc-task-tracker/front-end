@@ -3,8 +3,8 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/Rx';
-import {Assignee} from '../models/assignee.model';
 import {Project} from '../models/project.model';
+import {Dashboard} from "../models/dashboard.model";
 
 @Injectable()
 export class DashboardService {
@@ -16,10 +16,10 @@ export class DashboardService {
   private readonly GET_PROJECTS = '/api/project/possibleprojects';
 
 
-  getDashboardList(inputValue: string): Observable<Assignee[]> {
-    return this.http.get<Assignee[]>(`${this.DASHBOARD_URL}/${inputValue}`, {
+  getDashboardList(idUser: string): Observable<Dashboard[]> {
+    return this.http.get<Dashboard[]>(`${this.DASHBOARD_URL}/${idUser}/allDashboards`, {
       params: {
-        name: inputValue
+        name: idUser
       }
     });
   }

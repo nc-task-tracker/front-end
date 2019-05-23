@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar.component';
+import {MatMenuModule} from '@angular/material/menu';
 import {
   MatToolbarModule,
   MatButtonModule,
   MatFormFieldModule,
-  MatInputModule, MatDatepickerModule, MatNativeDateModule, MatDialogModule, MatIconModule, MatCardModule
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatDialogModule,
+  MatIconModule,
+  MatCardModule,
 } from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from "@angular/forms";
-import {MatTreeModule} from "@angular/material/typings/tree";
+import {MaterialModule} from "../../material.module";
 
 @NgModule({
   imports: [
@@ -24,10 +30,13 @@ import {MatTreeModule} from "@angular/material/typings/tree";
     MatNativeDateModule,
     MatDialogModule,
     MatIconModule,
-    MatTreeModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule,
+    MaterialModule
   ],
-  declarations: [ToolbarComponent],
+  declarations: [
+    ToolbarComponent
+  ],
   exports: [ToolbarComponent]
 })
 export class ToolbarModule { }

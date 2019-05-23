@@ -34,9 +34,10 @@ import {CreateTicketModalComponent} from "./components/create-ticket-modal/creat
 import {CreateProjectComponent} from "./components/create-project/create-project.component";
 import {TicketComponent} from "./components/ticket/ticket.component";
 import {WelcomeModule} from "./components/welcome/welcome.module";
-import {MatAutocompleteModule, MatDialogModule} from "@angular/material";
+import {MatAutocompleteModule, MatDialogModule, MatMenuTrigger} from "@angular/material";
 import {TicketService} from "./service/ticket.service";
 import {ProjectService} from "./service/project.service";
+import {DashboardService} from "./service/dashboard.service";
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import {ProjectService} from "./service/project.service";
     AuthService,
     TicketService,
     ProjectService,
+    DashboardService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

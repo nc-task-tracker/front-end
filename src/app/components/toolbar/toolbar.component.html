@@ -9,31 +9,16 @@
           <img src="assets/Icons/Home.png" height="30" width="30"/>
         </button>
 
-        <div class="dashboard-card">
-          <mat-card >
-            <mat-tree  [dataSource]="dataSource" [treeControl]="treeControl">
-              <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-                <button mat-icon-button disabled></button>
-                <div class="dashboards" >
-                  {{node.name}}
-                </div>
-              </mat-tree-node>
-              <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-                <button  mat-icon-button matTreeNodeToggle
-                         [attr.aria-label]="'toggle ' + node.name">
-                  <mat-icon class="mat-icon-rtl-mirror">
-                    {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-                  </mat-icon>
-                </button>
-                <div class="dashboard-head" >
-                  {{node.name}}
-                </div>
-              </mat-tree-node>
-            </mat-tree>
-          </mat-card>
-        </div>
+        <mat-menu #appMenu="matMenu">
+          <mat-option *ngFor="let item of dashboards$ | async" [value]="item.id" (click)="chooseDashboard(item.id)">
+            {{ item.name }}
+          </mat-option>
+        </mat-menu>
 
-        <a mat-button *ngIf="(currentUser | async); " [routerLink]="'dashboard'">Dashboards</a>
+        <button mat-button *ngIf="(currentUser | async);" [matMenuTriggerFor]="appMenu" (click)="getAllDashboard()">Dashboards
+        </button>
+
+<!--        <a mat-button *ngIf="(currentUser | async); " [routerLink]="'dashboard'">Dashboards</a>-->
         <a mat-button *ngIf="(currentUser | async); " [routerLink]="'projects'">Projects</a>
 
         <a mat-stroked-button *ngIf="(currentUser | async); " (click)="createTicket()">Create issue</a>

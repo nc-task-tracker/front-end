@@ -1,11 +1,13 @@
+import {Widget} from "./widget.model";
+
 export interface Dashboard {
-/*  readonly id: string;
+  readonly id: string;
   readonly name: string;
-  readonly widgets: Observable<Widget>;*/
+  readonly widgets: Widget[];
 }
 
 export const defaultDashboard: Dashboard = {
-/*  id: null,
+  id: null,
   name: '',
-  widgets: ''*/
+  widgets: null
 };

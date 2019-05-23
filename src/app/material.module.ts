@@ -27,7 +27,7 @@ import {NgModule} from '@angular/core';
     MatGridListModule,
     MatButtonModule,
     MatRadioModule,
-    MatTreeModule
+    MatTreeModule,
   ],
   exports: [
     MatFormFieldModule,
