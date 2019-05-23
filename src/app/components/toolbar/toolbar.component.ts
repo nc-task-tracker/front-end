@@ -3,7 +3,10 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {User} from 'src/app/models/user.model';
 import {AppState} from 'src/app/store';
-import {selectCurrentUser, selectCurrentUserName} from 'src/app/store/selectors/current-user.selector';
+import {
+  selectCurrentUser,
+  selectCurrentUserName
+} from 'src/app/store/selectors/current-user.selector';
 import {logoutUserAction} from 'src/app/store/actions/current-user.actions';
 import {LoginUserComponent} from '../dialogs/login-user/login-user.component';
 import {MatDialog, MatDialogConfig} from '@angular/material';

@@ -1,0 +1,7 @@
+<app-abstract-select-form [controlName]="controlName" [placeholder]="placeholder"
+                          [multiple]="multiple" [itemTemplate]="customItem" [valueTitleKey]="valueTitleKey">
+  [multiple]="multiple" [itemTemplate]="customItem" [itemValueKey]="'id'" >
+</app-abstract-select-form>
+
+<ng-template let-item="item" #customItem>
+

@@ -1,5 +1,7 @@
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Ticket} from '../models/ticket.model';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/Rx';
 import {throwError} from 'rxjs';
@@ -12,13 +14,12 @@ import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/curre
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
 import {SearchByString} from '../components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
-import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
 import {SortParameters} from '../models/util/table-sort-param.model';
 import {TablePageData} from '../models/util/table-page-data.model';
+import {SearchByName} from '../components/form-filter/abstract-select-form/abstract-select-form.component';
 
 @Injectable()
-export class TicketService implements SearchByString<Assignee> {
+export class TicketService implements SearchByString<Assignee>, SearchByName<Ticket> {
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
@@ -28,6 +29,7 @@ export class TicketService implements SearchByString<Assignee> {
   private readonly CREATE_URL = '/api/issue/project';
   private readonly GET_USERS = '/api/users/assignee';
   private readonly GET_PROJECTS = '/api/project/possibleprojects';
+  private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
 
   private readonly TICKET_URL = '/api/issue';
 
@@ -49,7 +51,6 @@ export class TicketService implements SearchByString<Assignee> {
   }
 
   getPossibleProjectsByUser(userName: string) {
-    //console.log(userName);
     return this.http.get<Project[]>(`${this.GET_PROJECTS}`, {
       params: {
         name: userName
@@ -79,4 +80,14 @@ export class TicketService implements SearchByString<Assignee> {
     return this.http.delete(`${this.TICKET_URL}/delete/${ticketId}`);
   }
 
+
+  searchByName(name: string): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  // getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
+  //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
+  //     .pipe(catchError((error: any) => throwError(error.error)));
+  // }
 }

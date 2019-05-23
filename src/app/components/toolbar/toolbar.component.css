@@ -19,7 +19,7 @@
 }
 
 .toolbar-contols .username:hover {
-  background-color: inherit;
+  background-color: red;
 }
 
 .mat-stroked-button:not([disabled]) {

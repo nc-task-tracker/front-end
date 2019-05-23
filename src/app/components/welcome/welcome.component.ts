@@ -6,7 +6,6 @@ import {select} from "@angular-redux/store";
 import {selectCurrentUser} from "../../store/selectors/current-user.selector";
 import {Observable} from "rxjs";
 import {User} from "../../models/user.model";
-
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',

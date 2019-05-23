@@ -1,0 +1,25 @@
+.filter-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 15px 30px;
+}
+
+.filter-toolbar-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 15px;
+}
+
+.filter-toolbar-item.__search-params {
+  margin: 0 15px;
+}
+
+.filter-toolbar-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filter-toolbar-item .mat-select-value {
+  max-width: fit-content;
+}

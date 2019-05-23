@@ -1,0 +1,79 @@
+<!--<div>-->
+  <!--<span class="counter-title"> Filter name: {{filter.name}}</span> <br>-->
+  <!--&lt;!&ndash;<input type="text" [(ngModel)]="filter.name" /> <br>&ndash;&gt;-->
+<!--</div>-->
+<mat-list>
+  <mat-list-item>Filter name: {{filter.name}}</mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="FilterName"  >
+</mat-form-field>
+
+<section class="filter-toolbar">
+  <!--<input type="text" [(ngModel)]="filter.name" /> <br>-->
+
+  <br><br>
+    <!--<app-binding-example [counterTitle]="'Plus/Minus counter'" [(name)]="parentCounter" (operation)="onCounterChange($event)"></app-binding-example>-->
+
+  <form [formGroup]="filterForm" class="filter-toolbar-form">
+    <ng-container *ngFor="let item of filterItems">
+      <div class="filter-toolbar-item">
+
+        <ng-container [ngSwitch]="item.fieldType">
+
+          <ng-container *ngSwitchCase="allFieldType.INPUT">
+
+            <mat-form-field class="filter-toolbar-item__input">
+              <input matInput [formControlName]="item.key" [placeholder]="item.placeholder">
+            </mat-form-field>
+
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.SELECT">
+            <mat-form-field>
+              <mat-label>{{item.title}}</mat-label>
+              <mat-select [formControlName]="item.key" [placeholder]="item.placeholder" [multiple]="item.multiple"
+                          class="filter-toolbar-item__select">
+                <mat-option *ngFor="let option of item.options" [value]="option">
+                  {{option[item.titleKey]}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.ASSIGNEE">
+            <app-assignee-form [multiple]="item.multiple" [controlName]="item.key" [placeholder]="item.placeholder"  [valueTitleKey]="item.titleKey">
+            </app-assignee-form>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.ISSUE_NAME">
+            <app-project-name-form [multiple]="item.multiple" [controlName]="item.key" [placeholder]="item.placeholder" [valueTitleKey]="item.titleKey">
+            </app-project-name-form>
+          </ng-container>
+
+          <mat-icon (click)="removeFilterItem(item)">cancel</mat-icon>
+        </ng-container>
+      </div>
+    </ng-container>
+  </form>
+
+  <div class="filter-toolbar-item __search-params">
+    <mat-form-field>
+      <mat-select [multiple]="true" [placeholder]="'Add Search Params'" (selectionChange)="onItemAdd($event)"
+                  #searchItemSelect>
+        <ng-container *ngFor="let item of initialFilterItems">
+          <mat-option *ngIf="!item.hidden" [value]="item">{{item.title}}</mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="filter-toolbar-item __search-button">
+    <button mat-raised-button (click)="onSearchSubmit()">Search</button>
+  </div>
+
+  <div class="filter-toolbar-item __create-button">
+    <button mat-raised-button (click)="createFilter()">Create</button>
+  </div>
+</section>
