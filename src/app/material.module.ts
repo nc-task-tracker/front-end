@@ -1,19 +1,9 @@
 import {
-  MatButtonModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatNativeDateModule,
-  MatRadioModule,
-  MatSelectModule,
-  MatTooltipModule,
-  MatTreeModule
+  MatButtonModule, MatCardModule, MatDatepickerModule,
+  MatFormFieldModule, MatIconModule, MatInputModule,
+  MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule,
+  MatRadioModule, MatSelectModule, MatTableModule, MatTabsModule,
+  MatTooltipModule, MatTreeModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
@@ -27,16 +17,16 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule,
-    MatDialogModule,
-    MatIconModule,
     MatCardModule,
-    MatDividerModule,
-    MatGridListModule,
     MatButtonModule,
+    MatIconModule,
     MatRadioModule,
+    MatMenuModule,
+    MatListModule,
     MatTreeModule,
-
+    MatTabsModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -47,16 +37,16 @@ import {NgModule} from '@angular/core';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatListModule,
-    MatDialogModule,
-    MatIconModule,
     MatCardModule,
-    MatDividerModule,
-    MatGridListModule,
     MatButtonModule,
+    MatIconModule,
     MatRadioModule,
+    MatMenuModule,
+    MatListModule,
     MatTreeModule,
-
+    MatTabsModule,
+    MatTableModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule {}

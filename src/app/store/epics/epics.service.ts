@@ -5,6 +5,7 @@ import { CurrentUserEpic } from './current-user.epic';
 import { RegisterEpic } from './register.epic';
 import {TicketsEpic} from './tickets.epic';
 import {ProjectEpic} from "./project.epic";
+import {CurrentTicketsEpic} from './current-ticket.epic';
 import {FilterEpic} from "./filter.epic";
 import {ChangeProfileEpic} from "./change-profile.epic";
 import {ProfileEpic} from "./profile.epic";
@@ -18,8 +19,8 @@ export class EpicService {
                 private ticketsEpic: TicketsEpic,  private projectEpic: ProjectEpic,
                 private filterEpic: FilterEpic, private registerEpic: RegisterEpic,
                 private changeProfileEpic: ChangeProfileEpic,
-                private profileEpic: ProfileEpic,
-                private currentEpic: CurrentFilterEpic
+                private currentEpic: CurrentFilterEpic,
+                private currentTicketEpic: CurrentTicketsEpic, private profileEpic: ProfileEpic
     ){}
 
     getEpics() {
@@ -33,6 +34,14 @@ export class EpicService {
             // this.ticketsEpic.createTicket$,
             this.ticketsEpic.fetchTicketNames$,
             this.ticketsEpic.searchTicket$,
+            this.projectEpic.createProject$,
+            this.ticketsEpic.createTicket$,
+            this.ticketsEpic.fetchTickets$,
+            this.ticketsEpic.updateTicket$,
+            this.ticketsEpic.deleteTicket$,
+            this.ticketsEpic.saveComment$,
+            this.ticketsEpic.selectTicket$,
+            // this.currentTicketEpic.updateCurrentTicket$
             this.projectEpic.createProject$,
             this.changeProfileEpic.changeProfile$,
             // this.projectEpic.fetchProjects$,

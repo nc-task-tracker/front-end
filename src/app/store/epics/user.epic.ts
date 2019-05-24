@@ -11,43 +11,44 @@ import { SELECT_USER, selectUser, selectUserSuccess } from '../actions/user-stat
 
 @Injectable()
 export class UserEpic {
-  constructor(private userService: UserService) { }
+    constructor(private userService: UserService) { }
 
-  fetchUsers$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType(FETCH_USERS).pipe(
-      switchMap(({}) => {
-        return this.userService
-          .getUsers()
-          .pipe(
-            map( users => fetchUsersSuccessAction(TransformService.transformToMap(users))),
-            catchError(error => of(fetchUsersFailedAction(error.message)))
-          );
-      })
-    );
-  }
+    fetchUsers$ = (action$: ActionsObservable<AnyAction>) => {
+        return action$.ofType(FETCH_USERS).pipe(
+            switchMap(({}) => {
+                return this.userService
+                    .getUsers()
+                    .pipe(
+                        map( users => fetchUsersSuccessAction(TransformService.transformToMap(users))),
+                        catchError(error => of(fetchUsersFailedAction(error.message)))
+                    );
+            })
+        );
+    }
 
-  updateUser$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType(UPDATE_USER).pipe(
-      switchMap(({payload}) => {
-        return this.userService
-          .updateUser(payload.user)
-          .pipe(
-            map( user => updateUserSuccessAction(user))
-          );
-      })
-    );
-  }
+    updateUser$ = (action$: ActionsObservable<AnyAction>) => {
+        return action$.ofType(UPDATE_USER).pipe(
+            switchMap(({payload}) => {
+                return this.userService
+                    .updateUser(payload.user)
+                    .pipe(
+                        map( user => updateUserSuccessAction(user))
+                    );
+            })
+        );
+    }
 
-  selectUser$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType(SELECT_USER).pipe(
-      switchMap(({payload}) => {
-        return this.userService
-          .getUser(payload.userId)
-          .pipe(
-            map( user => selectUserSuccess(user)),
-            catchError(error => of(fetchUsersFailedAction(error.message)))
-          );
-      })
-    );
-  }
+    selectUser$ = (action$: ActionsObservable<AnyAction>) => {
+        return action$.ofType(SELECT_USER).pipe(
+            switchMap(({payload}) => {
+                return this.userService
+                    .getUser(payload.userId)
+                    .pipe(
+                        map( user => selectUserSuccess(user)),
+                        catchError(error => of(fetchUsersFailedAction(error.message)))
+                        );
+            })
+        );
+    }
+
 }

@@ -52,7 +52,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onCancelClick() {
-    this.router.navigate(['users']);
+    this.router.navigate(['home']);
   }
 
   private getErrorMessage(control: FormControl): string {

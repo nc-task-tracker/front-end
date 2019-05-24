@@ -1,6 +1,4 @@
-import { Routes, RouterModule} from '@angular/router';
-// import { EditUserComponent } from './components/edit-user/edit-user.component';
-import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
+import {RouterModule, Routes} from '@angular/router';
 import {UserListComponent} from './components/user-list/user-list.component';
 import {ProfileComponent} from './components/profile/profile.component';
 import {ChangeProfileComponent} from './components/change-profile/change-profile.component';
@@ -11,7 +9,8 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {FilterFormComponent} from "./components/form-filter/filter-form.component";
 import {NgModule} from '@angular/core';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-
+import {CommentsComponent} from './components/ticket/comments/comments.component';
+import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
 
 const routs: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -25,11 +24,16 @@ const routs: Routes = [
   {path: 'home', component: WelcomeComponent},
   {path: 'filter/create', component: FilterFormComponent},
   {path: 'filter/:filterId', component: FilterFormComponent}
+  {path: 'create-ticket', component: CreateTicketPageComponent},
+  {path: 'ticket/:issueCode', component: TicketComponent},
+  {path: 'home', component: WelcomeComponent},
+  {path: 'comment', component: CommentsComponent}
 ];
 
 @NgModule({
-   imports: [
-       RouterModule.forRoot(routs)
-   ]
+  imports: [
+    RouterModule.forRoot(routs)
+  ]
 })
-export class AppRouterModule {}
+export class AppRouterModule {
+}

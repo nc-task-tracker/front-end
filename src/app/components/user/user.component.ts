@@ -23,5 +23,4 @@ export class UserComponent implements OnInit {
     const userId = this.route.snapshot.params.id;
     this.ngRedux.dispatch(selectUser(userId));
   }
-
 }

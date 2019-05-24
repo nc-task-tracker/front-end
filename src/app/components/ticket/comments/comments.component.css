@@ -1,0 +1,44 @@
+mat-card {
+  height: 460px;
+}
+
+.comment-tab {
+  padding-top: 5px;
+}
+
+.comments-table {
+  height: 280px;
+  overflow: auto;
+  background: gray;
+  border: 1px solid lightgray;
+}
+
+.send-comment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 140px;
+}
+
+.comment-field {
+  width: 400px;
+  height: 100px;
+}
+
+.comment-div {
+  height: 75px;
+}
+
+table {
+  width: 450px;
+}
+
+.noComments {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+  border: 1px solid lightgray;
+}
+

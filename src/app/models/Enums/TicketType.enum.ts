@@ -1,5 +1,6 @@
 export enum TicketType {
   TASK = 'TASK',
+  SUBTASK = 'SUBTASK',
   BUG = 'BUG',
   EPIC = 'EPIC',
   IMPROVEMENT = 'IMPROVEMENT',
@@ -9,6 +10,7 @@ export enum TicketType {
 
 export enum TicketTypeLabel {
   TASK = 'Task',
+  SUBTASK = 'Subtask',
   BUG = 'Bug',
   EPIC = 'Epic',
   IMPROVEMENT = 'Improvement',

@@ -1,115 +1,126 @@
-import {User} from './user.model';
-
-export enum TicketStatus {
-  OPEN = 'OPEN',
-  IN_PROGRESS = 'IN PROGRESS',
-  RESOLVED = 'RESOLVED',
-  REOPENED = 'REOPEND',
-  CLOSED = 'CLOSED'
-}
-
-export enum TicketPriority {
-  MAJOR = 'MAJOR',
-  CRITICAL = 'CRITICAL',
-  BLOCKER = 'BLOCKER',
-  TRIVIAL = 'TRIVIAL',
-  MINOR = 'MINOR'
-}
-
-export interface TicketPriorityObject {
-  readonly type: TicketPriority;
-  readonly title: string;
-}
-
-export enum TicketPriorityLabel {
-  MAJOR = 'Major',
-  CRITICAL = 'Critical',
-  BLOCKER = 'Blocker',
-  TRIVIAL = 'Trivial',
-  MINOR = 'Minor'
-}
+import {testUser, User} from './user.model';
+import {TicketPriority, TicketPriorityLabel} from './Enums/TicketPriority.enum';
+import {TicketStatus, TicketStatusLabel} from './Enums/TicketStatus.enum';
+import {TicketPriorityObject} from './ticket-priority.model';
+import {TicketStatusObject} from './ticket-status.model';
+import {TicketType, TicketTypeLabel} from './Enums/TicketType.enum';
+import {TicketTypeObject} from './ticket-type.model';
+import {defaultProject, Project} from './project.model';
+import {defaultComment, Comment} from './comment.model';
+import {defaultProfile, Profile} from './profile.model';
 
 export const allTicketPriority: TicketPriorityObject[] = [
   {
     type: TicketPriority.TRIVIAL,
-    title: 'Trivial'
+    title: TicketPriorityLabel.TRIVIAL
   },
   {
     type: TicketPriority.MINOR,
-    title: 'Minor'
+    title: TicketPriorityLabel.MINOR
   },
   {
     type: TicketPriority.MAJOR,
-    title: 'Major'
+    title: TicketPriorityLabel.MAJOR
   },
   {
     type: TicketPriority.CRITICAL,
-    title: 'Critical'
+    title: TicketPriorityLabel.CRITICAL
   },
   {
     type: TicketPriority.BLOCKER,
-    title: 'Blocker'
+    title: TicketPriorityLabel.BLOCKER
   }
 ];
 
-export enum TicketType {
-  TASK = 'TASK',
-  BUG = 'BUG',
-  EPIC = 'EPIC',
-  IMPROVEMENT = 'IMPROVEMENT',
-  STORY = 'STORY',
-  NEW_FEATURE = 'NEW FEATURE'
-}
+export const allTicketStatus: TicketStatusObject[] = [
+  {
+    type: TicketStatus.TO_DO,
+    title: TicketStatusLabel.TO_DO
+  },
+  {
+    type: TicketStatus.PROGRESS,
+    title: TicketStatusLabel.PROGRESS
+  },
+  {
+    type: TicketStatus.OPEN,
+    title: TicketStatusLabel.OPEN
+  },
+  {
+    type: TicketStatus.CLOSED,
+    title: TicketStatusLabel.CLOSED
+  },
+  {
+    type: TicketStatus.REOPENED,
+    title: TicketStatusLabel.REOPENED
+  },
+  {
+    type: TicketStatus.RESOLVED,
+    title: TicketStatusLabel.RESOLVED
+  }
+];
 
-export enum TicketTypeLabel {
-  TASK = 'Task',
-  BUG = 'Bug',
-  EPIC = 'Epic',
-  IMPROVEMENT = 'Improvement',
-  STORY = 'Story',
-  NEW_FEATURE = 'New feature'
-}
-
-export const allTicketTypes: TicketTypeObject[] = [
+export const allTicketType: TicketTypeObject[] = [
   {
     type: TicketType.BUG,
-    title: 'Bug'
+    title: TicketTypeLabel.BUG
   },
+
   {
     type: TicketType.EPIC,
-    title: 'Epic'
+    title: TicketTypeLabel.EPIC
   },
+
   {
     type: TicketType.IMPROVEMENT,
-    title: 'Improvement'
+    title: TicketTypeLabel.IMPROVEMENT
   },
   {
     type: TicketType.NEW_FEATURE,
-    title: 'New feature'
+    title: TicketTypeLabel.NEW_FEATURE
   },
   {
     type: TicketType.STORY,
-    title: 'Story'
+    title: TicketTypeLabel.STORY
   },
   {
     type: TicketType.TASK,
-    title: 'Task'
-  }
+    title: TicketTypeLabel.TASK
+  },
+  {
+    type: TicketType.SUBTASK,
+    title: TicketTypeLabel.SUBTASK
+  },
 ];
-export interface TicketTypeObject {
-  readonly type: TicketType;
-  readonly title: string;
-}
 
 export interface Ticket {
   readonly id: string;
   readonly issueName: string;
-  readonly issueDescription: string;
-  readonly dueDate: Date;
-  readonly parentId: String;
-  readonly project: String;
   readonly issueType: TicketType;
   readonly issuePriority: TicketPriority;
-  readonly reporter: String;
-  readonly assignee: String;
+  readonly issueStatus: TicketStatus;
+  readonly issueDescription: string;
+  readonly startDate: Date;
+  readonly dueDate: Date;
+  readonly projectId: string;
+  readonly reporter: Profile;
+  readonly assignee: Profile;
+  readonly parentId: string;
+  readonly comments: Comment []
 }
+
+export const defaultTicket: Ticket = {
+  id: '1',
+  issueName: 'Name',
+  issueType: TicketType.TASK,
+  issuePriority: TicketPriority.MINOR,
+  issueStatus: TicketStatus.RESOLVED,
+  issueDescription: 'Issue_description',
+  startDate: new Date('02/02/03'),
+  dueDate: new Date('02/02/02'),
+  projectId: '',
+  reporter: null,
+  assignee: null,
+  parentId: null,
+  comments: null
+};
+

@@ -11,7 +11,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor(private storageService: GlobalUserStorageService, private router: Router) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // add authorization header with jwt token if available
     const currentUser = this.storageService.currentUser;
     const token = this.storageService.currentToken;
     if (currentUser && token && token.token) {
