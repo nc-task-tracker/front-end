@@ -23,7 +23,7 @@ const routs: Routes = [
   {path: 'ticket', component: TicketComponent},
   {path: 'home', component: WelcomeComponent},
   {path: 'filter/create', component: FilterFormComponent},
-  {path: 'filter/:filterId', component: FilterFormComponent}
+  {path: 'filter/:filterId', component: FilterFormComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent},
   {path: 'ticket/:issueCode', component: TicketComponent},
   {path: 'home', component: WelcomeComponent},

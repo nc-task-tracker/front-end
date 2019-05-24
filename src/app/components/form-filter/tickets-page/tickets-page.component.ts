@@ -184,8 +184,8 @@ export class TicketsPageComponent implements OnInit {
     'ticketDescription'
   ]
   dataSource ;
-  private resultTickets: Map<string, Ticket>;
-  // private resultTickets: Ticket[];
+  // private resultTickets: Map<string, Ticket>;
+  private resultTickets: Ticket[];
 
   @select(selectIsLoading)
   isLoading: Observable<boolean>;

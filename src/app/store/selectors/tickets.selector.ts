@@ -12,4 +12,4 @@ export const selectTicketById = (state: AppState, ticketId: string) => {
 
 // export const selectTickets = (state: AppState) => state.filterTicketsState.tickets;
 //
-// export const selectIsLoading = (state: AppState) => state.filterTicketsState.isLoading;
+export const selectIsLoading = (state: AppState) => state.filterTicketsState.isLoading;

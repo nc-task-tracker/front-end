@@ -49,7 +49,7 @@ import { MaterialModule } from './material.module';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {ProfileModule} from './components/profile/profile.module';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
-import {TicketComponent} from './components/ticket/ticket.component';
+// import {TicketComponent} from './components/ticket/ticket.component';
 // import {RegisterService} from './service/register.service';
 // import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
@@ -74,7 +74,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    TicketComponent,
+    // TicketComponent,
     CreateProjectComponent,
     // ProfileComponent,
     WelcomeComponent,
