@@ -187,16 +187,6 @@ export class FilterFormComponent implements OnInit {
 
 
   onSearchSubmit() {
-    //   console.log(this.filterForm.getRawValue());
-    //   const formValue = this.filterForm.getRawValue();
-    //   const parameters = this.filterItems.map(item => {
-    //     return {...item, key: formValue[item.key], value: formValue[item.value]};
-    //   });
-    //   const searchFilterItems: Filter = {
-    //     parameters: parameters
-    //   };
-    //   console.log(searchFilterItems);
-    //   // this.ticketService.searchByFilter(searchFilterItems);
       const formValue = this.filterForm.getRawValue();
       const parameters = this.filterItems.map(item => {
       if (item.value instanceof Array) {
