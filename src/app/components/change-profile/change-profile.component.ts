@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {NgRedux} from "@angular-redux/store";
+import {NgRedux, select} from "@angular-redux/store";
 import {AppState} from "../../store";
 import {saveProfileAction} from "../../store/actions/change-profile.actions";
 import {GlobalUserStorageService} from "../../service/global-storage.service";
+import {Profile} from "../../models/profile.model";
+import {selectProfile, selectProfileIsLoading} from "../../store/selectors/profile.selector";
+import {Observable} from "rxjs";
+import {MatDialog} from "@angular/material";
+import {CreateTicketModalComponent} from "../create-ticket-modal/create-ticket-modal.component";
+import {ModalCancelComponent} from "../modal-cancel/modal-cancel.component";
 
 @Component({
   selector: 'app-change-profile',
@@ -14,14 +20,21 @@ import {GlobalUserStorageService} from "../../service/global-storage.service";
 export class ChangeProfileComponent implements OnInit {
   changeProfileForm: FormGroup;
   maxDate = new Date();
+
+  profile: Profile;
+
+  @select(selectProfileIsLoading)
+  isLoading: Observable<boolean>;
+
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private ngRedux: NgRedux<AppState>,
               private storageService: GlobalUserStorageService,
+              private matDialog: MatDialog,
   ) {
   }
   onCancelClick() {
-    this.router.navigate(['profile/1']);
+    this.matDialog.open(ModalCancelComponent);
   }
   changeProfile() {
     const formValue = this.changeProfileForm.getRawValue();
@@ -30,6 +43,12 @@ export class ChangeProfileComponent implements OnInit {
   }
   ngOnInit() {
     this.initializeForm();
+    this.isLoading.subscribe( val => {
+      console.log(val);
+      if(!val) {
+        this.profile = selectProfile(this.ngRedux.getState());
+      }
+    });
   }
   private initializeForm() {
     this.changeProfileForm = this.formBuilder.group({

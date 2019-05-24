@@ -3,14 +3,21 @@ import {Project} from "../models/project.model";
 import {Observable, throwError} from "rxjs";
 import {catchError} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
-
+import {Profile} from "../models/profile.model";
 
 @Injectable()
 export class ProfileService {
 
   private PROJECTS_URL = '/api/project';
+  private PROFILE_URL = '/api/profile';
+
 
   constructor(private http: HttpClient) {
+  }
+
+  getProfile(profileId: string): Observable<Profile> {
+    return this.http.get<Profile> (`${this.PROFILE_URL}/${profileId}`)
+      .pipe (catchError ((error: any) => throwError (error.error)));
   }
 
   getProjects(): Observable<Project[]> {

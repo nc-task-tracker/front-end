@@ -1,35 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
-import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material";
-import {fetchUsersAction} from "../../../store/actions/users.actions";
+import {MatTreeFlatDataSource, MatTreeFlattener, MatMenuTrigger, MatDialog} from "@angular/material";
 import {fetchProjectsAction} from "../../../store/actions/Profile.action";
-import {NgRedux} from "@angular-redux/store";
+import {NgRedux, select} from "@angular-redux/store";
 import {AppState} from "../../../store";
+import {Observable} from "rxjs";
+import {selectProjects, selectProjectsIsLoading} from "../../../store/selectors/projects.selector";
+import {Project} from "../../../models/project.model";
 
-interface Projects {
-  name: string;
-  children?: Projects[];
-}
-
-const TREE_DATA3: Projects[] = [
-  {
-    name: 'Projects',
-    children: [
-      {name: 'Main'},
-      {name: 'Dash1'},
-      {name: 'Dash2'},
-      {name: 'Dash3'},
-      {name: 'Dash4'}
-    ]
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
 
 @Component({
   selector: 'app-projects',
@@ -38,29 +16,30 @@ interface ExampleFlatNode {
 })
 export class ProjectsComponent implements OnInit {
 
-  constructor(private ngRedux: NgRedux<AppState>) {
-    this.dataSource3.data = TREE_DATA3;}
+  projectName:string;
 
-  private transformer3 = (node: Projects, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
+  projects: Project[];
+
+  @select(selectProjectsIsLoading)
+  isLoading: Observable<boolean>;
+
+  @ViewChild(MatMenuTrigger)
+  trigger: MatMenuTrigger;
+
+  someMethod() {
+    this.trigger.openMenu();
   }
 
-  treeControl3 = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
-
-  treeFlattener3 = new MatTreeFlattener(
-    this.transformer3, node => node.level, node => node.expandable, node => node.children);
-
-  dataSource3 = new MatTreeFlatDataSource(this.treeControl3, this.treeFlattener3);
-
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
+  constructor(private ngRedux: NgRedux<AppState>) {
+  }
 
   ngOnInit() {
     this.ngRedux.dispatch(fetchProjectsAction());
+    this.isLoading.subscribe( val => {
+      console.log(val);
+      if(!val) {
+        this.projects = selectProjects(this.ngRedux.getState());
+      }
+    });
   }
-
 }

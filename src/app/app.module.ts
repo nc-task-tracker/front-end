@@ -5,7 +5,6 @@ import {AppComponent} from './app.component';
 import {UserComponent} from './components/user/user.component';
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
-import {ProfileComponent} from './components/profile/profile.component';
 import {ChangeProfileComponent} from './components/change-profile/change-profile.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {EpicsModule} from './store/epics/epics.module';
@@ -41,13 +40,12 @@ import {AssigneeFormComponent} from './components/assignee-form/assignee-form.co
 import {ProjectCodeValidator} from "./validators/project.code.validator";
 import {AuthGuardService} from "./service/auth-guard.service";
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
-
 import {ProfileModule} from './components/profile/profile.module';
-import {TicketComponent} from './components/ticket/ticket.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
 import {TicketModule} from './components/ticket/ticket.module';
 import {ProjectNameValidator} from './validators/project.name.validator';
+import { ModalCancelComponent } from './components/modal-cancel/modal-cancel.component';
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -67,7 +65,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
-    AssigneeFormComponent
+    AssigneeFormComponent,
+    ModalCancelComponent,
   ],
   imports: [
     BrowserModule,

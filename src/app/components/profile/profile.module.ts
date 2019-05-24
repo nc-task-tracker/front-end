@@ -9,6 +9,8 @@ import { ActionsComponent } from './actions/actions.component';
 import { DashboardsComponent } from './dashboards/dashboards.component';
 import { FiltersComponent } from './filters/filters.component';
 import { ProjectsComponent } from './projects/projects.component';
+import {MatMenuModule} from "@angular/material";
+// import { MatConfirmationDialogComponent } from './mat-confirmation-dialog/mat-confirmation-dialog.component';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { ProjectsComponent } from './projects/projects.component';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatMenuModule
   ],
   exports: [
     ProfileComponent

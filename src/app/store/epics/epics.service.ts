@@ -34,10 +34,11 @@ export class EpicService {
             this.ticketsEpic.deleteTicket$,
             this.ticketsEpic.saveComment$,
             this.ticketsEpic.selectTicket$,
-            // this.currentTicketEpic.updateCurrentTicket$
             this.projectEpic.createProject$,
             this.changeProfileEpic.changeProfile$,
-            this.projectEpic.fetchProjects$
+            this.profileEpic.fetchProjects$,
+            this.profileEpic.fetchProfile$
+
         );
     }
 }

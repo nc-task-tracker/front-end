@@ -1,23 +1,13 @@
 <div class="project-card">
   <mat-card >
-    <mat-tree  [dataSource]="dataSource3" [treeControl]="treeControl3">
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-        <button mat-icon-button disabled></button>
-        <div class="projects" >
-          {{node.name}}
-        </div>
-      </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
-        <button  mat-icon-button matTreeNodeToggle
-                 [attr.aria-label]="'toggle ' + node.name">
-          <mat-icon class="mat-icon-rtl-mirror">
-            {{treeControl3.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
-          </mat-icon>
-        </button>
-        <div class="project-head" >
-          {{node.name}}
-        </div>
-      </mat-tree-node>
-    </mat-tree>
+    <mat-menu
+      #appMenu="matMenu">
+      <mat-option *ngFor="let item of projects">
+        {{item.projectName}}
+     </mat-option>
+    </mat-menu>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+      Projects
+    </button>
   </mat-card>
 </div>

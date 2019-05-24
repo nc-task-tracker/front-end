@@ -4,7 +4,7 @@ export interface ChangeProfile {
   readonly email: string;
   readonly skype: string;
   readonly telephone: string;
-  readonly birthday: Date;
   readonly additional: string;
+  readonly birthday: Date;
   readonly description: string;
 }

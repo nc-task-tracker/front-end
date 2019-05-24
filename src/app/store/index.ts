@@ -6,6 +6,9 @@ import {TicketsState} from './reducers/tickets.reducer';
 import {CurrentTicketState} from './reducers/current-ticket.reducer';
 import {ChangeProfileState} from "./reducers/change-profile.reduser";
 import {Token} from "../models/token.model";
+import {ProfileState} from "./reducers/profile.reducer";
+import {ProjectsState} from "./reducers/project.reducer";
+
 
 export interface AppState {
     readonly usersState?: UsersState;
@@ -17,5 +20,6 @@ export interface AppState {
     readonly tickets: Map<string, Ticket>;
     readonly currentToken?: Token;
     readonly changeProfileState?: ChangeProfileState;
-  //readonly profileState?: ProfileState;
+    readonly profile?: ProfileState;
+    readonly projects?: ProjectsState;
 }
