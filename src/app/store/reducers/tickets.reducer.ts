@@ -31,10 +31,12 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
     case FETCH_TICKET_NAMES_SUCCESS: {
       return { ...state, ...action.payload, isLoading: false };
     }
-    // case FILTER_SEARCH_SUCCESS: {
-    //   const {ticket} = action.payload;
-    //   const found_tickets = new Map(state).set(ticket.id, ticket);
-    //   return found_tickets;
+    case FILTER_SEARCH_SUCCESS: {
+      const {tickets} = action.payload;
+      const found_tickets = new Map(state.tickets).set(tickets.id, tickets);
+      // return found_tickets;
+      return { ...state, tickets: found_tickets, isLoading: false };
+    }
     // case GET_ASSIGNEE_LIST: {
     //   const inputValue = action.payload;
     //   const assigneeList = new Map(state).set(, inputValue);

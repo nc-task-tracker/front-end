@@ -1,4 +1,5 @@
 import {Filter} from "../../models/filter-item.model";
+import {Ticket} from "../../models/ticket.model";
 
 export const CREATE_FILTER = '[Filter] Create filter';
 export const CREATE_FILTER_SUCCESS = '[Filter] Create filter success';
@@ -33,10 +34,10 @@ export function filterSearchAction(filter: Filter) {
   }
 }
 
-export function filterSearchSuccessAction(filter: Filter) {
+export function filterSearchSuccessAction(tickets: Ticket[]) {
   return {
     type: FILTER_SEARCH_SUCCESS,
-    payload: {filter}
+    payload: {tickets}
   }
 }
 

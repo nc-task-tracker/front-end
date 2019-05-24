@@ -21,15 +21,16 @@ export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterI
             value: model.value || [],
             placeholder: 'Projects',
             title: 'Projects',
-            titleKey: 'name',
-            options: [{
-              id: '1',
-              projectName: 'name1',
-              projectDescription: '',
-              ownerId: '',
-              projectStatus: '',
-              projectCode: ''
-            }]
+            titleKey: 'projectName',
+            // options: [{
+            //   id: '1',
+            //   projectName: 'name1',
+            //   projectDescription: '',
+            //   ownerId: '',
+            //   projectStatus: '',
+            //   projectCode: ''
+            // }]
+            options: []
         };
     }
 }

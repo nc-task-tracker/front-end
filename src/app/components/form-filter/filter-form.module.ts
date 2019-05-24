@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FilterFormComponent } from './filter-form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatAutocomplete,
-  MatAutocompleteModule, MatChipsModule, MatIconModule, MatListModule,
+  MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule,
+  MatAutocompleteModule, MatChipsModule, MatIconModule, MatListModule, MatTableModule
 } from '@angular/material';
+import {MatSortModule} from '@angular/material/sort';
 import {MatDividerModule} from '@angular/material/divider'
 import { FILTER_ITEM_BUILDER, FilterItemFactory } from './factory/filter-item.factory';
 import {
@@ -20,9 +21,8 @@ import {
 import { SearchStringItemBuilder } from './builders/input.builder';
 import { AbstractSelectFormComponent } from './abstract-select-form/abstract-select-form.component';
 import { AssigneeFormComponent } from './assignee-form/assignee-form.component';
-import { ProjectNameFormComponent } from './project-name-form/project-name-form.component';
-import { BindingExampleModule } from "./binding-example-component/binding-example.module";
-// import { TicketsPageComponent } from './tickets-page/tickets-page.component';
+import { TicketNameFormComponent } from './ticket-name-form/ticket-name-form.component';
+import { TicketsPageComponent } from './tickets-page/tickets-page.component';
 
 const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: SearchStringItemBuilder, multi: true },
@@ -40,8 +40,8 @@ const BUILDERS = [
     FilterFormComponent,
     AbstractSelectFormComponent,
     AssigneeFormComponent,
-    ProjectNameFormComponent,
-    // TicketsPageComponent
+    TicketNameFormComponent,
+    TicketsPageComponent
   ],
   imports: [
     CommonModule,
@@ -53,14 +53,16 @@ const BUILDERS = [
     MatAutocompleteModule,
     MatChipsModule,
     MatIconModule,
-    BindingExampleModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    FormsModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [
     BUILDERS,
     FilterItemFactory
   ],
-  exports: [FilterFormComponent]
+  exports: [FilterFormComponent, MatTableModule]
 })
 export class FilterFormModule { }

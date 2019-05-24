@@ -1,20 +1,22 @@
-<!--<div>-->
-  <!--<span class="counter-title"> Filter name: {{filter.name}}</span> <br>-->
-  <!--&lt;!&ndash;<input type="text" [(ngModel)]="filter.name" /> <br>&ndash;&gt;-->
-<!--</div>-->
-<mat-list>
-  <mat-list-item>Filter name: {{filter.name}}</mat-list-item>
+<mat-list  >
+  <mat-list-item>Filter name: {{filterName.name}}</mat-list-item>
+  <div class="example-full-width">
+  <mat-form-field>
+    <input matInput placeholder="Change filter name:" [(ngModel)] = "filterName.name"  >
+  </mat-form-field>
+  </div>
   <mat-divider></mat-divider>
 </mat-list>
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="FilterName"  >
-</mat-form-field>
+
+<!--<div class="filter-name">-->
+  <!--&lt;!&ndash;<div> Filter name: {{filterName.name}} </div>&ndash;&gt;-->
+  <!--<mat-form-field class="example-full-width">-->
+    <!--<input matInput placeholder="Change filter name:" [(ngModel)] = "filterName.name"  >-->
+  <!--</mat-form-field>-->
+<!--</div>-->
+
 
 <section class="filter-toolbar">
-  <!--<input type="text" [(ngModel)]="filter.name" /> <br>-->
-
-  <br><br>
-    <!--<app-binding-example [counterTitle]="'Plus/Minus counter'" [(name)]="parentCounter" (operation)="onCounterChange($event)"></app-binding-example>-->
 
   <form [formGroup]="filterForm" class="filter-toolbar-form">
     <ng-container *ngFor="let item of filterItems">
@@ -77,3 +79,5 @@
     <button mat-raised-button (click)="createFilter()">Create</button>
   </div>
 </section>
+
+<app-tickets-page></app-tickets-page>

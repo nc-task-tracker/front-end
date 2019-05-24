@@ -24,12 +24,14 @@ export class FilterEpic {
   constructor (private filterService: FilterService) {}
 
   createFilter$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType<ReturnType<typeof createFilterAction>>(CREATE_FILTER).pipe(
+    return action$.ofType(CREATE_FILTER).pipe(
       mergeMap(({payload}) => {
         return this.filterService
           .createFilter(payload.filter)
           .pipe(
-            map(filter => createFilterSuccessAction(filter))
+            map(filter => {
+              console.log('CREATE FILTER', filter);
+              createFilterSuccessAction(filter)})
           )
       })
     )

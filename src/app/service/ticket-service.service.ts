@@ -26,10 +26,7 @@ export class TicketServiceService  {
        .pipe(catchError(err => throwError(err)));
   }
 
-  // searchByFilter(filter: Filter): Observable<Ticket[]> {
-  //    return this.http.post<Ticket>(`${this.CREATE_URL}`, filter)
-  //      .pipe(catchError(err => throwError(err)));
-  // }
+
 
   // searchByName(name : string ): Observable<Ticket[]> {
   //   return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)

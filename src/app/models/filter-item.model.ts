@@ -1,25 +1,35 @@
 import {allIssueType, IssueTypeModel} from "./issue-type.model";
 
 export enum FilterType {
-  SEARCH_STRING = 'SEARCH_STRING',
+  ISSUE_NAME = 'ISSUE_NAME',
   ISSUE_TYPE = 'ISSUE_TYPE',
   ISSUE_STATUS = 'ISSUE_STATUS',
   ISSUE_PRIORITY = 'ISSUE_PRIORITY',
-  ISSUE_NAME = 'ISSUE_NAME',
   ASSIGNEE = 'ASSIGNEE',
+  REPORTER = 'REPORTER',
+
   PROJECTS = 'PROJECTS',
-  REPORTER = 'REPORTER'
+
+  DUE_DATE = 'DUE_DATE',
+  START_DATE = 'START_DATE',
+
+  PROJECT_NAME = 'PROJECT_NAME',
+
+  SEARCH_STRING = 'SEARCH_STRING'
 }
 
 export enum FilterTypeNameMapping {
-  SEARCH_STRING = 'Search string',
+
+  ISSUE_NAME = "Ticket name",
   ISSUE_TYPE = 'Issue types',
   ISSUE_STATUS = 'Issue status',
   ISSUE_PRIORITY = 'Issue priority',
-  ISSUE_NAME = "Ticket name",
+
   PROJECTS = 'Projects',
   ASSIGNEE = 'Assignee',
-  REPORTER = 'Reporter'
+  REPORTER = 'Reporter',
+
+  SEARCH_STRING = 'Search string'
 }
 
 export interface FilterFormModel {

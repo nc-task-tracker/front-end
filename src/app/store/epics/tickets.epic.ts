@@ -37,17 +37,17 @@ export class TicketsEpic {
   //   );
   // }
 
-  // searchTicket$ = (action$: ActionsObservable<AnyAction>) => {
-  //   return action$.ofType<ReturnType<typeof filterSearchAction>>(FILTER_SEARCH).pipe(
-  //     mergeMap(({payload}) => {
-  //       return this.ticketService
-  //         .searchByFilter(payload.filter)
-  //         .pipe(
-  //           // map( ticket => filterSearchSuccessAction(filter))
-  //         );
-  //     })
-  //   );
-  // }
+  searchTicket$ = (action$: ActionsObservable<AnyAction>) => {
+    return action$.ofType<ReturnType<typeof filterSearchAction>>(FILTER_SEARCH).pipe(
+      mergeMap(({payload}) => {
+        return this.ticketService
+          .searchByFilter(payload.filter)
+          .pipe(
+            map( tickets => filterSearchSuccessAction(tickets))
+          );
+      })
+    );
+  }
 
   fetchTicketNames$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(FETCH_TICKET_NAMES).pipe(

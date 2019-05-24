@@ -22,6 +22,7 @@ const INITIAL_STATE = {
 export const filterReducer: Reducer<FilterState> = (state: FilterState = INITIAL_STATE, action): FilterState => {
   switch (action.type) {
     case CREATE_FILTER_SUCCESS: {
+      console.log('REDUCER');
       const {filter} = action.paylod;
       const updateState = new Map(state.filter).set(filter.id, filter);
       return {...state, filter: updateState};

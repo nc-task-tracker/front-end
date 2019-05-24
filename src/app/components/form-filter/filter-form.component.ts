@@ -12,7 +12,7 @@ import {
 } from "../../models/filter-item.model";
 import {NgRedux, select} from "@angular-redux/store";
 import {AppState} from "../../store";
-import {createFilterAction, selectFilter} from "../../store/actions/filter.actions";
+import {createFilterAction, filterSearchAction, selectFilter} from "../../store/actions/filter.actions";
 import {FilterService} from "../../service/filter.service";
 import {allIssueType} from "../../models/issue-type.model";
 import {Observable} from "rxjs";
@@ -83,6 +83,8 @@ export class FilterFormComponent implements OnInit {
   @ViewChild('searchItemSelect')
   searchItemSelect: MatSelect;
 
+  @Input()
+  filterName: Filter = defaultFilter;
 
   allFieldType = FieldType;
   filter: Filter = defaultFilter;
@@ -169,14 +171,17 @@ export class FilterFormComponent implements OnInit {
         const selectItem = item as SelectFilterItem;
         const keyValue = formValue[selectItem.key] as Array<any>;
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
-        return { ...item, listValue: parameterValue };
+        return { ...item, type: item.type, listValue: parameterValue };
       }
-      return { ...item, value: formValue[item.key] };
+      return { ...item, type: item.type, value: formValue[item.key] };
     });
+    console.log(parameters);
     const createFilter: Filter = {
-      name: defaultFilter.name,
+      // name: defaultFilter.name,
+      name: this.filterName.name,
       parameters: parameters
     };
+    console.log(createFilter);
     this.ngRedux.dispatch(createFilterAction(createFilter));
   }
 
@@ -198,11 +203,19 @@ export class FilterFormComponent implements OnInit {
         const selectItem = item as SelectFilterItem;
         const keyValue = formValue[selectItem.key] as Array<any>;
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
-        return { ...item, listValue: parameterValue };
+        return { ...item, type: item.type, listValue: parameterValue };
       }
-      return { ...item, value: formValue[item.key] };
+        return { ...item, type: item.type, value: formValue[item.key] };
       });
-    console.log(parameters);
+
+      console.log(parameters);
+      const searchFilter: Filter = {
+        // name: defaultFilter.name,
+        name: this.filterName.name,
+        parameters: parameters
+      };
+      console.log(searchFilter);
+      this.ngRedux.dispatch(filterSearchAction(searchFilter));
     }
 
   private generateFormGroupFormSearchItems() {

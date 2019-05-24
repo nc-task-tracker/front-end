@@ -23,3 +23,15 @@
 .filter-toolbar-item .mat-select-value {
   max-width: fit-content;
 }
+
+.example-full-width{
+  margin-left: 20px;
+}
+
+.filter-name{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  margin-top: 20px;
+  margin-left: 20px;
+}

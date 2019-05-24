@@ -14,6 +14,7 @@ import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/curre
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
 import {SearchByName} from "../components/form-filter/abstract-select-form/abstract-select-form.component";
+import {Filter} from "../models/filter-item.model";
 
 @Injectable()
 export class TicketService implements SearchByName<Ticket>{
@@ -30,6 +31,7 @@ export class TicketService implements SearchByName<Ticket>{
   private readonly GET_USERS = '/api/users/assignee';
   private readonly GET_PROJECTS = '/api/project/possibleprojects';
   private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
+  private readonly SEARCH_TICKETS = '/api/issue/search/';
 
 
   createTicket(ticket: Ticket): Observable<Ticket> {
@@ -63,4 +65,9 @@ export class TicketService implements SearchByName<Ticket>{
   //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
   //     .pipe(catchError((error: any) => throwError(error.error)));
   // }
+
+  searchByFilter(filter: Filter): Observable<Ticket[]> {
+     return this.http.post<Ticket[]>(`${this.SEARCH_TICKETS}`, filter)
+       .pipe(catchError(err => throwError(err)));
+  }
 }

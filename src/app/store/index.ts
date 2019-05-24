@@ -6,6 +6,7 @@ import {Filter} from "../models/filter-item.model";
 import {CurrentFilterState} from './reducers/current-filter.reducer';
 import {FilterState} from './reducers/filter.reducer';
 import {ChangeProfileState} from "./reducers/change-profile.reduser";
+import {TicketsState} from "./reducers/tickets.reducer";
 
 export interface AppState {
     readonly usersState?: UsersState;
@@ -15,7 +16,8 @@ export interface AppState {
     readonly route?: string;
     readonly currentFilterState?: CurrentFilterState;
     readonly filterState?: FilterState;
-  readonly changeProfileState?: ChangeProfileState;
+    readonly changeProfileState?: ChangeProfileState;
+    readonly filterTicketsState?: TicketsState;
     // readonly filter?: FilterState;
 
 }

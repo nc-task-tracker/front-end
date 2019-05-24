@@ -32,6 +32,7 @@ export class EpicService {
             this.registerEpic.register$,
             // this.ticketsEpic.createTicket$,
             this.ticketsEpic.fetchTicketNames$,
+            this.ticketsEpic.searchTicket$,
             this.projectEpic.createProject$,
             this.changeProfileEpic.changeProfile$,
             // this.projectEpic.fetchProjects$,
