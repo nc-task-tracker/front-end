@@ -1,0 +1,28 @@
+.modal{
+  min-width: 250px;
+  min-height: 120px;
+}
+.text{
+  font-size: 26px;
+  text-align: center;
+}
+.control-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.change{
+  cursor: pointer;
+  border-radius: 7px;
+  padding: 6px;
+  font-size: 20px;
+}
+.profile {
+  cursor: pointer;
+  border-radius: 7px;
+  margin-right: 45px;
+  padding: 6px;
+  font-size: 20px;
+}
+

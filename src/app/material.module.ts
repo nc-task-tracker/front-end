@@ -46,6 +46,7 @@ import {NgModule} from '@angular/core';
     MatTabsModule,
     MatTableModule,
     MatProgressSpinnerModule,
+
   ]
 })
 export class MaterialModule {}

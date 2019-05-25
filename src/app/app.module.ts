@@ -11,7 +11,13 @@ import {EpicsModule} from './store/epics/epics.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
+import {
+  MAT_DIALOG_DATA,
+  MatAutocompleteModule,
+  MatDialogModule,
+  MatDialogRef,
+  MatGridListModule
+} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './app-router.module';
@@ -37,7 +43,6 @@ import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {RegisterComponent} from './components/register/register.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
 import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
-import {ProjectCodeValidator} from "./validators/project.code.validator";
 import {AuthGuardService} from "./service/auth-guard.service";
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 import {ProfileModule} from './components/profile/profile.module';
@@ -45,7 +50,8 @@ import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
 import {TicketModule} from './components/ticket/ticket.module';
 import {ProjectNameValidator} from './validators/project.name.validator';
-import { ModalCancelComponent } from './components/modal-cancel/modal-cancel.component';
+import { ModalCancelComponent } from './components/modal/modal-cancel/modal-cancel.component';
+import { ModalSuccessComponent } from './components/modal/modal-success/modal-success.component';
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -67,6 +73,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     CreateTicketModalComponent,
     AssigneeFormComponent,
     ModalCancelComponent,
+    ModalSuccessComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +96,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ToolbarModule,
     MatGridListModule,
     ProfileModule,
-    TicketModule
+    TicketModule,
   ],
   providers: [
     EpicService,
@@ -101,16 +108,19 @@ const JWT_Module_Options: JwtModuleOptions = {
     TicketService,
     ProjectService,
     ProjectNameValidator,
-    ProjectCodeValidator,
     AuthGuardService,
     ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     CreateTicketModalComponent,
-  ]
+    ModalCancelComponent,
+    ModalSuccessComponent
+  ],
 })
 export class AppModule {
 

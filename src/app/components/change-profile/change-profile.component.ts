@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgRedux, select} from "@angular-redux/store";
@@ -8,9 +8,9 @@ import {GlobalUserStorageService} from "../../service/global-storage.service";
 import {Profile} from "../../models/profile.model";
 import {selectProfile, selectProfileIsLoading} from "../../store/selectors/profile.selector";
 import {Observable} from "rxjs";
-import {MatDialog} from "@angular/material";
-import {CreateTicketModalComponent} from "../create-ticket-modal/create-ticket-modal.component";
-import {ModalCancelComponent} from "../modal-cancel/modal-cancel.component";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
+
+import {ModalCancelComponent} from "../modal/modal-cancel/modal-cancel.component";
 
 @Component({
   selector: 'app-change-profile',
@@ -31,9 +31,11 @@ export class ChangeProfileComponent implements OnInit {
               private ngRedux: NgRedux<AppState>,
               private storageService: GlobalUserStorageService,
               private matDialog: MatDialog,
+              public dialogRef: MatDialogRef<ChangeProfileComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
   }
-  onCancelClick() {
+  onCancelClick()  {
     this.matDialog.open(ModalCancelComponent);
   }
   changeProfile() {
