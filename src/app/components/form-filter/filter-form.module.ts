@@ -38,9 +38,10 @@ const BUILDERS = [
 @NgModule({
   declarations: [
     FilterFormComponent,
-    AbstractSelectFormComponent,
     AssigneeFormComponent,
     ProjectNameFormComponent,
+    AssigneeFormComponent,
+    AbstractSelectFormComponent,
     // TicketsPageComponent
   ],
   imports: [
@@ -61,6 +62,9 @@ const BUILDERS = [
     BUILDERS,
     FilterItemFactory
   ],
-  exports: [FilterFormComponent]
+  exports: [FilterFormComponent,
+  ProjectNameFormComponent,
+    AssigneeFormComponent,
+    AbstractSelectFormComponent]
 })
 export class FilterFormModule { }

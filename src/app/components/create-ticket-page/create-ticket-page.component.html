@@ -22,7 +22,7 @@
 
 
       <mat-form-field class="input-full-width">
-        <mat-select [formControlName]="'priority'" placeholder="Priority">
+        <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
           <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
         </mat-select>
       </mat-form-field>
@@ -67,15 +67,15 @@
 
 
     <mat-form-field class="input-full-width">
-      <mat-select [formControlName]="'issueType'" placeholder="Issue type">
-        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+      <mat-select [formControlName]="'issueType'" placeholder="Issue issueType">
+        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.issueType">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 
 
 
     <mat-form-field class="input-full-width">
-      <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
+      <input [formControlName]="'issueName'" matInput placeholder="Issue issueName" value="" required>
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
@@ -87,7 +87,7 @@
 
     <mat-form-field class="input-full-width">
       <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
-        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.issueType">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 

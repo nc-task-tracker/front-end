@@ -1,6 +1,6 @@
 <!--<div>-->
-  <!--<span class="counter-title"> Filter name: {{filter.name}}</span> <br>-->
-  <!--&lt;!&ndash;<input type="text" [(ngModel)]="filter.name" /> <br>&ndash;&gt;-->
+  <!--<span class="counter-title"> Filter issueName: {{filter.issueName}}</span> <br>-->
+  <!--&lt;!&ndash;<input issueType="text" [(ngModel)]="filter.issueName" /> <br>&ndash;&gt;-->
 <!--</div>-->
 <mat-list>
   <mat-list-item>Filter name: {{filter.name}}</mat-list-item>
@@ -11,10 +11,10 @@
 </mat-form-field>
 
 <section class="filter-toolbar">
-  <!--<input type="text" [(ngModel)]="filter.name" /> <br>-->
+  <!--<input issueType="text" [(ngModel)]="filter.issueName" /> <br>-->
 
   <br><br>
-    <!--<app-binding-example [counterTitle]="'Plus/Minus counter'" [(name)]="parentCounter" (operation)="onCounterChange($event)"></app-binding-example>-->
+    <!--<app-binding-example [counterTitle]="'Plus/Minus counter'" [(issueName)]="parentCounter" (operation)="onCounterChange($event)"></app-binding-example>-->
 
   <form [formGroup]="filterForm" class="filter-toolbar-form">
     <ng-container *ngFor="let item of filterItems">

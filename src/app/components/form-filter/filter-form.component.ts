@@ -21,19 +21,19 @@ import {selectCurrentFilter, selectCurrentIsLoading} from "../../store/selectors
 
 // export const filter_default: FilterItem[] = [
 //   // {
-//   //   type: null,
+//   //   issueType: null,
 //   //   title: null,
 //   //   key: null,
 //   //   placeholder: null,
 //   //   value: null
 //   // },
 //   {
-//     type: FilterType.ISSUE_TYPE,
+//     issueType: FilterType.ISSUE_TYPE,
 //     fieldType: FieldType.SELECT,
 //     key: FilterType.ISSUE_TYPE,
 //     value: [
-//       {type: "OPEN", title: "Open"},
-//       {type: "CLOSED", title: "Closed"}
+//       {issueType: "OPEN", title: "Open"},
+//       {issueType: "CLOSED", title: "Closed"}
 //     ],
 //     placeholder: "Issue Status",
 //     title: "Issue Status"
@@ -43,15 +43,15 @@ import {selectCurrentFilter, selectCurrentIsLoading} from "../../store/selectors
 //
 // export const Filter_1: Filter = {
 //   id: null,
-//   name: 'new filter',
+//   issueName: 'new filter',
 //   parameters: [
 //     {
-//       type: FilterType.ISSUE_TYPE,
+//       issueType: FilterType.ISSUE_TYPE,
 //       fieldType: FieldType.SELECT,
 //       key: FilterType.ISSUE_TYPE,
 //       value: [
-//         {type: "OPEN", title: "Open"},
-//         {type: "CLOSED", title: "Closed"}
+//         {issueType: "OPEN", title: "Open"},
+//         {issueType: "CLOSED", title: "Closed"}
 //       ],
 //       placeholder: "Issue Status",
 //       title: "Issue Status"
@@ -63,8 +63,8 @@ import {selectCurrentFilter, selectCurrentIsLoading} from "../../store/selectors
   selector: 'app-create-filter',
   templateUrl: './filter-form.component.html',
   styleUrls: ['./filter-form.component.css']
-  // template: `<p>Filter name: {{this.filter.name}}</p>
-  //               <input type="text" [(ngModel)]="this.filter.name" /> <br>`
+  // template: `<p>Filter issueName: {{this.filter.issueName}}</p>
+  //               <input issueType="text" [(ngModel)]="this.filter.issueName" /> <br>`
 })
 export class FilterFormComponent implements OnInit {
 
@@ -157,7 +157,7 @@ export class FilterFormComponent implements OnInit {
     // console.log(this.filterForm.getRawValue());
     // const formValue = this.filterForm.getRawValue();
     // const parameters = this.filterItems.map(item => {
-    //   return {...item, type: formValue[item.type], value: formValue[item.value]};
+    //   return {...item, issueType: formValue[item.issueType], value: formValue[item.value]};
     //   // return {value: String(formValue[item.value])};
     // });
     // console.log(parameters);

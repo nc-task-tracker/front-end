@@ -7,14 +7,14 @@ import {ChangeProfileComponent} from './components/change-profile/change-profile
 import {CreateProjectComponent} from './components/create-project/create-project.component';
 import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
-import {WelcomeComponent} from "./components/welcome/welcome.component";
-import {FilterFormComponent} from "./components/form-filter/filter-form.component";
+import {WelcomeComponent} from './components/welcome/welcome.component';
+import {FilterFormComponent} from './components/form-filter/filter-form.component';
 import {NgModule} from '@angular/core';
-import {ProjectPageComponent} from "./components/project-page/project-page.component";
-import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
-import {AuthGuardService as AuthGuard} from "./service/auth-guard.service";
+import {ProjectPageComponent} from './components/project-page/project-page.component';
+import {ProjectsPageComponent} from './components/projects-page/projects-page.component';
+import {AuthGuardService as AuthGuard} from './service/auth-guard.service';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-import {ProjectMemberComponent} from "./components/project-member/project-member.component";
+import {ProjectMemberComponent} from './components/project-member/project-member.component';
 
 
 const routs: Routes = [

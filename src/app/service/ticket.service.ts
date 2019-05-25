@@ -13,57 +13,54 @@ import {select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/current-user.selector';
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
-import {SearchByString} from '../components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
-import {SortParameters} from '../models/util/table-sort-param.model';
-import {TablePageData} from '../models/util/table-page-data.model';
 import {SearchByName} from '../components/form-filter/abstract-select-form/abstract-select-form.component';
+import {Filter} from '../models/filter-item.model';
+import {TablePageData} from '../models/util/table-page-data.model';
+import {SortParameters} from '../models/util/table-sort-param.model';
 
 @Injectable()
-export class TicketService implements SearchByString<Assignee>, SearchByName<Ticket> {
+export class TicketService implements SearchByName<Ticket> {
 
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
-  private readonly CREATE_URL = '/api/issue/project';
-  private readonly GET_USERS = '/api/users/assignee';
-  private readonly GET_PROJECTS = '/api/project/possibleprojects';
-  private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
-
-  private readonly TICKET_URL = '/api/issue';
-
   constructor(private http: HttpClient) {
   }
 
-  createTicket(ticket: Ticket): Observable<Ticket> {
-    const projectId = ticket.project;
-    return this.http.post<Ticket>(`${this.CREATE_URL}/${projectId}`, ticket)
+  private readonly CREATE_URL = '/api/issue/project/';
+  private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
+  private readonly SEARCH_TICKETS = '/api/issue/search/';
+  private readonly TICKET_URL = 'api/issue';
+
+
+  // createTicket(ticket: Ticket): Observable<Ticket> {
+  //   console.log('we are here');
+  //   return this.http.post<Ticket>(`${this.CREATE_URL}`, ticket)
+  //     .pipe(catchError(err => throwError(err)));
+  // }
+
+  searchByName(name: string): Observable<Ticket[]> {
+    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  // getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
+  //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
+  //     .pipe(catchError((error: any) => throwError(error.error)));
+  // }
+
+  searchByFilter(filter: Filter): Observable<Ticket[]> {
+    return this.http.post<Ticket[]>(`${this.SEARCH_TICKETS}`, filter)
       .pipe(catchError(err => throwError(err)));
   }
 
-  getAssigneeList(inputValue: string): Observable<Assignee[]> {
-    return this.http.get<Assignee[]>(`${this.GET_USERS}`, {
-      params: {
-        name: inputValue
-      }
-    });
-  }
+  createTicket(ticket: Ticket): Observable<Ticket> {
+    const projectId = ticket.project.id;
+    return this.http.post<Ticket>(`${this.CREATE_URL}${projectId}`, ticket)
+      .pipe(catchError(err => throwError(err)));
 
-  getPossibleProjectsByUser(userName: string) {
-    return this.http.get<Project[]>(`${this.GET_PROJECTS}`, {
-      params: {
-        name: userName
-      }
-    });
-  }
-
-  searchByString(name: string): Observable<Assignee[]> {
-    return this.http.get<Assignee[]>(`${this.GET_USERS}`, {
-      params: {
-        name: name
-      }
-    });
   }
 
   getTicketsByProjectId(projectId: string): Observable<Ticket[]> {
@@ -80,14 +77,4 @@ export class TicketService implements SearchByString<Assignee>, SearchByName<Tic
     return this.http.delete(`${this.TICKET_URL}/delete/${ticketId}`);
   }
 
-
-  searchByName(name: string): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
-      .pipe(catchError((error: any) => throwError(error.error)));
-  }
-
-  // getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
-  //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)
-  //     .pipe(catchError((error: any) => throwError(error.error)));
-  // }
 }

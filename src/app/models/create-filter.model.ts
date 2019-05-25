@@ -22,7 +22,7 @@ export const allParameters: FilterParameterObject[] = [
   },
   {
     type: FilterParameter.ISSUE_PRIORITY,
-    title: 'Issue priority',
+    title: 'Issue issuePriority',
     children:[
       {title: 'MAJOR'},
       {title: 'CRITICAL'},
@@ -33,10 +33,10 @@ export const allParameters: FilterParameterObject[] = [
   },
   {
     type: FilterParameter.ISSUE_STATUS,
-    title: 'Issue status'
+    title: 'Issue issueStatus'
   },
   {
     type: FilterParameter.ISSUE_TYPE,
-    title: 'Issue type'
+    title: 'Issue issueType'
   }
 ]

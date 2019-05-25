@@ -22,7 +22,7 @@ export const allIssueStatus: IssueStatusModel[] = [
     title: IssueStatusNameMapping[IssueStatus.OPEN]
   },
   // {
-  //     type: IssueStatus.IN_PROGRESS,
+  //     issueType: IssueStatus.IN_PROGRESS,
   //     title: IssueStatusNameMapping[IssueStatus.IN_PROGRESS]
   // },
   {

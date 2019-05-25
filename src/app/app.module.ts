@@ -50,7 +50,7 @@ import {TicketComponent} from './components/ticket/ticket.component';
 import {RegisterService} from './service/register.service';
 import {ChangeProfileService} from './service/change-profile-service.service';
 import {ProfileService} from './service/profile.service';
-import {TicketServiceService} from './service/ticket-service.service';
+//import {TicketServiceService} from './service/ticket-service.service';
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -60,14 +60,12 @@ const JWT_Module_Options: JwtModuleOptions = {
   }
 };
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {EmailSenderService} from './service/email-sender.service';
 import {ProjectMemberComponent} from './components/project-member/project-member.component';
 import {ProjectMemberService} from './service/project-member.service';
-import {AssigneeSearchComponent} from './components/create-ticket-modal/assignee-search/assignee-search.component';
-import {AbstractSearchFormComponent} from './components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 import {NgModule} from '@angular/core';
 import {ProjectService} from './service/project.service';
+import {AbstractSelectFormComponent} from './components/form-filter/abstract-select-form/abstract-select-form.component';
 
 @NgModule({
   declarations: [
@@ -82,12 +80,8 @@ import {ProjectService} from './service/project.service';
     ProjectPageComponent,
     MatConfirmDialogComponent,
     WelcomeComponent,
-    // AbstractSelectFormComponent
     CreateTicketModalComponent,
-    AssigneeFormComponent,
-    ProjectMemberComponent,
-    AssigneeSearchComponent,
-    AbstractSearchFormComponent
+    ProjectMemberComponent
   ],
   imports: [
     BrowserModule,
@@ -123,7 +117,7 @@ import {ProjectService} from './service/project.service';
     TicketService,
     ProjectService,
     MatConfirmDialogService,
-    TicketServiceService,
+    //TicketServiceService,
     FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
@@ -137,7 +131,8 @@ import {ProjectService} from './service/project.service';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MatConfirmDialogComponent,
+  entryComponents: [
+    MatConfirmDialogComponent,
     CreateTicketModalComponent
   ]
 })

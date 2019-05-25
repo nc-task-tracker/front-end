@@ -1,4 +1,6 @@
 import {User} from './user.model';
+import {Assignee} from './assignee.model';
+import {Project} from './project.model';
 
 export enum TicketStatus {
   OPEN = 'OPEN',
@@ -103,15 +105,17 @@ export interface TicketTypeObject {
 
 export interface Ticket {
   readonly id: string;
-  readonly name: string;
-  readonly type: TicketType;
-  readonly  priority: TicketPriority;
-  readonly  status: TicketStatus;
-  readonly  description: string;
+  readonly issueName: string;
+  readonly issueType: TicketType;
+  readonly issuePriority: TicketPriority;
+  readonly issueStatus: TicketStatus;
+  readonly issueDescription: string;
   readonly startDate: Date;
   readonly dueDate: Date;
-  readonly  reporter: User;
-  readonly  assignee: User;
-  readonly project: String;
+  readonly reporter: String;
+  readonly assignee: Assignee;
+  readonly project: Project;
+  readonly parentId: String;
+
 }
 

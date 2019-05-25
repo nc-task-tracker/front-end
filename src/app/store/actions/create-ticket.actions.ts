@@ -1,6 +1,6 @@
 import {Ticket} from '../../models/ticket.model';
-import {User} from "../../models/user.model";
-import {FETCH_USERS, FETCH_USERS_FAILED, FETCH_USERS_SUCCESS} from "./users.actions";
+import {User} from '../../models/user.model';
+import {FETCH_USERS, FETCH_USERS_FAILED, FETCH_USERS_SUCCESS} from './users.actions';
 
 export const CREATE_TICKET = '[Tickets] Create ticket';
 export const CREATE_TICKET_SUCCESS = '[Tickets] Create ticket success';

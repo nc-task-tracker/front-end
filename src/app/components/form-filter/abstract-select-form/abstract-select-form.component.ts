@@ -1,10 +1,10 @@
 import {Component, OnInit, Input, ViewChild, ElementRef, InjectionToken, Inject, TemplateRef} from '@angular/core';
-import { ControlContainer, FormControl } from '@angular/forms';
-import { UserService } from 'src/app/service/user.service';
-import { Observable } from 'rxjs';
-import { User } from 'src/app/models/user.model';
-import { startWith, debounceTime, switchMap, distinctUntilChanged } from 'rxjs/operators';
-import { MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material';
+import {ControlContainer, FormControl} from '@angular/forms';
+import {UserService} from 'src/app/service/user.service';
+import {Observable} from 'rxjs';
+import {User} from 'src/app/models/user.model';
+import {startWith, debounceTime, switchMap, distinctUntilChanged} from 'rxjs/operators';
+import {MatChipInputEvent, MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material';
 
 export interface SearchByName<T> {
   searchByName(name: string): Observable<T[]>;
@@ -28,6 +28,9 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   multiple = false;
 
   @Input()
+  isAssigneeInput: boolean;
+
+  @Input()
   placeholder: string;
 
   @Input()
@@ -38,9 +41,6 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
 
   @Input()
   itemValueKey: string;
-
-  // @Input()
-  // valueTitleKey: string;
 
   @Input()
   itemTemplate: TemplateRef<{ item: T }>;
@@ -53,7 +53,8 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   constructor(private controlContainer: ControlContainer,
-              @Inject(SEARCH_BY_NAME) private searchService: SearchByName<T>) { }
+              @Inject(SEARCH_BY_NAME) private searchService: SearchByName<T>) {
+  }
 
   ngOnInit() {
     const control = this.controlContainer.control.get(this.controlName);
@@ -96,6 +97,7 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
     return o1 === o2;
   }
 
+
   onItemSelect(event: MatAutocompleteSelectedEvent): void {
     if (this.multiple) {
       this.selectedItemsList.push(event.option.value);
@@ -104,8 +106,12 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
       this.updateControlValue();
     } else {
       const item = event.option.value;
+      console.log('item', item);
+
       const itemValue = this.itemValueKey ? item[this.itemValueKey] : item;
+      console.log('itemValue', itemValue);
       this.control.setValue(itemValue);
+      console.log('this.control', this.control);
       this.inputControl.setValue(item[this.valueTitleKey]);
     }
   }
