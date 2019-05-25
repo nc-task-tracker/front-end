@@ -1,3 +1,5 @@
+import {Project} from "./project.model";
+
 export interface ChangeProfile {
   readonly id: string;
   readonly fullName: string;
@@ -8,3 +10,13 @@ export interface ChangeProfile {
   readonly birthday: Date;
   readonly description: string;
 }
+export const defaultChangeProfile: ChangeProfile = {
+  id: '1',
+  fullName: '',
+  email: '',
+  skype: '',
+  telephone: '',
+  additional: '',
+  birthday: new Date(''),
+  description: ''
+};

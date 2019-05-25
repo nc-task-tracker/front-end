@@ -11,6 +11,7 @@ import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 
 import {ModalCancelComponent} from "../modal/modal-cancel/modal-cancel.component";
+import {ModalSuccessComponent} from "../modal/modal-success/modal-success.component";
 
 @Component({
   selector: 'app-change-profile',
@@ -42,6 +43,7 @@ export class ChangeProfileComponent implements OnInit {
     const formValue = this.changeProfileForm.getRawValue();
     this.ngRedux.dispatch(saveProfileAction(formValue));
     this.router.navigate(['profile/1']);
+    this.matDialog.open(ModalSuccessComponent);
   }
   ngOnInit() {
     this.initializeForm();

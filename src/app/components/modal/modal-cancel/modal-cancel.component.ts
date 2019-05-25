@@ -21,7 +21,7 @@ export class ModalCancelComponent implements OnInit {
   onYesClick() :void {
     this.router.navigate(['profile/1']);
     this.dialogRef.close();
-    this.matDialog.open(ModalSuccessComponent);
+
   }
   onNoClick() :void {
     this.router.navigate(['change-profile']);
