@@ -71,7 +71,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    TicketComponent,
+    // TicketComponent,
     CreateProjectComponent,
     // ProfileComponent,
     ChangeProfileComponent,
