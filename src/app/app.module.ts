@@ -17,9 +17,6 @@ import { UserService } from './service/user.service';
 import { EpicsModule } from './store/epics/epics.module';
 import { EpicService } from './store/epics/epics.service';
 import { TransformService } from './utils/transform.service';
-import {RegisterService} from './service/register.service';
-import {TicketService} from './service/ticket.service';
-import {ProjectService} from './service/project.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -44,14 +41,14 @@ import {AuthGuardService} from "./service/auth-guard.service";
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-// import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
+import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 import { MaterialModule } from './material.module';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {ProfileModule} from './components/profile/profile.module';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
-// import {TicketComponent} from './components/ticket/ticket.component';
-// import {RegisterService} from './service/register.service';
-// import {ProjectService} from './service/project.service';
+import {TicketComponent} from './components/ticket/ticket.component';
+import {RegisterService} from './service/register.service';
+import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
@@ -74,9 +71,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    // TicketComponent,
+    TicketComponent,
     CreateProjectComponent,
     // ProfileComponent,
+    ChangeProfileComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
@@ -87,6 +85,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
+    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
