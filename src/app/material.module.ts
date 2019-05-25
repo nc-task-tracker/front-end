@@ -4,6 +4,8 @@ import {
   MatListModule, MatMenuModule, MatNativeDateModule, MatProgressSpinnerModule,
   MatRadioModule, MatSelectModule, MatTableModule, MatTabsModule,
   MatTooltipModule, MatTreeModule,
+  MatPaginatorModule,
+  MatSortModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
@@ -25,8 +27,12 @@ import {NgModule} from '@angular/core';
     MatListModule,
     MatTreeModule,
     MatTabsModule,
-    MatTableModule,
     MatProgressSpinnerModule,
+    MatTreeModule,
+    MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
+    MatMenuModule
   ],
   exports: [
     MatFormFieldModule,
@@ -44,8 +50,12 @@ import {NgModule} from '@angular/core';
     MatListModule,
     MatTreeModule,
     MatTabsModule,
-    MatTableModule,
     MatProgressSpinnerModule,
+    MatTreeModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}

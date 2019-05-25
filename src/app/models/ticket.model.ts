@@ -1,4 +1,3 @@
-import {testUser, User} from './user.model';
 import {TicketPriority, TicketPriorityLabel} from './Enums/TicketPriority.enum';
 import {TicketStatus, TicketStatusLabel} from './Enums/TicketStatus.enum';
 import {TicketPriorityObject} from './ticket-priority.model';
@@ -7,7 +6,6 @@ import {TicketType, TicketTypeLabel} from './Enums/TicketType.enum';
 import {TicketTypeObject} from './ticket-type.model';
 import {defaultProject, Project} from './project.model';
 import {defaultComment, Comment} from './comment.model';
-import {defaultProfile, Profile} from './profile.model';
 import {Assignee} from './assignee.model';
 
 export const allTicketPriority: TicketPriorityObject[] = [

@@ -9,7 +9,7 @@ import {
 } from 'src/app/store/selectors/current-user.selector';
 import {logoutUserAction} from 'src/app/store/actions/current-user.actions';
 import {LoginUserComponent} from '../dialogs/login-user/login-user.component';
-import {MatDialog} from '@angular/material';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 import {Router} from '@angular/router';
 import {Inject} from '@angular/core';
 import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -26,14 +26,12 @@ export class ToolbarComponent implements OnInit {
   readonly userName: Observable<string>;
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
-
   constructor(private ngRedux: NgRedux<AppState>,
               private matDialog: MatDialog,
               private router: Router) {
   }
 
   ngOnInit() {
-
   }
 
   onLoginClick() {
@@ -45,8 +43,14 @@ export class ToolbarComponent implements OnInit {
     this.router.navigate(['home']);
   }
 
-    createTicket() {
-      this.matDialog.open(CreateTicketModalComponent);
+  createTicket() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
 
+    dialogConfig.data = {
+      isSubTask: false
+    };
+
+    this.matDialog.open(CreateTicketModalComponent, dialogConfig);
   }
 }

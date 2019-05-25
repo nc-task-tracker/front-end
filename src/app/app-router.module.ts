@@ -7,7 +7,9 @@ import {RegisterComponent} from './components/register/register.component';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
-import {CommentsComponent} from './components/ticket/comments/comments.component';
+import {ProjectPageComponent} from "./components/project-page/project-page.component";
+import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
+import {ProjectMemberComponent} from "./components/project-member/project-member.component";
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
 
 const routs: Routes = [
@@ -16,11 +18,13 @@ const routs: Routes = [
   {path: 'profile/:userId', component: ProfileComponent},
   {path: 'change-profile', component: ChangeProfileComponent},
   {path: 'create-project', component: CreateProjectComponent},
+  {path: 'projects', component: ProjectsPageComponent},
+  {path: 'project/:id', component: ProjectPageComponent},
+  {path: 'project/:id/assignee', component: ProjectMemberComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketPageComponent},
   {path: 'ticket/:issueCode', component: TicketComponent},
   {path: 'home', component: WelcomeComponent},
-  {path: 'comment', component: CommentsComponent}
 ];
 
 @NgModule({

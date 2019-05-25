@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {Component, ElementRef, Inject, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from '@angular/material';
 import {NgRedux, select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../../store/selectors/current-user.selector';
 import {Observable, of} from 'rxjs';
@@ -9,8 +9,8 @@ import {TicketService} from '../../service/ticket.service';
 import {Project} from '../../models/project.model';
 import {Assignee} from '../../models/assignee.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {allTicketPriority, allTicketType} from '../../models/ticket.model';
-import {createTicketAction} from '../../store/actions/tickets.actions';
+import {allTicketPriority, allTicketTypes, Ticket} from '../../models/ticket.model';
+import {createTicketAction} from '../../store/actions/create-ticket.actions';
 import {AppState} from '../../store';
 import {GlobalUserStorageService} from '../../service/global-storage.service';
 import {Router} from '@angular/router';
@@ -22,11 +22,10 @@ import {Router} from '@angular/router';
 })
 export class CreateTicketModalComponent implements OnInit {
 
+  isSubTask = this.data.isSubTask;
+
   @select(selectCurrentUserName)
   readonly userName: Observable<string>;
-
-  currentAssignee: Assignee;
-  currentAssigneeId: String;
 
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
@@ -34,11 +33,13 @@ export class CreateTicketModalComponent implements OnInit {
   ticketForm: FormGroup;
 
   ticketPriority = allTicketPriority;
-  ticketTypes = allTicketType;
+  ticketTypes = allTicketTypes;
+
+  parentTicket = this.data.ticket;
+
+  parentTicketName: string;
 
   minDate = new Date();
-
-  public assignee: FormControl;
   possibleProjects;
 
   constructor(
@@ -48,12 +49,14 @@ export class CreateTicketModalComponent implements OnInit {
     private storageService: GlobalUserStorageService,
     public dialogRef: MatDialogRef<CreateTicketModalComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private ticketService: TicketService
+    private ticketService: TicketService,
   ) {
   }
 
+
   ngOnInit() {
-    // this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
+    this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
+
     this.ticketForm = this.formBuilder.group({
       issueName: ['', Validators.required],
       issueDescription: ['', Validators.required],
@@ -61,13 +64,18 @@ export class CreateTicketModalComponent implements OnInit {
       project: [''/*, Validators.required*/],
       issueType: ['', Validators.required],
       issuePriority: ['', Validators.required],
-      parentId: [''],
-     // assignee: this.formBuilder.control(['you']),
-      assignee: [null],
+      assignee: ['', Validators.required],
       reporter: [''],
       minDate: new Date()
 
     });
+    if (this.isSubTask) {
+      console.log(this.data);
+      this.parentTicket = this.data.parentTicket;
+      this.parentTicketName = this.data.parentTicket.name;
+      this.ticketForm.controls.issueType.setValue('SUB_TASK');
+    }
+
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {
@@ -83,12 +91,12 @@ export class CreateTicketModalComponent implements OnInit {
   }
 
   createTicket() {
-    this.ticketForm.controls.assignee.setValue(this.currentAssigneeId);
     const formValue = this.ticketForm.getRawValue();
-    console.log("formValue:", formValue);
+    console.log('assignee', formValue.assignee);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
-    this.onCancelClick();
+    this.dialogRef.close();
   }
+
 
   onCancelClick(): void {
     this.dialogRef.close();

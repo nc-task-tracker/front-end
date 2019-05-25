@@ -20,8 +20,7 @@ export class AuthService {
   }
 
   login(credential: Credential): Observable<UserTokenModel> {
-    return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential)
-      .pipe(catchError((error: any) => throwError(error.error)));
+    return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential);
   }
 
   logout() {

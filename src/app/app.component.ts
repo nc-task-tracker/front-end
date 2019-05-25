@@ -1,7 +1,7 @@
-import {NgRedux} from '@angular-redux/store';
-import {Component, OnInit} from '@angular/core';
-import {GlobalUserStorageService} from './service/global-storage.service';
-import {AppState} from './store';
+import { NgRedux } from '@angular-redux/store';
+import { Component, OnInit } from '@angular/core';
+import { GlobalUserStorageService } from './service/global-storage.service';
+import { AppState } from './store';
 import {logoutUserAction, updateCurrentUserAction} from './store/actions/current-user.actions';
 
 @Component({
@@ -10,8 +10,8 @@ import {logoutUserAction, updateCurrentUserAction} from './store/actions/current
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private ngRedux: NgRedux<AppState>, private localStorageService: GlobalUserStorageService) {
-  }
+  constructor(private ngRedux: NgRedux<AppState>,
+              private localStorageService: GlobalUserStorageService) {}
 
   ngOnInit() {
     this.localStorageService.asObservable().subscribe((user: Event) => {
