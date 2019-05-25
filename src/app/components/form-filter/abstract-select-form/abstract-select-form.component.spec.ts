@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AbstractSearchFormComponent } from './abstract-search-form.component';
+import { AbstractSelectFormComponent } from './abstract-select-form.component';
 
-describe('AbstractSearchFormComponent', () => {
-  let component: AbstractSearchFormComponent;
-  let fixture: ComponentFixture<AbstractSearchFormComponent>;
+describe('AbstractSelectFormComponent', () => {
+  let component: AbstractSelectFormComponent;
+  let fixture: ComponentFixture<AbstractSelectFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AbstractSearchFormComponent ]
+      declarations: [ AbstractSelectFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AbstractSearchFormComponent);
+    fixture = TestBed.createComponent(AbstractSelectFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

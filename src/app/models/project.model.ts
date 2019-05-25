@@ -1,5 +1,5 @@
-import {User} from "./user.model";
-import {ProjectMember} from "./project-member.model";
+import {ProjectMember} from './project-member.model';
+import {User} from './user.model';
 
 export interface Project {
   readonly id: string;

@@ -11,33 +11,36 @@ import {EpicsModule} from './store/epics/epics.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {RegisterService} from './service/register.service';
-import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {RouterModule} from '@angular/router';
+import {MatGridListModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { AppRouterModule } from './app-router.module';
+import { DialogsModule } from './components/dialogs/dialogs.module';
+import { ToolbarModule } from './components/toolbar/toolbar.module';
+import { UserListModule } from './components/user-list/user-list.module';
+import { AuthService } from './service/auth.service';
+import { UserService } from './service/user.service';
+import { EpicService } from './store/epics/epics.service';
+import { TransformService } from './utils/transform.service';
 import {createLogger} from 'redux-logger';
 import {createEpicMiddleware} from 'redux-observable';
-import {AppRouterModule} from './app-router.module';
-import {DialogsModule} from './components/dialogs/dialogs.module';
-import {ToolbarModule} from './components/toolbar/toolbar.module';
-import {UserListModule} from './components/user-list/user-list.module';
-import {AuthService} from './service/auth.service';
-import {UserService} from './service/user.service';
 import {AppState} from './store';
-import {EpicService} from './store/epics/epics.service';
 import {reducers} from './store/reducers/reducers';
+import {RegisterService} from './service/register.service';
 import {TicketService} from './service/ticket.service';
 import {ProjectService} from './service/project.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {GlobalUserStorageService} from './service/global-storage.service';
+import {FilterFormModule} from './components/form-filter/filter-form.module';
+import {FilterService} from './service/filter.service';
+import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 import {ProjectPageComponent} from './components/project-page/project-page.component';
 import {MatConfirmDialogComponent} from './components/util/mat-confirmation-dialor/mat-confirm-dialog.component';
 import {MatConfirmDialogService} from './components/util/mat-confirmation-dialor/mat-confirm-dialog.service';
 import {ProjectsPageComponent} from './components/projects-page/projects-page.component';
 import {ProjectNameValidator} from './validators/project.name.validator';
 import {ProjectCodeValidator} from './validators/project.code.validator';
-import {AuthGuardService} from './service/auth-guard.service';
 import {ProfileModule} from './components/profile/profile.module';
 import {EmailSenderService} from './service/email-sender.service';
 import {ProjectMemberComponent} from './components/project-member/project-member.component';
@@ -45,15 +48,14 @@ import {ProjectMemberService} from './service/project-member.service';
 import {AssigneeSearchComponent} from './components/create-ticket-modal/assignee-search/assignee-search.component';
 import {AbstractSearchFormComponent} from './components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 import {RegisterComponent} from './components/register/register.component';
-import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 import {ChangeProfileService} from './service/change-profile-service.service';
 import {ProfileService} from './service/profile.service';
 import {TicketModule} from './components/ticket/ticket.module';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
 import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
-import {TransformService} from './utils/transform.service';
 import {NgModule} from '@angular/core';
+import {AuthGuardService} from './service/auth-guard.service';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
@@ -69,16 +71,15 @@ const JWT_Module_Options: JwtModuleOptions = {
     CreateTicketPageComponent,
     ChangeProfileComponent,
     CreateProjectComponent,
+    // ProfileComponent,
+    ChangeProfileComponent,
     ProjectsPageComponent,
     ProjectPageComponent,
     MatConfirmDialogComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
-    AssigneeFormComponent,
-    ProjectMemberComponent,
-    AssigneeSearchComponent,
-    AbstractSearchFormComponent
+    ProjectMemberComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +102,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     ToolbarModule,
     MatGridListModule,
     ProfileModule,
-    TicketModule
+    TicketModule,
+    FilterFormModule,
   ],
   providers: [
     EpicService,
@@ -113,6 +115,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     TicketService,
     ProjectService,
     MatConfirmDialogService,
+    FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
     AuthGuardService,
@@ -123,9 +126,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MatConfirmDialogComponent,
+  entryComponents: [
+    MatConfirmDialogComponent,
     CreateTicketModalComponent
-  ]
+  ],
 })
 export class AppModule {
 

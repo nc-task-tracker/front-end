@@ -1,3 +1,59 @@
+  <div class="create-ticket">
+
+    <form [formGroup]="ticketForm" class="create-issue">
+
+      <mat-form-field class="input-full-width">
+        <input matInput placeholder="Project name" value="1234" disabled>
+      </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input [formControlName]="'issueType'" matInput placeholder="Issue type" value="task" disabled>
+      </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input matInput placeholder="Reporter" value="Admin (you)" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="input-full-width">
+        <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
+      </mat-form-field>
+
+      <mat-form-field class="input-full-width">
+        <input matInput placeholder="Assignee" value="" required>
+      </mat-form-field>
+
+
+      <mat-form-field class="input-full-width">
+        <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
+          <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field class="description_issue">
+        <textarea [formControlName]="'issueDescription'" maxlength="500" matInput placeholder="Description"></textarea>
+      </mat-form-field>
+
+      <div class="dateWrapper">
+        <mat-form-field>
+          <input matInput [matDatepicker]="pickerDue" placeholder="Choose a due date">
+          <mat-datepicker-toggle matSuffix [for]="pickerDue"></mat-datepicker-toggle>
+          <mat-datepicker #pickerDue></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+
+      <div class="control-buttons">
+        <button
+          matTooltip="Create issue"
+          aria-label="Button that displays a tooltip when focused or hovered over"
+          mat-raised-button class="control-button create" (click)="createTicket()">Create
+        </button>
+        <button matTooltip="Cancel creating issue"
+                aria-label="Button that displays a tooltip when focused or hovered over"
+                mat-raised-button class="control-button cancel">Cancel
+        </button>
+      </div>
+    </form>
+  </div>
 <!--
 <div class="create-ticket">
 
@@ -11,15 +67,15 @@
 
 
     <mat-form-field class="input-full-width">
-      <mat-select [formControlName]="'issueType'" placeholder="Issue type">
-        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.type">{{prior.title}}</mat-option>
+      <mat-select [formControlName]="'issueType'" placeholder="Issue issueType">
+        <mat-option *ngFor="let prior of allTicketTypes" [value]="prior.issueType">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 
 
 
     <mat-form-field class="input-full-width">
-      <input [formControlName]="'issueName'" matInput placeholder="Issue name" value="" required>
+      <input [formControlName]="'issueName'" matInput placeholder="Issue issueName" value="" required>
     </mat-form-field>
 
     <mat-form-field class="input-full-width">
@@ -31,7 +87,7 @@
 
     <mat-form-field class="input-full-width">
       <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
-        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.type">{{prior.title}}</mat-option>
+        <mat-option *ngFor="let prior of allTicketPriority" [value]="prior.issueType">{{prior.title}}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -66,4 +122,3 @@
   </form>
 
 </div>
--->

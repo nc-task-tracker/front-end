@@ -1,5 +1,5 @@
 // import {REGISTER_USER, REGISTER_USER_SUCCESS} from './register.action';
-// import {User} from '../../models/user.model';
+// import {T} from '../../models/user.model';
 import { User } from '../../models/user.model';
 
 export const REGISTER_USER = '[Users] Register user';

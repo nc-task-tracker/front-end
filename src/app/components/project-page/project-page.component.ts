@@ -98,16 +98,16 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
 
   onClickAddSubTicket(ticket: Ticket): void {
     console.log(ticket);
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.autoFocus = true;
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
 
-      dialogConfig.data = {
-        isSubTask: true,
-        parentTicket: ticket
-      };
+    dialogConfig.data = {
+      isSubTask: true,
+      parentTicket: ticket
+    };
 
-      dialogConfig.autoFocus = true;
-      this.matDialog.open(CreateTicketModalComponent, dialogConfig);
+    dialogConfig.autoFocus = true;
+    this.matDialog.open(CreateTicketModalComponent, dialogConfig);
   }
 
   onClickDeleteTicket(ticket: Ticket): void {
@@ -157,4 +157,5 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.tickets = response.list;
       });
   }
+
 }

@@ -4,13 +4,34 @@
   <p *ngIf="isSubTask" class="info_wrap">Parent ticket: <span class="parentTicket">{{parentTicketName}}</span></p>
 
 
-  <mat-form-field *ngIf="!isSubTask" class="input-full-width">
-    <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
-      <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+  <!--  <mat-form-field *ngIf="!isSubTask" class="input-full-width">
+      <mat-select [formControlName]="'project'" placeholder="Choose project ..." multiple="false">
+        <mat-option *ngFor="let project of possibleProjects" [value]="project.code">{{project.code}}</mat-option>
+      </mat-select>
+    </mat-form-field>-->
 
-  <mat-form-field *ngIf="isSubTask"  class="input-full-width">
+
+  <ng-container *ngIf="!isSubTask" class="input-full-width">
+    <app-project-name-form [controlName]="'project'"
+                           [placeholder]="projectPlaceholder"
+                           [multiple]="multiple"
+                           [itemTemplate]="customItem"
+                           [valueTitleKey]="valueTitleKeyProject">
+    </app-project-name-form>
+  </ng-container>
+
+  <ng-container class="input-full-width">
+    <app-assignee-form [controlName]="'assignee'"
+                       [placeholder]="assigneePlaceholder"
+                       [itemTemplate]="customItem"
+                       [valueTitleKey]="valueTitleKeyAssignee"
+                       [isAssigneeInput]="isShowFullName">
+    </app-assignee-form>
+  </ng-container>
+
+
+
+  <mat-form-field *ngIf="isSubTask" class="input-full-width">
     <input disabled matInput placeholder="SUB_TASK">
   </mat-form-field>
 
@@ -20,15 +41,9 @@
     </mat-select>
   </mat-form-field>
 
-  <mat-form-field class="input-full-width">
+  <mat-form-field class="input-full-width mini-width">
     <input [formControlName]="'issueName'" matInput placeholder="Title" required>
   </mat-form-field>
-
-
-  <app-assignee-search class="input-full-width" [controlName]="'assignee'" placeholder="Assignee"></app-assignee-search>
-
-
-  <!-- <app-assignee-form [formControlName]="'assignee'"></app-assignee-form> -->
 
   <mat-form-field class="input-full-width">
     <mat-select [formControlName]="'issuePriority'" placeholder="Priority">
@@ -43,7 +58,8 @@
 
   <div class="dateWrapper">
     <mat-form-field>
-      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'" placeholder="Choose a due date">
+      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'"
+             placeholder="Choose a due date">
       <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
       <mat-datepicker #dueDate></mat-datepicker>
     </mat-form-field>

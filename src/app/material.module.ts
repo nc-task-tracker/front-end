@@ -6,6 +6,22 @@ import {
   MatTooltipModule, MatTreeModule,
   MatPaginatorModule,
   MatSortModule,
+  MatButtonModule,
+  MatCardModule,
+  MatDatepickerModule,
+  MatDialogModule,
+  MatDividerModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule, MatMenuModule,
+  MatNativeDateModule, MatPaginatorModule,
+  MatRadioModule,
+  MatSelectModule, MatSortModule,
+  MatTableModule,
+  MatTooltipModule,
+  MatTreeModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
@@ -35,6 +51,7 @@ import {NgModule} from '@angular/core';
   exports: [
     MatFormFieldModule,
     MatInputModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatTooltipModule,
@@ -52,6 +69,7 @@ import {NgModule} from '@angular/core';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatMenuModule
   ]
 })
 export class MaterialModule {}

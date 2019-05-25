@@ -3,15 +3,20 @@ import {ActionsObservable} from 'redux-observable';
 import {AnyAction} from 'redux';
 import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {
-  CREATE_TICKET, createTicketSuccessAction, DELETE_TICKET, deleteTicketSuccessAction, FETCH_TICKETS,
-  fetchTicketsFailedAction,
-  fetchTicketsSuccessAction, SAVE_COMMENT, saveCommentSuccessAction, SELECT_TICKET,
-  selectTicketSuccess, UPDATE_TICKET, updateTicketSuccessAction
-} from '../actions/tickets.actions';
+  CREATE_TICKET,
+  createTicketSuccessAction,
+  FETCH_TICKET_NAMES,
+  fetchTicketNamesFailedAction,
+  fetchTicketNamesSuccessAction
+} from '../actions/create-ticket.actions';
 import {TicketService} from '../../service/ticket.service';
 import {TransformService} from '../../utils/transform.service';
-import {of} from 'rxjs';
 import {saveCurrentTicketCommentAction, updateCurrentTicketAction} from '../actions/current-ticket.action';
+import {of} from "rxjs";
+import {
+  DELETE_TICKET, deleteTicketSuccessAction, FETCH_TICKETS, fetchTicketsFailedAction,
+  fetchTicketsSuccessAction, SAVE_COMMENT, SELECT_TICKET, selectTicketSuccess, UPDATE_TICKET, updateTicketSuccessAction
+} from '../actions/tickets.actions';
 
 @Injectable()
 export class TicketsEpic {
@@ -42,6 +47,19 @@ export class TicketsEpic {
       })
     );
   };
+
+  fetchTicketNames$ = (action$: ActionsObservable<AnyAction>) => {
+    return action$.ofType(FETCH_TICKET_NAMES).pipe(
+      switchMap(({payload}) => {
+        return this.ticketService
+          .searchByName(payload.name)
+          .pipe(
+            map( tikets => fetchTicketNamesSuccessAction(TransformService.transformToMap(tikets))),
+            catchError(error => of(fetchTicketNamesFailedAction(error.message)))
+          );
+      })
+    );
+  }
 
   deleteTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(DELETE_TICKET).pipe(

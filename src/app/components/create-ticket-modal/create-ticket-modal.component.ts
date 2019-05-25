@@ -30,7 +30,15 @@ export class CreateTicketModalComponent implements OnInit {
   @select(selectCurrentUser)
   readonly currentUser: Observable<User>;
 
+  isShowFullName = true;
+  multiple = false;
+  projectPlaceholder = 'Choose project';
+  valueTitleKeyAssignee = 'login';
+  valueTitleKeyProject = 'projectName';
+
+  assigneePlaceholder = 'Choose assignee';
   ticketForm: FormGroup;
+
 
   ticketPriority = allTicketPriority;
   ticketTypes = allTicketType;
@@ -55,35 +63,27 @@ export class CreateTicketModalComponent implements OnInit {
 
 
   ngOnInit() {
-    this.getPossibleProjects(this.userName.toString()).subscribe(res => this.possibleProjects = res);
-
     this.ticketForm = this.formBuilder.group({
       issueName: ['', Validators.required],
       issueDescription: ['', Validators.required],
       dueDate: ['', Validators.required],
-      project: [''/*, Validators.required*/],
+      project: ['', Validators.required],
       issueType: ['', Validators.required],
       issuePriority: ['', Validators.required],
       assignee: ['', Validators.required],
-      reporter: [''],
+      reporter: this.storageService.currentUser.id,
       minDate: new Date()
 
     });
     if (this.isSubTask) {
       console.log(this.data);
       this.parentTicket = this.data.parentTicket;
-      this.parentTicketName = this.data.parentTicket.name;
+      this.parentTicketName = this.data.parentTicket.issueName;
       this.ticketForm.controls.issueType.setValue('SUB_TASK');
+      console.log('ass', this.data.assignee);
+      this.ticketForm.controls.assignee.setValue(this.data.assignee);
     }
 
-  }
-
-  private getPossibleProjects(value: string): Observable<Project[]> {
-    return this.ticketService.getPossibleProjectsByUser(value).pipe(
-      catchError(_ => {
-        return of(null);
-      })
-    );
   }
 
   onNoClick(): void {
@@ -92,8 +92,9 @@ export class CreateTicketModalComponent implements OnInit {
 
   createTicket() {
     const formValue = this.ticketForm.getRawValue();
-    console.log('assignee', formValue.assignee);
+    console.log('fv', formValue);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
+    this.ticketService.createTicket(formValue).subscribe();
     this.dialogRef.close();
   }
 
