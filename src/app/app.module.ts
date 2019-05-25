@@ -49,7 +49,6 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
-import {TicketServiceService} from "./service/ticket-service.service";
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -106,7 +105,6 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfileService,
     TicketService,
     ProjectService,
-    TicketServiceService,
     FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
