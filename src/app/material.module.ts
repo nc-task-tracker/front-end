@@ -23,9 +23,7 @@ import {NgModule} from '@angular/core';
     MatButtonModule,
     MatIconModule,
     MatRadioModule,
-    MatMenuModule,
     MatListModule,
-    MatTreeModule,
     MatTabsModule,
     MatProgressSpinnerModule,
     MatTreeModule,
@@ -51,11 +49,9 @@ import {NgModule} from '@angular/core';
     MatTreeModule,
     MatTabsModule,
     MatProgressSpinnerModule,
-    MatTreeModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatMenuModule
   ]
 })
 export class MaterialModule {}

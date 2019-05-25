@@ -46,13 +46,14 @@ import {AssigneeSearchComponent} from './components/create-ticket-modal/assignee
 import {AbstractSearchFormComponent} from './components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 import {RegisterComponent} from './components/register/register.component';
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
-import {ChangeProfileService} from "./service/change-profile-service.service";
-import {ProfileService} from "./service/profile.service";
+import {ChangeProfileService} from './service/change-profile-service.service';
+import {ProfileService} from './service/profile.service';
 import {TicketModule} from './components/ticket/ticket.module';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
 import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {TransformService} from './utils/transform.service';
+import {NgModule} from '@angular/core';
 
 const JWT_Module_Options: JwtModuleOptions = {
   config: {
