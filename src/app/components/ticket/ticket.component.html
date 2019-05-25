@@ -7,11 +7,11 @@
         <div>
           <div class="project-subtitle">
             <mat-card-subtitle >
-              Proj_name; Proj_code
+              Project: {{ticket.project.projectName}} / {{ticket.project.projectCode}}
             </mat-card-subtitle>
           </div>
 
-          <div >
+          <div>
             <mat-card-title>
               <mat-form-field style="width: 1250px">
                 <input matInput [formControlName]="'issueName'" [readonly]="edit"  required>
@@ -35,7 +35,7 @@
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
                 <mat-card-title>Reporter</mat-card-title>
-                <mat-card-subtitle>{{ticket.reporter.firstName}}</mat-card-subtitle>
+                <mat-card-subtitle></mat-card-subtitle>
               </mat-card-header>
             </mat-card>
 
@@ -46,7 +46,7 @@
 
               <mat-card-subtitle class="assignee-subtitle">
                   <mat-form-field style="width: 150px">
-                    <input matInput   [readonly]="edit" required>
+                    <input matInput [readonly]="edit" required>
 
                     <!--<input matInput [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">-->
                     <!--<mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">-->
@@ -77,15 +77,13 @@
       </mat-card-content>
     </mat-card>
 
-      <div class="buttons">
-        <button mat-raised-button color="primary" (click)=onUpdateClick()>Update</button>
-        <button mat-raised-button color="warn" (click)=onDeleteClick()>Delete</button>
-        <button mat-raised-button color="primary" (click)="onEditClick()">Edit</button>
-      </div>
+      <button mat-raised-button class="button-size" color="primary" (click)="onUpdateClick()">Update</button>
+      <button mat-raised-button class="button-size" color="warn" (click)="onDeleteClick()">Delete</button>
+      <button mat-raised-button class="button-size" color="primary" (click)="onEditClick()">Edit</button>
+
     </div>
 
     <div>
-
     <div class="type-priority-status">
       <mat-form-field class="size">
         <mat-select placeholder="Type" [disabled]="edit" [formControlName]="'issueType'" required>
@@ -117,9 +115,9 @@
       <textarea matInput [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
     </mat-form-field>
 
-    <app-subtasks></app-subtasks>
+    <app-subtasks [createSubtask]="createSubtask" [subtasks]="ticketSubtasks"></app-subtasks>
   </div>
-  <app-comments [issue_Id]="ticketId" [comments]="ticketComments" [have_Comments]="haveComments"></app-comments>
+  <app-comments [issue_Id]="ticketId"></app-comments>
   </div>
 </form>
 </ng-template>

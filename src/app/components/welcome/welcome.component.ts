@@ -16,6 +16,8 @@ export class WelcomeComponent implements OnInit{
   @select(selectCurrentUser)
   currentUser: Observable<User>;
 
+  test = new Date();
+
   constructor(private ngRedux: NgRedux<AppState>){}
 
   ngOnInit(): void {

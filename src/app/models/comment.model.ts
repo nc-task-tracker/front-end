@@ -1,11 +1,12 @@
 import {Profile} from './profile.model';
+import {Assignee} from './assignee.model';
 
 export interface Comment {
   readonly id: string;
   readonly commentText: string;
   readonly time: Date;
   readonly profileId: string;
-  readonly profile: Profile;
+  readonly profile: Assignee;
   readonly issueId: string;
 }
 

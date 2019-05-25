@@ -10,3 +10,18 @@ table {
 .title {
   height: 1px;
 }
+
+.comments-table {
+  height: 200px;
+  overflow: auto;
+  background: gray;
+  border: 1px solid lightgray;
+}
+
+.noSubtasks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 280px;
+  border: 1px solid lightgray;
+}

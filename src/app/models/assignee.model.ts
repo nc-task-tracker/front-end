@@ -1,5 +1,5 @@
 export interface Assignee {
   readonly id: string;
-  readonly FIO: string;
+  readonly fullName: string;
   readonly login: string;
 }

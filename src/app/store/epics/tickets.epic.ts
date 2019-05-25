@@ -77,11 +77,7 @@ export class TicketsEpic {
         return this.ticketService
           .saveComment(payload.comment, id.ticketId)
           .pipe(
-            map( comment => {
-              of(saveCommentSuccessAction(comment, id.ticketId),
-                 saveCurrentTicketCommentAction(comment, id.ticketId)
-              )}
-            )
+            map( comment => saveCurrentTicketCommentAction(comment, id.ticketId))
           );
       })
     );

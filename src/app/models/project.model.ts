@@ -9,9 +9,9 @@ export interface Project {
 
 export const defaultProject: Project = {
   id: null,
-  projectName: '',
-  description: '',
-  ownerId: '',
+  projectName: 'Proj',
+  description: 'Proj',
+  ownerId: '1',
   projectStatus: '',
-  projectCode: ''
+  projectCode: 'PROJ'
 };

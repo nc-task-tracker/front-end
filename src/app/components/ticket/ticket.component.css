@@ -4,8 +4,7 @@
   justify-content: flex-start;
   align-items: stretch;
   overflow: auto;
-  overflow-x: scroll;
-  height: 100%;
+  height: 90%;
 }
 
 .content {
@@ -102,4 +101,9 @@ mat-form-field {
 
 .create-date {
   height: 5px;
+}
+
+.button-size {
+  width: 200px;
+  font-size: 17px;
 }

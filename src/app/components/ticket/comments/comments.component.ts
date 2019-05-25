@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {NgRedux, select} from '@angular-redux/store';
 import {TicketService} from '../../../service/ticket.service';
@@ -7,6 +7,9 @@ import {Router} from '@angular/router';
 import {User} from '../../../models/user.model';
 import {selectCurrentUser} from '../../../store/selectors/current-user.selector';
 import {saveCommentAction} from '../../../store/actions/tickets.actions';
+import {selectCurrentTicket, selectCurrentTicketComments, selectCurrentTicketName} from '../../../store/selectors/current-ticket.selector';
+import {Ticket} from '../../../models/ticket.model';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-comments',
@@ -16,9 +19,14 @@ import {saveCommentAction} from '../../../store/actions/tickets.actions';
 export class CommentsComponent implements OnInit {
 
   @Input('issue_Id') issue_Id: string;
-  @Input() have_Comments: boolean;
-  @Input('comments') comments: Set<Comment>;
+  // @Input() have_Comments: boolean;
+  // @Input('comments') comments: Set<Comment>;
+  @select(selectCurrentTicket)
+    selectedTicket: Observable<Ticket>;
+  @select(selectCurrentTicketComments)
+    comments: Observable<Comment[]>;
 
+  com: Comment[];
   currentUser: User;
   commentForm: FormGroup;
   displayedColumns: string[] = ['User', 'Text', 'Time'];

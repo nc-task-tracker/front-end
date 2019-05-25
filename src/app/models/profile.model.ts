@@ -1,12 +1,10 @@
 export interface Profile {
   readonly id: string;
-  readonly firstName: string;
-  readonly lastName: string;
+  readonly fullName: string;
 }
 
 export const defaultProfile: Profile = {
   id: '',
-  firstName: '',
-  lastName: ''
+  fullName: ''
 };
 // TODO back-end model

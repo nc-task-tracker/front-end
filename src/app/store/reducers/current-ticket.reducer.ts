@@ -25,11 +25,10 @@ export const currentTicketStateReducer: Reducer<CurrentTicketState> = (state: Cu
     }
     case SAVE_CURRENT_TICKET_COMMENT: {
       const {comment,ticketId}  = action.payload;
-
       if (comment !== null && ticketId == state.currentTicket.id) {
         const updatedTicket = {...state.currentTicket};
         updatedTicket.comments.push(comment);
-        return { ...state, tickets: updatedTicket, isLoading: false };
+        return { ...state, currentTicket: updatedTicket, isLoading: false };
       }
       return state;
     }
