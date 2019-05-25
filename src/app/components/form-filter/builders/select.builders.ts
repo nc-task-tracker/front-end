@@ -26,9 +26,10 @@ export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterI
               id: '1',
               projectName: 'name1',
               projectDescription: '',
-              ownerId: '',
+              projectOwner: null, // поля в модели проекта изменились
               projectStatus: '',
-              projectCode: ''
+              projectCode: '',
+              members: null // это поле добавилось в проект
             }]
         };
     }

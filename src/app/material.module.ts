@@ -6,22 +6,6 @@ import {
   MatTooltipModule, MatTreeModule,
   MatPaginatorModule,
   MatSortModule,
-  MatButtonModule,
-  MatCardModule,
-  MatDatepickerModule,
-  MatDialogModule,
-  MatDividerModule,
-  MatFormFieldModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule, MatMenuModule,
-  MatNativeDateModule, MatPaginatorModule,
-  MatRadioModule,
-  MatSelectModule, MatSortModule,
-  MatTableModule,
-  MatTooltipModule,
-  MatTreeModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';

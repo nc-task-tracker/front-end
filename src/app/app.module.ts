@@ -11,7 +11,7 @@ import {EpicsModule} from './store/epics/epics.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from './material.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {MatGridListModule} from '@angular/material';
+import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AppRouterModule } from './app-router.module';
@@ -45,15 +45,12 @@ import {ProfileModule} from './components/profile/profile.module';
 import {EmailSenderService} from './service/email-sender.service';
 import {ProjectMemberComponent} from './components/project-member/project-member.component';
 import {ProjectMemberService} from './service/project-member.service';
-import {AssigneeSearchComponent} from './components/create-ticket-modal/assignee-search/assignee-search.component';
-import {AbstractSearchFormComponent} from './components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 import {RegisterComponent} from './components/register/register.component';
 import {ChangeProfileService} from './service/change-profile-service.service';
 import {ProfileService} from './service/profile.service';
 import {TicketModule} from './components/ticket/ticket.module';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {NgModule} from '@angular/core';
 import {AuthGuardService} from './service/auth-guard.service';
 
@@ -68,7 +65,7 @@ const JWT_Module_Options: JwtModuleOptions = {
   declarations: [
     AppComponent,
     UserComponent,
-    CreateTicketPageComponent,
+    // CreateTicketPageComponent,
     ChangeProfileComponent,
     CreateProjectComponent,
     // ProfileComponent,

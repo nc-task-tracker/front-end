@@ -10,7 +10,6 @@ import {select} from '@angular-redux/store';
 import {selectCurrentUser, selectCurrentUserName} from '../store/selectors/current-user.selector';
 import {User} from '../models/user.model';
 import {Project} from '../models/project.model';
-import {SearchByString} from '../components/create-ticket-modal/abstract-search-form/abstract-search-form.component';
 import {SearchByName} from '../components/form-filter/abstract-select-form/abstract-select-form.component';
 import {Filter} from '../models/filter-item.model';
 import {TablePageData} from '../models/util/table-page-data.model';
