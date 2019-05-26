@@ -37,6 +37,7 @@ export class CommentsComponent implements OnInit {
 
   ngOnInit() {
     this.currentUser = selectCurrentUser(this.ngRedux.getState());
+    this.comments.subscribe();
     this.formInit();
   }
 
@@ -49,6 +50,5 @@ export class CommentsComponent implements OnInit {
 
     onSaveClick () {
       this.ngRedux.dispatch(saveCommentAction(this.commentForm.getRawValue(), this.issue_Id));
-      this.formInit();
   }
 }
