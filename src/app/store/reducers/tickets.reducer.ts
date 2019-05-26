@@ -5,7 +5,7 @@ import {
   FETCH_TICKETS_SUCCESS, SAVE_COMMENT, SAVE_COMMENT_SUCCESS, UPDATE_TICKET,
   UPDATE_TICKET_SUCCESS
 } from '../actions/tickets.actions';
-import {FILTER_SEARCH_SUCCESS} from "../actions/filter.actions";
+import {FILTER_SEARCH, FILTER_SEARCH_SUCCESS} from "../actions/filter.actions";
 import {User} from "../../models/user.model";
 import {UsersState} from "./user.reducer";
 import {FETCH_TICKET_NAMES, FETCH_TICKET_NAMES_SUCCESS} from '../actions/create-ticket.actions';
@@ -68,6 +68,9 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
     }
     case FETCH_TICKET_NAMES_SUCCESS: {
       return { ...state, ...action.payload, isLoading: false };
+    }
+    case FILTER_SEARCH: {
+      return{...state, isLoading: true}
     }
     case FILTER_SEARCH_SUCCESS: {
       const {tickets} = action.payload;

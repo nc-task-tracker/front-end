@@ -151,24 +151,35 @@ import {Observable} from "rxjs";
 })
 export class TicketsPageComponent implements OnInit {
   private displayedColumns: string[] = [
-    'ticketName',
-    'ticketType',
-    'ticketStatus',
-    'ticketPriority',
+    // 'issueName',
+    // 'issueType',
+    // 'issueStatus',
+    // 'issuePriority',
+    // 'assignee',
+    // 'reporter',
+    // 'project',
+    // 'parentId',
+    // 'dueDate',
+    // 'startDate',
+    // 'issueDescription'
+    'name',
+    'issueType',
+    'issueStatus',
+    'issuePriority',
     'assignee',
     'reporter',
     'project',
     'parentId',
     'dueDate',
     'startDate',
-    'ticketDescription'
+    'issueDescription'
   ]
   dataSource ;
   // private resultTickets: Map<string, Ticket>;
   private resultTickets: Ticket[];
 
   // @select(selectIsLoading)
-  @select(selectTickets)
+  @select(selectIsLoading)
   isLoading: Observable<boolean>;
 
 
@@ -184,12 +195,10 @@ export class TicketsPageComponent implements OnInit {
     this.dataSource = new MatTableDataSource();
 
      this.dataSource.sort = this.sort;
-     console.log('LOADING ' , this.isLoading);
     this.isLoading.subscribe( val => {
       console.log('VAL = ', val);
       if(!val) {
         this.resultTickets = selectTickets(this.ngRedux.getState());
-
         console.log('RESULT_TICKETS',this.resultTickets);
         this.dataSource = new MatTableDataSource(this.resultTickets);
       }

@@ -1,27 +1,27 @@
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-  <ng-container matColumnDef="ticketName">
+  <ng-container matColumnDef="name">
   <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>-->
   <th mat-header-cell *matHeaderCellDef > Name </th>
-  <td mat-cell *matCellDef="let element"> {{element?.ticketName}} </td>
+  <td mat-cell *matCellDef="let element"> {{element?.issueName}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="ticketType">
+  <ng-container matColumnDef="issueType">
   <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>-->
   <th mat-header-cell *matHeaderCellDef > Type </th>
-  <td mat-cell *matCellDef="let element"> {{element?.ticketType}} </td>
+  <td mat-cell *matCellDef="let element"> {{element?.issueType}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="ticketStatus">
+  <ng-container matColumnDef="issueStatus">
   <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>-->
   <th mat-header-cell *matHeaderCellDef > Status </th>
-  <td mat-cell *matCellDef="let element"> {{element?.ticketStatus}} </td>
+  <td mat-cell *matCellDef="let element"> {{element?.issueStatus}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="ticketPriority">
+  <ng-container matColumnDef="issuePriority">
   <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>-->
   <th mat-header-cell *matHeaderCellDef > Priority </th>
-  <td mat-cell *matCellDef="let element"> {{element?.ticketPriority}} </td>
+  <td mat-cell *matCellDef="let element"> {{element?.issuePriority}} </td>
   </ng-container>
 
   <ng-container matColumnDef="assignee">
@@ -60,10 +60,10 @@
   <td mat-cell *matCellDef="let element"> {{element?.startDate}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="ticketDescription">
+  <ng-container matColumnDef="issueDescription">
   <!--<th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>-->
   <th mat-header-cell *matHeaderCellDef > Description </th>
-  <td mat-cell *matCellDef="let element"> {{element?.ticketDescription}} </td>
+  <td mat-cell *matCellDef="let element"> {{element?.issueDescription}} </td>
   </ng-container>
 
   <!--&lt;!&ndash; Position Column &ndash;&gt;-->

@@ -124,3 +124,36 @@ export const defaultTicket: Ticket = {
   comments: null
 };
 
+export const defaultTickets: Ticket[] = [
+  {
+  id: '1',
+  issueName: 'Name',
+  issueType: TicketType.TASK,
+  issuePriority: TicketPriority.MINOR,
+  issueStatus: TicketStatus.RESOLVED,
+  issueDescription: 'Issue_description',
+  startDate: new Date('02/02/03'),
+  dueDate: new Date('02/02/02'),
+  projectId: '',
+  reporter: null,
+  assignee: null,
+  parentId: null,
+  comments: null
+},
+  {
+    id: '1',
+    issueName: 'Name',
+    issueType: TicketType.TASK,
+    issuePriority: TicketPriority.MINOR,
+    issueStatus: TicketStatus.RESOLVED,
+    issueDescription: 'Issue_description',
+    startDate: new Date('02/02/03'),
+    dueDate: new Date('02/02/02'),
+    projectId: '',
+    reporter: null,
+    assignee: null,
+    parentId: null,
+    comments: null
+  }
+]
+
