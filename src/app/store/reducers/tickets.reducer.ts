@@ -72,7 +72,7 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
     case FILTER_SEARCH_SUCCESS: {
       const {tickets} = action.payload;
       const found_tickets = new Map(state.tickets).set(tickets.id, tickets);
-      console.log('FOUND_TICKETS', found_tickets);
+      // console.log('FOUND_TICKETS', found_tickets);
       // return found_tickets;
       return { ...state, tickets: found_tickets, isLoading: false };
     }

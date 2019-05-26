@@ -167,11 +167,10 @@ export class TicketsPageComponent implements OnInit {
   // private resultTickets: Map<string, Ticket>;
   private resultTickets: Ticket[];
 
-  @select(selectIsLoading)
+  // @select(selectIsLoading)
+  @select(selectTickets)
   isLoading: Observable<boolean>;
 
-  @select(selectTickets)
-  selectTickets: Observable<boolean>;
 
   @ViewChild(MatSort) sort: MatSort;
 
