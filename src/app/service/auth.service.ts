@@ -23,12 +23,6 @@ export class AuthService {
     return this.http.post<UserTokenModel>(`${this.LOGIN_URL}`, credential);
   }
 
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
-  }
-
   public isAuthenticated(): boolean {
     const token = this.localStorage.currentToken;
     return token ? !this.jwtHelper.isTokenExpired(token.token): false;

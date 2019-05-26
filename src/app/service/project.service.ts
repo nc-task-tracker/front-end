@@ -12,11 +12,12 @@ import {ProjectMember} from "../models/project-member.model";
 export class ProjectService {
 
   private PROJECT_URL = '/api/project';
+  private CREATE_PROJECT_URL = '/api/project/create';
 
   constructor(private http: HttpClient) { }
 
   createProject(project: Project): Observable<Project> {
-    return this.http.post<Project>(`${this.PROJECT_URL}`, project)
+    return this.http.post<Project>(`${this.CREATE_PROJECT_URL}`, project)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 

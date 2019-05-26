@@ -6,6 +6,8 @@ import {User} from 'src/app/models/user.model';
 import {AppState} from '../../store';
 import {registerAction} from 'src/app/store/actions/register.action';
 import {Router} from '@angular/router';
+import {UserNameValidator} from "../../validators/user.name.validator";
+import {UserEmailValidator} from "../../validators/user.email.validator";
 
 @Component({
   selector: 'app-edit-user',
@@ -15,23 +17,34 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   userForm: FormGroup;
-  asyncUser: Observable<User>;
 
   hide = true;
 
-  constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder, private router: Router) {}
+  constructor(private ngRedux: NgRedux<AppState>, private fb: FormBuilder, private router: Router,
+              private userNameValidator: UserNameValidator, private userEmailValidator: UserEmailValidator) {
+  }
 
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  private initializeForm(){
     this.userForm = this.fb.group({
-      login: ['', Validators.required],
+      login: ['', {
+        validators: [Validators.required],
+        asyncValidators: [this.userNameValidator]
+      }],
       password: ['', Validators.required],
-      email: ['', Validators.email]
+      email: ['', {
+        validators: [Validators.email],
+        asyncValidators: [this.userEmailValidator]
+      }]
     });
   }
 
   onRegisterClick() {
     this.ngRedux.dispatch(registerAction(this.userForm.getRawValue()));
-    // this.onCancelClick();
+    this.onCancelClick();
   }
 
   get login(): FormControl {
@@ -48,23 +61,32 @@ export class RegisterComponent implements OnInit {
 
   getErrorText(controlName: string): string {
     const control = this.userForm.get(controlName) as FormControl;
-    return this.getErrorMessage(control);
+    return this.getErrorMessage(control, controlName);
   }
 
   onCancelClick() {
     this.router.navigate(['home']);
   }
 
-  private getErrorMessage(control: FormControl): string {
-    let errorMesage = '';
+  private getErrorMessage(control: FormControl, controlName: string): string {
+    let errorMessage = '';
     if (control.errors) {
       if (control.errors['required']) {
-        errorMesage = 'Field is required';
+        errorMessage = 'Field is required';
+        return errorMessage;
       }
       if (control.errors['email']) {
-        errorMesage = 'Incorrect email';
+        errorMessage = 'Incorrect email';
+        return errorMessage;
+      }
+      if (controlName == "login" && this.userNameValidator.validate(control)) {
+        errorMessage = 'Already exist'
+        return errorMessage;
+      }
+      if (controlName == "email" && this.userEmailValidator.validate(control)) {
+        errorMessage = 'Already exist'
+        return errorMessage;
       }
     }
-    return errorMesage;
   }
 }

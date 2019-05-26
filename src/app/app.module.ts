@@ -60,7 +60,13 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
+import {Error500Component} from "./components/error-pages/500/error-500.component";
+import {Error404Component} from "./components/error-pages/404/error-404.component";
+import {Error401Component} from "./components/error-pages/401/error-401.component";
+import {UserNameValidator} from "./validators/user.name.validator";
+import {UserEmailValidator} from "./validators/user.email.validator";
 import {TicketModule} from './components/ticket/ticket.module';
+import {ProjectNameValidator} from './validators/project.name.validator';
 import {CreateTicketPageComponent} from "./components/create-ticket-page/create-ticket-page.component";
 
 
@@ -83,7 +89,7 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     ChangeProfileComponent,
     // TicketComponent,
     CreateProjectComponent,
-    //ProfileComponent,
+    // ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
     RegisterComponent,
@@ -95,6 +101,10 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     AssigneeFormComponent,
     ProjectMemberComponent,
     ProjectMemberModalComponent
+    AssigneeFormComponent,
+    Error500Component,
+    Error404Component,
+    Error401Component
   ],
   imports: [
     BrowserModule,
@@ -137,6 +147,8 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
+    UserNameValidator,
+    UserEmailValidator,
     AuthGuardService,
     EmailSenderService,
     ProjectMemberService,
