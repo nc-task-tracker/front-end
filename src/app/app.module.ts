@@ -44,6 +44,11 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
+import {Error500Component} from "./components/error-pages/500/error-500.component";
+import {Error404Component} from "./components/error-pages/404/error-404.component";
+import {Error401Component} from "./components/error-pages/401/error-401.component";
+import {UserNameValidator} from "./validators/user.name.validator";
+import {UserEmailValidator} from "./validators/user.email.validator";
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -62,7 +67,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     CreateProjectComponent,
     WelcomeComponent,
     CreateTicketModalComponent,
-    AssigneeFormComponent
+    AssigneeFormComponent,
+    Error500Component,
+    Error404Component,
+    Error401Component
   ],
   imports: [
     BrowserModule,
@@ -97,6 +105,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProjectService,
     ProjectNameValidator,
     ProjectCodeValidator,
+    UserNameValidator,
+    UserEmailValidator,
     AuthGuardService,
     ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

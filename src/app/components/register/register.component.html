@@ -23,8 +23,7 @@
   </form>
 
   <div class="edit-user-controls">
-    <button mat-button color="primary" [disabled]="userForm.invalid" (click)="onRegisterClick()"
-            cdkFocusInitial>
+    <button mat-button color="primary" [disabled]="login.invalid || password.invalid || email.invalid" (click)="onRegisterClick()">
             Registes
     </button>
     <button mat-button color="warn" (click)=onCancelClick()>Cancel</button>

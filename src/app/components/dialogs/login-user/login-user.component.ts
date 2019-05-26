@@ -70,7 +70,6 @@ export class LoginUserComponent implements OnInit {
 
   onRegisterClick() {
     this.onCancelClick();
-    // this.dialogRef.close(DialogResult.CLOSE);
     setTimeout(() => this.router.navigate(['register']));
   }
 }

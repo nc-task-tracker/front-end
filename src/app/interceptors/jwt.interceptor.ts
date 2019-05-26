@@ -24,7 +24,9 @@ export class JwtInterceptor implements HttpInterceptor {
     else {
       this.storageService.currentUser=null;
       this.storageService.currentToken=null;
-      this.router.navigate(['home']);
+      if(!this.router.url.includes("register")) {
+        this.router.navigate(['home']);
+      }
     }
 
     return next.handle(request);

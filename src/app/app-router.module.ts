@@ -8,6 +8,9 @@ import {TicketComponent} from './components/ticket/ticket.component';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
+import {Error500Component} from "./components/error-pages/500/error-500.component";
+import {Error404Component} from "./components/error-pages/404/error-404.component";
+import {Error401Component} from "./components/error-pages/401/error-401.component";
 
 
 const routs: Routes = [
@@ -19,7 +22,10 @@ const routs: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'create-ticket', component: CreateTicketModalComponent},
   {path: 'ticket', component: TicketComponent},
-  {path: 'home', component: WelcomeComponent}
+  {path: 'home', component: WelcomeComponent},
+  {path: '500', component: Error500Component},
+  {path: '404', component: Error404Component},
+  {path: '401', component: Error401Component}
 ];
 
 @NgModule({
