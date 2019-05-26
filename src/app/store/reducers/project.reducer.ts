@@ -15,12 +15,6 @@ const INITIAL_STATE = {
 
 export const projectReducer: Reducer<ProjectsState> = (state: ProjectsState = INITIAL_STATE, action):ProjectsState => {
   switch (action.type) {
-     case FETCH_PROJECTS: {
-       return { ...state, isLoading: true };
-     }
-     case FETCH_PROJECTS_SUCCESS: {
-       return { ...state, ...action.payload, isLoading: false };
-     }
     case CREATE_PROJECT:
     case CREATE_PROJECT_SUCCESS:
     default: {

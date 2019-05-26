@@ -28,9 +28,6 @@ import { AuthService } from './service/auth.service';
 import { UserService } from './service/user.service';
 import { EpicService } from './store/epics/epics.service';
 import { TransformService } from './utils/transform.service';
-import {RegisterService} from './service/register.service';
-import {TicketService} from './service/ticket.service';
-import {ProjectService} from './service/project.service';
 import {JwtInterceptor} from './interceptors/jwt.interceptor';
 import {ErrorInterceptor} from './interceptors/error.interceptor';
 import {AppState} from './store';
@@ -40,18 +37,33 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
+// import {MatDialogModule} from "@angular/material";
+// import {OverlayModule} from "@angular/cdk/overlay";
+import {FilterFormModule} from "./components/form-filter/filter-form.module";
+import {FilterService} from "./service/filter.service";
+// import {ProjectNameValidator} from "./validators/project.name.validator";
 import {RegisterComponent} from './components/register/register.component';
-import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
+// import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
+// import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {AuthGuardService} from "./service/auth-guard.service";
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
+
+
 import {ProfileModule} from './components/profile/profile.module';
+
+import {TicketComponent} from './components/ticket/ticket.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
 import {TicketModule} from './components/ticket/ticket.module';
 import {ProjectNameValidator} from './validators/project.name.validator';
 import { ModalCancelComponent } from './components/modal/modal-cancel/modal-cancel.component';
 import { ModalSuccessComponent } from './components/modal/modal-success/modal-success.component';
+import {CreateTicketModalComponent} from "./components/create-ticket-modal/create-ticket-modal.component";
+import {AssigneeFormComponent} from "./components/assignee-form/assignee-form.component";
+import {TicketService} from "./service/ticket.service";
+import {ProjectService} from "./service/project.service";
+import {RegisterService} from "./service/register.service";
+
 
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -67,7 +79,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
+    // TicketComponent,
     CreateProjectComponent,
+    // ProfileComponent,
+    ChangeProfileComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
@@ -80,6 +95,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
+    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -95,6 +111,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     RouterModule,
     ToolbarModule,
     MatGridListModule,
+    FilterFormModule,
     ProfileModule,
     TicketModule,
   ],
@@ -107,6 +124,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfileService,
     TicketService,
     ProjectService,
+    FilterService,
     ProjectNameValidator,
     AuthGuardService,
     ChangeProfileService,

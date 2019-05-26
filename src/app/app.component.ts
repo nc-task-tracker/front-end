@@ -4,6 +4,7 @@ import {GlobalUserStorageService} from './service/global-storage.service';
 import {AppState} from './store';
 import {logoutUserAction, updateCurrentUserAction} from './store/actions/current-user.actions';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

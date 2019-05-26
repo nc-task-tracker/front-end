@@ -31,6 +31,7 @@ import {NgModule} from '@angular/core';
   exports: [
     MatFormFieldModule,
     MatInputModule,
+    MatFormFieldModule,
     BrowserAnimationsModule,
     MatSelectModule,
     MatTooltipModule,
@@ -50,3 +51,4 @@ import {NgModule} from '@angular/core';
   ]
 })
 export class MaterialModule {}
+

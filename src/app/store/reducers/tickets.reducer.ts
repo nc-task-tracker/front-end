@@ -5,6 +5,12 @@ import {
   FETCH_TICKETS_SUCCESS, SAVE_COMMENT, SAVE_COMMENT_SUCCESS, UPDATE_TICKET,
   UPDATE_TICKET_SUCCESS
 } from '../actions/tickets.actions';
+import {FILTER_SEARCH_SUCCESS} from "../actions/filter.actions";
+import {User} from "../../models/user.model";
+import {UsersState} from "./user.reducer";
+import {FETCH_TICKET_NAMES, FETCH_TICKET_NAMES_SUCCESS} from '../actions/create-ticket.actions';
+
+// const INITIAL_STATE = new Map<string, Ticket>();
 
 export interface TicketsState {
   readonly tickets: Map<string, Ticket>;
@@ -57,6 +63,23 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
       const updatedTickets = new Map(state.tickets).set(ticket.id, ticket);
       return { ...state, tickets: updatedTickets};
     }
+    case FETCH_TICKET_NAMES: {
+      return { ...state, isLoading: true };
+    }
+    case FETCH_TICKET_NAMES_SUCCESS: {
+      return { ...state, ...action.payload, isLoading: false };
+    }
+    case FILTER_SEARCH_SUCCESS: {
+      const {tickets} = action.payload;
+      const found_tickets = new Map(state.tickets).set(tickets.id, tickets);
+      // return found_tickets;
+      return { ...state, tickets: found_tickets, isLoading: false };
+    }
+    // case GET_ASSIGNEE_LIST: {
+    //   const inputValue = action.payload;
+    //   const assigneeList = new Map(state).set(, inputValue);
+    //   return assigneeList;
+    // }
     default: {
       return state;
     }

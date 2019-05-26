@@ -1,4 +1,4 @@
-import { AppState } from '..';
+import {AppState} from '../index';
 import {defaultTicket} from '../../models/ticket.model';
 
 export const selectTickets = (state: AppState) => Array.from(state.ticketsState.tickets.values());
@@ -10,3 +10,6 @@ export const selectTicketById = (state: AppState, ticketId: string) => {
   return ticket ? ticket : defaultTicket;
 };
 
+// export const selectTickets = (state: AppState) => state.filterTicketsState.tickets;
+//
+export const selectIsLoading = (state: AppState) => state.filterTicketsState.isLoading;

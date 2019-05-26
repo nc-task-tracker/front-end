@@ -15,3 +15,4 @@ export const defaultProject: Project = {
   projectStatus: '',
   projectCode: ''
 };
+

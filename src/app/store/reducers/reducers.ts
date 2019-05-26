@@ -6,8 +6,10 @@ import { currentUserReducer } from './current-user.reducer';
 import {projectReducer} from "./project.reducer";
 import {ticketReducer} from './tickets.reducer';
 import {registerReducer} from './register.reducer';
+import {filterReducer} from "./filter.reducer";
 import {currentTicketStateReducer} from './current-ticket.reducer';
 import {changeProfileReducer} from './change-profile.reduser';
+import {currentFilterStateReducer} from './current-filter.reducer';
 import {profileReducer} from "./profile.reducer";
 
 
@@ -19,8 +21,13 @@ export const reducers: Reducer = combineReducers({
     route: routerReducer,
     register: registerReducer,
     tickets: ticketReducer,
-    projects: projectReducer,
-    changeProfile: changeProfileReducer,
     createProject: projectReducer,
-    profile: profileReducer
+    filter: filterReducer,
+    project: projectReducer,
+    changeProfile: changeProfileReducer,
+    currentFilterState: currentFilterStateReducer,
+    profile: profileReducer,
+    projects: profileReducer,
+    filters: profileReducer,
+    dashboards: profileReducer
 });
