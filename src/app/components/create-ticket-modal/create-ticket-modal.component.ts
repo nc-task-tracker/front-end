@@ -9,8 +9,8 @@ import {TicketService} from '../../service/ticket.service';
 import {Project} from '../../models/project.model';
 import {Assignee} from '../../models/assignee.model';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {allTicketPriority, allTicketTypes} from '../../models/ticket.model';
-import {createTicketAction} from '../../store/actions/create-ticket.actions';
+import {allTicketPriority, allTicketType} from '../../models/ticket.model';
+import {createTicketAction} from '../../store/actions/tickets.actions';
 import {AppState} from '../../store';
 import {GlobalUserStorageService} from '../../service/global-storage.service';
 import {Router} from '@angular/router';
@@ -34,7 +34,7 @@ export class CreateTicketModalComponent implements OnInit {
   ticketForm: FormGroup;
 
   ticketPriority = allTicketPriority;
-  ticketTypes = allTicketTypes;
+  ticketTypes = allTicketType;
 
   minDate = new Date();
 
@@ -68,8 +68,6 @@ export class CreateTicketModalComponent implements OnInit {
       minDate: new Date()
 
     });
-
-
   }
 
   private getPossibleProjects(value: string): Observable<Project[]> {

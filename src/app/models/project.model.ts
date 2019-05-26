@@ -1,5 +1,5 @@
-import {User} from "./user.model";
 import {ProjectMember} from "./project-member.model";
+import {User} from "./user.model";
 
 export interface Project {
   readonly id: string;
@@ -10,3 +10,20 @@ export interface Project {
   readonly projectCode: string;
   readonly members: ProjectMember[];
 }
+
+export const defaultProject: Project = {
+  id: null,
+  projectName: '',
+  projectDescription: '',
+  projectOwner: {
+    id: null,
+    login:'kirill',
+    password: 'kirill',
+    email: 'kirill@mail.ru'
+  },
+  projectStatus: '',
+  projectCode: '',
+  members: null
+};
+
+

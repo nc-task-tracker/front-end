@@ -1,4 +1,3 @@
-import {Ticket} from "../ticket.model";
 
 export interface TablePageData<T> {
   readonly totalElem: number;

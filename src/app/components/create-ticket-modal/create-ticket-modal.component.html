@@ -33,8 +33,7 @@
 
   <div class="dateWrapper">
     <mat-form-field>
-      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'"
-             placeholder="Choose a due date">
+      <input matInput [min]="minDate" [matDatepicker]="dueDate" [formControlName]="'dueDate'" placeholder="Choose a due date">
       <mat-datepicker-toggle matSuffix [for]="dueDate"></mat-datepicker-toggle>
       <mat-datepicker #dueDate></mat-datepicker>
     </mat-form-field>

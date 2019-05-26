@@ -34,7 +34,9 @@
     "redux": "^4.0.1",
     "redux-observable": "^1.0.0",
     "rxjs": "^6.5.1",
-    "rxjs-compat": "^6.5.1"
+    "rxjs-compat": "^6.5.1",
+    "zone.js": "^0.8.29",
+    "typescript-collections": "^1.3.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.13.9",

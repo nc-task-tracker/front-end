@@ -1,96 +1,125 @@
-<div class="ticket">
-  <div class="info">
-    <div class="project">
-      <mat-card>
-        <mat-card-header>
-          <img mat-card-avatar src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-          <mat-card-title>{{ticket.name}}</mat-card-title>
-          <mat-card-subtitle>Proj_1</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-actions>
-          <button mat-button color="primary">Previous</button>
-          <button mat-button>Next</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+<mat-spinner *ngIf="(isLoading | async);else ticketTemplate" mode="indeterminate" color="primary"></mat-spinner>
+<ng-template #ticketTemplate>
+<form class="ticket" [formGroup]="ticketForm" >
+  <div class="name">
+    <mat-card class="name-card">
+      <mat-card-header>
+        <div>
+          <div class="project-subtitle">
+            <mat-card-subtitle >
+              Proj_name; Proj_code
+            </mat-card-subtitle>
+          </div>
 
-    <div class="people">
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>People</mat-card-title>
-        </mat-card-header>
-        <mat-card-content>
-          <mat-card>
+          <div >
+            <mat-card-title>
+              <mat-form-field style="width: 1250px">
+                <input matInput [formControlName]="'issueName'" [readonly]="edit"  required>
+              </mat-form-field>
+            </mat-card-title>
+          </div>
+        </div>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <div class="content">
+    <div class="info">
+      <div class="people">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>People</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-card class="reporter-assignee">
+              <mat-card-header>
+                <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
+                <mat-card-title>Reporter</mat-card-title>
+                <mat-card-subtitle>{{ticket.reporter.firstName}}</mat-card-subtitle>
+              </mat-card-header>
+            </mat-card>
+
+          <mat-card class="reporter-assignee">
             <mat-card-header>
               <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
-              <mat-card-title>Assignee</mat-card-title>
-              <mat-card-subtitle>{{ticket.assignee.login}}</mat-card-subtitle>
-            </mat-card-header>
-          </mat-card>
+              <mat-card-title class="assignee-title">Assignee</mat-card-title>
 
-          <mat-card>
-            <mat-card-header>
-              <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
-              <mat-card-title>Reporter</mat-card-title>
-              <mat-card-subtitle>{{ticket.reporter.login}}</mat-card-subtitle>
+              <mat-card-subtitle class="assignee-subtitle">
+                  <mat-form-field style="width: 150px">
+                    <input matInput   [readonly]="edit" required>
+
+                    <!--<input matInput [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">-->
+                    <!--<mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">-->
+                      <!--{{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>-->
+                    <!--</mat-option> {{ birthday | date:"MM/dd/yy" }}-->
+
+                  </mat-form-field>
+              </mat-card-subtitle>
             </mat-card-header>
           </mat-card>
         </mat-card-content>
       </mat-card>
-
     </div>
+
     <mat-card class="dates">
       <mat-card-header>
         <mat-card-title>Dates</mat-card-title>
       </mat-card-header>
-      <mat-card-content>
-        <h4>Due: 4/4/2019</h4>
-        <h4>Created: 4/4/2020</h4>
+      <mat-card-content >
+        <h4 class="create-date" >Created: {{ticket.startDate}}</h4>
+        <h4>Due:
+          <mat-form-field class="due">
+            <input  matInput [formControlName]="'dueDate'" [matDatepicker]="picker" [disabled]="edit" required>
+            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </h4>
       </mat-card-content>
     </mat-card>
-  </div>
 
-  <div>
+      <div class="buttons">
+        <button mat-raised-button color="primary" (click)=onUpdateClick()>Update</button>
+        <button mat-raised-button color="warn" (click)=onDeleteClick()>Delete</button>
+        <button mat-raised-button color="primary" (click)="onEditClick()">Edit</button>
+      </div>
+    </div>
+
+    <div>
+
     <div class="type-priority-status">
-      <mat-form-field>
-        <mat-select placeholder="Type" align="center">
-          <mat-option *ngFor="let type of types" [value]="type.value">
-            {{type.viewValue}}
+      <mat-form-field class="size">
+        <mat-select placeholder="Type" [disabled]="edit" [formControlName]="'issueType'" required>
+          <mat-option *ngFor="let type of types" [value]="type.type">
+            {{type.title}}
           </mat-option>
-      </mat-select>
-    </mat-form-field>
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-select placeholder="Priority">
-        <mat-option *ngFor="let priority of priorities" [value]="priority.title">
-          {{priority.title}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field class="size" >
+        <mat-select placeholder="Priority" [disabled]="edit" [formControlName]="'issuePriority'" required>
+          <mat-option *ngFor="let priority of priorities"  [value]="priority.type">
+            {{priority.title}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <mat-form-field>
-        <mat-select placeholder="Status">
-          <mat-option *ngFor="let status of statuses" [value]="status.status">
+      <mat-form-field class="size" >
+        <mat-select placeholder="Status" [disabled]="edit" [formControlName]="'issueStatus'" required>
+          <mat-option *ngFor="let status of statuses"  [value]="status.type">
             {{status.title}}
           </mat-option>
         </mat-select>
       </mat-form-field>
-  </div>
+    </div>
 
-<div class="details-buttons">
-  <button mat-button>Change type</button>
-  <button mat-button>Change priority</button>
-  <button mat-button>Change status</button>
-</div>
-
-    <mat-form-field class="description">
-      <textarea matInput placeholder="Description"></textarea>
+    <mat-form-field appearance="outline" class="description">
+      <mat-label>Description</mat-label>
+      <textarea matInput [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
     </mat-form-field>
 
-    <mat-grid-list cols="2" rowHeight="50px">
-      <mat-grid-tile [colspan]="1" [rowspan]="1" [style.background]="red">
-
-      </mat-grid-tile>
-    </mat-grid-list>
+    <app-subtasks></app-subtasks>
   </div>
-</div>
+  <app-comments [issue_Id]="ticketId" [comments]="ticketComments" [have_Comments]="haveComments"></app-comments>
+  </div>
+</form>
+</ng-template>

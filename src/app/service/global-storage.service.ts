@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {fromEvent} from 'rxjs';
 import {User} from '../models/user.model';
 import {Token} from "../models/token.model";
+import {Ticket} from '../models/ticket.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,4 @@ export class GlobalUserStorageService {
   asObservable() {
     return fromEvent(window, 'storage');
   }
-
 }

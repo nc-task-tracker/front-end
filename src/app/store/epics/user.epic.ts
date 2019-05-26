@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FETCH_USERS, fetchUsersSuccessAction, fetchUsersFailedAction,
   updateUserSuccessAction, UPDATE_USER} from '../actions/users.actions';
-import { registerSuccessAction, REGISTER_USER } from '../actions/register.action';
 import { catchError, switchMap, map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ActionsObservable } from 'redux-observable';

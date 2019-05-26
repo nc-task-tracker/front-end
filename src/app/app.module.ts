@@ -2,9 +2,6 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { DevToolsExtension, NgRedux, NgReduxModule } from '@angular-redux/store';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {RegisterService} from './service/register.service';
-import {ProjectService} from './service/project.service';
-import {TicketService} from './service/ticket.service';
 import {MatAutocompleteModule, MatDialogModule, MatGridListModule} from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,27 +25,51 @@ import {createEpicMiddleware} from 'redux-observable';
 import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
-import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {ProjectPageComponent} from "./components/project-page/project-page.component";
 import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
 import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
 import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
 import {ProjectNameValidator} from './validators/project.name.validator';
-import {ProjectCodeValidator} from './validators/project.code.validator';
-import {AuthGuardService} from './service/auth-guard.service';
 import {JwtHelperService} from '@auth0/angular-jwt';
+// import {MatDialogModule} from "@angular/material/typings/dialog";
+// import {OverlayModule} from "@angular/cdk/typings/esm5/overlay";
+// import {MatDialogModule} from "@angular/material";
+// import {OverlayModule} from "@angular/cdk/overlay";
+import {FilterFormModule} from "./components/form-filter/filter-form.module";
+import {FilterService} from "./service/filter.service";
+// import {ProjectNameValidator} from "./validators/project.name.validator";
+import {RegisterComponent} from './components/register/register.component';
+// import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
+// import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
+import {ProjectCodeValidator} from "./validators/project.code.validator";
+import {AuthGuardService} from "./service/auth-guard.service";
+import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
 
 // import { MaterialModule } from './material.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-
+import {TicketService} from './service/ticket.service'; // <-- NgModel lives here
 import { MaterialModule } from './material.module';
-import { ProfileComponent } from './components/profile/profile.component';
 import { ChangeProfileComponent } from './components/change-profile/change-profile.component';
 import {ProfileModule} from './components/profile/profile.module';
+import {WelcomeComponent} from './components/welcome/welcome.component';
 import {CreateProjectComponent} from './components/create-project/create-project.component';
 import {TicketComponent} from './components/ticket/ticket.component';
+import {RegisterService} from './service/register.service';
+import {ProjectService} from './service/project.service';
 import { CreateTicketModalComponent } from './components/create-ticket-modal/create-ticket-modal.component';
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
+import {ChangeProfileService} from "./service/change-profile-service.service";
+import {ProfileService} from "./service/profile.service";
+import {TicketModule} from './components/ticket/ticket.module';
+import {CreateTicketPageComponent} from "./components/create-ticket-page/create-ticket-page.component";
+
+
+const JWT_Module_Options: JwtModuleOptions = {
+  config: {
+    tokenGetter: () => localStorage.getItem('currentToken'),
+    whitelistedDomains: ['localhost:4200/home']
+  }
+};
 import {EmailSenderService} from "./service/email-sender.service";
 import {ProjectMemberComponent} from "./components/project-member/project-member.component";
 import {ProjectMemberService} from "./service/project-member.service";
@@ -58,11 +79,14 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
   declarations: [
     AppComponent,
     UserComponent,
-    TicketComponent,
+    CreateTicketPageComponent,
+    ChangeProfileComponent,
+    // TicketComponent,
     CreateProjectComponent,
-    ProfileComponent,
+    //ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
+    RegisterComponent,
     ProjectsPageComponent,
     ProjectPageComponent,
     MatConfirmDialogComponent,
@@ -81,19 +105,23 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
+    JwtModule.forRoot(JWT_Module_Options),
     HttpClientModule,
     UserListModule,
     BrowserAnimationsModule,
     OverlayModule,
     DialogsModule,
     MatDialogModule,
+    MatAutocompleteModule,
     AppRouterModule,
     RouterModule,
     ToolbarModule,
     MatGridListModule,
     ToolbarModule,
     ProfileModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    TicketModule,
+    FilterFormModule
   ],
   providers: [
     EpicService,
@@ -101,15 +129,18 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     RegisterService,
     UserService,
     AuthService,
+    ProfileService,
     TicketService,
     ProjectService,
     TicketService,
     MatConfirmDialogService,
+    FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
     AuthGuardService,
     EmailSenderService,
     ProjectMemberService,
+    ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],

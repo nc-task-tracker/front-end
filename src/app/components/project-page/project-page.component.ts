@@ -9,7 +9,6 @@ import {SortParameters} from "../../models/util/table-sort-param.model";
 import {filter, switchMap, takeUntil} from "rxjs/operators";
 import {MatConfirmDialogService} from "../util/mat-confirmation-dialor/mat-confirm-dialog.service";
 import {AutoUnsubscribe} from "../../service/auto-unsubscribe";
-import {User} from "../../models/user.model";
 import {UserService} from "../../service/user.service";
 import {select} from "@angular-redux/store";
 import {selectCurrentUserName} from "../../store/selectors/current-user.selector";

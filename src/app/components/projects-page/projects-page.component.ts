@@ -6,6 +6,7 @@ import {takeUntil} from "rxjs/operators";
 import {MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort} from "@angular/material";
 import {SortParameters} from "../../models/util/table-sort-param.model";
 import {Router} from "@angular/router";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-projects-page',
@@ -54,17 +55,18 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
           this.dataSource.sort = this.sort;
           this.paginator.length = response.totalElem;
           this.dataSource.paginator = this.paginator;
+          console.log(this.dataSource);
         }
       );
   }
 
-  onSort(sort: Sort): void{
+  onSort(sort: Sort): void {
     this.sortParameters.direction = sort.direction;
     this.sortParameters.columnName = sort.active;
     this.sortParameters.page = this.paginator.pageIndex;
     this.sortParameters.maxElemOnPage = this.paginator.pageSize;
 
-    this.projectService.getTablePageData(this.sortParameters).subscribe(response =>{
+    this.projectService.getTablePageData(this.sortParameters).subscribe(response => {
       this.projects = response.list;
       this.dataSource = response.list;
 
@@ -72,12 +74,12 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
     });
   }
 
-  getPageData(event: PageEvent){
+  getPageData(event: PageEvent) {
 
     this.sortParameters.page = event.pageIndex;
     this.sortParameters.maxElemOnPage = event.pageSize;
 
-    this.projectService.getTablePageData(this.sortParameters).subscribe(response =>{
+    this.projectService.getTablePageData(this.sortParameters).subscribe(response => {
       this.projects = response.list;
       this.dataSource = response.list;
     });
@@ -94,5 +96,4 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
   onSelectProject(project: Project): void {
     this.router.navigate([`/project/${project.id}`]);
   }
-
 }
