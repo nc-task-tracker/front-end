@@ -53,6 +53,11 @@ import { CreateTicketModalComponent } from './components/create-ticket-modal/cre
 import { AssigneeFormComponent } from './components/assignee-form/assignee-form.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
+import {Error500Component} from "./components/error-pages/500/error-500.component";
+import {Error404Component} from "./components/error-pages/404/error-404.component";
+import {Error401Component} from "./components/error-pages/401/error-401.component";
+import {UserNameValidator} from "./validators/user.name.validator";
+import {UserEmailValidator} from "./validators/user.email.validator";
 import {TicketModule} from './components/ticket/ticket.module';
 import {ProjectNameValidator} from './validators/project.name.validator';
 import {CreateTicketPageComponent} from "./components/create-ticket-page/create-ticket-page.component";
@@ -71,21 +76,23 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    // TicketComponent,
+    //TicketComponent,
     CreateProjectComponent,
     // ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
-    AssigneeFormComponent
+    AssigneeFormComponent,
+    Error500Component,
+    Error404Component,
+    Error401Component
   ],
   imports: [
     BrowserModule,
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
-    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -117,6 +124,8 @@ const JWT_Module_Options: JwtModuleOptions = {
     FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,
+    UserNameValidator,
+    UserEmailValidator,
     AuthGuardService,
     ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

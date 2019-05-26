@@ -1,0 +1,17 @@
+.titleStyle {
+  font-style: initial;
+  text-align: left;
+  font-size: 40px;
+  color: black;
+  margin-left: 10px;
+}
+
+.leftIndent {
+  margin-left: 10px;
+}
+
+.textStyle{
+  font-style: initial;
+  text-align: left;
+  font-size: 20px;
+}
