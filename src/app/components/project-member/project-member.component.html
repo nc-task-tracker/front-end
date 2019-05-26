@@ -1,5 +1,5 @@
 <div class="example-button-row">
-  <button mat-button color="primary" (click) = "onClickAddMember()">Add</button>
+  <button mat-button color="primary" *ngIf ="buttonVisibility" (click) = "onClickAddMember()">Add</button>
 </div>
 
 <div class="mat-elevation-z8">
@@ -7,7 +7,7 @@
 
     <ng-container matColumnDef="Name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.profile.firstName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.profile.user.login}} </td>
     </ng-container>
 
     <ng-container matColumnDef="Role">

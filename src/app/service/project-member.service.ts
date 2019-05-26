@@ -26,4 +26,9 @@ export class ProjectMemberService {
     return this.http.get<Profile[]>(`${this.PROJECT_MEMBER_URL}/${id}/possible`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
+
+  addMember(profileId: string,projectMember: ProjectMember): Observable<{}>{
+    return this.http.post<{}>(`${this.PROJECT_MEMBER_URL}/${profileId}/add`, projectMember)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
 }

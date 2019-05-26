@@ -1,20 +1,20 @@
-<form [formGroup]="memberForm" class="create  -issue create-ticket-modal">
+<form class="">
 
   <mat-form-field class="input-full-width">
-    <mat-select [formControlName]="'user'" placeholder="Choose user ..." multiple="false">
-      <mat-option *ngFor="let project of possibleUsers" [value]="user.firstName">{{user.firstName}}</mat-option>
+    <mat-select [(ngModel)]="selectedUser" placeholder="Choose user ..." name="user" multiple="false" [ngModelOptions]="{standalone: true}">
+      <mat-option *ngFor="let user of possibleUsers" [value]="user">{{user.firstName}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field class="input-full-width">
-    <mat-select [formControlName]="'projectRole'" placeholder="Role">
-      <mat-option *ngFor="let role of roles" [value]="prior.type">{{prior.title}}</mat-option>
+    <mat-select [(ngModel)]="selectedRole" placeholder="Role" name="role" multiple="false" [ngModelOptions]="{standalone: true}">
+      <mat-option *ngFor="let role of roles" [value]="role">{{role.title}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <div class="control-buttons">
     <button
-      matTooltip="Create issue"
+      matTooltip="Add member"
       mat-raised-button
       class="control-button create"
       (click)="onClickAddMember()">Add

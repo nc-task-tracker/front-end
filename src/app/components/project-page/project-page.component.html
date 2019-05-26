@@ -24,7 +24,7 @@
 <div class="example-button-row">
   <button mat-button color="primary" (click) = "onClickAddTicket()">Add issue</button>
 
-  <button *ngIf="(userName | async) === this.project?.projectOwner.login;" class="assigners" mat-button color="primary" (click) = "onClickMembers()">Members</button>
+  <button class="assigners" mat-button color="primary" (click) = "onClickMembers()">Members</button>
 </div>
 
 <div class="mat-elevation-z8">

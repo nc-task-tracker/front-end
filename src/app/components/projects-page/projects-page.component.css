@@ -25,3 +25,7 @@ td {
 }
 
 tr:hover td {background: #ccddff;}
+
+.buttonClick{
+  cursor: pointer
+}
