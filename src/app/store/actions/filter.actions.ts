@@ -1,5 +1,6 @@
 import {Filter} from "../../models/filter-item.model";
 import {Ticket} from "../../models/ticket.model";
+import {CREATE_TICKET, CREATE_TICKET_SUCCESS} from "./tickets.actions";
 
 export const CREATE_FILTER = '[Filter] Create filter';
 export const CREATE_FILTER_SUCCESS = '[Filter] Create filter success';
@@ -13,19 +14,15 @@ export const FETCH_FILTER = '[Filter] Fetch filter';
 export const FETCH_FILTER_SUCCESS = '[Filter] Fetch filter success';
 export const FETCH_FILTER_FAILED = '[Filter] Fetch filter failed';
 
-export function createFilterAction(filter: Filter) {
-  return {
-    type: CREATE_FILTER,
-    payload: {filter}
-  }
-}
+export const createFilterAction = (filter: Filter) => ({
+  type: CREATE_FILTER,
+  payload: {filter}
+});
 
-export function createFilterSuccessAction(filter: Filter) {
-  return {
-    type: CREATE_FILTER_SUCCESS,
-    payload: {filter}
-  }
-}
+export const createFilterSuccessAction = (filter: Filter) => ({
+  type: CREATE_FILTER_SUCCESS,
+  payload: {filter}
+});
 
 export function filterSearchAction(filter: Filter) {
   return {

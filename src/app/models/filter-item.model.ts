@@ -109,6 +109,7 @@ export interface Filter {
   readonly id?: string;
   readonly name?: string;
   readonly parameters: FilterItem[];
+  readonly parameterValue?: string;
 }
 
 export const defaultFilter: Filter ={

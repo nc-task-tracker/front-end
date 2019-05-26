@@ -156,15 +156,6 @@ export class FilterFormComponent implements OnInit {
   }
 
   createFilter() {
-    // console.log(this.filterForm.getRawValue());
-    // const formValue = this.filterForm.getRawValue();
-    // const parameters = this.filterItems.map(item => {
-    //   return {...item, type: formValue[item.type], value: formValue[item.value]};
-    //   // return {value: String(formValue[item.value])};
-    // });
-    // console.log(parameters);
-
-    // console.log(createFilter);
     const formValue = this.filterForm.getRawValue();
     const parameters = this.filterItems.map(item => {
       if (item.value instanceof Array) {
@@ -173,18 +164,26 @@ export class FilterFormComponent implements OnInit {
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
         return { ...item, type: item.type, listValue: parameterValue };
       }
-      return { ...item, type: item.type, value: formValue[item.key] };
+      return { ...item, type: item.type, listValue: formValue[item.key] };
     });
-    console.log(parameters);
+    // console.log(parameters);
     const createFilter: Filter = {
-      // name: defaultFilter.name,
       name: this.filterName.name,
       parameters: parameters
     };
-    console.log(createFilter);
-    this.ngRedux.dispatch(createFilterAction(createFilter));
-  }
+    let validateParam = 0;
+    createFilter.parameters.forEach(param => {
+      if(param.value != null){
+        validateParam ++;
+      }
+    })
 
+    if(createFilter.parameters.length !== 0 && createFilter.parameters.length <= validateParam){
+      console.log('CREATE ', createFilter);
+      this.ngRedux.dispatch(createFilterAction(createFilter as any));
+    }
+
+  }
 
   onSearchSubmit() {
       const formValue = this.filterForm.getRawValue();
@@ -195,18 +194,29 @@ export class FilterFormComponent implements OnInit {
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
         return { ...item, type: item.type, listValue: parameterValue };
       }
-        return { ...item, type: item.type, value: formValue[item.key] };
+        return { ...item, type: item.type, listValue: formValue[item.key] };
       });
 
-      console.log(parameters);
+      // console.log(parameters);
       const searchFilter: Filter = {
         // name: defaultFilter.name,
         name: this.filterName.name,
         parameters: parameters
       };
-      console.log(searchFilter);
-      this.ngRedux.dispatch(filterSearchAction(searchFilter));
-    }
+      // console.log(searchFilter);
+      var validateParam = 0;
+      searchFilter.parameters.forEach(param => {
+        // console.log(param.value);
+        if(param.value != null){
+          validateParam ++;
+        }
+      })
+    console.log('param ', searchFilter.parameters.length);
+      // console.log(validateParam);
+      if(searchFilter.parameters.length !== 0) {
+         this.ngRedux.dispatch(filterSearchAction(searchFilter));
+      }
+  }
 
   private generateFormGroupFormSearchItems() {
     console.log("poi");

@@ -31,7 +31,9 @@ export class FilterEpic {
           .pipe(
             map(filter => {
               console.log('CREATE FILTER', filter);
-              createFilterSuccessAction(filter)})
+              return createFilterSuccessAction(filter);
+              // console.log('CREATE FILTER 111', filter);
+            })
           )
       })
     )

@@ -6,6 +6,7 @@ import {
   MatSelectModule, MatInputModule, MatFormFieldModule, MatButtonModule,
   MatAutocompleteModule, MatChipsModule, MatIconModule, MatListModule, MatTableModule
 } from '@angular/material';
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSortModule} from '@angular/material/sort';
 import {MatDividerModule} from '@angular/material/divider'
 import { FILTER_ITEM_BUILDER, FilterItemFactory } from './factory/filter-item.factory';
@@ -57,7 +58,8 @@ const BUILDERS = [
     MatListModule,
     FormsModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [
     BUILDERS,

@@ -72,11 +72,15 @@
   </div>
 
   <div class="filter-toolbar-item __search-button">
-    <button mat-raised-button (click)="onSearchSubmit()">Search</button>
+    <button mat-raised-button
+            matTooltip="Select parameters and value"
+            (click)="onSearchSubmit()">Search</button>
   </div>
 
   <div class="filter-toolbar-item __create-button">
-    <button mat-raised-button (click)="createFilter()">Create</button>
+    <button mat-raised-button
+            matTooltip="Select parameters and value"
+            (click)="createFilter()">Create</button>
   </div>
 </section>
 

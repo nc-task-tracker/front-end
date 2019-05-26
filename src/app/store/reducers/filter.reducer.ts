@@ -1,6 +1,7 @@
 import {Filter} from "../../models/filter-item.model";
 import {Reducer} from "redux";
 import {
+  CREATE_FILTER,
   CREATE_FILTER_SUCCESS,
   DELETE_FILTER,
   DELETE_FILTER_SUCCESS,
@@ -21,11 +22,16 @@ const INITIAL_STATE = {
 
 export const filterReducer: Reducer<FilterState> = (state: FilterState = INITIAL_STATE, action): FilterState => {
   switch (action.type) {
+    case CREATE_FILTER:{
+      return {...state, isLoading: true};
+    }
     case CREATE_FILTER_SUCCESS: {
-      console.log('REDUCER');
-      const {filter} = action.paylod;
+      // console.log('ACTION.PAYLOAD = ', action.payload);
+      const {filter} = action.payload;
+      // console.log("FILTER:", filter);
+      // console.log('filterId = ', filter.id);
       const updateState = new Map(state.filter).set(filter.id, filter);
-      return {...state, filter: updateState};
+      return {...state, filter: updateState, isLoading: false};
     }
     case FETCH_FILTER: {
       return { ...state, isLoading: true };

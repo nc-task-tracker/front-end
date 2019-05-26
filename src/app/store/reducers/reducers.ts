@@ -24,6 +24,7 @@ export const reducers: Reducer = combineReducers({
     filter: filterReducer,
     project: projectReducer,
     changeProfile: changeProfileReducer,
-    currentFilterState: currentFilterStateReducer
-
+    currentFilterState: currentFilterStateReducer,
+    filterTicketsState: ticketReducer,
+    ticketsState: ticketReducer
 });
