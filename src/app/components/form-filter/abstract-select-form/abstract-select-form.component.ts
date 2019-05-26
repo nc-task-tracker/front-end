@@ -58,6 +58,9 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
 
   ngOnInit() {
     const control = this.controlContainer.control.get(this.controlName);
+    if (this.controlName === 'assignee') {
+      this.isAssigneeInput = true;
+    }
     if (control) {
       this.items$ = this.inputControl.valueChanges.pipe(
         startWith(''),
@@ -95,7 +98,7 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   @Input()
   compareWithFunc = (o1: T, o2: T) => {
     return o1 === o2;
-  }
+  };
 
 
   onItemSelect(event: MatAutocompleteSelectedEvent): void {
