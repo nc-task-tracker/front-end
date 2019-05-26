@@ -89,17 +89,17 @@ export class TicketsEpic {
     );
   };
 
-  saveComment$ = (action$: ActionsObservable<AnyAction>) => {
-    return action$.ofType(SAVE_COMMENT).pipe(
-      mergeMap(({payload, id}) => {
-        return this.ticketService
-          .saveComment(payload.comment, id.ticketId)
-          .pipe(
-            map( comment => saveCurrentTicketCommentAction(comment, id.ticketId))
-          );
-      })
-    );
-  };
+  // saveComment$ = (action$: ActionsObservable<AnyAction>) => {
+  //   return action$.ofType(SAVE_COMMENT).pipe(
+  //     mergeMap(({payload, id}) => {
+  //       return this.ticketService
+  //         .saveComment(payload.comment, id.ticketId)
+  //         .pipe(
+  //           map( comment => saveCurrentTicketCommentAction(comment, id.ticketId))
+  //         );
+  //     })
+  //   );
+  // };
 
   selectTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(SELECT_TICKET).pipe(

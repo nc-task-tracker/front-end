@@ -14,7 +14,7 @@
           <div>
             <mat-card-title>
               <mat-form-field style="width: 1250px">
-                <input matInput [formControlName]="'issueName'" [readonly]="edit"  required>
+                <input matInput [formControlName]="'issueName'" color="edit ? warn : primary" [readonly]="edit"  required>
               </mat-form-field>
             </mat-card-title>
           </div>
@@ -66,10 +66,10 @@
         <mat-card-title>Dates</mat-card-title>
       </mat-card-header>
       <mat-card-content >
-        <h4 class="create-date" >Created: {{ticket.startDate}}</h4>
+        <h4 class="create-date" >Created: {{ticket.startDate | date: 'shortDate'}}</h4>
         <h4>Due:
           <mat-form-field class="due">
-            <input  matInput [formControlName]="'dueDate'" [matDatepicker]="picker" [disabled]="edit" required>
+            <input  matInput [formControlName]="'dueDate'" [matDatepicker]="picker" [readonly]="edit" required>
             <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
@@ -112,10 +112,10 @@
 
     <mat-form-field appearance="outline" class="description">
       <mat-label>Description</mat-label>
-      <textarea matInput [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
+      <textarea matInput class="descriptionTextField" cdkTextareaAutosize="false" [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
     </mat-form-field>
 
-    <app-subtasks [createSubtask]="createSubtask" [subtasks]="ticketSubtasks"></app-subtasks>
+    <app-subtasks [subtasks]="ticketSubtasks"></app-subtasks>
   </div>
   <app-comments [issue_Id]="ticketId"></app-comments>
   </div>

@@ -93,6 +93,11 @@ export class TicketService implements SearchByName<Ticket> {
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
+  deleteTicketComment(commentId: string): Observable<{}> {
+    return this.http.delete(`${this.ISSUE_URL}/deleteComment/${commentId}`)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
   updateTicket(ticket: Ticket, ticketId: string): Observable<Ticket> {
     return this.http.put<Ticket>(`${this.ISSUE_URL}/${ticketId}`, ticket)
       .pipe(catchError((error: any) => throwError(error.error)));

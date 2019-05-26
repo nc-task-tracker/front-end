@@ -81,6 +81,10 @@
   height: 70px;
 }
 
+.descriptionTextField {
+  height: 60px;
+}
+
 mat-form-field {
   padding-right: 10px;
 }

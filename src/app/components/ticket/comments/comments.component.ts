@@ -6,10 +6,11 @@ import {AppState} from '../../../store';
 import {Router} from '@angular/router';
 import {User} from '../../../models/user.model';
 import {selectCurrentUser} from '../../../store/selectors/current-user.selector';
-import {saveCommentAction} from '../../../store/actions/tickets.actions';
-import {selectCurrentTicket, selectCurrentTicketComments, selectCurrentTicketName} from '../../../store/selectors/current-ticket.selector';
+import {selectCurrentTicket, selectCurrentTicketComments} from '../../../store/selectors/current-ticket.selector';
 import {Ticket} from '../../../models/ticket.model';
 import {Observable} from 'rxjs';
+import {deleteCurrentTicketComment, saveCurrentTicketCommentAction} from '../../../store/actions/current-ticket.action';
+import {Comment} from '../../../models/comment.model';
 
 @Component({
   selector: 'app-comments',
@@ -19,23 +20,23 @@ import {Observable} from 'rxjs';
 export class CommentsComponent implements OnInit {
 
   @Input('issue_Id') issue_Id: string;
-  // @Input() have_Comments: boolean;
-  // @Input('comments') comments: Set<Comment>;
-  @select(selectCurrentTicket)
-    selectedTicket: Observable<Ticket>;
   @select(selectCurrentTicketComments)
     comments: Observable<Comment[]>;
 
-  com: Comment[];
+  haveComments = false;
   currentUser: User;
   commentForm: FormGroup;
-  displayedColumns: string[] = ['User', 'Text', 'Time'];
+  displayedColumns: string[] = ['User', 'Text', 'Time', 'Delete'];
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
               private fb: FormBuilder,
-              private router: Router) { }
+              private router: Router) {}
 
   ngOnInit() {
+    this.comments.subscribe(colComments => {
+      if (colComments.length > 0) this.haveComments = true;
+    });
+
     this.currentUser = selectCurrentUser(this.ngRedux.getState());
     this.comments.subscribe();
     this.formInit();
@@ -48,7 +49,11 @@ export class CommentsComponent implements OnInit {
     })
   }
 
-    onSaveClick () {
-      this.ngRedux.dispatch(saveCommentAction(this.commentForm.getRawValue(), this.issue_Id));
+  onSaveClick () {
+    this.ngRedux.dispatch(saveCurrentTicketCommentAction(this.commentForm.getRawValue(), this.issue_Id));
+  }
+
+  onDeleteCommentClick(comment: Comment) {
+    this.ngRedux.dispatch(deleteCurrentTicketComment(comment.id));
   }
 }

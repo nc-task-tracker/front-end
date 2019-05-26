@@ -1,10 +1,11 @@
 import { Ticket} from '../../models/ticket.model';
 import {Reducer} from 'redux';
 import {
+  DELETE_CURRENT_TICKET_COMMENT_SUCCESS,
   SAVE_CURRENT_TICKET_COMMENT,
   UPDATE_CURRENT_TICKET
 } from '../actions/current-ticket.action';
-import {SELECT_TICKET_SUCCESS} from '../actions/tickets.actions';
+import {DELETE_TICKET_SUCCESS, SELECT_TICKET_SUCCESS} from '../actions/tickets.actions';
 
 export interface CurrentTicketState {
   readonly currentTicket: Ticket;
@@ -31,6 +32,13 @@ export const currentTicketStateReducer: Reducer<CurrentTicketState> = (state: Cu
         return { ...state, currentTicket: updatedTicket, isLoading: false };
       }
       return state;
+    }
+    case DELETE_CURRENT_TICKET_COMMENT_SUCCESS: {
+      const { commentId } = action.payload;
+      const updatedTicket = {...state.currentTicket};
+      const index = this.updatedTicket.comments.findIndex(comment => comment.id === commentId);
+      updatedTicket.comments.splice(index,1);
+      return { ...state, currentTicket: updatedTicket, isLoading: false };
     }
     default: {
       return state;

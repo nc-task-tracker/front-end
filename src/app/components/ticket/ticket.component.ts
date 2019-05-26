@@ -29,10 +29,7 @@ export class TicketComponent implements OnInit {
 
   ticket: Ticket;
   ticketId: string;
-  haveComments = false;
-  haveSubtasks = false;
   createSubtask = false;
-  ticketComments;
   ticketSubtasks;
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
@@ -47,9 +44,8 @@ export class TicketComponent implements OnInit {
       if(!val) {
       this.ticket = selectCurrentTicket(this.ngRedux.getState());
       this.ticketId = this.ticket.id;
-      this.ticketComments = this.ticket.comments;
       this.ticketSubtasks = this.ticket.subtasks;
-      if (this.ticketComments.length !== 0) this.haveComments = true;
+      console.log(this.ticketSubtasks.length);
       if (this.ticket.parentId !== null) this.createSubtask = true;
       this.formInit();
       }})
@@ -73,7 +69,7 @@ export class TicketComponent implements OnInit {
 
   onDeleteClick() {
     this.ngRedux.dispatch(deleteTicketAction(this.ticket.id));
-    this.router.navigate(['home'])
+    this.router.navigate(['projects']);
   }
 
   onEditClick() {

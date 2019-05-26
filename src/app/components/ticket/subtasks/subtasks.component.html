@@ -3,7 +3,7 @@
     <button mat-raised-button color="primary" (click)="onCreateSubtaskClick()" [disabled]="createSubtask">Create</button>
   </h2>
 
-  <div *ngIf="haveSubtasks ;else subtasksTemplate" class="subtasks-table">
+  <div *ngIf="haveSubtasks ;else subtasksTemplate" class="subtasksTable">
     <table mat-table [dataSource]="subtasks" class="mat-elevation-z8">
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -14,12 +14,16 @@
 
       <ng-container matColumnDef="Description">
         <th mat-header-cell *matHeaderCellDef> Description </th>
-        <td mat-cell *matCellDef="let subtask"> {{subtask.issueDescription}} </td>
+        <td mat-cell *matCellDef="let subtask">
+          <span (click)="selectSubtask(subtask)"> {{subtask.issueDescription}} </span>
+        </td>
       </ng-container>
 
       <ng-container matColumnDef="Status">
         <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let subtask"> {{subtask.issueStatus}} </td>
+        <td mat-cell *matCellDef="let subtask">
+          <span (click)="selectSubtask(subtask)"> {{subtask.issueStatus}} </span>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

@@ -100,7 +100,6 @@ export interface Ticket {
   readonly issueDescription: string;
   readonly startDate: Date;
   readonly dueDate: Date;
-  readonly projectId: string;
   readonly project: Project;
   readonly reporter: Assignee;
   readonly assignee: Assignee;
@@ -118,7 +117,6 @@ export const defaultTicket: Ticket = {
   issueDescription: 'Sub',
   startDate: new Date(),
   dueDate: new Date(),
-  projectId: '1',
   project: defaultProject,
   reporter: null,
   assignee: null,

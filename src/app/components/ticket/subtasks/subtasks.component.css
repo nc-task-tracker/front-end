@@ -1,27 +1,23 @@
-.subtasks {
-  height: 200px;
+.subtasksTable {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   overflow: auto;
-}
-
-table {
-  width: 555px;
-}
-
-.title {
-  height: 1px;
-}
-
-.comments-table {
-  height: 200px;
-  overflow: auto;
-  background: gray;
+  height: 258px;
+  max-width: 552px;
   border: 1px solid lightgray;
 }
 
 .noSubtasks {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  height: 280px;
+  align-items: center;
+  height: 258px;
+  max-width: 552px;
   border: 1px solid lightgray;
 }
+
+
+

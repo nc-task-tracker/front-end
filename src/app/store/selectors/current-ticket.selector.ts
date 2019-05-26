@@ -6,4 +6,4 @@ export const selectCurrentIsLoading = (state: AppState) => state.currentTicketSt
 
 export const selectCurrentTicketComments = (state: AppState) => state.currentTicketState.currentTicket.comments;
 
-export const selectCurrentTicketName = (state: AppState) => state.currentTicketState.currentTicket.issueName;
+export const selectCurrentTicketSubtasks = (state: AppState) => state.currentTicketState.currentTicket.subtasks;
