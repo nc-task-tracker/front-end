@@ -128,7 +128,6 @@ export class FilterFormComponent implements OnInit {
       }
       this.addControlToForm(newItem);
       this.filterItems.push(newItem);
-      console.log("new item", newItem);
     }
   }
 
@@ -206,13 +205,11 @@ export class FilterFormComponent implements OnInit {
     }
 
   private generateFormGroupFormSearchItems() {
-    console.log("poi");
     this.filterItems.forEach(item => this.addControlToForm(item));
   }
 
   private addControlToForm(item: FilterItem) {
     if (item) {
-      console.log("item", item);
       this.filterForm.addControl(item.key, new FormControl(item.value))
     }
   }

@@ -48,7 +48,6 @@ export class CreateTicketModalComponent implements OnInit {
   parentTicketName: string;
 
   minDate = new Date();
-  possibleProjects;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -72,15 +71,16 @@ export class CreateTicketModalComponent implements OnInit {
       issuePriority: ['', Validators.required],
       assignee: ['', Validators.required],
       reporter: this.storageService.currentUser.id,
+      parentId: [''],
       minDate: new Date()
 
     });
     if (this.isSubTask) {
-      console.log(this.data);
       this.parentTicket = this.data.parentTicket;
+      this.ticketForm.controls.parentId.setValue(this.data.parentTicket.id);
+      this.ticketForm.controls.project.setValue(this.data.parentTicket.project);
       this.parentTicketName = this.data.parentTicket.issueName;
       this.ticketForm.controls.issueType.setValue('SUB_TASK');
-      console.log('ass', this.data.assignee);
       this.ticketForm.controls.assignee.setValue(this.data.assignee);
     }
 
@@ -92,7 +92,6 @@ export class CreateTicketModalComponent implements OnInit {
 
   createTicket() {
     const formValue = this.ticketForm.getRawValue();
-    console.log('fv', formValue);
     this.ngRedux.dispatch(createTicketAction(formValue as any));
     this.ticketService.createTicket(formValue).subscribe();
     this.dialogRef.close();
