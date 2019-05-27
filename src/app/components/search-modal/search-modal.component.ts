@@ -1,6 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
 import {Router} from "@angular/router";
+import {catchError, debounceTime, distinctUntilChanged, startWith, switchMap} from "rxjs/operators";
+import {of} from "rxjs";
 
 
 export interface PeriodicElement {
@@ -28,6 +30,16 @@ export class SearchModalComponent implements OnInit {
               private matDialog: MatDialog,) { }
 
   ngOnInit() {
+/*    this.assigneeAutoComplete$ = this.ticketForm.controls.assignee.valueChanges.pipe(
+      startWith(''),
+      debounceTime(2000),
+      distinctUntilChanged(),
+      switchMap(value => this.ticketService.getAssigneeList(value.toLowerCase()).pipe(
+        catchError(_ => {
+          return of(null);
+        })
+      ))
+    );*/
   }
 
   onSaveClick() :void {

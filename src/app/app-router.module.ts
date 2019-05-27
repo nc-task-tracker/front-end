@@ -9,6 +9,7 @@ import {CreateProjectComponent} from "./components/create-project/create-project
 import {CreateTicketModalComponent} from "./components/create-ticket-modal/create-ticket-modal.component";
 import {WelcomeComponent} from "./components/welcome/welcome.component";
 import {TicketComponent} from "./components/ticket/ticket.component";
+import {CreateDashboardComponent} from "./components/create-dashboard/create-dashboard.component";
 
 
 const routs: Routes = [
@@ -17,9 +18,10 @@ const routs: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'profile', component: ProfileComponent},
     {path: 'change-profile', component: ChangeProfileComponent},
-    {path: 'dashboard', component: DashboardComponent},
+    {path: 'dashboard/:id', component: DashboardComponent},
     {path: 'create-project', component: CreateProjectComponent},
     {path: 'create-ticket', component: CreateTicketModalComponent},
+    {path: 'create-dashboard', component: CreateDashboardComponent},
     {path: 'ticket', component: TicketComponent},
     {path: 'home', component: WelcomeComponent}
 ];

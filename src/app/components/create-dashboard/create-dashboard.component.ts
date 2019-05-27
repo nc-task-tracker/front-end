@@ -50,7 +50,7 @@ export class CreateDashboardComponent implements OnInit {
   onCreateClick() {
     const formValue = this.dashboardForm.getRawValue();
     this.ngRedux.dispatch(createDashboardAction(formValue as any));
-    this.router.navigate(['dashboard', t.]);
+    this.router.navigate(['dashboard', ]);
   }
 
   onCancelClick() {

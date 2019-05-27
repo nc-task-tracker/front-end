@@ -1,7 +1,8 @@
 import { UsersState } from './reducers/user.reducer';
 import { UserPageState } from './reducers/user-page.reducer';
 import { User } from '../models/user.model';
-import {Ticket} from '../models/ticket.model';
+import { Ticket } from '../models/ticket.model';
+import {Dashboard} from "../models/dashboard.model";
 
 export interface AppState {
     readonly usersState?: UsersState;
@@ -9,4 +10,5 @@ export interface AppState {
     readonly currentUser?: User;
     readonly tickets: Map<string, Ticket>;
     readonly route?: string;
+    readonly dashboardState?: Dashboard;
 }

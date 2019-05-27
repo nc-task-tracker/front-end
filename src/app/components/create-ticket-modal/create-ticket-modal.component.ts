@@ -84,8 +84,6 @@ export class CreateTicketModalComponent implements OnInit {
         })
       ))
     );
-
-
   }
 
   chooseAssignee(item) {

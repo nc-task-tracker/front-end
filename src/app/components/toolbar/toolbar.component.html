@@ -6,11 +6,13 @@
       </div>
       <div >
         <button mat-button *ngIf="(currentUser | async); " [routerLink]="'home'">
-          <img src="assets/Icons/Home.png" height="30" width="30"/>
+          <img src="assets/Icons/Home.png" height="30" widt="30"/>
         </button>
 
         <mat-menu #appMenu="matMenu">
-          <mat-option *ngFor="let item of dashboards$ | async" [value]="item.id" (click)="chooseDashboard(item.id)">
+          <button mat-raised-button (click)="createDashboard()">Create dashboard</button>
+
+          <mat-option *ngFor="let item of dashboards$ | async" [value]="item.id" (click)="chooseDashboard(item)">
             {{ item.name }}
           </mat-option>
         </mat-menu>

@@ -34,10 +34,19 @@ import {CreateTicketModalComponent} from "./components/create-ticket-modal/creat
 import {CreateProjectComponent} from "./components/create-project/create-project.component";
 import {TicketComponent} from "./components/ticket/ticket.component";
 import {WelcomeModule} from "./components/welcome/welcome.module";
-import {MatAutocompleteModule, MatDialogModule, MatMenuTrigger} from "@angular/material";
+import {MatAutocompleteModule, MatDialogModule, MatGridListModule, MatMenuTrigger} from "@angular/material";
 import {TicketService} from "./service/ticket.service";
 import {ProjectService} from "./service/project.service";
 import {DashboardService} from "./service/dashboard.service";
+import { CreateDashboardComponent } from './components/create-dashboard/create-dashboard.component';
+import {WelcomeComponent} from "./components/welcome/welcome.component";
+import {ProfileModule} from "./components/profile/profile.module";
+import {RegisterService} from "./service/register.service";
+import { SearchModalComponent } from './components/search-modal/search-modal.component';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -48,7 +57,9 @@ import {DashboardService} from "./service/dashboard.service";
     ChangeProfileComponent,
     CreateTicketModalComponent,
     CreateProjectComponent,
-    TicketComponent
+    CreateDashboardComponent,
+    TicketComponent,
+    SearchModalComponent,
   ],
 
   imports: [
@@ -71,7 +82,9 @@ import {DashboardService} from "./service/dashboard.service";
     ToolbarModule,
     DashboardModule,
     WelcomeModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule,
+    ProfileModule,
   ],
   providers: [
     EpicService,
@@ -81,10 +94,16 @@ import {DashboardService} from "./service/dashboard.service";
     TicketService,
     ProjectService,
     DashboardService,
+    EpicService,
+    TransformService,
+    RegisterService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[SearchModalComponent]
 })
 export class AppModule {
 
