@@ -155,76 +155,60 @@ export class FilterFormComponent implements OnInit {
   }
 
   createFilter() {
+    var validateParam = 0;
     const formValue = this.filterForm.getRawValue();
     const parameters = this.filterItems.map(item => {
       if (item.value instanceof Array) {
         const selectItem = item as SelectFilterItem;
         const keyValue = formValue[selectItem.key] as Array<any>;
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
+        validateParam = parameterValue.length;
         return { ...item, type: item.type, listValue: parameterValue };
       }
       return { ...item, type: item.type, listValue: formValue[item.key] };
     });
-    // console.log(parameters);
+
     const createFilter: Filter = {
       name: this.filterName.name,
       parameters: parameters
     };
-    let validateParam = 0;
-    createFilter.parameters.forEach(param => {
-      if(param.value != null){
-        validateParam ++;
-      }
-    })
 
     if(createFilter.parameters.length !== 0 && createFilter.parameters.length <= validateParam){
       console.log('CREATE ', createFilter);
       this.ngRedux.dispatch(createFilterAction(createFilter as any));
     }
-
   }
 
   onSearchSubmit() {
+      var validateParam = 0;
       const formValue = this.filterForm.getRawValue();
       const parameters = this.filterItems.map(item => {
       if (item.value instanceof Array) {
         const selectItem = item as SelectFilterItem;
         const keyValue = formValue[selectItem.key] as Array<any>;
         const parameterValue = selectItem.itemValueKey ? keyValue.map(el => el[selectItem.itemValueKey]) : keyValue;
+        validateParam = parameterValue.length;
         return { ...item, type: item.type, listValue: parameterValue };
       }
         return { ...item, type: item.type, listValue: formValue[item.key] };
       });
 
-      // console.log(parameters);
       const searchFilter: Filter = {
-        // name: defaultFilter.name,
         name: this.filterName.name,
         parameters: parameters
       };
-      // console.log(searchFilter);
-      var validateParam = 0;
-      searchFilter.parameters.forEach(param => {
-        // console.log(param.value);
-        if(param.value != null){
-          validateParam ++;
-        }
-      })
-    console.log('param ', searchFilter.parameters.length);
-      // console.log(validateParam);
-      if(searchFilter.parameters.length !== 0) {
+
+      if(searchFilter.parameters.length !== 0 && searchFilter.parameters.length <= validateParam) {
          this.ngRedux.dispatch(filterSearchAction(searchFilter));
       }
   }
 
   private generateFormGroupFormSearchItems() {
-    console.log("poi");
     this.filterItems.forEach(item => this.addControlToForm(item));
   }
 
   private addControlToForm(item: FilterItem) {
     if (item) {
-      console.log("item", item);
       this.filterForm.addControl(item.key, new FormControl(item.value))
     }
   }
