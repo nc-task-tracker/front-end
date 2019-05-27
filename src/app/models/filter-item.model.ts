@@ -7,14 +7,7 @@ export enum FilterType {
   ISSUE_PRIORITY = 'ISSUE_PRIORITY',
   ASSIGNEE = 'ASSIGNEE',
   REPORTER = 'REPORTER',
-
-  PROJECTS = 'PROJECTS',
-
-  DUE_DATE = 'DUE_DATE',
-  START_DATE = 'START_DATE',
-
   PROJECT_NAME = 'PROJECT_NAME',
-
   SEARCH_STRING = 'SEARCH_STRING'
 }
 
@@ -24,12 +17,9 @@ export enum FilterTypeNameMapping {
   ISSUE_TYPE = 'Issue types',
   ISSUE_STATUS = 'Issue status',
   ISSUE_PRIORITY = 'Issue priority',
-
-  PROJECTS = 'Projects',
   ASSIGNEE = 'Assignee',
   REPORTER = 'Reporter',
-
-  SEARCH_STRING = 'Search string'
+  PROJECT_NAME = 'Project name'
 }
 
 export interface FilterFormModel {
@@ -38,12 +28,6 @@ export interface FilterFormModel {
 }
 
 export const allFilterTypeLabled = [
-  {
-    type: FilterType.SEARCH_STRING,
-    title: FilterTypeNameMapping[FilterType.SEARCH_STRING],
-    hidden: false,
-    key: 'searchString'
-  },
   {
     type: FilterType.ISSUE_TYPE,
     title: FilterTypeNameMapping[FilterType.ISSUE_TYPE],
@@ -69,10 +53,10 @@ export const allFilterTypeLabled = [
     key: 'ticketNames'
   },
   {
-    type: FilterType.PROJECTS,
-    title: FilterTypeNameMapping[FilterType.PROJECTS],
+    type: FilterType.PROJECT_NAME,
+    title: FilterTypeNameMapping[FilterType.PROJECT_NAME],
     hidden: false,
-    key: 'projects'
+    key: 'projectName'
   },
   {
     type: FilterType.ASSIGNEE,
@@ -85,14 +69,14 @@ export const allFilterTypeLabled = [
     title: FilterTypeNameMapping[FilterType.REPORTER],
     hidden: false,
     key: 'reporter'
-  }
+  },
 ];
 
 export enum FieldType {
   INPUT = 'INPUT',
   SELECT = 'SELECT',
   ASSIGNEE = 'ASSIGNEE',
-  PROJECTS = 'PROJECTS',
+  PROJECT_NAME = 'PROJECT_NAME',
   ISSUE_NAME = 'ISSUE_NAME'
 }
 

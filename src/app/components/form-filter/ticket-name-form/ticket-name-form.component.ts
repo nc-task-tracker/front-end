@@ -3,7 +3,7 @@ import {AbstractSelectFormComponent, SEARCH_BY_NAME} from "../abstract-select-fo
 import {TicketService} from "../../../service/ticket.service";
 
 @Component({
-  selector: 'app-project-name-form',
+  selector: 'app-ticket-name-form',
   templateUrl: './ticket-name-form.component.html',
   styleUrls: ['./ticket-name-form.component.css'],
   providers: [

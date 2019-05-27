@@ -7,6 +7,6 @@ export const isLoading = (state: AppState) => state.filterState.isLoading;
 
 export const selectFilterById = (state: AppState, filterId: string) => {
   const filter = state.filterState.filter.get(filterId);
-  // return filter ? filter : defaultFilter;
-  return filter;
+  return filter ? filter : defaultFilter;
+  // return filter;
 };

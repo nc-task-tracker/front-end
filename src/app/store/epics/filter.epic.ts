@@ -19,9 +19,9 @@ import {AppState} from "../index";
 
 @Injectable()
 export class FilterEpic {
-  private ngRedux: NgRedux<AppState>;
 
-  constructor (private filterService: FilterService) {}
+
+  constructor (private filterService: FilterService, private ngRedux: NgRedux<AppState>) {}
 
   createFilter$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(CREATE_FILTER).pipe(
@@ -67,6 +67,7 @@ export class FilterEpic {
     return action$.ofType(SELECT_FILTER).pipe(
       switchMap(({payload}) => {
         if (payload.filterId) {
+          console.log('GET_STATE', this.ngRedux.getState());
           const storedFilter = selectFilterById(this.ngRedux.getState(), payload.filterById);
             if(!storedFilter) {
               return this.filterService

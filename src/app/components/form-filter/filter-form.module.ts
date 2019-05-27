@@ -11,7 +11,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatDividerModule} from '@angular/material/divider'
 import { FILTER_ITEM_BUILDER, FilterItemFactory } from './factory/filter-item.factory';
 import {
-  ProjectBuilder,
+  ProjectNameBuilder,
   IssueTypeBuilder,
   IssueStatusBuilder,
   AssigneeBuilder,
@@ -24,10 +24,11 @@ import { AbstractSelectFormComponent } from './abstract-select-form/abstract-sel
 import { AssigneeFormComponent } from './assignee-form/assignee-form.component';
 import { TicketNameFormComponent } from './ticket-name-form/ticket-name-form.component';
 import { TicketsPageComponent } from './tickets-page/tickets-page.component';
+import {ProjectNameFormComponent} from "./project-name-form/project-name-form.component";
 
 const BUILDERS = [
   { provide: FILTER_ITEM_BUILDER, useClass: SearchStringItemBuilder, multi: true },
-  { provide: FILTER_ITEM_BUILDER, useClass: ProjectBuilder, multi: true },
+  { provide: FILTER_ITEM_BUILDER, useClass: ProjectNameBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssueTypeBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssueStatusBuilder, multi: true },
   { provide: FILTER_ITEM_BUILDER, useClass: IssuePriorityBuilder, multi: true},
@@ -42,7 +43,8 @@ const BUILDERS = [
     AbstractSelectFormComponent,
     AssigneeFormComponent,
     TicketNameFormComponent,
-    TicketsPageComponent
+    TicketsPageComponent,
+    ProjectNameFormComponent
   ],
   imports: [
     CommonModule,

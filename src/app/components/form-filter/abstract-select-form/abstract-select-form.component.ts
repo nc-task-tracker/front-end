@@ -39,9 +39,6 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
   @Input()
   itemValueKey: string;
 
-  // @Input()
-  // valueTitleKey: string;
-
   @Input()
   itemTemplate: TemplateRef<{ item: T }>;
 
@@ -100,7 +97,13 @@ export class AbstractSelectFormComponent<T = any> implements OnInit {
     if (this.multiple) {
       this.selectedItemsList.push(event.option.value);
       this.searchInput.nativeElement.value = '';
-      this.inputControl.setValue(null);
+      // this.inputControl.setValue(null);
+      const item = event.option.value;
+      console.log('ITEM', item);
+      const itemValue = this.itemValueKey ? item[this.itemValueKey] : item;
+      console.log('ITEM_VALUE', itemValue.itemValueKey);
+      this.control.setValue(itemValue);
+      this.inputControl.setValue(item[this.valueTitleKey]);
       this.updateControlValue();
     } else {
       const item = event.option.value;

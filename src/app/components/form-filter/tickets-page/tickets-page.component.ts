@@ -131,7 +131,7 @@
 // }
 
 
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort, MatTableDataSource} from '@angular/material';
 import {Ticket} from "../../../models/ticket.model";
 import {TicketService} from "../../../service/ticket.service";
@@ -149,20 +149,9 @@ import {Observable} from "rxjs";
   templateUrl: './tickets-page.component.html',
   styleUrls: ['./tickets-page.component.css']
 })
-export class TicketsPageComponent implements OnInit {
+export class TicketsPageComponent implements OnInit, AfterViewInit {
   private displayedColumns: string[] = [
-    // 'issueName',
-    // 'issueType',
-    // 'issueStatus',
-    // 'issuePriority',
-    // 'assignee',
-    // 'reporter',
-    // 'project',
-    // 'parentId',
-    // 'dueDate',
-    // 'startDate',
-    // 'issueDescription'
-    'name',
+    'issueName',
     'issueType',
     'issueStatus',
     'issuePriority',
@@ -187,25 +176,30 @@ export class TicketsPageComponent implements OnInit {
 
   constructor(private ticketService: TicketService,
                             private router: Router,
-                            // private  cd: ChangeDetectorRef,
+                            private  cd: ChangeDetectorRef,
                             private ngRedux: NgRedux<AppState>,) {}
 
-   ngOnInit(): void {
-    // this.sortParameters = new SortParameters();
-    this.dataSource = new MatTableDataSource();
+  ngOnInit(): void {
+  //   this.isLoading.subscribe( val => {
+  //     console.log('VAL = ', val);
+  //     if(!val) {
+  //       this.resultTickets = selectTickets(this.ngRedux.getState());
+  //       console.log('RESULT_TICKETS',this.resultTickets);
+  //       this.dataSource = this.resultTickets;
+  //       this.cd.detectChanges();
+  //     }
+  // })
+    }
 
-     this.dataSource.sort = this.sort;
+  ngAfterViewInit(): void {
     this.isLoading.subscribe( val => {
       console.log('VAL = ', val);
       if(!val) {
         this.resultTickets = selectTickets(this.ngRedux.getState());
         console.log('RESULT_TICKETS',this.resultTickets);
-        this.dataSource = new MatTableDataSource(this.resultTickets);
+        this.dataSource = this.resultTickets;
+        this.cd.detectChanges();
       }
-    })
-
-
-  }
-
+  })}
 
 }

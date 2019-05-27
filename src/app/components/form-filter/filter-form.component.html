@@ -50,9 +50,16 @@
           </ng-container>
 
           <ng-container *ngSwitchCase="allFieldType.ISSUE_NAME">
+            <app-ticket-name-form [multiple]="item.multiple" [controlName]="item.key" [placeholder]="item.placeholder" [valueTitleKey]="item.titleKey">
+            </app-ticket-name-form>
+          </ng-container>
+
+          <ng-container *ngSwitchCase="allFieldType.PROJECT_NAME">
             <app-project-name-form [multiple]="item.multiple" [controlName]="item.key" [placeholder]="item.placeholder" [valueTitleKey]="item.titleKey">
             </app-project-name-form>
           </ng-container>
+
+
 
           <mat-icon (click)="removeFilterItem(item)">cancel</mat-icon>
         </ng-container>

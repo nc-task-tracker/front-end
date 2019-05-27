@@ -1,39 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AbstractBuilder} from './abstract.builder';
-import {FieldType, FilterItem, FilterType, InputModel, SelectFilterItem} from '../../../models/filter-item.model';
-// import { Project } from '../models/project.model';
+import {FieldType, FilterType, InputModel, SelectFilterItem} from '../../../models/filter-item.model';
 import {allIssueType, IssueTypeModel} from '../../../models/issue-type.model';
 import {User} from 'src/app/models/user.model';
-import {Project} from "../../../models/project.model";
 import {allIssueStatus, IssueStatusModel} from "../../../models/issue-status.model";
 import {allIssuePriority, IssuePriorityModel} from "../../../models/issue-priority";
 import {SearchModel} from "src/app/models/search-model.model";
-
-@Injectable()
-export class ProjectBuilder implements AbstractBuilder<InputModel, SelectFilterItem<Project>> {
-    type: FilterType = FilterType.PROJECTS;
-
-    build(model: InputModel): SelectFilterItem<Project> {
-        return {
-            ...model,
-            fieldType: FieldType.SELECT,
-            multiple: true,
-            value: model.value || [],
-            placeholder: 'Projects',
-            title: 'Projects',
-            titleKey: 'projectName',
-            // options: [{
-            //   id: '1',
-            //   projectName: 'name1',
-            //   projectDescription: '',
-            //   ownerId: '',
-            //   projectStatus: '',
-            //   projectCode: ''
-            // }]
-            options: []
-        };
-    }
-}
 
 @Injectable()
 export class IssueTypeBuilder implements AbstractBuilder<InputModel, SelectFilterItem<IssueTypeModel>> {
@@ -141,10 +113,29 @@ export class IssueNameBuilder implements AbstractBuilder<InputModel, SelectFilte
             multiple: true,
             title: 'Ticket name',
             placeholder: 'Ticket name',
-            titleKey: 'name',
+            titleKey: 'issueName',
             value: model.value || [],
             options: [],
-          itemValueKey: 'id'
+          itemValueKey: 'issueName'
+        };
+    }
+}
+
+@Injectable()
+export class ProjectNameBuilder implements AbstractBuilder<InputModel, SelectFilterItem<SearchModel>> {
+    type: FilterType = FilterType.PROJECT_NAME;
+
+    build(model: InputModel): SelectFilterItem<SearchModel> {
+        return {
+            ...model,
+            fieldType: FieldType.PROJECT_NAME,
+            multiple: true,
+            title: 'Project name',
+            placeholder: 'Project name',
+            titleKey: 'projectName',
+            value: model.value || [],
+            options: [],
+            itemValueKey: 'projectName'
         };
     }
 }

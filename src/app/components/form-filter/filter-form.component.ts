@@ -91,11 +91,9 @@ export class FilterFormComponent implements OnInit {
 
   constructor(private itemsFactory: FilterItemFactory,
               private ngRedux: NgRedux<AppState>,
-              // private ticketService: TicketServiceService,
               private filterService: FilterService,
               private fb: FormBuilder,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -110,6 +108,7 @@ export class FilterFormComponent implements OnInit {
       if(!val) {
         this.filter = selectCurrentFilter(this.ngRedux.getState());
         this.filterId = this.filter.id;
+        this.onSearchSubmit();
       }})
   }
 

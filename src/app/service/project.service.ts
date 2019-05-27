@@ -3,9 +3,10 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Project} from "../models/project.model";
+import {SearchByName} from "../components/form-filter/abstract-select-form/abstract-select-form.component";
 
 @Injectable()
-export class ProjectService {
+export class ProjectService implements SearchByName<Project>{
 
   private PROJECT_URL = '/api/project';
 
@@ -18,14 +19,28 @@ export class ProjectService {
 
   searchProject(name?: string, code?: string): Observable<Project[]> {
     let params = new HttpParams();
-    if(name) {
+    if (name) {
       params = params.append('name', name);
     }
-    if(code) {
+    if (code) {
       params = params.append('code', code);
     }
     return this.http.get<Project[]>(this.PROJECT_URL, {
-       params: params
+      params: params
     });
   }
+
+  searchByName(name: string): Observable<Project[]> {
+      if (!name) {
+      return this.http.get<Project[]>(`${this.PROJECT_URL}/all`)
+        .pipe(catchError((error: any) => throwError(error.error)));
+      } else {
+      return this.http.get<Project[]>(`${this.PROJECT_URL}/name`, {
+        params: {
+          substring: name
+        }
+      });
+      }
+  }
+
 }

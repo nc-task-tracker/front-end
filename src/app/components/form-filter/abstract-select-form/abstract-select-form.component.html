@@ -6,7 +6,7 @@
       {{item[valueTitleKey]}}
       <mat-icon matChipRemove *ngIf="true">cancel</mat-icon>
     </mat-chip>
-    <input #assigneeInput [formControl]="inputControl" [placeholder]="placeholder" [matAutocomplete]="auto"
+    <input #nameInput [formControl]="inputControl" [placeholder]="placeholder" [matAutocomplete]="auto"
            [matChipInputFor]="chipList" [matChipInputAddOnBlur]="addOnBlur" (matChipInputTokenEnd)="addItem($event)">
   </mat-chip-list>
   <ng-template #single>

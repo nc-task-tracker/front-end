@@ -56,10 +56,24 @@ export class TicketService implements SearchByName<Ticket>{
     });
   }
 
-  searchByName(name : string ): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
-      .pipe(catchError((error: any) => throwError(error.error)));
+  searchByName(inputValue : string ): Observable<Ticket[]> {
+    if (!inputValue) {
+      return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`, {
+        params: {
+          name: ''
+        }
+      });
+    } else {
+      return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`, {
+        params: {
+          name: inputValue
+        }
+      });
+    }
   }
+    // return this.http.get<Ticket[]>(`${this.SEARCH_BY_NAME}`)
+    //   .pipe(catchError((error: any) => throwError(error.error)));
+  // }
 
   // getTablePageData(parameters: SortParameters): Observable<TablePageData<Project>>{
   //   return this.http.post<TablePageData<Project>>(`${this.PROJECT_URL}/all/sorted`,parameters)

@@ -20,6 +20,7 @@ export interface AppState {
     readonly changeProfileState?: ChangeProfileState;
     readonly filterTicketsState?: TicketsState;
     readonly filter?: FilterState;
+    // readonly filter?: Map<string,Filter>;
 
     readonly usersState?: UsersState;
     readonly ticketsState?: TicketsState;
