@@ -1,25 +1,25 @@
 <mat-toolbar color="primary">
   <div class="toolbar-controls">
 
-      <div class="log">
-        <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
-      </div>
-      <div >
-        <button mat-button *ngIf="(currentUser | async); " [routerLink]="'home'">
-          <img src="assets/Icons/Home.png" height="30" width="30"/>
-        </button>
+    <div class="log">
+      <button mat-button *ngIf="!(currentUser | async);else loginUser" (click)="onLoginClick()">Login</button>
+    </div>
+    <div >
+      <button mat-button *ngIf="(currentUser | async); " [routerLink]="'home'">
+        <img src="assets/Icons/Home.png" height="30" width="30"/>
+      </button>
 
-        <mat-menu #appMenu="matMenu">
-          <mat-option *ngFor="let item of dashboards$ | async" [value]="item.id" (click)="chooseDashboard(item.id)">
-            {{ item.name }}
-          </mat-option>
-        </mat-menu>
+      <mat-menu #appMenu="matMenu">
+        <mat-option *ngFor="let item of dashboards$ | async" [value]="item.id" (click)="chooseDashboard(item.id)">
+          {{ item.name }}
+        </mat-option>
+      </mat-menu>
 
-        <button mat-button *ngIf="(currentUser | async);" [matMenuTriggerFor]="appMenu" (click)="getAllDashboard()">Dashboards
-        </button>
+      <button mat-button *ngIf="(currentUser | async);" [matMenuTriggerFor]="appMenu" (click)="getAllDashboard()">Dashboards
+      </button>
 
-<!--        <a mat-button *ngIf="(currentUser | async); " [routerLink]="'dashboard'">Dashboards</a>-->
-        <a mat-button *ngIf="(currentUser | async); " [routerLink]="'projects'">Projects</a>
+
+      <a mat-button *ngIf="(currentUser | async); " [routerLink]="'projects'">Projects</a>
 
 
       <a mat-stroked-button *ngIf="(currentUser | async); " [routerLink]="'create-ticket'">Create issue</a>

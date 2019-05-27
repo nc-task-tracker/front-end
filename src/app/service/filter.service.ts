@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Filter} from "../models/filter-item.model";
 import {Observable, throwError} from "rxjs";
 import {catchError} from 'rxjs/operators';
+import {Dashboard} from "../models/dashboard.model";
 
 @Injectable()
 export class FilterService {
@@ -27,5 +28,9 @@ export class FilterService {
   getFilters(): Observable<Filter[]> {
     return this.http.get<Filter[]>(`${this.FILTER_URL}/all`)
       .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getFilterList(): Observable<Filter[]> {
+    return this.http.get<Filter[]>(`${this.FILTER_URL}/all`);
   }
 }

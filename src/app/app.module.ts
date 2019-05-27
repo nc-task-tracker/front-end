@@ -63,6 +63,7 @@ import {TicketService} from "./service/ticket.service";
 import {ProjectService} from "./service/project.service";
 import {RegisterService} from "./service/register.service";
 import {ProjectCodeValidator} from "./validators/project.code.validator";
+import {WelcomeModule} from "./components/welcome/welcome.module";
 
 
 
@@ -81,10 +82,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ChangeProfileComponent,
     CreateProjectComponent,
     ChangeProfileComponent,
-    ProfileComponent,
-    WelcomeComponent,
     RegisterComponent,
-    TicketComponent,
     CreateTicketModalComponent,
     AssigneeFormComponent,
     Error500Component,
@@ -118,8 +116,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfileModule,
     TicketModule,
     DashboardModule,
-    WelcomeModule,
-    MatAutocompleteModule
+    WelcomeModule
   ],
   providers: [
     EpicService,

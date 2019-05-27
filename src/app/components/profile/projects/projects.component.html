@@ -1,12 +1,12 @@
 <div class="project-card">
   <mat-card >
-    <mat-menu
-      #appMenu="matMenu">
-      <mat-option *ngFor="let item of projects">
+    <mat-menu #appMenu="matMenu">
+      <mat-option *ngFor="let item of projects$ | async" [value]="item.id"  (click)="chooseProject(item.id)">
         {{item.projectName}}
      </mat-option>
     </mat-menu>
-    <button mat-icon-button [matMenuTriggerFor]="appMenu">
+
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" (click)="getAllProject()">
       Projects
     </button>
   </mat-card>

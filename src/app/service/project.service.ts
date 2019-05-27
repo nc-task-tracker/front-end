@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable, of, throwError} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 import {Project} from "../models/project.model";
+import {Dashboard} from "../models/dashboard.model";
 
 @Injectable()
 export class ProjectService {
@@ -28,5 +29,9 @@ export class ProjectService {
     return this.http.get<Project[]>(this.PROJECT_URL, {
        params: params
     });
+  }
+
+  getProjectList(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${this.PROJECT_URL}/allProjects`);
   }
 }

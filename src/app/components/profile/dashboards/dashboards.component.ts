@@ -1,31 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FlatTreeControl} from "@angular/cdk/tree";
 import {MatTreeFlatDataSource, MatTreeFlattener} from "@angular/material";
-
-interface Dashboards {
-  name: string;
-  children?: Dashboards[];
-}
-
-const TREE_DATA: Dashboards[] = [
-  {
-    name: 'Dashboards',
-    children: [
-      {name: 'Main'},
-      {name: 'Dash1'},
-      {name: 'Dash2'},
-      {name: 'Dash3'},
-      {name: 'Dash4'}
-    ]
-  },
-];
-
-/** Flat node with expandable and level information */
-interface ExampleFlatNode {
-  expandable: boolean;
-  name: string;
-  level: number;
-}
+import {Observable} from "rxjs";
+import {Dashboard} from "../../../models/dashboard.model";
+import {Router} from "@angular/router";
+import {DashboardService} from "../../../service/dashboard.service";
+import {GlobalUserStorageService} from "../../../service/global-storage.service";
 
 
 @Component({
@@ -35,29 +15,22 @@ interface ExampleFlatNode {
 })
 export class DashboardsComponent implements OnInit {
 
-  constructor() {
-    this.dataSource.data = TREE_DATA;
+  dashboards$: Observable<Dashboard[]>;
+
+  constructor(private router: Router,
+              private dashboardService : DashboardService,
+              private storageService: GlobalUserStorageService) {
+    
   }
-
-  private transformer = (node: Dashboards, level: number) => {
-    return {
-      expandable: !!node.children && node.children.length > 0,
-      name: node.name,
-      level: level,
-    };
-  }
-
-  treeControl = new FlatTreeControl<ExampleFlatNode>(
-    node => node.level, node => node.expandable);
-
-  treeFlattener = new MatTreeFlattener(
-    this.transformer, node => node.level, node => node.expandable, node => node.children);
-
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
-
-  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit() {
   }
 
+  getAllDashboard() {
+    this.dashboards$ = this.dashboardService.getDashboardList(this.storageService.currentUser.id);
+  }
+
+  chooseDashboard(idDashboard: string) {
+    this.router.navigate(['dashboard', idDashboard]);
+  }
 }

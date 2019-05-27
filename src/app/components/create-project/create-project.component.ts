@@ -47,7 +47,7 @@ export class CreateProjectComponent implements OnInit {
 
   onCreateClick() {
     const formValue = this.projectForm.getRawValue();
-    this.ngRedux.dispatch(createProjectAction(formValue as any));
+    //this.ngRedux.dispatch(createProjectAction(formValue as any));
     this.onCancelClick();
   }
 
