@@ -37,20 +37,14 @@ import {reducers} from './store/reducers/reducers';
 import {createLogger} from 'redux-logger';
 import {NgModule} from '@angular/core';
 import {WelcomeComponent} from "./components/welcome/welcome.component";
-// import {MatDialogModule} from "@angular/material";
-// import {OverlayModule} from "@angular/cdk/overlay";
 import {FilterFormModule} from "./components/form-filter/filter-form.module";
 import {FilterService} from "./service/filter.service";
-// import {ProjectNameValidator} from "./validators/project.name.validator";
 import {RegisterComponent} from './components/register/register.component';
-// import {CreateTicketModalComponent} from './components/create-ticket-modal/create-ticket-modal.component';
-// import {AssigneeFormComponent} from './components/assignee-form/assignee-form.component';
 import {AuthGuardService} from "./service/auth-guard.service";
 import {JwtModule, JwtModuleOptions} from '@auth0/angular-jwt';
-
-
+import {DashboardModule} from "./components/dashboard/dashboard.module";
+import {DashboardService} from "./service/dashboard.service";
 import {ProfileModule} from './components/profile/profile.module';
-
 import {TicketComponent} from './components/ticket/ticket.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
@@ -87,8 +81,10 @@ const JWT_Module_Options: JwtModuleOptions = {
     ChangeProfileComponent,
     CreateProjectComponent,
     ChangeProfileComponent,
+    ProfileComponent,
     WelcomeComponent,
     RegisterComponent,
+    TicketComponent,
     CreateTicketModalComponent,
     AssigneeFormComponent,
     Error500Component,
@@ -97,6 +93,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ModalCancelComponent,
     ModalSuccessComponent,
   ],
+
   imports: [
     BrowserModule,
     EpicsModule,
@@ -120,6 +117,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     FilterFormModule,
     ProfileModule,
     TicketModule,
+    DashboardModule,
+    WelcomeModule,
+    MatAutocompleteModule
   ],
   providers: [
     EpicService,
@@ -130,6 +130,7 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProfileService,
     TicketService,
     ProjectService,
+    DashboardService,
     FilterService,
     ProjectNameValidator,
     ProjectCodeValidator,

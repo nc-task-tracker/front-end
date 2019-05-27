@@ -1,0 +1,9 @@
+.example-card {
+  margin-top: 100px;
+  max-width: 400px;
+  margin-left: 100px;
+  display: flex;
+}
+.set-icon {
+  justify-self: right;
+}

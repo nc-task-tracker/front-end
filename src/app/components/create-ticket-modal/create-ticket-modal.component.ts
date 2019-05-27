@@ -20,6 +20,7 @@ import {Router} from '@angular/router';
   templateUrl: './create-ticket-modal.component.html',
   styleUrls: ['./create-ticket-modal.component.css']
 })
+
 export class CreateTicketModalComponent implements OnInit {
 
   @select(selectCurrentUserName)

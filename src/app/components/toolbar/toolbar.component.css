@@ -1,9 +1,8 @@
 .mat-toolbar {
   justify-content: flex-start;
-  box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.toolbar-contols {
+.toolbar-controls {
   width: 100vw;
   display: flex;
   flex-direction: row-reverse;
@@ -21,10 +20,17 @@
 .toolbar-contols .username:hover {
   background-color: red;
 }
-
-.mat-stroked-button:not([disabled]) {
+.username {
+  color: darkred;
 }
 
-.button-interval{
-  margin-left: 10px;
+.dashboard-head {
+  font-size: 32px;
+}
+.dashboards{
+  font-size: 24px;
+}
+.dashboard-card{
+  margin: 40px 100px 250px;
+  min-width: 370px;
 }
