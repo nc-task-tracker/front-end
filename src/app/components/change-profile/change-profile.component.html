@@ -3,8 +3,8 @@
 
   <mat-form-field class="input-full-width">
 
-    <input  matInput  placeholder="Full name" value="{{profile?.fullName}}"
-            [formControlName]="'fullName'" >
+    <input  matInput  placeholder="Full name"
+            [formControlName]="'fullName'">
     <mat-icon matSuffix>mode_edit</mat-icon>
     <mat-error
       *ngIf="fullName.invalid">{{getErrText('fullName')}}
@@ -12,7 +12,7 @@
   </mat-form-field>
 
   <mat-form-field class="input-full-width">
-    <input matInput placeholder="Email" value="{{profile?.email}}"
+    <input matInput placeholder="Email"
            [formControlName]="'email'"  >
     <mat-icon matSuffix>email</mat-icon>
     <mat-error

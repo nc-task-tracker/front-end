@@ -9,9 +9,9 @@ import {Profile} from "../../models/profile.model";
 import {selectProfile, selectProfileIsLoading} from "../../store/selectors/profile.selector";
 import {Observable} from "rxjs";
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-
 import {ModalCancelComponent} from "../modal/modal-cancel/modal-cancel.component";
 import {ModalSuccessComponent} from "../modal/modal-success/modal-success.component";
+import {UserEmailValidator} from "../../validators/user.email.validator";
 
 @Component({
   selector: 'app-change-profile',
@@ -32,8 +32,8 @@ export class ChangeProfileComponent implements OnInit {
               private ngRedux: NgRedux<AppState>,
               private storageService: GlobalUserStorageService,
               private matDialog: MatDialog,
-              public dialogRef: MatDialogRef<ChangeProfileComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
+              private  userEmailValidator: UserEmailValidator
   ) {
   }
   onCancelClick()  {
@@ -46,25 +46,26 @@ export class ChangeProfileComponent implements OnInit {
     this.matDialog.open(ModalSuccessComponent);
   }
   ngOnInit() {
-    this.initializeForm();
     this.isLoading.subscribe( val => {
       console.log(val);
       if(!val) {
         this.profile = selectProfile(this.ngRedux.getState());
+        this.initializeForm(this.profile);
       }
     });
   }
-  private initializeForm() {
+  private initializeForm(profile:Profile) {
     this.changeProfileForm = this.formBuilder.group({
-      fullName: ['', Validators.required],
-      email: ['', Validators.email],
-      skype: ['', Validators.required],
-      telephone: ['', Validators.required],
-      additional:['', Validators.required],
-      birthday:['',Validators.required],
-      description: ['', Validators.required],
+      fullName: [ profile.fullName,Validators.required],
+      email: [ profile.email,{
+        validators: [Validators.email],
+        asyncValidators: [this.userEmailValidator]}],
+      skype: [profile.skype, Validators.required],
+      telephone: [profile.telephone, Validators.required],
+      additional:[profile.additional],
+      birthday:[profile.birthday],
+      description: [profile.description],
       id: this.storageService.currentUser.id,
-      maxDate: new Date()
   });
   }
   get fullName(): FormControl {
@@ -89,17 +90,25 @@ export class ChangeProfileComponent implements OnInit {
     return this.changeProfileForm.get('description') as FormControl;
   }
 
-  private getErrorMessage(control: FormControl): string {
+  private getErrorMessage(control: FormControl, controlName: string): string {
     let errorMessage = '';
     if (control.errors) {
       if (control.errors['required']) {
         errorMessage = 'Field is required';
+        return errorMessage;
+      }
+      if (control.errors['email']) {
+        errorMessage = 'Incorrect email';
+        return errorMessage;
+      }
+      if (controlName == "email" && this.userEmailValidator.validate(control)) {
+        errorMessage = 'Already exist';
+        return errorMessage;
       }
     }
-    return errorMessage;
   }
   getErrText(controlName: string): string {
     const control = this.changeProfileForm.get(controlName) as FormControl;
-    return this.getErrorMessage(control);
+    return this.getErrorMessage(control, controlName);
   }
 }

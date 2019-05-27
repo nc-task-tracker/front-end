@@ -54,6 +54,11 @@ import {ProfileModule} from './components/profile/profile.module';
 import {TicketComponent} from './components/ticket/ticket.component';
 import {ChangeProfileService} from "./service/change-profile-service.service";
 import {ProfileService} from "./service/profile.service";
+import {Error500Component} from "./components/error-pages/500/error-500.component";
+import {Error404Component} from "./components/error-pages/404/error-404.component";
+import {Error401Component} from "./components/error-pages/401/error-401.component";
+import {UserNameValidator} from "./validators/user.name.validator";
+import {UserEmailValidator} from "./validators/user.email.validator";
 import {TicketModule} from './components/ticket/ticket.module';
 import {ProjectNameValidator} from './validators/project.name.validator';
 import { ModalCancelComponent } from './components/modal/modal-cancel/modal-cancel.component';
@@ -63,6 +68,7 @@ import {AssigneeFormComponent} from "./components/assignee-form/assignee-form.co
 import {TicketService} from "./service/ticket.service";
 import {ProjectService} from "./service/project.service";
 import {RegisterService} from "./service/register.service";
+import {ProjectCodeValidator} from "./validators/project.code.validator";
 
 
 
@@ -79,14 +85,15 @@ const JWT_Module_Options: JwtModuleOptions = {
     UserComponent,
     CreateTicketPageComponent,
     ChangeProfileComponent,
-    // TicketComponent,
     CreateProjectComponent,
-    // ProfileComponent,
     ChangeProfileComponent,
     WelcomeComponent,
     RegisterComponent,
     CreateTicketModalComponent,
     AssigneeFormComponent,
+    Error500Component,
+    Error404Component,
+    Error401Component,
     ModalCancelComponent,
     ModalSuccessComponent,
   ],
@@ -95,7 +102,6 @@ const JWT_Module_Options: JwtModuleOptions = {
     EpicsModule,
     FormsModule,
     ReactiveFormsModule,
-    // import main NgReduxModule
     NgReduxModule,
     MaterialModule,
     NgReduxRouterModule.forRoot(),
@@ -126,6 +132,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     ProjectService,
     FilterService,
     ProjectNameValidator,
+    ProjectCodeValidator,
+    UserNameValidator,
+    UserEmailValidator,
     AuthGuardService,
     ChangeProfileService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
