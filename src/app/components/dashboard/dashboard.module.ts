@@ -9,7 +9,7 @@ import { WidgetComponent } from './widget/widget.component';
 @NgModule({
   declarations: [
     DashboardComponent,
-    WidgetComponent
+    WidgetComponent,
   ],
   imports: [
     CommonModule,

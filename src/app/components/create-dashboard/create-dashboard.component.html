@@ -1,0 +1,28 @@
+<form [formGroup]="dashboardForm" class="create-dashboard">
+  <div>
+    <h1 class = "title">Create dahboard</h1>
+  </div>
+
+
+  <mat-form-field class="input-full-width">
+    <label>
+      <input matInput placeholder="Name" [formControlName]="'name'" required>
+    </label>
+    <mat-error *ngIf="name.invalid">{{getErrorText('name')}}</mat-error>
+  </mat-form-field>
+
+
+  <div class="control-buttons">
+    <button
+      matTooltip="Create project"
+      aria-label="Button that displays a tooltip when focused or hovered over"
+      mat-raised-button class="control-button create" (click)=onCreateClick()>Create
+    </button>
+    <button matTooltip="Cancel creating project"
+            aria-label="Button that displays a tooltip when focused or hovered over"
+            mat-raised-button class="control-button cancel" (click)=onCancelClick()>Cancel
+    </button>
+  </div>
+
+</form>
+

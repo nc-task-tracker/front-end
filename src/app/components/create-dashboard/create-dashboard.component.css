@@ -1,0 +1,55 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+
+
+input {
+  max-width: 500px;
+}
+
+
+
+.create-dashboard {
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.control-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.title {
+  color: #3f51b5;
+  text-align: center;
+}
+
+.control-button {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  margin: 10px;
+}
+
+.create {
+
+}
+
+.cancel {
+  background-color: black;
+  color: white;
+}
+
