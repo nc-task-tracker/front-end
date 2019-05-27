@@ -5,8 +5,8 @@
         {{item.name}}
       </mat-option>
     </mat-menu>
-
-    <button mat-icon-button [matMenuTriggerFor]="appMenu" (click)="getAllFilters()">
+    <mat-icon >keyboard_arrow_right</mat-icon>
+    <button mat-icon-button [matMenuTriggerFor]="appMenu" (click)="getAllFilters()" class="filter">
       Filters
     </button>
   </mat-card>

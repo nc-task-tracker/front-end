@@ -5,12 +5,12 @@
       <app-actions></app-actions>
   </div>
 
-  <div class="display">
-    <!--<div *ngIf="isLogin">-->
+  <div class="display" *ngIf="isLogin">
+
     <app-dashboards ></app-dashboards>
     <app-filters  ></app-filters>
-    <!--</div>-->
     <app-projects ></app-projects>
+
   </div>
 </div>
 

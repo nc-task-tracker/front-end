@@ -21,9 +21,10 @@ export class ProfileComponent implements OnInit {
   isLogin: boolean = false;
 
   ngOnInit() {
-     const {userId} = this.route.snapshot.params;
-     const user = this.localStorage.currentUser;
-     this.isLogin = user && user.id === userId;
+    if(this.route.snapshot.params ===  this.localStorage.currentUser)
+      this.isLogin = false;
+    else this.isLogin = true;
+      const {userId} = this.route.snapshot.params;
      this.ngRedux.dispatch(fetchProfileAction(userId));
   }
 }
