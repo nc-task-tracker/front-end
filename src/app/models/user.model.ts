@@ -15,7 +15,6 @@ export const testUser: User = {
 export interface User {
   readonly id: string;
   readonly login: string;
-  // readonly dateOfBirth: Date;
   readonly email: string;
   readonly password: string;
 }

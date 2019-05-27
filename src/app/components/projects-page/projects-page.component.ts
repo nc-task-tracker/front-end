@@ -48,8 +48,9 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
     this.sortParameters.columnName = "projectName";
     this.sortParameters.direction = "asc";
 
-    this.projectService.getTablePageData(this.sortParameters).pipe(takeUntil(this.streamEndSubject))
+    this.projectService.getTablePageData(this.sortParameters)
       .subscribe(response => {
+          console.log(response);
           this.projects = response.list;
           this.dataSource = response.list;
           this.dataSource.sort = this.sort;
@@ -95,5 +96,9 @@ export class ProjectsPageComponent extends AutoUnsubscribe implements OnInit, On
 
   onSelectProject(project: Project): void {
     this.router.navigate([`/project/${project.id}`]);
+  }
+
+  onClickCreateProject(): void{
+    this.router.navigate([`create-project`]);
   }
 }

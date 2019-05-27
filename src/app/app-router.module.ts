@@ -19,7 +19,6 @@ import {Error401Component} from "./components/error-pages/401/error-401.componen
 
 import {CommentsComponent} from './components/ticket/comments/comments.component';
 import {CreateTicketPageComponent} from './components/create-ticket-page/create-ticket-page.component';
-import {WelcomeComponent} from "./components/welcome/welcome.component";
 
 const routs: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},

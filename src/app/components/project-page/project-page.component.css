@@ -1,5 +1,4 @@
 .mat-elevation-z8 {
-  max-height: 365px;
   overflow: auto;
   margin-top: 30px;
   margin-left: 70px;
@@ -46,8 +45,5 @@ tr:hover td {background: #ccddff;}
   padding-left: 70px;
 }
 
-.example-button-row .assigners{
-  margin-left: 70px;
-}
 
 

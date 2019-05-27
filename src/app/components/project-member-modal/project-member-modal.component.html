@@ -2,7 +2,7 @@
 
   <mat-form-field class="input-full-width">
     <mat-select [(ngModel)]="selectedUser" placeholder="Choose user ..." name="user" multiple="false" [ngModelOptions]="{standalone: true}">
-      <mat-option *ngFor="let user of possibleUsers" [value]="user">{{user.firstName}}</mat-option>
+      <mat-option *ngFor="let user of possibleUsers" [value]="user">{{user.user.login}}</mat-option>
     </mat-select>
   </mat-form-field>
 

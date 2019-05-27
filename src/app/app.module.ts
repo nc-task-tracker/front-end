@@ -29,7 +29,6 @@ import {ProjectPageComponent} from "./components/project-page/project-page.compo
 import {MatConfirmDialogComponent} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.component";
 import {MatConfirmDialogService} from "./components/util/mat-confirmation-dialor/mat-confirm-dialog.service";
 import {ProjectsPageComponent} from "./components/projects-page/projects-page.component";
-import {ProjectNameValidator} from './validators/project.name.validator';
 import {JwtHelperService} from '@auth0/angular-jwt';
 // import {MatDialogModule} from "@angular/material/typings/dialog";
 // import {OverlayModule} from "@angular/cdk/typings/esm5/overlay";
@@ -100,7 +99,7 @@ import {ProjectMemberModalComponent} from "./components/project-member-modal/pro
     CreateTicketModalComponent,
     AssigneeFormComponent,
     ProjectMemberComponent,
-    ProjectMemberModalComponent
+    ProjectMemberModalComponent,
     AssigneeFormComponent,
     Error500Component,
     Error404Component,

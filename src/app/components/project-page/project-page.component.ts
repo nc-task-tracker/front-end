@@ -14,6 +14,9 @@ import {select} from "@angular-redux/store";
 import {selectCurrentUserName} from "../../store/selectors/current-user.selector";
 import {Observable} from "rxjs";
 import {EmailSenderService} from "../../service/email-sender.service";
+import {ProjectMember} from "../../models/project-member.model";
+import {GlobalUserStorageService} from "../../service/global-storage.service";
+import {ProjectRole} from "../../models/Enums/project-role.enum";
 
 
 @Component({
@@ -29,12 +32,12 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
   private dataSource;
   private sortParameters: SortParameters;
   private id: string;
+  private member: ProjectMember;
+  private buttonVisibility: boolean;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  @select(selectCurrentUserName)
-  readonly userName: Observable<string>;
 
   constructor(private route: ActivatedRoute,
               private projectService: ProjectService,
@@ -43,7 +46,8 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
               private emailService: EmailSenderService,
               private cd: ChangeDetectorRef,
               private router: Router,
-              private confirmService: MatConfirmDialogService) {
+              private confirmService: MatConfirmDialogService,
+              private storageService: GlobalUserStorageService) {
     super();
   }
 
@@ -51,6 +55,7 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
   ngOnInit(): void {
     this.sortParameters = new SortParameters();
     this.dataSource = new MatTableDataSource();
+    this.buttonVisibility =false;
 
     this.getData();
   }
@@ -61,10 +66,18 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
 
   getData(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.member = null;
 
     this.projectService.getProjectById(this.id).pipe(takeUntil(this.streamEndSubject))
       .subscribe(project => {
         this.project = project as Project;
+
+        this.member = project.members.find((value,index,arr) =>{
+          return value.profile.user.id === this.storageService.currentUser.id;
+        });
+
+        this.isMember();
+
       });
 
     this.sortParameters.maxElemOnPage = 5;
@@ -80,12 +93,6 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.paginator.length = pageData.totalElem;
         this.dataSource.paginator = this.paginator;
       });
-    console.log(this.tickets);
-
-  }
-
-  onClickAddTicket(): void {
-    this.router.navigate(['/create-ticket']);
   }
 
   onClickMembers(): void{
@@ -142,5 +149,9 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.dataSource = response.list;
         this.tickets = response.list;
       });
+  }
+
+  isMember(): void{
+    this.buttonVisibility = this.member!=null;
   }
 }

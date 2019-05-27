@@ -26,6 +26,7 @@ td {
 
 tr:hover td {background: #ccddff;}
 
-.buttonClick{
-  cursor: pointer
+.example-button-row{
+  padding-top: 25px;
+  padding-left: 70px;
 }

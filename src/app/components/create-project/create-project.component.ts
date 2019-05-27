@@ -7,6 +7,8 @@ import {createProjectAction} from "../../store/actions/create-project.actions";
 import {GlobalUserStorageService} from "../../service/global-storage.service";
 import {ProjectNameValidator} from "../../validators/project.name.validator";
 import {ProjectCodeValidator} from "../../validators/project.code.validator";
+import {defaultProject} from "../../models/project.model";
+import {ProjectService} from "../../service/project.service";
 
 @Component({
   selector: 'create-project',
@@ -21,7 +23,9 @@ export class CreateProjectComponent implements OnInit {
               private fb: FormBuilder, private router: Router,
               private storageService: GlobalUserStorageService,
               private projectNameValidator: ProjectNameValidator,
-              private projectCodeValidator: ProjectCodeValidator) {
+              private projectCodeValidator: ProjectCodeValidator,
+              private projectService: ProjectService
+              ) {
 
   }
 
@@ -41,18 +45,21 @@ export class CreateProjectComponent implements OnInit {
           Validators.minLength(3), Validators.pattern('[A-Z]+')],
         asyncValidators: [this.projectCodeValidator]
       }],
-      ownerId: this.storageService.currentUser.id
+      projectOwner: this.storageService.currentUser
     });
   }
 
   onCreateClick() {
     const formValue = this.projectForm.getRawValue();
-    this.ngRedux.dispatch(createProjectAction(formValue as any));
+    this.projectService.createProject(formValue).subscribe(ressponce =>{
+
+    });
     this.onCancelClick();
   }
 
   onCancelClick() {
-    this.router.navigate(['projects']);     //todo: Projects page
+    window.location.reload();
+    this.router.navigate(['projects']);
   }
 
   get projectName(): FormControl {

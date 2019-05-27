@@ -4,6 +4,9 @@ import {ProjectMember} from "../models/project-member.model";
 import {HttpClient} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {Profile} from "../models/profile.model";
+import {SortParameters} from "../models/util/table-sort-param.model";
+import {TablePageData} from "../models/util/table-page-data.model";
+import {Project} from "../models/project.model";
 
 @Injectable()
 export class ProjectMemberService {
@@ -18,7 +21,7 @@ export class ProjectMemberService {
   }
 
   deleteMember(projectId: string, memberId): Observable<{}>{
-    return this.http.delete(`${this.PROJECT_MEMBER_URL}/delete/${projectId}/${memberId}`)
+    return this.http.delete(`${this.PROJECT_MEMBER_URL}/${projectId}/${memberId}`)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
@@ -27,8 +30,13 @@ export class ProjectMemberService {
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 
-  addMember(profileId: string,projectMember: ProjectMember): Observable<{}>{
-    return this.http.post<{}>(`${this.PROJECT_MEMBER_URL}/${profileId}/add`, projectMember)
+  addMember(profileId: string,projectMember: ProjectMember): Observable<ProjectMember>{
+    return this.http.post<ProjectMember>(`${this.PROJECT_MEMBER_URL}/${profileId}/add`, projectMember)
+      .pipe(catchError((error: any) => throwError(error.error)));
+  }
+
+  getTablePageData(id: string, parameters: SortParameters): Observable<TablePageData<ProjectMember>>{
+    return this.http.post<TablePageData<ProjectMember>>(`${this.PROJECT_MEMBER_URL}/project/${id}/sort`,parameters)
       .pipe(catchError((error: any) => throwError(error.error)));
   }
 }

@@ -52,7 +52,9 @@ export class ProjectMemberModalComponent extends AutoUnsubscribe implements OnIn
   onClickAddMember(): void{
     const projectMember = new ProjectMember(this.selectedUser,this.selectedRole.role);
 
-    // this.projectMemberService.addMember(this.data, projectMember).subscribe();
+    this.projectMemberService.addMember(this.data, projectMember).subscribe(response =>{
+      const newProjectMember = response as ProjectMember;
+    });
 
     this.onCancelClick();
   }

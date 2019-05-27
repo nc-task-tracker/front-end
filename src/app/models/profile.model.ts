@@ -2,15 +2,19 @@ import {User} from "./user.model";
 
 export interface Profile {
   readonly id: string;
-  readonly firstName: string;
-  readonly lastName: string;
+  readonly fullName: string;
+  readonly email: string;
+  readonly skype: string;
+  readonly telephone: string;
   readonly user: User;
 }
 
 export const defaultProfile: Profile = {
   id: '',
-  firstName: '',
-  lastName: '',
+  fullName: '',
+  email:'',
+  skype:'',
+  telephone:'',
   user: {
     id: null,
     login: null,
