@@ -173,7 +173,7 @@ export class FilterFormComponent implements OnInit {
       parameters: parameters
     };
 
-    if(createFilter.parameters.length !== 0 && createFilter.parameters.length <= validateParam){
+    if(createFilter.parameters.length !== 0 && createFilter.parameters.length <= validateParam && this.filterName.name.length !== 0){
       console.log('CREATE ', createFilter);
       this.ngRedux.dispatch(createFilterAction(createFilter as any));
     }

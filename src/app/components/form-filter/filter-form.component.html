@@ -2,7 +2,7 @@
   <mat-list-item>Filter name: {{filterName.name}}</mat-list-item>
   <div class="example-full-width">
   <mat-form-field>
-    <input matInput placeholder="Change filter name:" [(ngModel)] = "filterName.name"  >
+    <input matInput  placeholder="Change filter name:" [(ngModel)] = "filterName.name"  #filtersName ="ngModel" required pattern="[a-zA-Z\s][3,15]">
   </mat-form-field>
   </div>
   <mat-divider></mat-divider>
@@ -14,7 +14,6 @@
     <!--<input matInput placeholder="Change filter name:" [(ngModel)] = "filterName.name"  >-->
   <!--</mat-form-field>-->
 <!--</div>-->
-
 
 <section class="filter-toolbar">
 
