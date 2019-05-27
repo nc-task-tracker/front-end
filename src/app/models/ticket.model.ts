@@ -98,10 +98,11 @@ export interface Ticket {
   readonly issuePriority: TicketPriority;
   readonly issueStatus: TicketStatus;
   readonly issueDescription: string;
+  readonly code: string;
   readonly startDate: Date;
   readonly dueDate: Date;
   readonly project: Project;
-  readonly reporter: Assignee;
+  readonly reporter: string;
   readonly assignee: Assignee;
   readonly parentId: string;
   readonly subtasks: Ticket [];
@@ -115,6 +116,7 @@ export const defaultTicket: Ticket = {
   issuePriority: TicketPriority.MINOR,
   issueStatus: TicketStatus.RESOLVED,
   issueDescription: 'Sub',
+  code: '',
   startDate: new Date(),
   dueDate: new Date(),
   project: defaultProject,

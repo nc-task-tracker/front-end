@@ -33,12 +33,8 @@ export class CommentsComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    this.comments.subscribe(colComments => {
-      if (colComments.length > 0) this.haveComments = true;
-    });
-
+    console.log(this.issue_Id);
     this.currentUser = selectCurrentUser(this.ngRedux.getState());
-    this.comments.subscribe();
     this.formInit();
   }
 
@@ -54,6 +50,7 @@ export class CommentsComponent implements OnInit {
   }
 
   onDeleteCommentClick(comment: Comment) {
+    console.log(comment.id);
     this.ngRedux.dispatch(deleteCurrentTicketComment(comment.id));
   }
 }

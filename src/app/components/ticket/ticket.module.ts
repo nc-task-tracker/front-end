@@ -11,6 +11,8 @@ import {TicketComponent} from './ticket.component';
 import {CommentsComponent} from './comments/comments.component';
 import { SubtasksComponent } from './subtasks/subtasks.component';
 import {OverlayModule} from '@angular/cdk/overlay';
+import {AssigneeFormComponent} from '../form-filter/assignee-form/assignee-form.component';
+import {FilterFormModule} from '../form-filter/filter-form.module';
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatNativeDateModule,
     MaterialModule,
     MatTableModule,
-    OverlayModule
+    OverlayModule,
+    FilterFormModule
   ],
   declarations: [TicketComponent, CommentsComponent, SubtasksComponent],
   entryComponents: [TicketComponent, CommentsComponent, SubtasksComponent]

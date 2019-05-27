@@ -26,7 +26,7 @@ export class CurrentTicketsEpic {
 
   saveComment$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(SAVE_CURRENT_TICKET_COMMENT).pipe(
-      mergeMap(({payload}) => {
+      mergeMap(({payload, ticketId}) => {
         return this.ticketService
           .saveComment(payload.comment, payload.ticketId)
           .pipe(

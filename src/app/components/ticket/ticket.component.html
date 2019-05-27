@@ -14,7 +14,7 @@
           <div>
             <mat-card-title>
               <mat-form-field style="width: 1250px">
-                <input matInput [formControlName]="'issueName'" color="edit ? warn : primary" [readonly]="edit"  required>
+                <input matInput [formControlName]="'issueName'" [readonly]="edit"  required>
               </mat-form-field>
             </mat-card-title>
           </div>
@@ -45,15 +45,14 @@
               <mat-card-title class="assignee-title">Assignee</mat-card-title>
 
               <mat-card-subtitle class="assignee-subtitle">
-                  <mat-form-field style="width: 150px">
-                    <input matInput [readonly]="edit" required>
-
-                    <!--<input matInput [value]="chosenAssignee" id="assigneeInput" required [formControl]="autoCompleteControl">-->
-                    <!--<mat-option *ngFor="let item of assignees | async" [value]="item.login" (click)="chooseAssignee(item)">-->
-                      <!--{{ item.fio}} <span class="assigneeListLogin">@{{item.login}}</span>-->
-                    <!--</mat-option> {{ birthday | date:"MM/dd/yy" }}-->
-
-                  </mat-form-field>
+                <app-assignee-form class="size"
+                                   [controlName]="'assignee'"
+                                   [placeholder]=""
+                                   [itemTemplate]="customItem"
+                                   [valueTitleKey]="valueTitleKeyAssignee"
+                                   [isAssigneeInput]="isShowFullName"
+                disabled="edit">
+                </app-assignee-form>
               </mat-card-subtitle>
             </mat-card-header>
           </mat-card>
@@ -112,7 +111,7 @@
 
     <mat-form-field appearance="outline" class="description">
       <mat-label>Description</mat-label>
-      <textarea matInput class="descriptionTextField" cdkTextareaAutosize="false" [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
+      <textarea matInput class="descriptionTextField" cdkTextareaAutosize="false" [formControlName]="'issueDescription'"></textarea>
     </mat-form-field>
 
     <app-subtasks [subtasks]="ticketSubtasks"></app-subtasks>

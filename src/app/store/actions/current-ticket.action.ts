@@ -29,13 +29,6 @@ export function saveCurrentTicketCommentAction(comment: Comment, ticketId: strin
   };
 }
 
-export function openSubtask(subtask: Ticket) {
-  return {
-    type: OPEN_SUBTASK,
-    payload: { subtask },
-  };
-}
-
 export const deleteCurrentTicketComment = (commentId: string) => ({
   type: DELETE_CURRENT_TICKET_COMMENT,
   payload: {commentId}

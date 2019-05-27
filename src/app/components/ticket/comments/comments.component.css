@@ -7,6 +7,10 @@ mat-card {
 }
 
 .comments-table {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+
   height: 280px;
   max-width: 490px;
   overflow: auto;
@@ -38,7 +42,7 @@ mat-card {
 }
 
 table {
-  max-width: 480px;
+  max-width: 550px;
 }
 
 .noComments {

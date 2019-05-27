@@ -26,33 +26,32 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
       return { ...state, ...action.payload, isLoading: false };
     }
     case UPDATE_TICKET:
-    case DELETE_TICKET:
-    case SAVE_COMMENT:{
+    case DELETE_TICKET: {
       return { ...state, isLoading: true };
     }
-    case UPDATE_TICKET_SUCCESS: {
-      const { ticket } = action.payload;
-      const updatedTickets = new Map(state.tickets).set(ticket.id, ticket);
-      return { ...state, tickets: updatedTickets, isLoading: false };
-    }
+    // case UPDATE_TICKET_SUCCESS: {
+    //   const { ticket } = action.payload;
+    //   const updatedTickets = new Map(state.tickets).set(ticket.id, ticket);
+    //   return { ...state, tickets: updatedTickets, isLoading: false };
+    // }
     case DELETE_TICKET_SUCCESS: {
       const { ticketId } = action.payload;
       const updatedTickets = new Map(state.tickets);
       updatedTickets.delete(ticketId);
       return { ...state, tickets: updatedTickets, isLoading: false };
     }
-    case SAVE_COMMENT_SUCCESS: {
-      const {comment, ticketId}  = action.payload;
-      const updatedTickets = new Map(state.tickets);
-      if (comment !== null) {
-        const ticket = updatedTickets.get(ticketId.ticketId);
-        if(ticket) {
-          ticket.comments.push(comment);
-          updatedTickets.set(ticket.id, ticket);
-        }
-      }
-      return { ...state, tickets: updatedTickets, isLoading: false };
-    }
+    // case SAVE_COMMENT_SUCCESS: {
+    //   const {comment, ticketId}  = action.payload;
+    //   const updatedTickets = new Map(state.tickets);
+    //   if (comment !== null) {
+    //     const ticket = updatedTickets.get(ticketId.ticketId);
+    //     if(ticket) {
+    //       ticket.comments.push(comment);
+    //       updatedTickets.set(ticket.id, ticket);
+    //     }
+    //   }
+    //   return { ...state, tickets: updatedTickets, isLoading: false };
+    // }
     case CREATE_TICKET_SUCCESS: {
       const {ticket} = action.payload;
       const updatedTickets = new Map(state.tickets).set(ticket.id, ticket);

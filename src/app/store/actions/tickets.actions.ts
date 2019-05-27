@@ -54,8 +54,7 @@ export const createTicketFailureAction = () => ({
 export function updateTicketAction(ticket: Ticket, ticketId: string) {
   return {
     type: UPDATE_TICKET,
-    payload: {ticket},
-    id: {ticketId}
+    payload: {ticket, ticketId},
   };
 }
 

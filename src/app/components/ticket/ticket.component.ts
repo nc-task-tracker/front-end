@@ -8,6 +8,12 @@ import {TicketService} from '../../service/ticket.service';
 import {Observable} from 'rxjs';
 import {selectCurrentIsLoading, selectCurrentTicket} from '../../store/selectors/current-ticket.selector';
 import {deleteTicketAction, selectTicket, updateTicketAction} from '../../store/actions/tickets.actions';
+import {Comment} from '../../models/comment.model';
+import {TicketPriority} from '../../models/Enums/TicketPriority.enum';
+import {TicketStatus} from '../../models/Enums/TicketStatus.enum';
+import {Assignee} from '../../models/assignee.model';
+import {Project} from '../../models/project.model';
+import {TicketType} from '../../models/Enums/TicketType.enum';
 
 @Component({
   selector: 'app-ticket',
@@ -21,6 +27,10 @@ export class TicketComponent implements OnInit {
   priorities = allTicketPriority;
   statuses = allTicketStatus;
   types = allTicketType;
+  valueTitleKeyAssignee = 'login';
+  assigneePlaceholder = 'Choose assignee';
+  isShowFullName = true;
+
 
   edit: boolean = true;
 
@@ -46,20 +56,26 @@ export class TicketComponent implements OnInit {
       this.ticketId = this.ticket.id;
       this.ticketSubtasks = this.ticket.subtasks;
       console.log(this.ticketSubtasks.length);
-      if (this.ticket.parentId !== null) this.createSubtask = true;
       this.formInit();
       }})
   }
 
   formInit() {
     this.ticketForm = this.fb.group({
-      issueName: [this.ticket.issueName],
+      issueName: [this.ticket.issueName, Validators.required],
       issueType: [this.ticket.issueType, Validators.required],
       issuePriority: [this.ticket.issuePriority, Validators.required],
       issueStatus: [this.ticket.issueStatus, Validators.required],
-      // assignee: [this.ticket.assignee.firstName],
       dueDate: [this.ticket.dueDate, Validators.required],
-      issueDescription: [this.ticket.issueDescription]
+      issueDescription: [this.ticket.issueDescription, Validators.required],
+      code: [this.ticket.code],
+      startDate: [this.ticket.startDate],
+      project: [this.ticket.project],
+      reporter: [this.ticket.reporter],
+      assignee: [this.ticket.assignee.login, Validators.required],
+      parentId: [this.ticket.parentId],
+      subtasks: [this.ticket.subtasks],
+      comments: [this.ticket.comments]
     });
   }
 
@@ -68,8 +84,9 @@ export class TicketComponent implements OnInit {
   }
 
   onDeleteClick() {
+    this.router.navigate([`/project/${this.ticket.project.id}`]);
     this.ngRedux.dispatch(deleteTicketAction(this.ticket.id));
-    this.router.navigate(['projects']);
+
   }
 
   onEditClick() {

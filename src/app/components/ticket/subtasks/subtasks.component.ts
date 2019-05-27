@@ -26,7 +26,6 @@ export class SubtasksComponent implements OnInit {
 
   ngOnInit() {
     if (this.subtasks.length > 0) this.haveSubtasks = true;
-    console.log(    this.subtasks.length);
   }
 
   onCreateSubtaskClick() {

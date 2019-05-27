@@ -16,6 +16,7 @@ import {TablePageData} from '../models/util/table-page-data.model';
 import {SortParameters} from '../models/util/table-sort-param.model';
 import 'rxjs/add/observable/fromEvent';
 import 'rxjs/Rx';
+import {selectCurrentTicket} from '../store/selectors/current-ticket.selector';
 
 @Injectable()
 export class TicketService implements SearchByName<Ticket> {
@@ -32,6 +33,9 @@ export class TicketService implements SearchByName<Ticket> {
   private readonly TICKET_URL = '/api/issue';
   private readonly SEARCH_BY_NAME = '/api/issue/searchByName';
   private readonly SEARCH_TICKETS = '/api/issue/search/';
+
+  @select(selectCurrentTicket)
+  curTicket: Observable<Ticket>;
 
   constructor(private http: HttpClient) {
   }

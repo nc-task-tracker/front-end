@@ -5,6 +5,7 @@
 
   <div *ngIf="haveSubtasks ;else subtasksTemplate" class="subtasksTable">
     <table mat-table [dataSource]="subtasks" class="mat-elevation-z8">
+
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let subtask">
