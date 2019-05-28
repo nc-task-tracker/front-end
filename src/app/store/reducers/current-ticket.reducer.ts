@@ -22,23 +22,35 @@ export const currentTicketStateReducer: Reducer<CurrentTicketState> = (state: Cu
     case UPDATE_CURRENT_TICKET:
     case SELECT_TICKET_SUCCESS: {
       const {ticket} = action.payload;
+      if (ticket.comments.length > 1) {
+        const sortedCommentsArray = ticket.comments.sort((n1,n2) => {
+          new Date(n1.time).getTime() - new Date(n2.time).getTime()
+        });
+        ticket.comments = sortedCommentsArray;
+      }
       return { ...state, currentTicket: ticket, isLoading: false};
+    }
+    case DELETE_CURRENT_TICKET_COMMENT_SUCCESS: {
+      const { commentId } = action.payload;
+      const updatedTicket = {...state.currentTicket};
+      const index = updatedTicket.comments.findIndex(comment => comment.id === commentId);
+      updatedTicket.comments.splice(index,1);
+      return { ...state, currentTicket: updatedTicket, isLoading: false };
     }
     case SAVE_CURRENT_TICKET_COMMENT_SUCCESS: {
       const {comment, ticketId}  = action.payload;
       if (comment !== null && ticketId == state.currentTicket.id) {
         const updatedTicket = {...state.currentTicket};
         updatedTicket.comments.push(comment);
+        if (updatedTicket.comments.length > 1) {
+        const sortedCommentsArray = updatedTicket.comments.sort((n1,n2) => {
+          new Date(n1.time).getTime() - new Date(n2.time).getTime()
+        });
+        updatedTicket.comments = sortedCommentsArray;
+        }
         return { ...state, currentTicket: updatedTicket, isLoading: false };
       }
       return state;
-    }
-    case DELETE_CURRENT_TICKET_COMMENT_SUCCESS: {
-      const { commentId } = action.payload;
-      const updatedTicket = {...state.currentTicket};
-      const index = this.updatedTicket.comments.findIndex(comment => comment.id === commentId);
-      updatedTicket.comments.splice(index,1);
-      return { ...state, currentTicket: updatedTicket, isLoading: false };
     }
     default: {
       return state;

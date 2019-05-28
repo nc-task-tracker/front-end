@@ -34,12 +34,6 @@ export const ticketReducer: Reducer<TicketsState> = (state: TicketsState = INITI
     //   const updatedTickets = new Map(state.tickets).set(ticket.id, ticket);
     //   return { ...state, tickets: updatedTickets, isLoading: false };
     // }
-    case DELETE_TICKET_SUCCESS: {
-      const { ticketId } = action.payload;
-      const updatedTickets = new Map(state.tickets);
-      updatedTickets.delete(ticketId);
-      return { ...state, tickets: updatedTickets, isLoading: false };
-    }
     // case SAVE_COMMENT_SUCCESS: {
     //   const {comment, ticketId}  = action.payload;
     //   const updatedTickets = new Map(state.tickets);

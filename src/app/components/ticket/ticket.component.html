@@ -1,4 +1,6 @@
-<mat-spinner *ngIf="(isLoading | async);else ticketTemplate" mode="indeterminate" color="primary"></mat-spinner>
+<div class="spinner">
+  <mat-spinner *ngIf="(isLoading | async);else ticketTemplate" mode="indeterminate" color="primary"></mat-spinner>
+</div>
 <ng-template #ticketTemplate>
 <form class="ticket" [formGroup]="ticketForm" >
   <div class="name">
@@ -7,7 +9,7 @@
         <div>
           <div class="project-subtitle">
             <mat-card-subtitle >
-              Project: {{ticket.project.projectName}} / {{ticket.project.projectCode}}
+              Project: {{ticket.project.projectName}} / {{ticket.project.projectCode}}; Ticket code: {{ticket.code}}
             </mat-card-subtitle>
           </div>
 
@@ -35,24 +37,24 @@
               <mat-card-header>
                 <div mat-card-avatar class="example-header-image"><mat-icon class="people-icon">account_circle</mat-icon></div>
                 <mat-card-title>Reporter</mat-card-title>
-                <mat-card-subtitle></mat-card-subtitle>
+                <mat-card-subtitle>{{reporterName}}</mat-card-subtitle>
               </mat-card-header>
             </mat-card>
 
           <mat-card class="reporter-assignee">
             <mat-card-header>
               <div mat-card-avatar><mat-icon class="people-icon">account_circle</mat-icon></div>
-              <mat-card-title class="assignee-title">Assignee</mat-card-title>
-
-              <mat-card-subtitle class="assignee-subtitle">
-                <app-assignee-form class="size"
-                                   [controlName]="'assignee'"
-                                   [placeholder]=""
-                                   [itemTemplate]="customItem"
-                                   [valueTitleKey]="valueTitleKeyAssignee"
-                                   [isAssigneeInput]="isShowFullName"
-                disabled="edit">
-                </app-assignee-form>
+              <mat-card-title>Assignee</mat-card-title>
+              <mat-card-subtitle >
+                <!--<app-assignee-form aria-readonly="edit"-->
+                                   <!--[controlName]="'assignee'"-->
+                                   <!--[placeholder]=""-->
+                                   <!--[itemTemplate]="customItem"-->
+                                   <!--[valueTitleKey]="valueTitleKeyAssignee"-->
+                                   <!--[isAssigneeInput]="isShowFullName"-->
+                <!--disabled="edit">-->
+                <!--</app-assignee-form>-->
+                {{assigneeName}}
               </mat-card-subtitle>
             </mat-card-header>
           </mat-card>
@@ -69,7 +71,7 @@
         <h4>Due:
           <mat-form-field class="due">
             <input  matInput [formControlName]="'dueDate'" [matDatepicker]="picker" [readonly]="edit" required>
-            <mat-datepicker-toggle  matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker-toggle  matSuffix [for]="picker" [disabled]="edit"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </h4>
@@ -77,9 +79,7 @@
     </mat-card>
 
       <button mat-raised-button class="button-size" color="primary" (click)="onUpdateClick()">Update</button>
-      <button mat-raised-button class="button-size" color="warn" (click)="onDeleteClick()">Delete</button>
-      <button mat-raised-button class="button-size" color="primary" (click)="onEditClick()">Edit</button>
-
+      <button mat-raised-button class="button-size" color="warn" (click)="onEditClick()">Edit</button>
     </div>
 
     <div>
@@ -111,10 +111,10 @@
 
     <mat-form-field appearance="outline" class="description">
       <mat-label>Description</mat-label>
-      <textarea matInput class="descriptionTextField" cdkTextareaAutosize="false" [formControlName]="'issueDescription'"></textarea>
+      <textarea matInput class="descriptionTextField" cdkTextareaAutosize="false" [formControlName]="'issueDescription'" [readonly]="edit"></textarea>
     </mat-form-field>
 
-    <app-subtasks [subtasks]="ticketSubtasks"></app-subtasks>
+    <app-subtasks [ticket]="ticket"></app-subtasks>
   </div>
   <app-comments [issue_Id]="ticketId"></app-comments>
   </div>

@@ -8,29 +8,29 @@ import {TicketService} from '../../service/ticket.service';
 import {Observable} from 'rxjs';
 import {selectCurrentIsLoading, selectCurrentTicket} from '../../store/selectors/current-ticket.selector';
 import {deleteTicketAction, selectTicket, updateTicketAction} from '../../store/actions/tickets.actions';
-import {Comment} from '../../models/comment.model';
-import {TicketPriority} from '../../models/Enums/TicketPriority.enum';
-import {TicketStatus} from '../../models/Enums/TicketStatus.enum';
-import {Assignee} from '../../models/assignee.model';
+import {Profile} from '../../models/profile.model';
+import {ProfileService} from '../../service/profile.service';
+import {takeUntil} from 'rxjs/operators';
 import {Project} from '../../models/project.model';
-import {TicketType} from '../../models/Enums/TicketType.enum';
+import {AutoUnsubscribe} from '../../service/auto-unsubscribe';
+import {CreateTicketModalComponent} from '../create-ticket-modal/create-ticket-modal.component';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css']
 })
-export class TicketComponent implements OnInit {
+export class TicketComponent extends AutoUnsubscribe implements OnInit {
 
   ticketForm: FormGroup;
-
   priorities = allTicketPriority;
   statuses = allTicketStatus;
   types = allTicketType;
   valueTitleKeyAssignee = 'login';
-  assigneePlaceholder = 'Choose assignee';
   isShowFullName = true;
-
+  reporterName: string;
+  assigneeName: string;
 
   edit: boolean = true;
 
@@ -44,7 +44,9 @@ export class TicketComponent implements OnInit {
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
               private fb: FormBuilder, private route: ActivatedRoute,
-              private router: Router) {}
+              private router: Router, private profileService: ProfileService) {
+    super();
+  }
 
   ngOnInit() {
     const ticketCode = this.route.snapshot.params.issueCode;
@@ -55,9 +57,21 @@ export class TicketComponent implements OnInit {
       this.ticket = selectCurrentTicket(this.ngRedux.getState());
       this.ticketId = this.ticket.id;
       this.ticketSubtasks = this.ticket.subtasks;
-      console.log(this.ticketSubtasks.length);
+      this.getReporterAssigneeProfile(this.ticket.reporterId, this.ticket.assigneeId);
       this.formInit();
-      }})
+      }});
+  }
+
+  getReporterAssigneeProfile(reporterId: string, assigneeId: string) {
+    this.profileService.getProfile(reporterId).pipe(takeUntil(this.streamEndSubject))
+      .subscribe(profile => {
+        this.reporterName = profile.user.login;
+      });
+
+    this.profileService.getProfile(assigneeId).pipe(takeUntil(this.streamEndSubject))
+      .subscribe(profile => {
+        this.assigneeName = profile.user.login;
+      });
   }
 
   formInit() {
@@ -71,8 +85,8 @@ export class TicketComponent implements OnInit {
       code: [this.ticket.code],
       startDate: [this.ticket.startDate],
       project: [this.ticket.project],
-      reporter: [this.ticket.reporter],
-      assignee: [this.ticket.assignee.login, Validators.required],
+      reporterId: [this.ticket.reporterId],
+      assignee: ['', Validators.required],
       parentId: [this.ticket.parentId],
       subtasks: [this.ticket.subtasks],
       comments: [this.ticket.comments]
@@ -80,16 +94,11 @@ export class TicketComponent implements OnInit {
   }
 
   onUpdateClick() {
-    this.ngRedux.dispatch(updateTicketAction(this.ticketForm.getRawValue(), '1'));
-  }
-
-  onDeleteClick() {
-    this.router.navigate([`/project/${this.ticket.project.id}`]);
-    this.ngRedux.dispatch(deleteTicketAction(this.ticket.id));
-
+    this.ngRedux.dispatch(updateTicketAction(this.ticketForm.getRawValue(), this.ticketId));
   }
 
   onEditClick() {
     this.edit = !this.edit;
   }
 }
+

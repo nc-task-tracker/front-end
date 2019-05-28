@@ -8,6 +8,9 @@ import {Ticket} from '../../../models/ticket.model';
 import {selectCurrentTicketComments} from '../../../store/selectors/current-ticket.selector';
 import {Comment} from '../../../models/comment.model';
 import {Observable} from 'rxjs';
+import {CreateTicketModalComponent} from '../../create-ticket-modal/create-ticket-modal.component';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {TicketType} from '../../../models/Enums/TicketType.enum';
 
 @Component({
   selector: 'app-subtasks',
@@ -16,20 +19,31 @@ import {Observable} from 'rxjs';
 })
 export class SubtasksComponent implements OnInit {
 
-  @Input() subtasks: Ticket[];
+  @Input() ticket: Ticket;
+  createSubtask = false;
 
   displayedColumns: string[] = ['Name', 'Description', 'Status'];
-  haveSubtasks = false;
 
   constructor(private ticketService: TicketService, private ngRedux: NgRedux<AppState>,
-              private fb: FormBuilder, private router: Router) { }
+              private fb: FormBuilder, private router: Router,
+              private matDialog: MatDialog) { }
 
   ngOnInit() {
-    if (this.subtasks.length > 0) this.haveSubtasks = true;
+    if (this.ticket.issueType == TicketType.SUBTASK) this.createSubtask = true;
   }
 
-  onCreateSubtaskClick() {
-    this.router.navigate(['create-ticket']);
+  onClickAddSubTicket(ticket: Ticket): void {
+    console.log(ticket);
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      isSubTask: true,
+      parentTicket: ticket
+    };
+
+    dialogConfig.autoFocus = true;
+    this.matDialog.open(CreateTicketModalComponent, dialogConfig);
   }
 
   selectSubtask(subtask: Ticket) {

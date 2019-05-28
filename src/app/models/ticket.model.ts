@@ -102,7 +102,8 @@ export interface Ticket {
   readonly startDate: Date;
   readonly dueDate: Date;
   readonly project: Project;
-  readonly reporter: string;
+  readonly reporterId: string;
+  readonly assigneeId: string;
   readonly assignee: Assignee;
   readonly parentId: string;
   readonly subtasks: Ticket [];
@@ -120,7 +121,8 @@ export const defaultTicket: Ticket = {
   startDate: new Date(),
   dueDate: new Date(),
   project: defaultProject,
-  reporter: null,
+  reporterId: '',
+  assigneeId: '',
   assignee: null,
   parentId: '',
   subtasks: null,

@@ -74,7 +74,7 @@ export class TicketsEpic {
 
   updateTicket$ = (action$: ActionsObservable<AnyAction>) => {
     return action$.ofType(UPDATE_TICKET).pipe(
-      mergeMap(({payload, ticketId}) => {
+      mergeMap(({payload}) => {
         return this.ticketService
           .updateTicket(payload.ticket, payload.ticketId)
           .pipe(

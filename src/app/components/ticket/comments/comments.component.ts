@@ -23,7 +23,6 @@ export class CommentsComponent implements OnInit {
   @select(selectCurrentTicketComments)
     comments: Observable<Comment[]>;
 
-  haveComments = false;
   currentUser: User;
   commentForm: FormGroup;
   displayedColumns: string[] = ['User', 'Text', 'Time', 'Delete'];
@@ -33,7 +32,6 @@ export class CommentsComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
-    console.log(this.issue_Id);
     this.currentUser = selectCurrentUser(this.ngRedux.getState());
     this.formInit();
   }
@@ -47,10 +45,12 @@ export class CommentsComponent implements OnInit {
 
   onSaveClick () {
     this.ngRedux.dispatch(saveCurrentTicketCommentAction(this.commentForm.getRawValue(), this.issue_Id));
+    this.formInit();
   }
 
   onDeleteCommentClick(comment: Comment) {
     console.log(comment.id);
     this.ngRedux.dispatch(deleteCurrentTicketComment(comment.id));
+    this.formInit();
   }
 }

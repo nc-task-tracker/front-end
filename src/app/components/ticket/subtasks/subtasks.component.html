@@ -1,10 +1,10 @@
 <div>
   <h2>Subtasks
-    <button mat-raised-button color="primary" (click)="onCreateSubtaskClick()" [disabled]="createSubtask">Create</button>
+    <button mat-raised-button color="primary" (click)="onClickAddSubTicket(ticket)" [disabled]="createSubtask">Create</button>
   </h2>
 
-  <div *ngIf="haveSubtasks ;else subtasksTemplate" class="subtasksTable">
-    <table mat-table [dataSource]="subtasks" class="mat-elevation-z8">
+  <div *ngIf="ticket.subtasks.length > 0 ;else subtasksTemplate" class="subtasksTable">
+    <table mat-table [dataSource]="ticket.subtasks" class="mat-elevation-z8">
 
       <ng-container matColumnDef="Name">
         <th mat-header-cell *matHeaderCellDef> Name </th>

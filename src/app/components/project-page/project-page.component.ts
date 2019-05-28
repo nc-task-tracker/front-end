@@ -157,5 +157,4 @@ export class ProjectPageComponent extends AutoUnsubscribe implements OnInit, OnD
         this.tickets = response.list;
       });
   }
-
 }
